@@ -1,6 +1,6 @@
 package sv.edu.ues.dsi.palasatenea.modelo;
 
-// Generated 10-18-2014 06:33:11 PM by Hibernate Tools 3.4.0.CR1
+// Generated 10-19-2014 01:12:21 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
