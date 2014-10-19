@@ -1,6 +1,7 @@
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno"%>
 <%
 	String nombre1 = request.getParameter("nombre1");
 	String nombre2 = request.getParameter("nombre2");
