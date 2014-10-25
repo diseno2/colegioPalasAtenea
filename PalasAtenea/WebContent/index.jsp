@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<a href="./Alumno/ListaAlumno.jsp">Alumnos</a>
 </body>
 </html>
