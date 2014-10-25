@@ -14,22 +14,22 @@ import sv.edu.ues.dsi.palasatenea.modelo.dao.AlumnoDAO;
  *
  */
 public class AlumnoCtrl {
-	private AlumnoDAO alumnodao = new AlumnoDAO();
+	private AlumnoDAO alumnoDao = new AlumnoDAO();
 	
 	public void guardar(Alumno alumno){
-		alumnodao.guardar(alumno);
+		alumnoDao.guardar(alumno);
 	}
 	
 	public void borrar(Integer ident){
-		alumnodao.borrar(ident);
+		alumnoDao.borrar(ident);
 	}
 	
 	public List findByAll(){
-		return alumnodao.findByAll();
+		return alumnoDao.findByAll();
 	}
 	
 	public Alumno findById(Integer ident){
-		Alumno alumno = alumnodao.findById(ident);
+		Alumno alumno = alumnoDao.findById(ident);
 		return alumno;
 	}
 	
@@ -41,8 +41,6 @@ public class AlumnoCtrl {
 		alumno.setCodigo(codigo);
 		Short estado = 1;
 		alumno.setEstado(estado);
-		System.out.println(alumno.getIdent());
-		System.out.println(alumno.getCodigo());
 		this.guardar(alumno);
 	}
 	
@@ -62,19 +60,9 @@ public class AlumnoCtrl {
 		else
 			codigo += alumno.getApellido2().substring(0,1);
 		
-		codigo += alumno.getFnacimiento().getYear();
+		CodalumCtrl codalum = new CodalumCtrl();
+		codigo = codalum.correlativo(codigo.toUpperCase(), alumno.getFnacimiento().getYear());
 		
-		Integer cant = alumnodao.findByYear(alumno.getFnacimiento().getYear());
-		String correlativo = "";
-		if (cant <= 9)
-			correlativo = "000"+cant.toString();
-		else if (cant <= 99)
-			correlativo = "00"+cant.toString();
-		else if (cant <= 999)
-			correlativo = "0"+cant.toString();
-		else 
-			correlativo = cant.toString();
-		codigo += correlativo;
 		return codigo;
 	}
 }
