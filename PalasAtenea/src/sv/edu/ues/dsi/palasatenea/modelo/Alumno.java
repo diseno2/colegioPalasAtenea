@@ -1,6 +1,6 @@
 package sv.edu.ues.dsi.palasatenea.modelo;
 
-// Generated 10-19-2014 11:59:42 AM by Hibernate Tools 3.4.0.CR1
+// Generated 10-25-2014 12:09:34 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -28,6 +28,8 @@ import org.hibernate.annotations.NamedQuery;
 public class Alumno implements java.io.Serializable {
 
 	private Integer ident;
+	private String codigo;
+	private Short estado;
 	private String nombre1;
 	private String nombre2;
 	private String apellido1;
@@ -44,17 +46,16 @@ public class Alumno implements java.io.Serializable {
 	private String aprendizaje;
 	private String escuelaprevia;
 	private Integer ultgrado;
-	private String codigo;
-	private Short estado;
 
 	public Alumno() {
+		this.codigo = "";
 		this.estado = 0;
-		/*this.nombre1 = "";
+		this.nombre1 = "";
 		this.nombre2 = "";
 		this.apellido1 = "";
 		this.apellido2 = "";
 		this.genero = "";
-		//this.fnacimiento = fnacimiento;
+		//this.fnacimiento = new Date();
 		this.lnacimiento = "";
 		this.direccion = "";
 		this.telefono = "";
@@ -64,23 +65,18 @@ public class Alumno implements java.io.Serializable {
 		this.alergico = "";
 		this.aprendizaje = "";
 		this.escuelaprevia = "";
-		//this.ultgrado = ultgrado;
-		this.codigo = "";
-		this.ident = 0;*/
+		this.ultgrado = 0;
+		this.ident = 0;
 	}
 
-	public Alumno(String nombre1, String nombre2, String apellido1) {
-		this.nombre1 = nombre1;
-		this.nombre2 = nombre2;
-		this.apellido1 = apellido1;
-	}
-
-	public Alumno(String nombre1, String nombre2, String apellido1,
-			String apellido2, String genero, Date fnacimiento,
-			String lnacimiento, String direccion, String telefono,
-			String religion, String enfermedades, String medicamentos,
-			String alergico, String aprendizaje, String escuelaprevia,
-			Integer ultgrado, String codigo) {
+	public Alumno(String codigo, Short estado, String nombre1, String nombre2,
+			String apellido1, String apellido2, String genero,
+			Date fnacimiento, String lnacimiento, String direccion,
+			String telefono, String religion, String enfermedades,
+			String medicamentos, String alergico, String aprendizaje,
+			String escuelaprevia, Integer ultgrado) {
+		this.codigo = codigo;
+		this.estado = estado;
 		this.nombre1 = nombre1;
 		this.nombre2 = nombre2;
 		this.apellido1 = apellido1;
@@ -97,7 +93,6 @@ public class Alumno implements java.io.Serializable {
 		this.aprendizaje = aprendizaje;
 		this.escuelaprevia = escuelaprevia;
 		this.ultgrado = ultgrado;
-		this.codigo = codigo;
 	}
 
 	@Id
@@ -111,9 +106,26 @@ public class Alumno implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@Column(name = "nombre1", nullable = false, length = 50)
+	@Column(name = "codigo", length = 8)
+	public String getCodigo() {
+		return this.codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	@Column(name = "estado")
+	public Short getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(Short estado) {
+		this.estado = estado;
+	}
+
+	@Column(name = "nombre1", length = 50)
 	public String getNombre1() {
-		if (this.nombre1 == null) return "";
 		return this.nombre1;
 	}
 
@@ -121,9 +133,8 @@ public class Alumno implements java.io.Serializable {
 		this.nombre1 = nombre1;
 	}
 
-	@Column(name = "nombre2", nullable = false, length = 50)
+	@Column(name = "nombre2", length = 50)
 	public String getNombre2() {
-		if (this.nombre2 == null) return "";
 		return this.nombre2;
 	}
 
@@ -131,9 +142,8 @@ public class Alumno implements java.io.Serializable {
 		this.nombre2 = nombre2;
 	}
 
-	@Column(name = "apellido1", nullable = false, length = 50)
+	@Column(name = "apellido1", length = 50)
 	public String getApellido1() {
-		if (this.apellido1 == null) return "";
 		return this.apellido1;
 	}
 
@@ -143,7 +153,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "apellido2", length = 50)
 	public String getApellido2() {
-		if (this.apellido2 == null) return "";
 		return this.apellido2;
 	}
 
@@ -153,7 +162,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "genero", length = 1)
 	public String getGenero() {
-		if (this.genero == null) return "";
 		return this.genero;
 	}
 
@@ -173,7 +181,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "lnacimiento", length = 250)
 	public String getLnacimiento() {
-		if (this.lnacimiento == null) return "";
 		return this.lnacimiento;
 	}
 
@@ -183,7 +190,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "direccion", length = 500)
 	public String getDireccion() {
-		if (this.direccion == null) return "";
 		return this.direccion;
 	}
 
@@ -193,7 +199,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "telefono", length = 8)
 	public String getTelefono() {
-		if (this.telefono == null) return "";
 		return this.telefono;
 	}
 
@@ -203,7 +208,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "religion", length = 250)
 	public String getReligion() {
-		if (this.religion == null) return "";
 		return this.religion;
 	}
 
@@ -213,7 +217,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "enfermedades", length = 500)
 	public String getEnfermedades() {
-		if (this.enfermedades == null) return "";
 		return this.enfermedades;
 	}
 
@@ -223,7 +226,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "medicamentos", length = 500)
 	public String getMedicamentos() {
-		if (this.medicamentos == null) return "";
 		return this.medicamentos;
 	}
 
@@ -233,7 +235,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "alergico", length = 500)
 	public String getAlergico() {
-		if (this.alergico == null) return "";
 		return this.alergico;
 	}
 
@@ -243,7 +244,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "aprendizaje", length = 500)
 	public String getAprendizaje() {
-		if (this.aprendizaje == null) return "";
 		return this.aprendizaje;
 	}
 
@@ -253,7 +253,6 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "escuelaprevia", length = 250)
 	public String getEscuelaprevia() {
-		if (this.escuelaprevia == null) return "";
 		return this.escuelaprevia;
 	}
 
@@ -263,35 +262,11 @@ public class Alumno implements java.io.Serializable {
 
 	@Column(name = "ultgrado")
 	public Integer getUltgrado() {
-		if (this.ultgrado == null) return 0;
 		return this.ultgrado;
 	}
 
 	public void setUltgrado(Integer ultgrado) {
 		this.ultgrado = ultgrado;
-	}
-
-	@Column(name = "codigo", length = 8)
-	public String getCodigo() {
-		if (this.codigo == null) return "";
-		return this.codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	@Column(name = "estado")
-	public Short getEstado() {
-		if (this.estado == null) return 0;
-		return estado;
-	}
-
-	/**
-	 * @param estado the estado to set
-	 */
-	public void setEstado(Short estado) {
-		this.estado = estado;
 	}
 
 }
