@@ -8,6 +8,7 @@
 	if (accion == null) accion = "";
 	
 	Integer ident = Integer.parseInt(request.getParameter("ident"));
+	
 	Alumno alumno = new Alumno();
 	String disable = "";
 	
@@ -56,7 +57,7 @@
 	
 	mChecked = fChecked = ug1 = ug2 = ug3 = ug4 = ug5 = ug6 = ug7 = ug8 = ug10 = ug11 = ug12 = "";
 	if(ident==0){ 
-		
+		alumno = new Alumno();
 	}else{
 		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 		alumno = alumnoCtrl.findById(ident);
