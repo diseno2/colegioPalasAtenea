@@ -20,7 +20,7 @@ import org.hibernate.annotations.NamedQuery;
 @NamedQueries({
 	@NamedQuery(name="Codalum.findByAll", query="SELECT a FROM Codalum a"),
 	@NamedQuery(name="Codalum.findByIdent", query="SELECT a FROM Codalum a WHERE a.ident = :id"),
-	@NamedQuery(name="Codalum.findByAnioCodigo", query="SELECT c FROM Codalum c WHERE c.anio = :anio AND c.codigo = :codigo")
+	@NamedQuery(name="Codalum.findByAnioCodigo", query="SELECT c FROM Codalum c WHERE c.anio = :anio AND c.codigo = :")
 	})
 public class Codalum implements java.io.Serializable {
 

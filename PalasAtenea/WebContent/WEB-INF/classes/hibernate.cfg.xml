@@ -36,5 +36,7 @@
   <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Alumno"/>
   <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Codalum"/>
   <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Familiar"/>
+  <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Materia"/>
+  
  </session-factory>
 </hibernate-configuration>

@@ -8,4 +8,5 @@
   <table-filter match-catalog="palasatenea" match-name="codalum"/>
    -->
    <table-filter match-catalog="palasatenea" match-name="familiar"/>
+    <table-filter match-catalog="palasatenea" match-name="materia"/>
 </hibernate-reverse-engineering>
