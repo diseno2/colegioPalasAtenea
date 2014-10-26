@@ -269,4 +269,24 @@ public class Alumno implements java.io.Serializable {
 		this.ultgrado = ultgrado;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String nombre = "";
+		nombre += this.nombre1;
+		if (this.nombre2 != null){
+			if (!this.nombre2.isEmpty())
+				nombre += " "+this.nombre2;
+		}
+		
+		nombre += " "+this.apellido1;
+		if (this.apellido2 != null){
+			if (!this.apellido2.isEmpty())
+				nombre += " "+this.apellido2;
+		}
+		return nombre;
+	}
+
 }
