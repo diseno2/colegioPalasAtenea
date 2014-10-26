@@ -1,7 +1,9 @@
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Familiar" %>
+<%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
+<%@page import="sv.edu.ues.dsi.palasatenea.controlador.FamiliarCtrl"%>
+<%@ page import="java.util.*" %>
 
 <%
 	String accion = request.getParameter("accion");
@@ -75,6 +77,38 @@
 		if (alumno.getUltgrado() == 11) ug11 = "selected";
 		if (alumno.getUltgrado() == 12) ug12 = "selected";
 	}
+	
+	//lo correspondiente a los familiares
+	FamiliarCtrl familiarCtrl = new FamiliarCtrl();
+	Familiar familiar = new Familiar();
+	List familiarList = familiarCtrl.findByAlumno(alumno);
+	String mensaje = "";
+	Integer canFam = 0;
+	
+	mensaje = "<table> "+			  
+			  "<tr><td colspan=6><center><h1>Familiares del Alumno Registrado</h1></center></td></tr>"+
+			  "<tr><td>Nombres</td><td>Parentesco</td><td>Tel. Casa</td><td>Tel. Trabajo</td><td>Celular</td></tr>";
+	if(familiarList.isEmpty()){
+		mensaje += "<tr><td colspan=6>No existen familiares registrados</td></tr>";
+	}else{
+		canFam = familiarList.size();
+		for(int i=0;i<familiarList.size();i++){
+			familiar = (Familiar) familiarList.get(i);
+			mensaje += "<tr><td>"+familiar.getNombre()+"</td>"+
+						   "<td>"+familiar.getParentesco()+"</td>"+
+						   "<td>"+familiar.getTelefono()+"</td>"+
+						   "<td>"+familiar.getTeltrabajo()+"</td>"+
+						   "<td>"+familiar.getCelular()+"</td>"+
+						   "<td><a href='EditFamiliar.jsp?accion=ver&alumno="+alumno.getIdent().toString()+"&ident="+alumno.getIdent().toString()+"'>Ver</a></td>"+
+						   "<td><a href='EditFamiliar.jsp?ident="+alumno.getIdent().toString()+"'&alumno="+alumno.getIdent().toString()+">Edit</a></td>";
+			if (alumno.getEstado()== 0)
+				mensaje += "<td><a href='EditFamiliar.jsp?ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"&accion=borrar'>Del</a></td>";
+			
+			mensaje += "</tr>";
+		}
+	}
+	if(canFam<3)
+		mensaje += "<tr><td colspan=6><center><a href='EditFamiliar.jsp?ident=0&alumno="+alumno.getIdent().toString()+"'>Nuevo Familiar</a></center></td></tr></table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -171,6 +205,7 @@
 				</tr>
 			</table>
 		</form>
+		<%=mensaje %>
 	</center>
 </body>
 </html>
