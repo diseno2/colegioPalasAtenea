@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<center>
+		<h1>consultar Notas por Materia</h1>
+		<form action="EditMateria.jsp" method="post">
+			<input type="hidden" name="accion" value="guardar" />
+			<input type="hidden" name="ident" value="" >
+			
+			<table border="0">
+					<tr>
+				<td>Año</td>
+			<td><input type="text" name="acodano" value=""> </td>
+					
+				</tr>
+				<tr>
+				<td>Codigo de la materia</td>
+				<td><input type="text" name="mcodmateria" value=""> </td>
+				
+				</tr>
+				<tr>
+					<td>Carnet Estudiante</td>
+					<td><input type="text" name="estcarnet" value=""> 
+					</td>
+					</tr>
+				<tr>
+				<td>Carnet Del Docente</td>
+				<td><input type="text" name="doccarnet" value=""> </td>
+				
+				</tr>
+			
+				<tr>
+					<td colspan="3"><center>
+						<input type="submit" value="consultar materia" >
+						<input type="reset" value="Limpiar campos" >
+					</center></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+</html>
