@@ -30,3 +30,23 @@ CREATE TABLE  `palasatenea`.`codalum` (
   `correlativo` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`ident`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `palasatenea`.`familiar`;
+CREATE TABLE  `palasatenea`.`familiar` (
+  `ident` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `alumno` int(10) unsigned DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `direccion` varchar(500) DEFAULT NULL,
+  `telefono` varchar(45) DEFAULT NULL,
+  `celular` varchar(45) DEFAULT NULL,
+  `empresa` varchar(45) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `lugtrabajo` varchar(100) DEFAULT NULL,
+  `dirtrabajo` varchar(500) DEFAULT NULL,
+  `teltrabajo` varchar(45) DEFAULT NULL,
+  `exttrabajo` varchar(5) DEFAULT NULL,
+  `parentesco` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`ident`),
+  KEY `FK_familiar_1` (`alumno`),
+  CONSTRAINT `FK_familiar_1` FOREIGN KEY (`alumno`) REFERENCES `alumno` (`ident`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
