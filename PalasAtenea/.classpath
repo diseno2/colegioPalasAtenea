@@ -13,55 +13,24 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/antlr-2.7.7.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/dom4j-1.6.1.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/hibernate-commons-annotations-4.0.2.Final.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/hibernate-core-4.2.8.Final.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/hibernate-entitymanager-4.2.8.Final.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/hibernate-jpa-2.0-api-1.0.1.Final.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/javassist-3.18.1-GA.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/jboss-logging-3.1.0.GA.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/jboss-transaction-api_1.1_spec-1.0.1.Final.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/mysql-connector-java-5.1.30-bin.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/annotations-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/ecj-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-i18n-es.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-i18n-fr.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-jdbc.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.23/lib/tomcat-util.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
