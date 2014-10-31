@@ -2,11 +2,12 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <!-- 
-  import org.hibernate.annotations.NamedQueries;
-  <table-filter match-catalog="palasatenea" match-name="alumno"/>
-  <table-filter match-catalog="palasatenea" match-name="codalum"/>
-   -->
-   <table-filter match-catalog="palasatenea" match-name="familiar"/>
-    <table-filter match-catalog="palasatenea" match-name="materia"/>
+	<table-filter match-catalog="palasatenea" match-name="anolectivo" />
+	<table-filter match-catalog="palasatenea" match-name="docente" />
+	<table-filter match-catalog="palasatenea" match-name="grado" />
+	<table-filter match-catalog="palasatenea" match-name="materia" />
+	<table-filter match-catalog="palasatenea" match-name="nota" />
+	<table-filter match-name="alumno" match-catalog="palasatenea"></table-filter>
+	<table-filter match-name="codalum" match-catalog="palasatenea"></table-filter>
+	<table-filter match-name="familiar" match-catalog="palasatenea"></table-filter>
 </hibernate-reverse-engineering>

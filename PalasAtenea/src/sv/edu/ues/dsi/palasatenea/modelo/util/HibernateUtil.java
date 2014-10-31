@@ -3,6 +3,7 @@
  */
 package sv.edu.ues.dsi.palasatenea.modelo.util;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -27,6 +28,10 @@ public class HibernateUtil {
 		}catch(Exception e){
 			System.err.println("(HibernateUtil) Ocurrio un error "+e.getMessage());
 		}
+	}
+	
+	public static Session openSession() {
+		 return sf.openSession();
 	}
 
 	/**

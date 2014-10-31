@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
- <!-- Conexion a la base de datos -->
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">root</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/palasatenea</property>
-  <property name="hibernate.connection.username">root</property>
-  <!-- <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property> -->
-  <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-  
-  <!-- Configuracion del POOL de conexiones -->
-  <property name="c3p0.min_size">3</property>
-  <property name="c3p0.max_size">5</property>
-  <property name="c3p0.timeout">1800</property>
-  
-  <!-- Configuracion del cache -->
-  <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-  <property name="cache.use_query_cache">false</property>
-  <property name="cache.use_minimal_puts">false</property>
-  <property name="max_fetch_depth">3</property>
-  
-  <!-- Imprimir las SQL que se ejecutan -->
-  <property name="show_sql">true</property>
-  <property name="format_sql">true</property>
-  
-  <!-- Use "create" to drop and then re-create schema on SessionFactory build, for testing. -->
-  <property name="hbm2ddl.auto">update</property>
-  
-  <!-- Bind the getCurrentSession() method to the thread. -->
-  <property name="current_session_context_class">thread</property>
-  
-  <!-- Mapeo de las entidades -->
-  <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Alumno"/>
-  <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Codalum"/>
-  <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Familiar"/>
-  <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Materia"/>
-  
- </session-factory>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">admin</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/palasatenea</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    </session-factory>
 </hibernate-configuration>

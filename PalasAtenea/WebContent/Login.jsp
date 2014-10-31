@@ -76,9 +76,9 @@
 							</div>
 							<div class="bottom">
 								<div class="remember">
-									<input type="checkbox" /> <span>Send me updates</span>
+									<input type="checkbox" /> <span>Recordarme</span>
 								</div>
-								<input type="submit" value="Register" /> <a href="index.html"
+								<input type="submit" value="Registro" /> <a href="index.html"
 									rel="login" class="linkform">Registrarse aquí</a>
 								<div class="clear"></div>
 							</div>
@@ -108,10 +108,10 @@
 								<div class="clear"></div>
 							</div>
 						</form>
-						<form class="forgot_password">
+						<!-- <form class="forgot_password">
 							<h3>Forgot Password</h3>
 							<div>
-								<label>Username or Email:</label> <input type="text" /> <span
+								<label>Usua or Email:</label> <input type="text" /> <span
 									class="error">This is an error</span>
 							</div>
 							<div class="bottom">
@@ -122,6 +122,7 @@
 								<div class="clear"></div>
 							</div>
 						</form>
+						-->
 					</div>
 					<div class="clear"></div>
 				</div>
