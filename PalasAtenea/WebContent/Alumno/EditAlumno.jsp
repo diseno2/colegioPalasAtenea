@@ -117,10 +117,7 @@
 					+ "<td><a href='EditFamiliar.jsp?accion=ver&ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"'>Ver</a></td>"
 					+ "<td><a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent().toString()+"&&alumno="+alumno.getIdent().toString()+"'>Edit</a></td>";
 			if (alumno.getEstado() == 0)
-				mensaje += "<td><a href='EditFamiliar.jsp?ident="
-						+ familiar.getIdent().toString() + "&alumno="
-						+ alumno.getIdent().toString()
-						+ "&accion=borrar'>Del</a></td>";
+				mensaje += "<td><a href='EditFamiliar.jsp?ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"&accion=borrar'>Del</a></td>";
 
 			mensaje += "</tr>";
 		}
