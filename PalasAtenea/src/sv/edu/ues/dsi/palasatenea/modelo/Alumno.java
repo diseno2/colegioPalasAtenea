@@ -98,7 +98,7 @@ public class Alumno implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ident", unique = true, nullable = false)
-	public Integer getIdmateria() {
+	public Integer getIdent() {
 		return this.ident;
 	}
 
