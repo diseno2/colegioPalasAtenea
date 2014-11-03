@@ -6,36 +6,35 @@
 </head>
 <body>
 	<center>
-		<h1>consultar Notas por Materia</h1>
+		<h1> Materia</h1>
 		<form action="EditMateria.jsp" method="post">
 			<input type="hidden" name="accion" value="guardar" />
-			<input type="hidden" name="ident" value="" >
+			<input type="hidden" name="idmaterias" value="" >
 			
 			<table border="0">
 					<tr>
-				<td>Año</td>
-			<td><input type="text" name="acodano" value=""> </td>
+				<td>codigo materia</td>
+			<td><input type="text" name="codigomateria" value=""> </td>
 					
 				</tr>
 				<tr>
-				<td>Codigo de la materia</td>
-				<td><input type="text" name="mcodmateria" value=""> </td>
-				
-				</tr>
-				<tr>
-					<td>Carnet Estudiante</td>
-					<td><input type="text" name="estcarnet" value=""> 
+					<td>nombre de la materia</td>
+					<td><input type="text" name="nombremateria" value=""> 
 					</td>
 					</tr>
 				<tr>
-				<td>Carnet Del Docente</td>
-				<td><input type="text" name="doccarnet" value=""> </td>
 				
+				<input type="radio" name="activa" id="si" value="si">
+                  <label for="SI">activada </label>
+                  
+                     <input type="radio" name="activa" id="no" value="no">
+                    <label for="no">NO activada </label>
+                
 				</tr>
 			
 				<tr>
 					<td colspan="3"><center>
-						<input type="submit" value="consultar materia" >
+						<input type="submit" value="guardar" >
 						<input type="reset" value="Limpiar campos" >
 					</center></td>
 				</tr>

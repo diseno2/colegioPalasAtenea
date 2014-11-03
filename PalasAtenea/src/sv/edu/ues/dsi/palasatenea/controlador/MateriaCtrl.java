@@ -3,33 +3,28 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 import java.util.List;
 
 
-import sv.edu.ues.dsi.palasatenea.modelo.Codalum;
+
 import sv.edu.ues.dsi.palasatenea.modelo.Materia;
 
 import sv.edu.ues.dsi.palasatenea.modelo.dao.MateriaDAO;
 
+
+
 public class MateriaCtrl {
-	private MateriaDAO materiaDao = new MateriaDAO();
-	public void guardar(Materia materia){
-		materiaDao.guardar(materia);
-	}
 	
-	public void borrar(Integer ident){
-		materiaDao.borrar(ident);
-	}
+	MateriaDAO daoregistro = new MateriaDAO();
+
+	public boolean registrarMateria(String idmaterias,String codigomateria,
+			String nombremateria, Integer activa){
+
+		if (daoregistro.daMateriaById(idmaterias) == null) {
+			Materia nuevo = new Materia(String idmaterias, String codigomateria,
+					String nombremateria, Integer activa);
+			daoregistro.guardaActualiza(nuevo);
+			return true;
+		} else {
+			return false;
+		}
 	
-	public List findByAll(){
-		return materiaDao.findByAll();
-	}
-	
-	public Materia findById(Integer ident){
-		Materia materia = materiaDao.findById(ident);
-		return materia;
-	}
-	
-	
-	
-	
-	
-	
+}
 }

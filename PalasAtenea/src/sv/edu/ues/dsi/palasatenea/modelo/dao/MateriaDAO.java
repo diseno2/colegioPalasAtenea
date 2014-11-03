@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.*;
-
+import org.hibernate.criterion.Restrictions;
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Materia;
 import sv.edu.ues.dsi.palasatenea.modelo.util.HibernateUtil;
@@ -13,67 +13,68 @@ import sv.edu.ues.dsi.palasatenea.modelo.util.HibernateUtil;
 import sv.edu.ues.dsi.palasatenea.modelo.Materia;
 
 public class MateriaDAO {
-
 	
-	private HibernateUtil hu = new HibernateUtil();
-	private SessionFactory sf;
-	private Session s;
+	
+	private HibernateUtil hibernateUtil = new HibernateUtil();
+	private SessionFactory sessionFactory = hibernateUtil.getSessionFactory();
+
+	private Session sesion;
 	private Transaction tx;
-	
-	public void guardar(Materia materia) {
-		// TODO Auto-generated method stub
-		try{
-			sf = hu.getSf();
-			s = sf.openSession();
-			tx = s.beginTransaction();
-			s.saveOrUpdate(materia);
-			tx.commit();
-			s.flush();
-			s.close();
-		}catch(Exception e){
-			System.err.println("(MateriaDAO) Ocurrio un error "+e.getMessage());
-		}		
-		
-		
-		
+
+	private void iniciaOperacion() throws HibernateException {
+		sesion = sessionFactory.openSession();
+		tx = sesion.beginTransaction();
 	}
 
-	public void borrar(Integer ident) {
-		// TODO Auto-generated method stub
-		try{
-			sf = hu.getSf();
-			s = sf.openSession();
-			tx = s.beginTransaction();
-			Materia materia = this.findById(ident);
-			s.delete(materia);
+	private void manejaExcepcion(HibernateException he)
+			throws HibernateException {
+		tx.rollback();
+		throw new HibernateException("Ocurrió un error en la capa DAO", he);
+	}
+
+	public void guardaActualiza(Materia materia) {
+		try {
+			iniciaOperacion();
+			sesion.saveOrUpdate(materia);
 			tx.commit();
-			s.flush();
-			s.close();
-		}catch(Exception e){
-			System.err.println("(MateriaDAO) Ocurrio un error "+e.getMessage());
+			sesion.flush();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			sesion.close();
 		}
-		
 	}
-
 	
-	public List findByAll() {
-		// TODO Auto-generated method stub
-		sf = hu.getSf();
-		s = sf.openSession();
-		Query query = s.getNamedQuery("Materia.findByAll");
-	    List mateList = query.list();
-        s.close();
-	    return mateList;
+	
+	public void eliminar(Materia materia) {
+		try {
+			iniciaOperacion();
+			sesion.delete(materia);
+			tx.commit();
 
+			sesion.flush();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			sesion.close();
+		}
 	}
-	public Materia findById(Integer ident){
-		sf = hu.getSf();
-		s = sf.openSession();
-		Query query = s.getNamedQuery("Materia.findByIdent");
-		query.setParameter("id",ident);
-		Materia materia = (Materia) query.uniqueResult();
-	    s.close() ;
-	    return materia;
+		
+	
+	public Materia daMateriaById(String idmaterias) {
+		
+		sesion = sessionFactory.openSession();
+		
+		Query query = sesion.getNamedQuery("Materia.findById");
+		query.setParameter("idmaterias", idmaterias);		
+		Materia cons = (Materia) query.uniqueResult();
+		
+		sesion.close();
+		return cons;
 	}
+
+
 
 }

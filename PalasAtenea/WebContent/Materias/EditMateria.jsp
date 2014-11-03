@@ -2,43 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Materia" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.MateriaCtrl" %>
 
 <%
-     String accion = request.getParameter("accion");
-	if (accion == null) accion = "";
-	
-	Integer ident = Integer.parseInt(request.getParameter("ident"));
-	
-	Materia materia = new Materia();
-	String disable = "";
-	
-	if (accion.equals("guardar")){
+
+String idmaterias=request.getParameter("idmaterias");
+String codigomateria=request.getParameter("codigomaterias");
+String nombremateria=request.getParameter("nombrematerias");
+Integer activa=Integer.parseInt(request.getParameter("activa"));
+//System.out.println(materia);
+MateriaCtrl nuevo= new MateriaCtrl();
+boolean existe = nuevo.registrarMateria(idmaterias, codigomateria, nombremateria, activa);
+String mensaje;
+
+if (existe) {
+	mensaje = "Se creo la libreta";
+}else {
+	mensaje = "Ya hay una libreta con ese numero";
+}
+
 		
-		materia.setIdent(request.getParameter("Ident"));
-		materia.setmcodmateria(request.getParameter("mcodmateria"));
-		materia.setacodano(request.getParameter("acodano"));
-		materia.setdoccarnet(request.getParameter("doccarnet"));
-		materia.setestcarnet(request.getParameter("estcarnet"));
-		
-		
-		
-		if (ident != 0){
-			materia.setIdent(ident);
-		
-		MateriaCtrl MateriaCtrl = new MateriaCtrl();
-	      MateriaCtrl.guardar(materia);
-		response.sendRedirect("ListaMateria.jsp");
-	} 		else if(accion.equals("borrar")){
-		System.out.println("llego aqui");
-		MateriaCtrl MateriaCtrl = new MateriaCtrl();
-		MateriaCtrl.borrar(ident);
-		response.sendRedirect("ListaMateria.jsp");
-	}else if(accion.equals("ver")){
-		disable = "disabled";
-	}
-		}
 		
 %>
-
-
-
