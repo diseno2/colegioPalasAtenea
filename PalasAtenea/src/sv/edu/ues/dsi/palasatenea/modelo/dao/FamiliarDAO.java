@@ -37,7 +37,7 @@ public class FamiliarDAO {
 	
 	public void borrar(Integer ident){
 		try{
-			Familiar familiar = this.findById(ident);
+			Familiar familiar = this.findByIdent(ident);
 			sf = hu.getSf();
 			s = sf.openSession();
 			tx = s.beginTransaction();
@@ -59,7 +59,7 @@ public class FamiliarDAO {
 	    return aluList;
 	}
 	
-	public Familiar findById(Integer ident){
+	public Familiar findByIdent(Integer ident){
 		sf = hu.getSf();
 		s = sf.openSession();
 		Query query = s.getNamedQuery("Familiar.findByIdent");

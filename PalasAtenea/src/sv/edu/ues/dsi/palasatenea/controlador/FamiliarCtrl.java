@@ -30,7 +30,7 @@ public class FamiliarCtrl {
 	}
 	
 	public Familiar findById(Integer ident){
-		Familiar familiar = familiarDao.findById(ident);
+		Familiar familiar = familiarDao.findByIdent(ident);
 		return familiar;
 	}
 	

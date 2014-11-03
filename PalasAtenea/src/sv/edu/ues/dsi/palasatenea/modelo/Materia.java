@@ -17,8 +17,6 @@ import javax.persistence.Table;
 public class Materia implements java.io.Serializable {
 
 	private String mcodmateria;
-	private Anolectivo anolectivo;
-	private Docente docente;
 	private String ucarnetusuario;
 	private String escarnet;
 	private String mnombremateria;
@@ -34,12 +32,10 @@ public class Materia implements java.io.Serializable {
 		this.munidadesvalorativas = munidadesvalorativas;
 	}
 
-	public Materia(String mcodmateria, Anolectivo anolectivo, Docente docente,
+	public Materia(String mcodmateria, 
 			String ucarnetusuario, String escarnet, String mnombremateria,
 			int munidadesvalorativas) {
 		this.mcodmateria = mcodmateria;
-		this.anolectivo = anolectivo;
-		this.docente = docente;
 		this.ucarnetusuario = ucarnetusuario;
 		this.escarnet = escarnet;
 		this.mnombremateria = mnombremateria;
@@ -55,29 +51,7 @@ public class Materia implements java.io.Serializable {
 	public void setMcodmateria(String mcodmateria) {
 		this.mcodmateria = mcodmateria;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ACODANO")
-	public Anolectivo getAnolectivo() {
-		return this.anolectivo;
-	}
-
-	public void setAnolectivo(Anolectivo anolectivo) {
-		this.anolectivo = anolectivo;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "DOC_UCARNETUSUARIO", referencedColumnName = "UCARNETUSUARIO"),
-			@JoinColumn(name = "DOCCARNET", referencedColumnName = "DOCCARNET") })
-	public Docente getDocente() {
-		return this.docente;
-	}
-
-	public void setDocente(Docente docente) {
-		this.docente = docente;
-	}
-
+	
 	@Column(name = "UCARNETUSUARIO", length = 8)
 	public String getUcarnetusuario() {
 		return this.ucarnetusuario;
