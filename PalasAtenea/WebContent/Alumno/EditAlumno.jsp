@@ -33,8 +33,7 @@
 		alumno.setAlergico(request.getParameter("alergico"));
 		alumno.setAprendizaje(request.getParameter("aprendizaje"));
 		alumno.setEscuelaprevia(request.getParameter("escuelaprevia"));
-		alumno.setUltgrado(Integer.parseInt(request
-				.getParameter("ultgrado")));
+		alumno.setUltgrado(Integer.parseInt(request.getParameter("ultgrado")));
 
 		if (ident != 0)
 			alumno.setIdent(ident);
@@ -110,27 +109,13 @@
 		canFam = familiarList.size();
 		for (int i = 0; i < familiarList.size(); i++) {
 			familiar = (Familiar) familiarList.get(i);
-			mensaje += "<tr><td>"
-					+ familiar.getNombre()
-					+ "</td>"
-					+ "<td>"
-					+ familiar.getParentesco()
-					+ "</td>"
-					+ "<td>"
-					+ familiar.getTelefono()
-					+ "</td>"
-					+ "<td>"
-					+ familiar.getTeltrabajo()
-					+ "</td>"
-					+ "<td>"
-					+ familiar.getCelular()
-					+ "</td>"
-					+ "<td><a href='EditFamiliar.jsp?accion=ver&alumno="
-					+ alumno.getIdent().toString() + "&ident="
-					+ alumno.getIdent().toString() + "'>Ver</a></td>"
-					+ "<td><a href='EditFamiliar.jsp?ident="
-					+ alumno.getIdent().toString() + "'&alumno="
-					+ alumno.getIdent().toString() + ">Edit</a></td>";
+			mensaje += "<tr><td>"+ familiar.getNombre()+ "</td>"
+					+ "<td>"+ familiarCtrl.fParentesco(familiar.getParentesco())+ "</td>"
+					+ "<td>"+ familiar.getTelefono()+ "</td>"
+					+ "<td>"+ familiar.getTeltrabajo()+ "</td>"
+					+ "<td>"+ familiar.getCelular()+ "</td>"
+					+ "<td><a href='EditFamiliar.jsp?accion=ver&ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"'>Ver</a></td>"
+					+ "<td><a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent().toString()+"&&alumno="+alumno.getIdent().toString()+"'>Edit</a></td>";
 			if (alumno.getEstado() == 0)
 				mensaje += "<td><a href='EditFamiliar.jsp?ident="
 						+ familiar.getIdent().toString() + "&alumno="
@@ -140,10 +125,11 @@
 			mensaje += "</tr>";
 		}
 	}
-	if (canFam < 3)
-		mensaje += "<tr><td colspan=6><center><a href='EditFamiliar.jsp?ident=0&alumno="
-				+ alumno.getIdent().toString()
-				+ "'>Nuevo Familiar</a></center></td></tr></table>";
+	if (canFam < 3 && alumno.getIdent() != 0)
+			mensaje += "<tr><td colspan=6><center><a href='EditFamiliar.jsp?ident=0&alumno="
+					+ alumno.getIdent().toString()
+					+ "'>Nuevo Familiar</a></center></td></tr>";
+	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -205,8 +191,8 @@
 
 					<h1>Ficha de Registro de Alumno</h1>
 					<form action="EditAlumno.jsp" method="post">
-						<input type="hidden" name="accion" value="guardar"> <input
-							type="hidden" name="ident" value="<%=alumno.getIdent()%>">
+						<input type="hidden" name="accion" value="guardar"> 
+						<input type="hidden" name="ident" value="<%=alumno.getIdent()%>">
 
 						<table border="0">
 							<tr>

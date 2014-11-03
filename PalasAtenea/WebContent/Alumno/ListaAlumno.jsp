@@ -6,7 +6,20 @@
 <%
 	AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 	Alumno alumno = new Alumno();
-	List alumnoList = alumnoCtrl.findByAll();
+	List alumnoList = null;
+	
+	String accion = request.getParameter("accion");
+	if (accion == null)
+		alumnoList = alumnoCtrl.findByAll();
+	else{
+		alumnoList = alumnoCtrl.findByParam(request.getParameter("nombre1"),
+											request.getParameter("nombre2"),
+											request.getParameter("apellido1"),
+											request.getParameter("apellido2"),
+											request.getParameter("genero"),
+											request.getParameter("grado"));
+	}
+	
 	String mensaje = "";
 	
 	mensaje = "<table> "+			  
@@ -48,6 +61,52 @@
 </head>
 <body>
 	<div id="body">
+		<form action="ListaAlumno.jsp" method="post">
+			<input type="hidden" name="accion" value="consulta">
+			<table>
+				<tr>
+					<td>Nombres</td>
+					<td><input type="text" name="nombre1"></td>
+					<td><input type="text" name="nombre2"></td>
+				</tr>
+				<tr>
+					<td>Apellidos</td>
+					<td><input type="text" name="apellido1"></td>
+					<td><input type="text" name="apellido2"></td>
+				</tr>
+				<tr>
+					<td>Genero</td>
+					<td><input type="radio" name="genero" value="M">Masculino</td>
+					<td><input type="radio" name="genero" value="F">Femenino</td>
+				</tr>
+				<tr>
+					<td>Grado Actual</td>
+					<td colspan="2">
+						<select name="grado">
+							<option value="10">Kinder 4</option>
+							<option value="11">Kinder 5</option>
+							<option value="12">Preparatoria</option>
+							<option value="1">Primero</option>
+							<option value="2">Segundo</option>
+							<option value="3">Tercero</option>
+							<option value="4">Cuarto</option>
+							<option value="5">Quinto</option>
+							<option value="6">Sexto</option>
+							<option value="7">Septimo</option>
+							<option value="8">Octavo</option>
+							<option value="9">Noveno</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><center>
+						<input type="submit" value="Consultar">
+						<input type="reset" value="Limpiar campos">
+					</center></td>
+				</tr>
+			</table>		
+		</form>
+		<br>
 		<%=mensaje %>
 	</div>
 </body>
