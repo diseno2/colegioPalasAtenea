@@ -152,7 +152,6 @@
 <title>Sistema de Administraci&oacute;n de Notas - Palas Atenea</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" />
 <script type="text/javascript" src="js/script.js"></script>
-
 </head>
 <body>
 	<div id="art-main"></div>

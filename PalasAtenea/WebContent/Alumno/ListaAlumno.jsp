@@ -42,9 +42,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Sistema de Administraci&oacute;n de Notas - Palas Atenea</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-	<%=mensaje %>
+	<div id="body">
+		<%=mensaje %>
+	</div>
 </body>
 </html>
