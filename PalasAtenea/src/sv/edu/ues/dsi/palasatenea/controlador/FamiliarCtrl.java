@@ -29,12 +29,19 @@ public class FamiliarCtrl {
 		return familiarDao.findByAll();
 	}
 	
-	public Familiar findById(Integer ident){
+	public Familiar findByIdent(Integer ident){
 		Familiar familiar = familiarDao.findByIdent(ident);
 		return familiar;
 	}
 	
 	public List findByAlumno(Alumno alumno){
 		return familiarDao.findByAlumno(alumno);
+	}
+	
+	public String fParentesco(Integer parentesco){
+		if(parentesco == 1) return "Padre";
+		if(parentesco == 2) return "Madre";
+		if(parentesco == 3) return "Tutor";
+		return "";
 	}
 }

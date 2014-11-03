@@ -39,6 +39,18 @@ public class Familiar implements java.io.Serializable {
 	private Integer parentesco;
 
 	public Familiar() {
+		this.nombre = "";
+		this.direccion = "";
+		this.telefono = "";
+		this.celular = "";
+		this.empresa = "";
+		this.email = "";
+		this.lugtrabajo = "";
+		this.dirtrabajo = "";
+		this.teltrabajo = "";
+		this.exttrabajo = "";
+		this.parentesco = 1;
+		this.ident = 0;
 	}
 
 	public Familiar(Integer alumno, String nombre, String direccion,

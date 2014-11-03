@@ -6,6 +6,8 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
+
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.util.HibernateUtil;
 
@@ -54,6 +56,26 @@ public class AlumnoDAO {
 		s = sf.openSession();
 		Query query = s.getNamedQuery("Alumno.findByAll");
 	    List aluList = query.list();
+        s.close();
+	    return aluList;
+	}
+	
+	public List findByParam(String nombre1, String nombre2, 
+							String apellido1, String apellido2,
+							String genero, String grado){
+		sf = hu.getSf();
+		s = sf.openSession();
+		
+		Criteria aluCrit = s.createCriteria(Alumno.class);
+
+		if (nombre1 != null) aluCrit.add(Restrictions.like("nombre1", nombre1+"%"));
+		if (nombre2 != null) aluCrit.add(Restrictions.like("nombre2", nombre2+"%"));
+		if (apellido1 != null) aluCrit.add(Restrictions.like("apellido1", apellido1+"%"));
+		if (apellido2 != null) aluCrit.add(Restrictions.like("apellido2", apellido2+"%"));
+		if (genero != null) aluCrit.add(Restrictions.like("genero", genero));
+		//falta filtrar por grado
+		
+		List aluList = aluCrit.list();
         s.close();
 	    return aluList;
 	}
