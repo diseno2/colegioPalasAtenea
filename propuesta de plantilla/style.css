@@ -1,9 +1,21 @@
+/* GENERALES */
+body {margin:5px;font-size:13px;font-family:arial;color:#222;background:#5298af}
+
+/* Main */
+#wrap {background:#fff;color:#303030;margin:0 auto;width:760px}
+
+/* Header */
+#header {clear:both;background:url(images/header.jpg) top right no-repeat;height:170px; border:1px Solid Red;}
+#header h1{color:#5298af;font-size:32px;padding-left:20px; /*padding-top:20px;*/font-family:Tahoma;text-align:left;}
+#header h1:hover{color:#e99e55;}
+#slogan {color:#20526a;padding-left:60px; font-size:1.6em;letter-spacing:-1px;text-align:left;}
+
 .inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
 .fleft {float:left}
 .fright  {float:right}
 .fcenter {float:none;margin:0 auto;text-align:center}
 .fclear {clear:both}
-body {margin:5px;font-size:13px;font-family:arial;color:#222;background:#5298af}
+
 .outer {width:779px}
 .name {color:#444;font-size:32px;padding-left:20px;font-family:Tahoma}
 .links {color:#383838;line-height:30px;padding-left:20px;border-bottom:1px solid #E4E4E4;display:block;font-size:13px}
@@ -38,7 +50,7 @@ a:hover {color:#009933}*/
 #menu li:hover ul  li{ display: block;font-size:20px;padding-bottom:5px;font-size:12px; }
 #menu li:hover ul li  li{ background: #333; padding-left:5px;font-size:13px; color:#383838;}
 #menu li:hover ul li li a { color: #ccc; border-bottom:1px solid #E4E4E4;}
-#menu li:hover ul li li a:hover { background: #222; border-left: 4px solid #900; }
+#menu li:hover ul li li a:hover { background: #222; border-left: 4px solid #900;}
 /*.links {color:#383838;line-height:30px;padding-left:20px;border-bottom:1px solid #E4E4E4;display:block;font-size:13px}
 div#menu{width:150px;margin-top:5px;float:left;}
 div#menu ul li{color:FFFFFF;font-size:12px;background-color:#ADD8E6;width:150px;padding-top:10px;
