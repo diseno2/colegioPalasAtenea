@@ -23,9 +23,26 @@
 	
 	mensaje = "<table>"+
 			  	"<thead>"+
-					"<caption>Materias"+ 
+					"<caption id='query'>Materias"+ 
 							 "<a href='Edit.jsp?idmateria=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
+							 "<div class='formQuery'>"+
+								"<form action='Lista.jsp' method='post'>"+
+								"<input type='hidden' name='accion' value='buscar' /> "+
+									"<table>"+
+										"<tr>"+
+											"<td>Codigo</td>"+
+											"<td><input type='text' name='ident' /></td>"+
+										"</tr>"+
+										"<tr>"+
+											"<td>Descripci&oacute;n</td>"+
+											"<td><input type='text' name='descripcion' /></td>"+
+										"</tr>"+
+										"<tr>"+
+											"<td colspan=2 align='center'><input type='submit' class='iconquery' /></td>"+
+										"</tr>"+
+								"</form>"+
+							 "</div>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>C&oacute;digo</th>"+
