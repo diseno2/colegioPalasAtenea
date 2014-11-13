@@ -26,7 +26,7 @@ public class MateriaDao{
 	public void borrar(int ident){
 		try{
 			s = tx.iniciarTransaccion();
-			Materia materia = findByIdMateria(ident);
+			Materia materia = findByIdent(ident);
 			s.delete(materia);
 			tx.finTransaccion();
 		}catch(Exception e){
@@ -36,7 +36,7 @@ public class MateriaDao{
 	
 	public Materia findById(int ident){
 		s = tx.iniciarSesion();
-		Materia materia = findByIdMateria(ident);
+		Materia materia = findByIdent(ident);
 		tx.finSesion();
 		return materia;
 	}
@@ -49,7 +49,7 @@ public class MateriaDao{
 		return lst;
 	}
 	
-	private Materia findByIdMateria(int ident){
+	private Materia findByIdent(int ident){
 		Query query = s.getNamedQuery("Materia.findByIdent");
 		query.setParameter("id",ident);
 		Materia materia = (Materia) query.uniqueResult();

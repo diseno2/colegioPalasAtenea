@@ -30,7 +30,7 @@ public class FamiliarDao{
 	public void borrar(int ident){
 		try{
 			s = tx.iniciarTransaccion();
-			Familiar familiar = findByIdMateria(ident);
+			Familiar familiar = findByIdent(ident);
 			s.delete(familiar);
 			tx.finTransaccion();
 		}catch(Exception e){
@@ -40,7 +40,7 @@ public class FamiliarDao{
 	
 	public Familiar findById(int ident){
 		s = tx.iniciarSesion();
-		Familiar familiar = findByIdMateria(ident);
+		Familiar familiar = findByIdent(ident);
 		tx.finSesion();
 		return familiar;
 	}
@@ -53,7 +53,7 @@ public class FamiliarDao{
 		return lst;
 	}
 	
-	private Familiar findByIdMateria(int ident){
+	private Familiar findByIdent(int ident){
 		Query query = s.getNamedQuery("Familiar.findByIdent");
 		query.setParameter("id",ident);
 		Familiar familiar = (Familiar) query.uniqueResult();
