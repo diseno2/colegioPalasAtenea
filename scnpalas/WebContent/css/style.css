@@ -1,5 +1,5 @@
 /* GENERALES */
-body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;background:#5298af}
+body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;background:#5298af;}
 
 /* MARCO */
 #wrap {background:#fff;color:#303030;margin:0 auto;width:1000px; height:600px ;-webkit-border-radius: 20px 20px 20px 20px;/*border:1px Solid #ff6600;*/}
@@ -54,9 +54,9 @@ body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;bac
 .iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
 
 /* Login */
-#login {position:absolute; top:175px; float:left; width:750px; height:310px;}/*border:3px solid Red;*/
+#login {position:absolute; top:175px; float:left; width:1000px; height:310px;}/*border:3px solid Red;*/
 #login_outer {overflow:hidden;text-align:center;margin:auto;}
-#login_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #1e3044;-webkit-border-radius: 20px 20px 20px 20px;}
+#login_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #5298af;-webkit-border-radius: 20px 20px 20px 20px;}
 #login input {border: none;font-family: inherit;font-size: inherit;font-weight: inherit;line-height: inherit;-webkit-appearance: none;}
 #login h2 {-webkit-border-radius: 20px 20px 0 0;-moz-border-radius: 20px 20px 0 0;border-radius: 20px 20px 0 0;color: White;font-size: 28px;padding: 20px 26px;}
 #login fieldset {background-color: #fff;-webkit-border-radius: 0 0 20px 20px;-moz-border-radius: 0 0 20px 20px;border-radius: 0 0 20px 20px;padding: 20px 26px;}
@@ -69,9 +69,9 @@ body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;bac
 #login fieldset input[type="submit"]:hover {background-color: #d88d44;}
 
 /* Message */
-#message {position:absolute; top:175px; float:left; width:750px; height:310px;}/*border:3px solid Red;*/
+#message {position:absolute; top:175px; float:left; width:1000px; height:310px;}/*border:3px solid Red;*/
 #message_outer {overflow:hidden;text-align:center;margin:auto;}
-#message_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #1e3044;-webkit-border-radius: 20px 20px 20px 20px;}
+#message_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #5298af;-webkit-border-radius: 20px 20px 20px 20px;}
 #message fieldset p {color: #20526a;margin-bottom: 14px;}
 #message h2 {-webkit-border-radius: 20px 20px 0 0;-moz-border-radius: 20px 20px 0 0;border-radius: 20px 20px 0 0;color: White;font-size: 28px;padding: 20px 26px;}
 #message fieldset {background-color: #fff;-webkit-border-radius: 0 0 20px 20px;-moz-border-radius: 0 0 20px 20px;border-radius: 0 0 20px 20px;padding: 20px 26px;}
