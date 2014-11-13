@@ -52,6 +52,7 @@ body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;bac
 .iconprint{content:url(/scnpalas/images/print.jpg); width: 15px;height: 15px;}
 .iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 15px;height: 15px;}
 .iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
+.iconquery{content:url(/scnpalas/images/search.jpg); width: 25px;height: 25px;}
 
 /* Login */
 #login {position:absolute; top:175px; float:left; width:1000px; height:310px;}/*border:3px solid Red;*/
@@ -78,3 +79,7 @@ body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;bac
 #message fieldset p:last-child {margin-bottom: 0;width: 328px;}
 #message fieldset input[type="submit"] {background-color: #404053;color: #fff;display: block;margin: 0 auto;padding: 4px 0;width: 100px;}
 #message fieldset input[type="submit"]:hover {background-color: #d88d44;}
+
+/* CONSULTA */
+#query:hover .formQuery{display:block;}
+.formQuery{display:none;padding:5px;border:1px solid #ccc;background-color:#f1f1f1;position:relative;width:400px;}
