@@ -51,3 +51,30 @@ body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;bac
 .iconedit{content:url(/scnpalas/images/edit.jpg); width: 15px;height: 15px;}
 .iconprint{content:url(/scnpalas/images/print.jpg); width: 15px;height: 15px;}
 .iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 15px;height: 15px;}
+.iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
+
+/* Login */
+#login {position:absolute; top:175px; float:left; width:750px; height:310px;}/*border:3px solid Red;*/
+#login_outer {overflow:hidden;text-align:center;margin:auto;}
+#login_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #1e3044;-webkit-border-radius: 20px 20px 20px 20px;}
+#login input {border: none;font-family: inherit;font-size: inherit;font-weight: inherit;line-height: inherit;-webkit-appearance: none;}
+#login h2 {-webkit-border-radius: 20px 20px 0 0;-moz-border-radius: 20px 20px 0 0;border-radius: 20px 20px 0 0;color: White;font-size: 28px;padding: 20px 26px;}
+#login fieldset {background-color: #fff;-webkit-border-radius: 0 0 20px 20px;-moz-border-radius: 0 0 20px 20px;border-radius: 0 0 20px 20px;padding: 20px 26px;}
+#login fieldset p {color: #20526a;margin-bottom: 14px;}
+#login fieldset p:last-child {margin-bottom: 0;}
+#login fieldset input {-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+#login fieldset input[type="email"], #login fieldset input[type="password"] {background-color: #eee;color: #d88d44;padding: 4px 10px;width: 328px;}
+/*#login fieldset input[type="email"], #login fieldset input[type="password"] {background-color: #eee;color: #404053;padding: 4px 10px;width: 328px;}*/
+#login fieldset input[type="submit"] {background-color: #404053;color: #fff;display: block;margin: 0 auto;padding: 4px 0;width: 100px;}
+#login fieldset input[type="submit"]:hover {background-color: #d88d44;}
+
+/* Message */
+#message {position:absolute; top:175px; float:left; width:750px; height:310px;}/*border:3px solid Red;*/
+#message_outer {overflow:hidden;text-align:center;margin:auto;}
+#message_inner {display:inline-table;height:100px;width:100px;margin:0px;font-weight:bold;clear:both;border:3px solid White; background-color: #1e3044;-webkit-border-radius: 20px 20px 20px 20px;}
+#message fieldset p {color: #20526a;margin-bottom: 14px;}
+#message h2 {-webkit-border-radius: 20px 20px 0 0;-moz-border-radius: 20px 20px 0 0;border-radius: 20px 20px 0 0;color: White;font-size: 28px;padding: 20px 26px;}
+#message fieldset {background-color: #fff;-webkit-border-radius: 0 0 20px 20px;-moz-border-radius: 0 0 20px 20px;border-radius: 0 0 20px 20px;padding: 20px 26px;}
+#message fieldset p:last-child {margin-bottom: 0;width: 328px;}
+#message fieldset input[type="submit"] {background-color: #404053;color: #fff;display: block;margin: 0 auto;padding: 4px 0;width: 100px;}
+#message fieldset input[type="submit"]:hover {background-color: #d88d44;}
