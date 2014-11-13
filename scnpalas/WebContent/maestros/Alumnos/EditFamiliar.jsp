@@ -21,7 +21,7 @@
 	disable = padre = madre = tutor = "";
 	
 	if (accion.equals("guardar")){
-		familiar.setAlumno(idAlumno);
+		//familiar.setAlumno(idAlumno);
 		familiar.setNombre(request.getParameter("nombre"));
 		familiar.setParentesco(Integer.parseInt(request.getParameter("parentesco")));
 		familiar.setTelefono(request.getParameter("telefono"));
@@ -51,7 +51,7 @@
 		familiar = new Familiar();
 	}else{
 		FamiliarCtrl familiarCtrl = new FamiliarCtrl();
-		familiar = familiarCtrl.findByIdent(ident);
+		//familiar = familiarCtrl.findByIdent(ident);
 		System.out.println(familiar);
 		/*System.out.println(familiar.getParentesco());
 		if (familiar.getParentesco() == 1 ) padre = "selected";
