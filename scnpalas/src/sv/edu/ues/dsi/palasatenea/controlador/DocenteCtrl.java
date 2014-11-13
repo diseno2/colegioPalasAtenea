@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Docente;
 import sv.edu.ues.dsi.palasatenea.modelo.Materia;
+import sv.edu.ues.dsi.palasatenea.modelo.dao.DocenteDao;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.MateriaDao;
 
 import net.sf.jasperreports.engine.JRException;
