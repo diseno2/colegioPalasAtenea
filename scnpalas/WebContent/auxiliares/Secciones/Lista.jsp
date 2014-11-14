@@ -4,7 +4,6 @@
 <%@ page import="java.util.*" %>
 <%
 	SeccionCtrl ctrl = new SeccionCtrl();
-	Seccion alumno = new Seccion();
 	List lst = null;
 	
 	String accion = request.getParameter("accion");

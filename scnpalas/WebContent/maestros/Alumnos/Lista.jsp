@@ -4,15 +4,15 @@
 <%@ page import="java.util.*" %>
 
 <%
-	AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+	AlumnoCtrl ctrl = new AlumnoCtrl();
 	Alumno alumno = new Alumno();
 	List alumnoList = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)
-		alumnoList = alumnoCtrl.findByAll();
+		alumnoList = ctrl.findByAll();
 	else{
-		alumnoList = alumnoCtrl.findByParam(request.getParameter("nombre1"),
+		alumnoList = ctrl.findByParam(request.getParameter("nombre1"),
 											request.getParameter("nombre2"),
 											request.getParameter("apellido1"),
 											request.getParameter("apellido2"),
@@ -83,16 +83,18 @@
 						   "<td>"+alumno.getNombre2()+"</td>"+
 						   "<td>"+alumno.getApellido1()+"</td>"+
 						   "<td>"+alumno.getApellido2()+"</td>"+
-						   "<td><a href='Edit.jsp?accion=ver&ident="+alumno.getIdent().toString()+"'>Ver</a></td>"+
-						   "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"'>Edit</a></td>";
+						   "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
+							"<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>";
+							
+						   
 			if (alumno.getEstado()== 0)
-				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=borrar'>Del</a></td>";
+				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>";
 			
 			//evaluar que si es administrador puede darlo de alta o de baja
 			if (alumno.getEstado() == 1)
-				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=baja'>Baja</a></td>";
+				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=baja'><img alt='Del' class='iconbaja' ></a></td>";
 			if (alumno.getEstado() == 0)
-					mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=alta'>Alta</a></td>";
+					mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=alta'><img alt='Del' class='iconalta' ></a></td>";
 			
 			mensaje += "</tr>";
 		}

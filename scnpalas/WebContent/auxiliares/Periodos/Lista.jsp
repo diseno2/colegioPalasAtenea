@@ -6,7 +6,6 @@
 <%@ page import="java.text.*" %>
 <%
 	PeriodoCtrl ctrl = new PeriodoCtrl();
-	Periodo alumno = new Periodo();
 	List lst = null;
 	
 	String accion = request.getParameter("accion");

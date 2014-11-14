@@ -56,6 +56,8 @@ td{text-align:justify;}
 .iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 20px;height: 20px;}
 .iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
 .iconquery{content:url(/scnpalas/images/search.jpg); width: 25px;height: 25px;}
+.iconalta{content:url(/scnpalas/images/alta.jpg); width: 25px;height: 25px;}
+.iconbaja{content:url(/scnpalas/images/baja.jpg); width: 25px;height: 25px;}
 
 /* Login */
 #login {position:absolute; top:175px; float:left; width:1000px; height:310px;}/*border:3px solid Red;*/
