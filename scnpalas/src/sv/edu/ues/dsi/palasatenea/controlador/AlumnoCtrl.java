@@ -53,11 +53,12 @@ public class AlumnoCtrl {
 			codigo += alumno.getApellido2().substring(0,1);
 		
 		//sacando el año de la fecha de nacimiento del alumno
-		String anio = alumno.getFnacimiento().toString(); 
+		String anio = alumno.getFnacimiento().toString().substring(2,4); 
 		codigo += anio;
+		String correlativo = alumno.getIdent().toString();
+		codigo +=correlativo;
 		//CodalumCtrl codalum = new CodalumCtrl();
 		//codigo = codalum.correlativo(codigo.toUpperCase(), alumno.getFnacimiento().getYear());
-		
 		return codigo;
 	}
 	
