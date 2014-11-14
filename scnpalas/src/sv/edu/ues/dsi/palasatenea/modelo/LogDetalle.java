@@ -54,7 +54,7 @@ public class LogDetalle implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "log", nullable = false)
 	public Log getLog() {
 		return this.log;

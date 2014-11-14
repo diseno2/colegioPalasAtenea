@@ -81,7 +81,7 @@ public class Materia implements java.io.Serializable {
 		this.activa = activa;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materia")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "materia")
 	public Set<Nota> getNotas() {
 		return this.notas;
 	}
@@ -90,7 +90,7 @@ public class Materia implements java.io.Serializable {
 		this.notas = notas;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materia")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "materia")
 	public Set<GradoMateria> getGradoMaterias() {
 		return this.gradoMaterias;
 	}

@@ -107,7 +107,7 @@ public class Periodo implements java.io.Serializable {
 		this.fin = fin;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "periodo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
 	public Set<Nota> getNotas() {
 		return this.notas;
 	}
@@ -116,7 +116,7 @@ public class Periodo implements java.io.Serializable {
 		this.notas = notas;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "periodo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
 	public Set<Grado> getGrados() {
 		return this.grados;
 	}

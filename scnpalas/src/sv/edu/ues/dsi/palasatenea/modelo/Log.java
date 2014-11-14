@@ -73,7 +73,7 @@ public class Log implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
@@ -120,7 +120,7 @@ public class Log implements java.io.Serializable {
 		this.accion = accion;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "log")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "log")
 	public Set<LogDetalle> getLogDetalles() {
 		return this.logDetalles;
 	}

@@ -67,7 +67,7 @@ public class Nota implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "alumno", nullable = false)
 	public Alumno getAlumno() {
 		return this.alumno;
@@ -77,7 +77,7 @@ public class Nota implements java.io.Serializable {
 		this.alumno = alumno;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "periodo", nullable = false)
 	public Periodo getPeriodo() {
 		return this.periodo;
@@ -87,7 +87,7 @@ public class Nota implements java.io.Serializable {
 		this.periodo = periodo;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "evaluacion")
 	public Evaluacion getEvaluacion() {
 		return this.evaluacion;
@@ -97,7 +97,7 @@ public class Nota implements java.io.Serializable {
 		this.evaluacion = evaluacion;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "materia", nullable = false)
 	public Materia getMateria() {
 		return this.materia;

@@ -87,7 +87,7 @@ public class Docente implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
@@ -171,7 +171,7 @@ public class Docente implements java.io.Serializable {
 		this.fcontrato = fcontrato;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "docente")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "docente")
 	public Set<Grado> getGrados() {
 		return this.grados;
 	}

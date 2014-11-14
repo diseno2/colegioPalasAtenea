@@ -47,7 +47,7 @@ public class RolOpciones implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol", nullable = false)
 	public Rol getRol() {
 		return this.rol;

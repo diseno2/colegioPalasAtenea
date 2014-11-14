@@ -92,7 +92,7 @@ public class Familiar implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
@@ -201,7 +201,7 @@ public class Familiar implements java.io.Serializable {
 		this.parentesco = parentesco;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "familiar")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "familiar")
 	public Set<Familiares> getFamiliareses() {
 		return this.familiareses;
 	}

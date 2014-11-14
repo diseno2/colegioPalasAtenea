@@ -60,7 +60,7 @@ public class GradoMateria implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "grado", nullable = false)
 	public Grado getGrado() {
 		return this.grado;
@@ -70,7 +70,7 @@ public class GradoMateria implements java.io.Serializable {
 		this.grado = grado;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "materia", nullable = false)
 	public Materia getMateria() {
 		return this.materia;
@@ -80,7 +80,7 @@ public class GradoMateria implements java.io.Serializable {
 		this.materia = materia;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gradoMateria")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoMateria")
 	public Set<Evaluacion> getEvaluacions() {
 		return this.evaluacions;
 	}

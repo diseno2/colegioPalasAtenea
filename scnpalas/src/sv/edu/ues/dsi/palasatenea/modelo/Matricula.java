@@ -36,6 +36,9 @@ public class Matricula implements java.io.Serializable {
 	private Date fecha;
 
 	public Matricula() {
+		this.ident = 0;
+		this.fecha = new Date();
+		this.estado = "R";
 	}
 
 	public Matricula(Alumno alumno, Grado grado, String estado, Date fecha) {
@@ -56,7 +59,7 @@ public class Matricula implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "alumno", nullable = false)
 	public Alumno getAlumno() {
 		return this.alumno;
@@ -66,7 +69,7 @@ public class Matricula implements java.io.Serializable {
 		this.alumno = alumno;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "grado", nullable = false)
 	public Grado getGrado() {
 		return this.grado;

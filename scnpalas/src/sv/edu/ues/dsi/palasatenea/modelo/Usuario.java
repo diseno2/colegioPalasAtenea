@@ -73,7 +73,7 @@ public class Usuario implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rol", nullable = false)
 	public Rol getRol() {
 		return this.rol;
@@ -110,7 +110,7 @@ public class Usuario implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Familiar> getFamiliars() {
 		return this.familiars;
 	}
@@ -119,7 +119,7 @@ public class Usuario implements java.io.Serializable {
 		this.familiars = familiars;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Alumno> getAlumnos() {
 		return this.alumnos;
 	}
@@ -128,7 +128,7 @@ public class Usuario implements java.io.Serializable {
 		this.alumnos = alumnos;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Log> getLogs() {
 		return this.logs;
 	}
@@ -137,7 +137,7 @@ public class Usuario implements java.io.Serializable {
 		this.logs = logs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Docente> getDocentes() {
 		return this.docentes;
 	}

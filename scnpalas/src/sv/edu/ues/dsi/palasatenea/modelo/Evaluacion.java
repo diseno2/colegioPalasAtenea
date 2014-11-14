@@ -79,7 +79,7 @@ public class Evaluacion implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "grado_materia", nullable = false)
 	public GradoMateria getGradoMateria() {
 		return this.gradoMateria;
@@ -144,7 +144,7 @@ public class Evaluacion implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "evaluacion")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion")
 	public Set<Nota> getNotas() {
 		return this.notas;
 	}

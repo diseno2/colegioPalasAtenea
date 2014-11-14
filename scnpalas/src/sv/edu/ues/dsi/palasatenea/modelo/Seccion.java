@@ -78,7 +78,7 @@ public class Seccion implements java.io.Serializable {
 		this.seccion = seccion;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seccion")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seccion")
 	public Set<Grado> getGrados() {
 		return this.grados;
 	}

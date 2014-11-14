@@ -64,7 +64,7 @@ public class Rol implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "rol")
 	public Set<RolOpciones> getRolOpcioneses() {
 		return this.rolOpcioneses;
 	}
@@ -73,7 +73,7 @@ public class Rol implements java.io.Serializable {
 		this.rolOpcioneses = rolOpcioneses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "rol")
 	public Set<Usuario> getUsuarios() {
 		return this.usuarios;
 	}

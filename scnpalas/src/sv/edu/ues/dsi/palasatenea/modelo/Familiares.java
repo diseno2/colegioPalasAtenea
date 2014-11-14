@@ -51,7 +51,7 @@ public class Familiares implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "alumno", nullable = false)
 	public Alumno getAlumno() {
 		return this.alumno;
@@ -61,7 +61,7 @@ public class Familiares implements java.io.Serializable {
 		this.alumno = alumno;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "familiar", nullable = false)
 	public Familiar getFamiliar() {
 		return this.familiar;
