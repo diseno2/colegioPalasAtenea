@@ -1,7 +1,9 @@
 package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +52,9 @@ public class AlumnoCtrl {
 		else
 			codigo += alumno.getApellido2().substring(0,1);
 		
+		//sacando el año de la fecha de nacimiento del alumno
+		String anio = alumno.getFnacimiento().toString(); 
+		codigo += anio;
 		//CodalumCtrl codalum = new CodalumCtrl();
 		//codigo = codalum.correlativo(codigo.toUpperCase(), alumno.getFnacimiento().getYear());
 		

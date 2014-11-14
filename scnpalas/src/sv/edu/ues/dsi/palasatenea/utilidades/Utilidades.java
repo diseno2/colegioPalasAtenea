@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class Utilidades {
 	public Date stringToDate(String strFecha){
-		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy/MM/dd");
 		Date fecha = null;
 		try {
 			fecha = formatoDelTexto.parse(strFecha);
