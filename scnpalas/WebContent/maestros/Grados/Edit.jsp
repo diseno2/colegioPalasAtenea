@@ -20,7 +20,7 @@
 		Docente docente;
 		for(int i=0;i<dLst.size();i++){
 			docente = (Docente) dLst.get(i); 
-			docentes += "<option value="+docente.getIdent()+">"+docente.toString()+"</option>"; 
+			docentes += "<option value="+docente.getIdent()+">"+docente.toString()+"</option>";
 		}
 	}
 	
@@ -70,7 +70,20 @@
 	}
 	
 	if (accion.equals("guardar")){
-		//grado.setDescripcion(request.getParameter("descripcion"));
+		//docente
+		Docente docente = dCtrl.findById(Integer.parseInt(request.getParameter("docente")));
+		grado.setDocente(docente);
+		
+		//seccion
+		Seccion seccion = sCtrl.findById(Integer.parseInt(request.getParameter("seccion")));
+		grado.setSeccion(seccion);
+		
+		//periodo
+		Periodo periodo = pCtrl.findById(Integer.parseInt(request.getParameter("periodo")));
+		grado.setPeriodo(periodo);
+		
+		grado.setEstado("A");
+		grado.setInscritos(0);
 		if (ident != 0) grado.setIdent(ident);
 		ctrl.guardar(grado);
 		response.sendRedirect("Lista.jsp");
