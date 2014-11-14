@@ -37,6 +37,11 @@ public class GradoMateriaCtrl {
 		return lst;
 	}
 	
+	public List findByParam(GradoMateria gradoMateria){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

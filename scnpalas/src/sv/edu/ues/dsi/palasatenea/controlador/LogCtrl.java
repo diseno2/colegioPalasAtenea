@@ -37,6 +37,11 @@ public class LogCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Log log){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

@@ -37,6 +37,11 @@ public class UsuarioCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Usuario usuario){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

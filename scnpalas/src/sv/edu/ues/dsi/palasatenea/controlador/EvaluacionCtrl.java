@@ -37,6 +37,11 @@ public class EvaluacionCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Evaluacion evaluacion){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

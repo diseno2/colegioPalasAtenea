@@ -37,6 +37,11 @@ public class MatriculaCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Matricula matricula){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

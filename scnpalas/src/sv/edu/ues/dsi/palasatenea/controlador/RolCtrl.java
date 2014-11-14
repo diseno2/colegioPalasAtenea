@@ -37,6 +37,11 @@ public class RolCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Rol rol){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

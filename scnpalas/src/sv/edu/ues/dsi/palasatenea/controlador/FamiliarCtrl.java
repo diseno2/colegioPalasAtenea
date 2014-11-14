@@ -21,6 +21,11 @@ public class FamiliarCtrl {
 		return dao.findByAll();
 	}
 	
+	public List findByParam(Familiar familiar){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public Familiar findById(Integer ident){
 		Familiar familiar = dao.findById(ident);
 		return familiar;

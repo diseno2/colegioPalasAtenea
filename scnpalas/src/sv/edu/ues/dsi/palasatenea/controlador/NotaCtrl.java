@@ -37,6 +37,11 @@ public class NotaCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Nota nota){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

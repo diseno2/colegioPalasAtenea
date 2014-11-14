@@ -37,6 +37,11 @@ public class FamiliaresCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Familiares familiares){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {
