@@ -8,23 +8,24 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	String accion = request.getParameter("accion");
-	if (accion == null)
-		accion = "";
-
+	if (accion == null) accion = "";
+	
 	Integer ident = Integer.parseInt(request.getParameter("ident"));
-
+	
 	Alumno alumno = new Alumno();
 	String disable = "";
+	String mChecked, fChecked, ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug10, ug11, ug12;
+	mChecked = fChecked = ug1 = ug2 = ug3 = ug4 = ug5 = ug6 = ug7 = ug8 = ug10 = ug11 = ug12 = "";
+	String usuario = new Utilidades().getUsuario();
 
+	System.out.println(usuario);
 	if (accion.equals("guardar")) {
 		alumno.setNombre1(request.getParameter("nombre1"));
 		alumno.setNombre2(request.getParameter("nombre2"));
 		alumno.setApellido1(request.getParameter("apellido1"));
 		alumno.setApellido2(request.getParameter("apellido2"));
 		alumno.setGenero(request.getParameter("genero"));
-		System.out.println(request.getParameter("genero"));
-		Utilidades c = new Utilidades();
-		alumno.setFnacimiento(c.stringToDate(request.getParameter("fnacimiento")));
+		alumno.setFnacimiento(new Utilidades().stringToDate(request.getParameter("fnacimiento")));
 		alumno.setLnacimiento(request.getParameter("lnacimiento"));
 		alumno.setDireccion(request.getParameter("direccion"));
 		alumno.setTelefono(request.getParameter("telefono"));
@@ -41,59 +42,92 @@
 
 		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 		alumnoCtrl.guardar(alumno);
-		response.sendRedirect("Lista.jsp");
-	} else if (accion.equals("borrar")) {
-		System.out.println("llego aqui");
-		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-		alumnoCtrl.borrar(ident);
-		response.sendRedirect("Lista.jsp");
-	} else if (accion.equals("ver")) {
-		disable = "disabled";
-	} else if (accion.equals("alta")) {
-		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-		alumnoCtrl.alta(ident);
-		response.sendRedirect("Lista.jsp");
-	} else if (accion.equals("baja")) {
-		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-		alumnoCtrl.baja(ident);
-		response.sendRedirect("Lista.jsp");
+		if (usuario==null)
+			response.sendRedirect("Edit.jsp?accion=guest&ident="+alumno.getIdent());
+		else
+			response.sendRedirect("Edit.jsp?accion=ver&ident="+alumno.getIdent());
 	}
-	String mChecked, fChecked, ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug10, ug11, ug12;
-
-	mChecked = fChecked = ug1 = ug2 = ug3 = ug4 = ug5 = ug6 = ug7 = ug8 = ug10 = ug11 = ug12 = "";
-	if (ident == 0) {
-		alumno = new Alumno();
-	} else {
-		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-		alumno = alumnoCtrl.findById(ident);
-		if (alumno.getGenero().equals("M"))
-			mChecked = "checked";
-		if (alumno.getGenero().equals("F"))
-			fChecked = "checked";
-		if (alumno.getUltgrado() == 1)
-			ug1 = "selected";
-		if (alumno.getUltgrado() == 2)
-			ug2 = "selected";
-		if (alumno.getUltgrado() == 3)
-			ug3 = "selected";
-		if (alumno.getUltgrado() == 4)
-			ug4 = "selected";
-		if (alumno.getUltgrado() == 5)
-			ug5 = "selected";
-		if (alumno.getUltgrado() == 6)
-			ug6 = "selected";
-		if (alumno.getUltgrado() == 7)
-			ug7 = "selected";
-		if (alumno.getUltgrado() == 8)
-			ug8 = "selected";
-		if (alumno.getUltgrado() == 10)
-			ug10 = "selected";
-		if (alumno.getUltgrado() == 11)
-			ug11 = "selected";
-		if (alumno.getUltgrado() == 12)
-			ug12 = "selected";
+	if (usuario==null){
+		if (accion.equals("guest")) {
+			disable = "disabled";
+			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+			alumno = alumnoCtrl.findById(ident);
+			if (alumno.getGenero().equals("M"))
+				mChecked = "checked";
+			if (alumno.getGenero().equals("F"))
+				fChecked = "checked";
+			if (alumno.getUltgrado() == 1)
+				ug1 = "selected";
+			if (alumno.getUltgrado() == 2)
+				ug2 = "selected";
+			if (alumno.getUltgrado() == 3)
+				ug3 = "selected";
+			if (alumno.getUltgrado() == 4)
+				ug4 = "selected";
+			if (alumno.getUltgrado() == 5)
+				ug5 = "selected";
+			if (alumno.getUltgrado() == 6)
+				ug6 = "selected";
+			if (alumno.getUltgrado() == 7)
+				ug7 = "selected";
+			if (alumno.getUltgrado() == 8)
+				ug8 = "selected";
+			if (alumno.getUltgrado() == 10)
+				ug10 = "selected";
+			if (alumno.getUltgrado() == 11)
+				ug11 = "selected";
+			if (alumno.getUltgrado() == 12)
+				ug12 = "selected";
+		}
+	}else{
+		if (accion.equals("borrar")) {
+			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+			alumnoCtrl.borrar(ident);
+			response.sendRedirect("Lista.jsp");
+		} else if (accion.equals("ver")) {
+			disable = "disabled";
+		} else if (accion.equals("alta")) {
+			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+			alumnoCtrl.alta(ident);
+			response.sendRedirect("Lista.jsp");
+		} else if (accion.equals("baja")) {
+			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+			alumnoCtrl.baja(ident);
+			response.sendRedirect("Lista.jsp");
+		}
+		if (ident == 0) {
+			alumno = new Alumno();
+		} else {
+			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
+			alumno = alumnoCtrl.findById(ident);
+			if (alumno.getGenero().equals("M"))
+				mChecked = "checked";
+			if (alumno.getGenero().equals("F"))
+				fChecked = "checked";
+			if (alumno.getUltgrado() == 1)
+				ug1 = "selected";
+			if (alumno.getUltgrado() == 2)
+				ug2 = "selected";
+			if (alumno.getUltgrado() == 3)
+				ug3 = "selected";
+			if (alumno.getUltgrado() == 4)
+				ug4 = "selected";
+			if (alumno.getUltgrado() == 5)
+				ug5 = "selected";
+			if (alumno.getUltgrado() == 6)
+				ug6 = "selected";
+			if (alumno.getUltgrado() == 7)
+				ug7 = "selected";
+			if (alumno.getUltgrado() == 8)
+				ug8 = "selected";
+			if (alumno.getUltgrado() == 10)
+				ug10 = "selected";
+			if (alumno.getUltgrado() == 11)
+				ug11 = "selected";
+			if (alumno.getUltgrado() == 12)
+				ug12 = "selected";
+		}
 	}
-
 	//lo correspondiente a los familiares
 	String mensaje = "";
 	/*FamiliarCtrl familiarCtrl = new FamiliarCtrl();
@@ -168,12 +202,13 @@
 			-->
 		</div>
 		<div id="content">
-			<h1>Ficha de Registro de Alumno</h1>
+			
 			<form action="Edit.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar"> 
 				<input type="hidden" name="ident" value="<%=alumno.getIdent()%>">
 
 				<table border="0">
+					<caption>Registro de Alumno</caption>
 					<tr>
 						<td>Nombres</td>
 						<td><input type="text" name="nombre1"

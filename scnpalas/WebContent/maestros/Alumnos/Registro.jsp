@@ -149,8 +149,7 @@
 			-->
 		</div>
 		<div id="content">
-			
-			<form action="Edit.jsp" method="post">
+			<form action="Registro.jsp" method="post" id="formValidar">
 				<input type="hidden" name="accion" value="guardar"> 
 				<input type="hidden" name="ident" value="<%=alumno.getIdent()%>">
 
@@ -159,77 +158,77 @@
 					<tr>
 						<td>Nombres</td>
 						<td><input type="text" name="nombre1"
-							value="<%=alumno.getNombre1()%>" <%=disable%>></td>
+							value="<%=alumno.getNombre1()%>" <%=disable%> required /></td>
 						<td><input type="text" name="nombre2"
-							value="<%=alumno.getNombre2()%>" <%=disable%>></td>
+							value="<%=alumno.getNombre2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Apellidos</td>
 						<td><input type="text" name="apellido1"
-							value="<%=alumno.getApellido1()%>" <%=disable%>></td>
+							value="<%=alumno.getApellido1()%>" <%=disable%> required /></td>
 						<td><input type="text" name="apellido2"
 							value="<%=alumno.getApellido2()%>" <%=disable%>></td>
 					</tr>
 					<tr>
 						<td>Genero</td>
 						<td><input type="radio" name="genero" value="M"
-							<%=mChecked%> <%=disable%>>Masculino</td>
+							<%=mChecked%> <%=disable%> required />Masculino</td>
 						<td><input type="radio" name="genero" value="F"
-							<%=fChecked%> <%=disable%>>Femenino</td>
+							<%=fChecked%> <%=disable%> required />Femenino</td>
 					</tr>
 					<tr>
 						<td>Fecha de Nacimiento</td>
 						<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento"
-							value="<%=alumno.getFnacimiento()%>" <%=disable%>></td>
+							value="<%=alumno.getFnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Lugar de Nacimiento</td>
 						<td colspan="3"><input type="text" name="lnacimiento"
-							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%>  required /></td>
 					</tr>
 					<tr>
 						<td>Direccion</td>
 						<td colspan="2"><textarea name="direccion" rows="2"
-								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%>></textarea></td>
+								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%> required /></textarea></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>
 						<td colspan="2"><input type="text" name="telefono"
-							value="<%=alumno.getTelefono()%>" <%=disable%>></td>
+							value="<%=alumno.getTelefono()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Religion</td>
 						<td colspan="2"><input type="text" name="religion"
-							size="45" value="<%=alumno.getReligion()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getReligion()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Enfermedades que padece</td>
 						<td colspan="2"><input type="text" name="enfermedades"
-							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Medicamentos</td>
 						<td colspan="2"><input type="text" name="medicamentos"
-							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Alergias</td>
 						<td colspan="2"><input type="text" name="alergico"
-							size="45" value="<%=alumno.getAlergico()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getAlergico()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Problemas de aprendizaje</td>
 						<td colspan="2"><input type="text" name="aprendizaje"
-							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Escuela previa</td>
 						<td colspan="2"><input type="text" name="escuelaprevia"
-							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%>></td>
+							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
-						<td colspan="2"><select name="ultgrado" <%=disable%>>
+						<td colspan="2"><select name="ultgrado" <%=disable%> required />
 								<option value="10" <%=ug10%>>Kinder 4</option>
 								<option value="11" <%=ug11%>>Kinder 5</option>
 								<option value="12" <%=ug12%>>Preparatoria</option>
