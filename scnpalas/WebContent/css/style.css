@@ -2,8 +2,7 @@
 body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;background:#5298af;}
 caption{font-size:32px;color:#009933;font-weight:bold;background:#ecf4f6;}
 th{font-size:24px;color:#303030;font-weight:bold;text-align:center;}
-table{width:100%;}
-td{text-align:justify;}
+
 /* MARCO */
 #wrap {background:#fff;color:#303030;margin:0 auto;width:1000px; height:600px ;-webkit-border-radius: 20px 20px 20px 20px;/*border:1px Solid #ff6600;*/}
 
@@ -44,8 +43,10 @@ td{text-align:justify;}
 #footer .fright  {float:right;margin:0 auto;}
 #footer .fcenter {float:none;margin:0 auto;text-align:center}
 
+/* CONTENIDO */
 #content{width:799px;height:450px;overflow: scroll;}
 #content {position:fixed !important; right:172px; top:169px; z-index:10 !important}
+#content table{margin:auto;}
 
 /* ICONOS */
 .iconnew{content:url(/scnpalas/images/new.jpg); width: 20px;height: 20px;}

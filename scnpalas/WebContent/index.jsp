@@ -26,13 +26,13 @@
 					<ul>
 						<li><a href="/scnpalas/maestros/Alumnos/Lista.jsp">Alumnos</a></li>
 						<li><a href="#">Docentes</a></li>
-						<li><a href="#">Grados</a></li>
-						<li><a href="#">Matriculas</a></li>
+						<li><a href="/scnpalas/maestros/Grados/Lista.jsp">Grados</a></li>
 					</ul>
 				</li>
 				<li>
 					Procesos
 					<ul>
+						<li><a href="#">Matriculas</a></li>
 						<li><a href="#">Evaluaciones</a></li>
 						<li><a href="#">Notas</a></li>
 					</ul>
