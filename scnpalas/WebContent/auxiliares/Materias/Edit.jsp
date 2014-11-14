@@ -2,6 +2,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.controlador.MateriaCtrl" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Materia" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	Materia materia = new Materia();
 	String disable = "";
@@ -48,49 +49,7 @@
 			<h1>Colegio Palas Atenea</h1>
 			<p>Sistema de Registro de Notas</p>
 		</div>
-		<div id="menu">
-			<ul>
-				<li>
-					Auxiliares
-					<ul>
-						<li><a href="#">Periodos</a></li>
-						<li><a href="#">Materias</a></li>
-						<li><a href="#">Secciones</a></li>
-					</ul>
-				</li>
-				<li>
-					Maestros
-					<ul>
-						<li><a href="#">Alumnos</a></li>
-						<li><a href="#">Docentes</a></li>
-						<li><a href="#">Grados</a></li>
-						<li><a href="#">Matriculas</a></li>
-					</ul>
-				</li>
-				<li>
-					Procesos
-					<ul>
-						<li><a href="#">Evaluaciones</a></li>
-						<li><a href="#">Notas</a></li>
-					</ul>
-				</li>
-				<li>
-					Reportes
-					<ul>
-						<li><a href="#">Reporte1</a></li>
-						<li><a href="#">Reporte2</a></li>
-					</ul>
-				</li>
-				<li>
-					Administracion
-					<ul>
-						<li><a href="#">Roles</a></li>
-						<li><a href="#">Usuarios</a></li>
-					</ul>
-				</li>
-				<li>Salir</li>
-			</ul>
-		</div>
+		<%=new Utilidades().getMenu()%>
 		<div id="avisos">
 		<!--
 			<h1>Avisos</h1>

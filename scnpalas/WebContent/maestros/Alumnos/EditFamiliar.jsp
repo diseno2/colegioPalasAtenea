@@ -4,7 +4,7 @@
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.FamiliarCtrl"%>
 <%@ page import="java.util.*" %>
-
+<%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	String accion = request.getParameter("accion");
 	Integer idAlumno = Integer.parseInt(request.getParameter("alumno"));
