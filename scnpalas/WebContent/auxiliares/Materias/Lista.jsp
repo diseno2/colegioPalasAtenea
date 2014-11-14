@@ -10,14 +10,11 @@
 	String accion = request.getParameter("accion");
 	if (accion == null)
 		lst = ctrl.findByAll();
-	/*else{
-		lst = ctrl.findByParam(request.getParameter("nombre1"),
-											request.getParameter("nombre2"),
-											request.getParameter("apellido1"),
-											request.getParameter("apellido2"),
-											request.getParameter("genero"),
-											request.getParameter("grado"));
-	}*/
+	else{
+		Materia materia = new Materia();
+		materia.setDescripcion(request.getParameter("descripcion"));
+		lst = ctrl.findByParam(materia);
+	}
 	
 	String mensaje = "";
 	
@@ -31,16 +28,13 @@
 								"<input type='hidden' name='accion' value='buscar' /> "+
 									"<table>"+
 										"<tr>"+
-											"<td>Codigo</td>"+
-											"<td><input type='text' name='ident' /></td>"+
-										"</tr>"+
-										"<tr>"+
 											"<td>Descripci&oacute;n</td>"+
 											"<td><input type='text' name='descripcion' /></td>"+
 										"</tr>"+
 										"<tr>"+
-											"<td colspan=2 align='center'><input type='submit' class='iconquery' /></td>"+
+											"<td colspan=2 align='center'><input type='submit' value='Buscar' /></td>"+
 										"</tr>"+
+										"</table>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
