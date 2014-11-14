@@ -24,11 +24,55 @@
 	
 	mensaje = "<table>"+
 		  		"<thead>"+
-				"<caption>Alumnos"+ 
+					"<caption id='query'>Alumnos"+ 
 						 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 						 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
-				"</caption>"+
-			  "<tr><td>Carnet</td><td colspan=2>Nombres</td><td colspan=2>Apellidos</td><td></td></tr>";
+								 "<div class='formQuery'>"+
+									"<form action='Lista.jsp' method='post'>"+
+									"<input type='hidden' name='accion' value='buscar' /> "+
+										"<table>"+
+											"<tr>"+
+												"<td>Nombres</td>"+
+												"<td><input type='text' name='nombre1'></td>"+
+												"<td><input type='text' name='nombre2'></td>"+
+											"</tr>"+
+											"<tr>"+
+												"<td>Apellidos</td>"+
+												"<td><input type='text' name='apellido1'></td>"+
+												"<td><input type='text' name='apellido2'></td>"+
+											"</tr>"+
+											"<tr>"+
+												"<td>Genero</td>"+
+												"<td><input type='radio' name='genero' value='M'>Masculino</td>"+
+												"<td><input type='radio' name='genero' value='F'>Femenino</td>"+
+											"</tr>"+
+											"<tr>"+
+												"<td>Grado Actual</td>"+
+												"<td colspan='2'>"+
+													"<select name='grado'>"+
+														"<option value='10'>Kinder 4</option>"+
+														"<option value='11'>Kinder 5</option>"+
+														"<option value='12'>Preparatoria</option>"+
+														"<option value='1'>Primero</option>"+
+														"<option value='2'>Segundo</option>"+
+														"<option value='3'>Tercero</option>"+
+														"<option value='4'>Cuarto</option>"+
+														"<option value='5'>Quinto</option>"+
+														"<option value='6'>Sexto</option>"+
+														"<option value='7'>Septimo</option>"+
+														"<option value='8'>Octavo</option>"+
+														"<option value='9'>Noveno</option>"+
+													"</select>"+
+												"</td>"+
+											"</tr>"+
+											"<tr>"+
+												"<td colspan=3 align='center'><input type='submit' value='Buscar' /></td>"+
+											"</tr>"+
+											"</table>"+
+									"</form>"+
+								 "</div>"+
+					"</caption>"+
+					"<tr><th>Carnet</th><th colspan=2>Nombres</th><th colspan=2>Apellidos</th><th></th></tr>";
 	if(alumnoList.isEmpty()){
 		mensaje += "<tr><td colspan=6>No existen alumnos registrados</td></tr>";
 	}else{
@@ -123,52 +167,7 @@
 			-->
 		</div>
 		<div id="content">
-			<form action="ListaAlumno.jsp" method="post">
-				<input type="hidden" name="accion" value="consulta">
-				<table>
-					<tr>
-						<td>Nombres</td>
-						<td><input type="text" name="nombre1"></td>
-						<td><input type="text" name="nombre2"></td>
-					</tr>
-					<tr>
-						<td>Apellidos</td>
-						<td><input type="text" name="apellido1"></td>
-						<td><input type="text" name="apellido2"></td>
-					</tr>
-					<tr>
-						<td>Genero</td>
-						<td><input type="radio" name="genero" value="M">Masculino</td>
-						<td><input type="radio" name="genero" value="F">Femenino</td>
-					</tr>
-					<tr>
-						<td>Grado Actual</td>
-						<td colspan="2">
-							<select name="grado">
-								<option value="10">Kinder 4</option>
-								<option value="11">Kinder 5</option>
-								<option value="12">Preparatoria</option>
-								<option value="1">Primero</option>
-								<option value="2">Segundo</option>
-								<option value="3">Tercero</option>
-								<option value="4">Cuarto</option>
-								<option value="5">Quinto</option>
-								<option value="6">Sexto</option>
-								<option value="7">Septimo</option>
-								<option value="8">Octavo</option>
-								<option value="9">Noveno</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3"><center>
-							<input type="submit" value="Consultar">
-							<input type="reset" value="Limpiar campos">
-						</center></td>
-					</tr>
-				</table>		
-			</form>
-			<br>
+			<input type="hidden" name="accion" value="consulta">
 			<%=mensaje %>
 		</div>
 		<div id="footer">

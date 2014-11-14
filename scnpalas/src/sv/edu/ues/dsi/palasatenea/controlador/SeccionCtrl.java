@@ -20,6 +20,8 @@ public class SeccionCtrl {
 	private SeccionDao dao = new SeccionDao();
 	
 	public void guardar(Seccion seccion){
+		System.out.println(seccion.getGrado());
+		System.out.println(seccion.getSeccion());
 		dao.guardar(seccion);
 	}
 	
@@ -33,6 +35,11 @@ public class SeccionCtrl {
 	}
 	
 	public List findByAll(){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
+	public List findByParam(Seccion seccion){
 		List lst = dao.findByAll();
 		return lst;
 	}

@@ -37,6 +37,11 @@ public class MateriaCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Materia materia){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

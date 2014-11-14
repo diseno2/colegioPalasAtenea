@@ -33,6 +33,9 @@ public class Seccion implements java.io.Serializable {
 	private Set<Grado> grados = new HashSet<Grado>(0);
 
 	public Seccion() {
+		this.ident = 0;
+		this.grado = "";
+		this.seccion = "";
 	}
 
 	public Seccion(String grado, String seccion) {
