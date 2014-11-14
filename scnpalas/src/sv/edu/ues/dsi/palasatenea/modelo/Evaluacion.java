@@ -152,5 +152,11 @@ public class Evaluacion implements java.io.Serializable {
 	public void setNotas(Set<Nota> notas) {
 		this.notas = notas;
 	}
-
+	
+	public String toString(){
+		return this.gradoMateria.getGrado().toString()+" "+
+			   this.gradoMateria.getMateria().toString()+" "+
+			   this.descripcion+" "+
+			   this.porcentaje;
+	}
 }

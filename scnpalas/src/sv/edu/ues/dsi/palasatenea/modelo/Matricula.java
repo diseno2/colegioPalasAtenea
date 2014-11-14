@@ -94,5 +94,9 @@ public class Matricula implements java.io.Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
+	
+	public String toString(){
+		return this.alumno.toString()+" "+
+			   this.grado.toString();
+	}
 }

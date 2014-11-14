@@ -145,5 +145,9 @@ public class Usuario implements java.io.Serializable {
 	public void setDocentes(Set<Docente> docentes) {
 		this.docentes = docentes;
 	}
+	
+	public String toString(){
+		return this.usuario;
+	}
 
 }

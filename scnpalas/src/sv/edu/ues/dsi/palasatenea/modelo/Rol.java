@@ -81,5 +81,8 @@ public class Rol implements java.io.Serializable {
 	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
+	
+	public String toString(){
+		return this.descripcion;
+	}
 }

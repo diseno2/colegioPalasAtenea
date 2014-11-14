@@ -209,5 +209,8 @@ public class Familiar implements java.io.Serializable {
 	public void setFamiliareses(Set<Familiares> familiareses) {
 		this.familiareses = familiareses;
 	}
-
+	
+	public String toString(){
+		return this.nombre;
+	}
 }

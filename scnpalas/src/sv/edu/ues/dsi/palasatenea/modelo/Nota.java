@@ -124,5 +124,13 @@ public class Nota implements java.io.Serializable {
 	public void setTipoRegistro(String tipoRegistro) {
 		this.tipoRegistro = tipoRegistro;
 	}
+	
+	public String toString(){
+		return this.alumno.toString()+" "+
+			   this.periodo.toString()+" "+
+			   this.materia.toString()+" "+
+			   this.evaluacion.toString()+" "+
+			   this.calificacion;
+	}
 
 }

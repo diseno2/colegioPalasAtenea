@@ -324,5 +324,15 @@ public class Alumno implements java.io.Serializable {
 	public void setNotas(Set<Nota> notas) {
 		this.notas = notas;
 	}
-
+	
+	public String toString(){
+		String nombre = this.carnet+"-"+this.nombre1;
+		if(this.nombre1!=null) nombre+=" "+this.nombre2;
+		
+		nombre += " "+this.apellido1;
+		if(this.apellido2!=null) nombre+=" "+this.apellido2;
+		
+		return nombre;
+		
+	}
 }

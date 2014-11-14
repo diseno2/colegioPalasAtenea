@@ -88,5 +88,9 @@ public class GradoMateria implements java.io.Serializable {
 	public void setEvaluacions(Set<Evaluacion> evaluacions) {
 		this.evaluacions = evaluacions;
 	}
-
+	
+	public String toString(){
+		return this.grado.toString()+" "+
+			   this.materia.toString();
+	}
 }

@@ -65,5 +65,8 @@ public class RolOpciones implements java.io.Serializable {
 	public void setOpcion(String opcion) {
 		this.opcion = opcion;
 	}
-
+	public String toString(){
+		return this.rol.toString()+" "+
+			   this.opcion;
+	}
 }

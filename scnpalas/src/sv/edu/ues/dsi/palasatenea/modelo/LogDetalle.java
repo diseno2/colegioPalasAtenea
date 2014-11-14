@@ -90,5 +90,11 @@ public class LogDetalle implements java.io.Serializable {
 	public void setValorModificado(String valorModificado) {
 		this.valorModificado = valorModificado;
 	}
-
+	
+	public String toString(){
+		return this.log.toString()+" "+
+			   this.campo+" "+
+			   this.valorOriginal+" "+
+			   this.valorModificado;
+	}
 }

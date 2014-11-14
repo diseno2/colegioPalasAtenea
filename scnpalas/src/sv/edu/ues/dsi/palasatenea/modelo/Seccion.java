@@ -86,5 +86,10 @@ public class Seccion implements java.io.Serializable {
 	public void setGrados(Set<Grado> grados) {
 		this.grados = grados;
 	}
+	
+	public String toString(){
+		return this.grado+" "+
+			   this.seccion;
+	}
 
 }

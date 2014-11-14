@@ -79,5 +79,10 @@ public class Familiares implements java.io.Serializable {
 	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
 	}
-
+	
+	public String toString(){
+		return this.alumno.toString()+" "+
+			   this.familiar.toString()+" "+
+			   this.parentesco;
+	}
 }

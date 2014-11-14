@@ -98,5 +98,8 @@ public class Materia implements java.io.Serializable {
 	public void setGradoMaterias(Set<GradoMateria> gradoMaterias) {
 		this.gradoMaterias = gradoMaterias;
 	}
-
+	
+	public String toString(){
+		return this.descripcion;
+	}
 }

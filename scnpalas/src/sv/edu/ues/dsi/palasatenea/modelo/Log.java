@@ -128,5 +128,11 @@ public class Log implements java.io.Serializable {
 	public void setLogDetalles(Set<LogDetalle> logDetalles) {
 		this.logDetalles = logDetalles;
 	}
-
+	
+	public String toString(){
+		return this.usuario.toString()+" "+
+			   this.accion+" "+
+			   this.tabla+" "+
+			   this.idTabla;
+	}
 }
