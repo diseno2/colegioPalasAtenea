@@ -16,7 +16,7 @@
 				<li>
 					Auxiliares
 					<ul>
-						<li><a href="#">Periodos</a></li>
+						<li><a href="/scnpalas/auxiliares/Periodos/Lista.jsp">Periodos</a></li>
 						<li><a href="/scnpalas/auxiliares/Materias/Lista.jsp">Materias</a></li>
 						<li><a href="#">Secciones</a></li>
 					</ul>

@@ -9,7 +9,7 @@
 	
     <http pattern="/login.html" security="none"/>
     <http pattern="/nologin.html" security="none"/>
-    <http pattern="/style.css" security="none"/>
+    <http pattern="/css/style.css" security="none"/>
     <http pattern="/js/*" security="none"/>
     <http pattern="/images/*" security="none"/>
     <http pattern="/Maestros/Alumnos/Edit.jsp" security="none"/>
