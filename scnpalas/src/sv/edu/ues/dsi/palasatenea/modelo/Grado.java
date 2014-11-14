@@ -39,6 +39,7 @@ public class Grado implements java.io.Serializable {
 	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
 
 	public Grado() {
+		this.ident = 0;
 	}
 
 	public Grado(Seccion seccion, Periodo periodo, Docente docente,
