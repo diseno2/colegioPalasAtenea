@@ -179,5 +179,15 @@ public class Docente implements java.io.Serializable {
 	public void setGrados(Set<Grado> grados) {
 		this.grados = grados;
 	}
-
+	
+	public String toString(){
+		String nombre = this.nombre1;
+		if(this.nombre1!=null) nombre+=" "+this.nombre2;
+		
+		nombre += " "+this.apellido1;
+		if(this.apellido2!=null) nombre+=" "+this.apellido2;
+		
+		return nombre;
+		
+	}
 }
