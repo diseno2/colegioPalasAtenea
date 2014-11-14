@@ -23,6 +23,7 @@
 	
 	if (accion.equals("guardar")){
 		materia.setDescripcion(request.getParameter("descripcion"));
+		materia.setActiva(request.getParameter("activa"));
 		if (ident != 0) materia.setIdent(ident);
 		ctrl.guardar(materia);
 		response.sendRedirect("Lista.jsp");
@@ -73,10 +74,11 @@
 						<tr>
 							<td>C&oacute;digo</td>
 							<td><input type="text" value="<%=materia.getIdent()%>" disabled /></td>
+							<td><input type="checkbox" value="<%=materia.getActiva()%>" >Activa</input></td>
 						</tr>
 						<tr>
 							<td>Descripci&oacute;n</td>
-							<td><input type="text" name="descripcion" value="<%=materia.getDescripcion()%>" <%=disable%> /></td>
+							<td colspan="2"><input type="text" name="descripcion" value="<%=materia.getDescripcion()%>" <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
