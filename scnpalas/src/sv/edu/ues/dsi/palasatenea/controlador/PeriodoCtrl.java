@@ -37,6 +37,11 @@ public class PeriodoCtrl {
 		return lst;
 	}
 	
+	public List findByParam(Periodo periodo){
+		List lst = dao.findByAll();
+		return lst;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

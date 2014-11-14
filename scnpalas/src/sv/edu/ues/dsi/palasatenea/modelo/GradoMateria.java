@@ -24,8 +24,8 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name = "grado_materia", catalog = "scnpalas")
 @NamedQueries({
-	@NamedQuery(name = "GradoMaeria.findByAll", query = "SELECT c FROM GradoMaeria c "),
-	@NamedQuery(name = "GradoMaeria.findByIdent", query = "SELECT c FROM GradoMaeria c WHERE ident = :id")
+	@NamedQuery(name = "GradoMateria.findByAll", query = "SELECT c FROM GradoMateria c "),
+	@NamedQuery(name = "GradoMateria.findByIdent", query = "SELECT c FROM GradoMateria c WHERE ident = :id")
 })
 public class GradoMateria implements java.io.Serializable {
 

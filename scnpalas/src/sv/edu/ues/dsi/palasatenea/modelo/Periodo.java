@@ -2,7 +2,9 @@ package sv.edu.ues.dsi.palasatenea.modelo;
 
 // Generated 11-12-2014 09:30:17 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -38,6 +40,16 @@ public class Periodo implements java.io.Serializable {
 	private Set<Grado> grados = new HashSet<Grado>(0);
 
 	public Periodo() {
+		this.ident = 0;
+		
+		Calendar fecha = new GregorianCalendar();
+		this.anio = fecha.get(Calendar.YEAR);
+		
+		fecha = new GregorianCalendar(this.anio, Calendar.JANUARY,1);
+		this.inicio = fecha.getTime();
+		
+		fecha = new GregorianCalendar(this.anio, Calendar.DECEMBER,31);
+		this.fin = fecha.getTime();
 	}
 
 	public Periodo(int anio, Date inicio, Date fin) {
