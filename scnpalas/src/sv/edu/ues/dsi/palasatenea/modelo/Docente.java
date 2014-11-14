@@ -55,6 +55,10 @@ public class Docente implements java.io.Serializable {
 		//this.fnacimiento = new Date();
 		//this.fcontrato= new Date();
 	}
+	
+	public Docente(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Docente(Usuario usuario, String nombre1, String nombre2,
 			String apellido1, String apellido2, String direccion,
