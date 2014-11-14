@@ -34,4 +34,50 @@ public class Utilidades {
 		}
 		return usuario;
 	}
+	
+	public String getMenu(){
+		String menu = "<div id='menu'>"+
+						"<ul>"+
+					  "<li>Auxiliares"+
+					  "<ul>"+
+						"<li><a href='/scnpalas/auxiliares/Periodos/Lista.jsp'>Periodos</a></li>"+
+						"<li><a href='/scnpalas/auxiliares/Materias/Lista.jsp'>Materias</a></li>"+
+						"<li><a href='/scnpalas/auxiliares/Secciones/Lista.jsp'>Secciones</a></li>"+
+					"</ul>"+
+				"</li>"+
+				"<li>"+
+					"Maestros"+
+					"<ul>"+
+						"<li><a href='/scnpalas/maestros/Alumnos/Lista.jsp'>Alumnos</a></li>"+
+						"<li><a href='#'>Docentes</a></li>"+
+						"<li><a href='/scnpalas/maestros/Grados/Lista.jsp'>Grados</a></li>"+
+					"</ul>"+
+				"</li>"+
+				"<li>"+
+					"Procesos"+
+					"<ul>"+
+						"<li><a href='/scnpalas/procesos/Matriculas/Lista.jsp'>Matriculas</a></li>"+
+						"<li><a href='#'>Evaluaciones</a></li>"+
+						"<li><a href='#'>Notas</a></li>"+
+					"</ul>"+
+				"</li>"+
+				"<li>"+
+					"Reportes"+
+					"<ul>"+
+						"<li><a href='#'>Reporte1</a></li>"+
+						"<li><a href='#'>Reporte2</a></li>"+
+					"</ul>"+
+				"</li>"+
+				"<li>"+
+					"Administracion"+
+					"<ul>"+
+						"<li><a href='#'>Roles</a></li>"+
+						"<li><a href='#'>Usuarios</a></li>"+
+					"</ul>"+
+				"</li>"+
+				"<li><a href='/scnpalas/j_spring_security_logout'>Salir</a></li>"+
+			"</ul>"+
+			"</div>";
+		return menu;
+	}
 }
