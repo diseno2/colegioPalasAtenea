@@ -45,6 +45,15 @@ public class Docente implements java.io.Serializable {
 	private Set<Grado> grados = new HashSet<Grado>(0);
 
 	public Docente() {
+		this.ident=0;
+		this.nombre1="";
+		this.nombre2="";
+		this.apellido1="";
+		this.apellido2="";
+		this.direccion="";
+		this.telefono="";
+		//this.fnacimiento = new Date();
+		//this.fcontrato= new Date();
 	}
 
 	public Docente(Usuario usuario, String nombre1, String nombre2,
