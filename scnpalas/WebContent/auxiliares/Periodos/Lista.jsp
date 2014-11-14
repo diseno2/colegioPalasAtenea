@@ -3,6 +3,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Periodo" %>
 <%@page import="sv.edu.ues.dsi.palasatenea.utilidades.Utilidades"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <%
 	PeriodoCtrl ctrl = new PeriodoCtrl();
 	Periodo alumno = new Periodo();
@@ -62,12 +63,18 @@
 		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
 	}else{
 		Periodo periodo;
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+		String fi , ff;
+		
 		for(int i=0;i<lst.size();i++){
 			periodo = (Periodo) lst.get(i); 
+			fi =  df.format(periodo.getInicio());
+			ff =  df.format(periodo.getFin());
+			
 			mensaje += "<tr>"+
 							"<td>"+periodo.getAnio()+"</td>"+
-							"<td>"+periodo.getInicio()+"</td>"+
-							"<td>"+periodo.getFin()+"</td>"+
+							"<td>"+fi+"</td>"+
+							"<td>"+ff+"</td>"+
 							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
