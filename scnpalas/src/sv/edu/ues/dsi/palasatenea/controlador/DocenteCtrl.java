@@ -38,6 +38,10 @@ public class DocenteCtrl {
 		List lst = dao.findByAll();
 		return lst;
 	}
+	public List findByParam(Docente docente){
+		List lst = dao.findByAll();
+		return lst;
+	}
 	
 	public byte[] reporte(){
 		byte[] bytes = null;
