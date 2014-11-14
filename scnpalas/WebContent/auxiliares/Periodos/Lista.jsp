@@ -45,7 +45,7 @@
 											"<td><input type='text' id='datepicker2' name='fin' /></td>"+
 										"</tr>"+
 										"<tr>"+
-											"<td colspan=3 align='center'><input type='submit' class='iconquery' /></td>"+
+											"<td colspan=3 align='center'><input type='submit' value='Buscar' /></td>"+
 										"</tr>"+
 									"</table>"+
 								"</form>"+
