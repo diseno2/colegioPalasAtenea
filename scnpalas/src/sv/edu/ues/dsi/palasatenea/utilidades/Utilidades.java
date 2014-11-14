@@ -27,16 +27,27 @@ public class Utilidades {
 	
 	public String getUsuario(){
 		String usuario = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof UserDetails) {
-			UserDetails userDetails = (UserDetails) principal;
-			usuario = userDetails.getUsername();
+		try{
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (principal instanceof UserDetails) {
+				UserDetails userDetails = (UserDetails) principal;
+				usuario = userDetails.getUsername();
+			}
+		}catch(NullPointerException e){
+			System.err.println("(Usuario) No logueado "+e.getMessage());
 		}
 		return usuario;
 	}
 	
 	public String getMenu(){
-		String menu = "<div id='menu'>"+
+		String menu = null;
+		if (this.getUsuario() == null)
+			menu = "<div id='menu'>"+
+					"<ul>"+
+					  "<li><a href='/scnpalas/index.jsp'>Inicio</a></li>"+
+				   "</div>";
+		else
+		menu = "<div id='menu'>"+
 						"<ul>"+
 					  "<li>Auxiliares"+
 					  "<ul>"+
