@@ -58,6 +58,7 @@ public class Alumno implements java.io.Serializable {
 	private Set<Nota> notas = new HashSet<Nota>(0);
 
 	public Alumno() {
+		this.ident=0;
 		this.carnet = "";
 		this.estado = 0;
 		this.nombre1 = "";
