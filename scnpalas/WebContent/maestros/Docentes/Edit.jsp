@@ -52,6 +52,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Registro Docente</title>
+	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
 	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -77,29 +80,37 @@
 						</tr>
 						<tr>
 							<td>Nombre</td>
-							<td><input type="text" name="nombre1" value="<%=docente.getNombre1()%>" <%=disable%> /></td>
-							<td><input type="text" name="nombre2" value="<%=docente.getNombre2()%>" <%=disable%> /></td>
+							<td><input type="text" name="nombre1" placeholder="1° Nombre"
+							 value="<%=docente.getNombre1()%>" <%=disable%> required/></td>
+							<td><input type="text" name="nombre2" placeholder="2° Nombre"
+							value="<%=docente.getNombre2()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Apellido</td>
-							<td><input type="text" name="apellido1" value="<%=docente.getApellido1()%>" <%=disable%> /></td>
-							<td><input type="text" name="apellido2" value="<%=docente.getApellido2()%>" <%=disable%> /></td>
+							<td><input type="text" name="apellido1" placeholder="1° Apellido"
+							value="<%=docente.getApellido1()%>" <%=disable%> required/></td>
+							<td><input type="text" name="apellido2" placeholder="2° Apellido"
+							value="<%=docente.getApellido2()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Direcci&oacute;n</td>
-							<td colspan=2><input type="text" name="direccion" value="<%=docente.getDireccion()%>" <%=disable%> size=45/></td>
+							<td colspan=2><input type="text" name="direccion" placeholder="Direccion"
+							value="<%=docente.getDireccion()%>" <%=disable%> size=45 required/></td>
 						</tr>
 						<tr>
 							<td>Tel&eacute;fono</td>
-							<td colspan=2><input type="text" name="telefono" value="<%=docente.getTelefono()%>" <%=disable%> /></td>
+							<td colspan=2><input type="text" placeholder="####-####"
+							name="telefono" value="<%=docente.getTelefono()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Fecha de Nacimiento</td>
-							<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%>></td>
+							<td colspan="2"><input id="datepicker1" placeholder="Fecha de Nacimiento"
+							type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%> required></td>
 						</tr>
 						<tr>
 							<td>Fecha de Contrato</td>
-							<td colspan="2"><input id="datepicker1" type="text" name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%>></td>
+							<td colspan="2"><input id="datepicker1" type="text" placeholder="Fecha de contrato"
+							name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%>required></td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
