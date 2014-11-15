@@ -76,9 +76,9 @@
 			
 			//evaluar que si es administrador puede darlo de alta o de baja
 			if (alumno.getEstado() == 1)
-				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=baja'><img alt='Del' class='iconbaja' ></a></td>";
+				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=baja'><img alt='Del' class='iconbaja' ></a></td>";
 			if (alumno.getEstado() == 0)
-					mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent().toString()+"&accion=alta'><img alt='Del' class='iconalta' ></a></td>";
+					mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=alta'><img alt='Del' class='iconalta' ></a></td>";
 			
 			mensaje += "</tr>";
 		}

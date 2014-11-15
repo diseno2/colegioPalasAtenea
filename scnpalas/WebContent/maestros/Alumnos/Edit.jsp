@@ -86,6 +86,7 @@
 		} else if (accion.equals("ver")) {
 			disable = "disabled";
 		} else if (accion.equals("alta")) {
+			System.out.println(ident);
 			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 			alumnoCtrl.alta(ident);
 			response.sendRedirect("Lista.jsp");

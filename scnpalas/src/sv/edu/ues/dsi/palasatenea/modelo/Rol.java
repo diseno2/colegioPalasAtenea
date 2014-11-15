@@ -36,7 +36,7 @@ public class Rol implements java.io.Serializable {
 	public Rol(int ident) {
 		this.ident = ident;
 	}
-
+	
 	public Rol(int ident, String descripcion, Set<RolOpciones> rolOpcioneses,
 			Set<Usuario> usuarios) {
 		this.ident = ident;

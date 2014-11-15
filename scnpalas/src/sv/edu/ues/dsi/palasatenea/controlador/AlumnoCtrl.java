@@ -7,6 +7,9 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.keygen.KeyGenerators;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -16,7 +19,10 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Rol;
+import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.AlumnoDao;
+import sv.edu.ues.dsi.palasatenea.utilidades.Mail;
 
 public class AlumnoCtrl {
 	private AlumnoDao dao = new AlumnoDao();
@@ -37,10 +43,39 @@ public class AlumnoCtrl {
 	public void alta(Integer ident){
 		Alumno alumno = this.findById(ident);
 		String codigo = this.codigo(alumno);
-		System.out.println("hasta aqui si llego");
 		alumno.setCarnet(codigo);
 		Short estado = 1;
 		alumno.setEstado(estado);
+		
+		String pass = KeyGenerators.string().generateKey();
+		String user = "alumno@"+alumno.getCarnet().toLowerCase();
+		Usuario usuario = new Usuario(new Rol(4), user,pass, "A");
+		UsuarioCtrl uCtrl = new UsuarioCtrl();
+		uCtrl.guardar(usuario);
+		alumno.setUsuario(usuario);
+		
+		Mail mail = new Mail();
+		mail.send("irispineda85@gmail.com",//"elisan2506@gmail.com"
+				  "Información de Usuario de Colegio Palas Atenea",
+				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
+				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		mail.send("beltranjose299@gmail.com",//"elisan2506@gmail.com"
+				  "Información de Usuario de Colegio Palas Atenea",
+				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
+				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		mail.send("elisan2506@gmail.com",//""
+				  "Información de Usuario de Colegio Palas Atenea",
+				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
+				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		mail.send("jorgealbertocardoza@gmail.com",//""
+				  "Información de Usuario de Colegio Palas Atenea",
+				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
+				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		mail.send("especter187@hotmail.com",//""
+				  "Información de Usuario de Colegio Palas Atenea",
+				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
+				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		
 		this.guardar(alumno);
 	}
 	
@@ -56,10 +91,12 @@ public class AlumnoCtrl {
 		//sacando el año de la fecha de nacimiento del alumno
 		String anio = alumno.getFnacimiento().toString().substring(2,4); 
 		codigo += anio;
-		String correlativo = alumno.getIdent().toString();
-		codigo +=correlativo;
-		//CodalumCtrl codalum = new CodalumCtrl();
-		//codigo = codalum.correlativo(codigo.toUpperCase(), alumno.getFnacimiento().getYear());
+		
+		Long cant = dao.findByYear(Integer.parseInt(alumno.getFnacimiento().toString().substring(0,4)));
+		if (cant <= 9) codigo += "00"+cant;
+		else if(cant <= 99 && cant > 9) codigo += "0"+cant;
+		else codigo += cant;
+		
 		return codigo;
 	}
 	

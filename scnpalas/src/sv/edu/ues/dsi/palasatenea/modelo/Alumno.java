@@ -29,7 +29,7 @@ import org.hibernate.annotations.NamedQuery;
 @NamedQueries({
 	@NamedQuery(name="Alumno.findByAll", query="SELECT a FROM Alumno a"),
 	@NamedQuery(name="Alumno.findByIdent", query="SELECT a FROM Alumno a WHERE a.ident = :id"),
-	@NamedQuery(name="Alumno.findByYear", query="SELECT a FROM Alumno a WHERE a.fnacimiento BETWEEN :fecha1 AND :fecha2")
+	@NamedQuery(name="Alumno.findByYear", query="SELECT COUNT(a) FROM Alumno a WHERE a.carnet <> null AND a.carnet <> '' AND Year(a.fnacimiento) = :anio")
 	})
 public class Alumno implements java.io.Serializable {
 

@@ -76,6 +76,16 @@ public class AlumnoDao{
 		return aluList;
 	}
 	
+	public Long findByYear(int anio){
+		s = tx.iniciarSesion();
+		Query query = s.getNamedQuery("Alumno.findByYear");
+		query.setParameter("anio",anio);
+		Long cant = (Long) query.uniqueResult();
+		tx.finSesion();
+		++cant;
+		return cant;
+	}
+	
 	public Connection obtenerConexion(){
 		return tx.obtenerConexion();
 	}
