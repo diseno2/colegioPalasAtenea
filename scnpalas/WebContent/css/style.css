@@ -1,39 +1,60 @@
 /* GENERALES */
-body {margin:25px auto;padding:0;font-size:13px;font-family:arial;color:#222;background:#5298af;}
-caption{font-size:32px;color:#009933;font-weight:bold;background:#ecf4f6;}
+body {margin:25px auto;padding:0;font:76% Arial,sans-serif;background:#5298af;color:#222;line-height:1.3em}
+caption{font-size:32px;color:#009933;font-weight:bold;background:#ecf4f6;height:25px;padding-top:15px;}
 th{font-size:24px;color:#303030;font-weight:bold;text-align:center;}
+* {margin:0;padding:0}
+.fleft {float:left}
+.fright {float:right}
+.fcenter {float:none;text-align:center}
+.fclear {clear:both}
+.inner_copy {border:0;color:#f00;float:right;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
+/*a {text-decoration:none;color:#20526a;font-weight:bold}
+a:hover {text-decoration:underline;color:#20526a}
+a img {border:0}*/
+p {margin:0 0 18px 8px}
+h2 {font-size:1.5em;font-weight:normal;letter-spacing:-1px;margin:10px 0 8px 0}
+h3 {font-size:1.2em;margin:2px 0 8px 0}
 
 /* MARCO */
-#wrap {background:#fff;color:#303030;margin:0 auto;width:1000px; height:600px ;-webkit-border-radius: 20px 20px 20px 20px;/*border:1px Solid #ff6600;*/}
+#wrap {background:#fff;color:#303030;margin:0 auto;width:95%; height:95%;-webkit-border-radius: 20px 20px 20px 20px;/*border:1px Solid #ff6600;*/}
 
 /* ENCABEZADO */
-#header {clear:both;background:url(/scnpalas/images/header.jpg) no-repeat;background-size:100px 110px; background-position: 850px 5px;height:120px;border-bottom:4px Solid #ff6600;}
-#header h1{color:#5298af;font-size:32px;padding-left:100px; font-family:Tahoma;text-align:left;margin:45px 0 3px 0;}
+#header {clear:both;background:url(../images/header.jpg) right no-repeat;height:150px;background-size:100px 110px;border-bottom:4px Solid #ff6600;}
+#header h1 {font-size:3.8em;color:#5298af;padding:55px 0 10px 45px;font-family:Tahoma;}
 #header h1:hover{color:#ff6600;}
-#header p{color:#444;font-size:25px;padding-left:100px; font-family:Tahoma;text-align:left;margin:3px 0 3px 0;}
+#header p{font-size:2.0em;color:#444;padding:15px 0 10px 45px;font-family:Tahoma;}
 
 /* MENU */
-#menu{width:200px;height:260px;border-right:1px solid #ff6600;/*overflow: scroll;*/}
-#menu ul{line-height:35px;font-size:20px;color:#009933;padding-left:20px;background:#ecf4f6;display:compact;margin-top:0px;}
-#menu ul {list-style:none;}
-#menu ul li{line-height:30px;border-bottom:1px solid #E4E4E4;display:block;-webkit-transition:padding-left 6s;}
-#menu ul li:hover{color:#FF6600;display: block;padding-left:15px;}
+#menu {clear:both;background-color:#fff;float:left;width:20%;height:260px;margin:0;padding:20px 0 0 15px;border-right:3px solid #ff6600;clear:booth;}
+#menu ul {list-style:none;width:95%;margin:0 0 20px 0;padding:0;font-size:1.8em;letter-spacing:-1px;color:#009933;background:#ecf4f6;
+		  display:compact;padding-left:10px;margin-top:0px;}
+#menu li {margin-bottom:4px;line-height:15px;border-bottom:1px solid #E4E4E4;display:block;}
+#menu ul li:hover{color:#FF6600;display: block;padding-left:10px;}
+#menu ul ul {font-size:0.8em;width:100px;font-weight:normal;margin:5px 0 8px 20px;}
+#menu ul ul li {margin-bottom:3px;}
 #menu ul li li{width:150px;height:20px;display:none;}
-
-/* SUB MENU */
-#menu li:hover ul  li{ display: block;font-size:20px;padding-bottom:5px;font-size:12px; }
-#menu li:hover ul li  li{ background: #333; padding-left:5px;font-size:13px; color:#383838;}
-#menu li:hover ul li li a { color: #ccc; border-bottom:1px solid #E4E4E4;}
-#menu li:hover ul li li a:hover { background: #222; border-left: 4px solid #900;}
+#menu li:hover ul li{ display:block;padding-bottom:5px;color:#383838;}
+#menu li:hover ul li li{ background: #333; padding-left:5px;font-size:13px; color:#383838;}
+#menu ul ul li a {border:0;padding:2px;border-left: 8px solid #009933;}
+#menu li a {text-decoration:none;color:#009933;display:block;height:0.8em;margin-bottom:4px;line-height:15px;border-bottom:1px solid #E4E4E4;border-left: 8px solid #009933;padding-top:15px;}
+#menu li a:hover {color:#FF6600;text-decoration:none;border-left:8px solid #FF6600;}
+#menu .current {border-left:8px solid #d88d44;}
 
 /* AVISOS */
-#avisos{width:200px;height:190px;overflow: scroll;font-family:tahoma;font-size:11px;text-align:right;border-right:1px solid #ff6600;}
+#avisos {background-color:#fff;clear:both;float:left;width:20%;height:160px;margin:0;padding:20px 0 0 15px;border-right:3px solid #ff6600;overflow: scroll;text-align:right;font-size:11px;}
 #avisos h1{line-height:35px;font-size:20px;color:#009933;padding-left:20px;background:#ecf4f6;display:compact;margin:3px 0 0 0;text-align:left;}
 #avisos h2{font-family:tahoma;color:#fff;font-weight:bold;font-size:11px;text-align:center;background:#333;height:25px;line-height:25px;width:85px;}
 #avisos p{color:#333;font-family:tahoma;font-size:11px;text-align:justify;padding-right:5px}
 #avisos a{color:#33afd1;text-decoration:none;}
 #avisos a:hover{color:#FF6600;text-decoration:underline;}
 
+/* CONTENIDO */
+#content {overflow: scroll;height:460px;/*margin:5px 170px 0 170px;padding:2px 0 0 0;line-height:1.5em;text-align:left;height:300px;width:580px;*/}
+#content h2 {font-size:1.6em;margin:20px 0 10px 0}
+#content h3 {font-size:1.4em;font-weight:normal;letter-spacing:-1px;margin:10px 0 8px 0}
+#content p {text-align:justify}
+
+/* PIE */
 #footer{background-color:#333333;height:30px;-webkit-border-radius: 0px 0px 20px 20px;}
 #footer table{text-align:center;}
 #footer a{color:#ff6600;}
@@ -42,11 +63,6 @@ th{font-size:24px;color:#303030;font-weight:bold;text-align:center;}
 #footer .fleft {float:left}
 #footer .fright  {float:right;margin:0 auto;}
 #footer .fcenter {float:none;margin:0 auto;text-align:center}
-
-/* CONTENIDO */
-#content{width:799px;height:450px;overflow: scroll;}
-#content {position:fixed !important; right:172px; top:169px; z-index:10 !important}
-#content table{margin:auto;}
 
 /* ICONOS */
 .iconnew{content:url(/scnpalas/images/new.jpg); width: 20px;height: 20px;}
