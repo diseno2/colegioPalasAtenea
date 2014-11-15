@@ -29,7 +29,7 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 
 /* MENU */
 #menu {clear:both;background-color:#fff;float:left;width:20%;height:260px;margin:0;padding:20px 0 0 15px;border-right:3px solid #ff6600;clear:booth;}
-#menu ul {list-style:none;width:95%;margin:0 0 20px 0;padding:0;font-size:1.8em;letter-spacing:-1px;color:#009933;background:#ecf4f6;
+#menu ul {list-style:none;width:95%;margin:0 0 20px 0;padding:0;font-size:1.5em;letter-spacing:-1px;color:#009933;background:#ecf4f6;
 		  display:compact;padding-left:10px;margin-top:0px;}
 #menu li {margin-bottom:4px;line-height:15px;border-bottom:1px solid #E4E4E4;display:block;}
 #menu ul li:hover{color:#FF6600;display: block;padding-left:10px;}
@@ -39,7 +39,7 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 #menu li:hover ul li{ display:block;padding-bottom:5px;color:#383838;}
 #menu li:hover ul li li{ background: #333; padding-left:5px;font-size:13px; color:#383838;}
 #menu ul ul li a {border:0;padding:2px;border-left: 8px solid #009933;}
-#menu li a {text-decoration:none;color:#009933;display:block;height:0.8em;margin-bottom:4px;line-height:15px;border-bottom:1px solid #E4E4E4;border-left: 8px solid #009933;padding-top:15px;}
+#menu li a {text-decoration:none;color:#009933;display:block;height:0.8em;margin-bottom:4px;border-bottom:1px solid #E4E4E4;border-left: 8px solid #009933;padding-top:5px;}
 #menu li a:hover {color:#FF6600;text-decoration:none;border-left:8px solid #FF6600;}
 #menu .current {border-left:8px solid #d88d44;}
 
@@ -68,12 +68,12 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 #footer .fcenter {float:none;margin:0 auto;text-align:center}
 
 /* ICONOS */
-.iconnew{content:url(/scnpalas/images/new.jpg); width: 20px;height: 20px;}
-.icondel{content:url(/scnpalas/images/del.jpg); width: 20px;height: 20px;}
-.iconview{content:url(/scnpalas/images/view.jpg); width: 20px;height: 20px;}
-.iconedit{content:url(/scnpalas/images/edit.jpg); width: 20px;height: 20px;}
-.iconprint{content:url(/scnpalas/images/print.jpg); width: 20px;height: 20px;}
-.iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 20px;height: 20px;}
+.iconnew{content:url(/scnpalas/images/new.jpg); width: 25px;height: 25px;}
+.icondel{content:url(/scnpalas/images/del.jpg); width: 25px;height: 25px;}
+.iconview{content:url(/scnpalas/images/view.jpg); width: 25px;height: 25px;}
+.iconedit{content:url(/scnpalas/images/edit.jpg); width: 25px;height: 25px;}
+.iconprint{content:url(/scnpalas/images/print.jpg); width: 25px;height: 25px;}
+.iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 25px;height: 25px;}
 .iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
 .iconquery{content:url(/scnpalas/images/search.jpg); width: 25px;height: 25px;}
 .iconalta{content:url(/scnpalas/images/alta.jpg); width: 25px;height: 25px;}
@@ -107,14 +107,20 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 
 /* CONSULTA */
 #query:hover .formQuery{display:block;}
-.formQuery{display:none;padding:5px;border:1px solid #ccc;background-color:#f1f1f1;position:relative;width:400px;font-size:12px;color:#303030;}
-#query table{border:0px;}
+.formQuery{display:none;padding:15px 0 0 15px;border:1px solid #ccc;background-color:#f1f1f1;position:relative;width:400px;font-size:12px;color:#303030;}
+#query {vertical-align:middle;}
+#query p{text-align:center;}
 #query tr:hover{background-color:#f1f1f1;}
 
 /* TABLAS */
-#tabla{border:1px solid Red;width:100%;}
-#tabla th{background:#5298af;padding-bottom:10px;padding-top:10px;font-size:1.4em;}
-#tabla tbody tr{background:#f1f1f1;padding-bottom:5px;padding-top:5px;height:30px;}
-#tabla tbody tr:hover{background:#FF6600;transition: all 0.1s ease-in-out;}
-#tabla caption{-webkit-border-radius: 10px 10px 10px 10px;color:#009933;background:#ecf4f6;font-size:1.8em;padding-top:15px;padding-bottom:15px;}
+#tabla{border:1px solid #5298af;width:100%;-webkit-border-radius: 10px 10px 10px 10px;}
+#tabla caption{-webkit-border-radius: 10px 10px 10px 10px;color:#009933;background:#ecf4f6;font-size:2.2em;padding-top:15px;padding-bottom:15px;}
+#tabla th{background:#5298af;padding-bottom:10px;padding-top:10px;font-size:1.4em;-webkit-border-radius: 10px 10px 10px 10px;}
 
+#tabla tbody tr{background:#f1f1f1;padding-bottom:5px;padding-top:5px;height:30px;font-size:1.5em;}
+#tabla tbody tr:hover{background:#FF6600;transition: all 0.1s ease-in-out;}
+
+table caption{-webkit-border-radius: 10px 10px 10px 10px;color:#009933;background:#ecf4f6;font-size:2.2em;padding-top:15px;padding-bottom:15px;}
+table{border:1px solid #5298af;-webkit-border-radius: 10px 10px 10px 10px;}
+
+#content table{margin:0 auto;}
