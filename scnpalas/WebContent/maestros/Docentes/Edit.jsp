@@ -4,8 +4,6 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Docente" %>
 <%@page import="sv.edu.ues.dsi.palasatenea.utilidades.Utilidades"%>
 <%@ page import="java.util.Date" %>
-
-
 <%
 	Docente docente= new Docente();
 	String disable = "";
@@ -63,49 +61,7 @@
 			<h1>Colegio Palas Atenea</h1>
 			<p>Sistema de Registro de Notas</p>
 		</div>
-		<div id="menu">
-			<ul>
-				<li>
-					Auxiliares
-					<ul>
-						<li><a href="#">Periodos</a></li>
-						<li><a href="#">Materias</a></li>
-						<li><a href="#">Secciones</a></li>
-					</ul>
-				</li>
-				<li>
-					Maestros
-					<ul>
-						<li><a href="#">Alumnos</a></li>
-						<li><a href="#">Docentes</a></li>
-						<li><a href="#">Grados</a></li>
-						<li><a href="#">Matriculas</a></li>
-					</ul>
-				</li>
-				<li>
-					Procesos
-					<ul>
-						<li><a href="#">Evaluaciones</a></li>
-						<li><a href="#">Notas</a></li>
-					</ul>
-				</li>
-				<li>
-					Reportes
-					<ul>
-						<li><a href="#">Reporte1</a></li>
-						<li><a href="#">Reporte2</a></li>
-					</ul>
-				</li>
-				<li>
-					Administracion
-					<ul>
-						<li><a href="#">Roles</a></li>
-						<li><a href="#">Usuarios</a></li>
-					</ul>
-				</li>
-				<li>Salir</li>
-			</ul>
-		</div>
+		<%=new Utilidades().getMenu()%>
 		<div id="avisos">
 		<!--
 			<h1>Avisos</h1>
@@ -128,44 +84,36 @@
 					<tbody>
 						<tr>
 							<td>C&oacute;digo</td>
-							<td><input type="text" value="<%=docente.getIdent()%>" disabled /></td>
+							<td colspan=2><input type="text" value="<%=docente.getIdent()%>" disabled /></td>
 						</tr>
 						<tr>
-							<td>Nombre 1</td>
+							<td>Nombre</td>
 							<td><input type="text" name="nombre1" value="<%=docente.getNombre1()%>" <%=disable%> /></td>
-						</tr>
-						<tr>
-							<td>Nombre 2</td>
 							<td><input type="text" name="nombre2" value="<%=docente.getNombre2()%>" <%=disable%> /></td>
 						</tr>
 						<tr>
-							<td>Apellido 1</td>
+							<td>Apellido</td>
 							<td><input type="text" name="apellido1" value="<%=docente.getApellido1()%>" <%=disable%> /></td>
-						</tr>
-						<tr>
-							<td>Apellido 2</td>
 							<td><input type="text" name="apellido2" value="<%=docente.getApellido2()%>" <%=disable%> /></td>
 						</tr>
 						<tr>
-							<td>direcci&oacute;n</td>
-							<td><input type="text" name="direccion" value="<%=docente.getDireccion()%>" <%=disable%> /></td>
+							<td>Direcci&oacute;n</td>
+							<td colspan=2><input type="text" name="direccion" value="<%=docente.getDireccion()%>" <%=disable%> size=45/></td>
 						</tr>
 						<tr>
-							<td>tel&eacute;fono</td>
-							<td><input type="text" name="telefono" value="<%=docente.getTelefono()%>" <%=disable%> /></td>
+							<td>Tel&eacute;fono</td>
+							<td colspan=2><input type="text" name="telefono" value="<%=docente.getTelefono()%>" <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td>Fecha de Nacimiento</td>
-							<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento"
-							value="<%=docente.getFnacimiento()%>" <%=disable%>></td>
+							<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%>></td>
 						</tr>
 						<tr>
 							<td>Fecha de Contrato</td>
-							<td colspan="2"><input id="datepicker1" type="text" name="fcontrato"
-							value="<%=docente.getFcontrato()%>" <%=disable%>></td>
+							<td colspan="2"><input id="datepicker1" type="text" name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%>></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center">
+							<td colspan="3" align="center">
 								<input type="submit" value="Guardar" />
 								<input type="reset" value="Limpiar" />
 							</td>
