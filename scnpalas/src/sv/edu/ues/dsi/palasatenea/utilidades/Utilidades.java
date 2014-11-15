@@ -39,6 +39,19 @@ public class Utilidades {
 		return usuario;
 	}
 	
+	public String getAviso(){
+		String aviso = null;
+		aviso = "<div id='avisos'>"+
+					"<h1>Avisos</h1>"+
+					"<h2>12 Nov, 2014</h2>"+
+					"<p>Tiene solicitudes de alumnos pendientes de aprobar.</p>"+
+					"<a href='#'>Revisar</a>"+
+					"<h2>12 Nov, 2014</h2>"+
+					"<p>Tiene solicitudes de alumnos pendientes de aprobar.</p>"+
+					"<a href='#'>Revisar</a>"+
+				"</div>";
+		return aviso;
+	}
 	public String getMenu(){
 		String menu = null;
 		if (this.getUsuario() == null)
@@ -61,7 +74,7 @@ public class Utilidades {
 					"Maestros"+
 					"<ul>"+
 						"<li><a href='/scnpalas/maestros/Alumnos/Lista.jsp'>Alumnos</a></li>"+
-						"<li><a href='#'>Docentes</a></li>"+
+						"<li><a href='/scnpalas/maestros/Docentes/Lista.jsp'>Docentes</a></li>"+
 						"<li><a href='/scnpalas/maestros/Grados/Lista.jsp'>Grados</a></li>"+
 					"</ul>"+
 				"</li>"+

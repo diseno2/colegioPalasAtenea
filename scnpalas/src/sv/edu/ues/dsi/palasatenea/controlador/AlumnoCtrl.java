@@ -37,6 +37,7 @@ public class AlumnoCtrl {
 	public void alta(Integer ident){
 		Alumno alumno = this.findById(ident);
 		String codigo = this.codigo(alumno);
+		System.out.println("hasta aqui si llego");
 		alumno.setCarnet(codigo);
 		Short estado = 1;
 		alumno.setEstado(estado);
