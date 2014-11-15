@@ -102,6 +102,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Untitled Document</title>
+	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
 	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
