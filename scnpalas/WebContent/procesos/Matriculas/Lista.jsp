@@ -103,17 +103,7 @@
 			<p>Sistema de Registro de Notas</p>
 		</div>
 		<%=new Utilidades().getMenu()%>
-		<div id="avisos">
-		<!--
-			<h1>Avisos</h1>
-			<h2>12 Nov, 2014</h2>
-			<p>Tiene solicitudes de alumnos pendientes de aprobar.</p>
-			<a href="#">Revisar</a>
-			<h2>12 Nov, 2014</h2>
-			<p>Tiene solicitudes de alumnos pendientes de aprobar.</p>
-			<a href="#">Revisar</a>
-			-->
-		</div>
+		<%=new Utilidades().getAviso()%>
 		<div id="content">
 			<%=mensaje %>
 		</div>
