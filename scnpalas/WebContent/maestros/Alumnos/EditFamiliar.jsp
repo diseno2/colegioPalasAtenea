@@ -52,8 +52,8 @@
 	}else{
 		FamiliarCtrl familiarCtrl = new FamiliarCtrl();
 		//familiar = familiarCtrl.findByIdent(ident);
-		System.out.println(familiar);
-		/*System.out.println(familiar.getParentesco());
+		
+		/*
 		if (familiar.getParentesco() == 1 ) padre = "selected";
 		if (familiar.getParentesco() == 2 ) madre = "selected";
 		if (familiar.getParentesco() == 3 ) tutor = "selected";*/

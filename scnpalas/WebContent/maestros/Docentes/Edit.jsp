@@ -43,8 +43,7 @@
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
 	}
-	System.out.println("aqui");
-	System.out.println(docente.getIdent());
+	
 %>
 
 

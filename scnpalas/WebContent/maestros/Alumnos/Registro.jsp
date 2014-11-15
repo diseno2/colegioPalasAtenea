@@ -17,8 +17,7 @@
 	String mChecked, fChecked, ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug10, ug11, ug12;
 	mChecked = fChecked = ug1 = ug2 = ug3 = ug4 = ug5 = ug6 = ug7 = ug8 = ug10 = ug11 = ug12 = "";
 	String usuario = new Utilidades().getUsuario();
-
-	System.out.println(usuario);
+	
 	if (accion.equals("guardar")) {
 		alumno.setNombre1(request.getParameter("nombre1"));
 		alumno.setNombre2(request.getParameter("nombre2"));

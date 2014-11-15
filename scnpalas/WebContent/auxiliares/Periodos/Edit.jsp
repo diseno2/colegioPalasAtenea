@@ -29,8 +29,6 @@
 		periodo.setInicio(c.stringToDate(request.getParameter("inicio")));
 		periodo.setFin(c.stringToDate(request.getParameter("fin")));
 		if (ident != 0) periodo.setIdent(ident);
-		System.out.println("aqui");
-		System.out.println(periodo.getIdent());
 		ctrl.guardar(periodo);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {

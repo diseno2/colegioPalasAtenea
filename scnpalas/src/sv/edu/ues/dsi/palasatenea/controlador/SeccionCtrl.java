@@ -20,8 +20,6 @@ public class SeccionCtrl {
 	private SeccionDao dao = new SeccionDao();
 	
 	public void guardar(Seccion seccion){
-		System.out.println(seccion.getGrado());
-		System.out.println(seccion.getSeccion());
 		dao.guardar(seccion);
 	}
 	
