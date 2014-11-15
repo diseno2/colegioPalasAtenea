@@ -19,7 +19,7 @@
 	
 	String mensaje = "";
 	
-	mensaje = "<table>"+
+	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Secciones"+ 
 							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
@@ -27,25 +27,16 @@
 							 "<div class='formQuery'>"+
 								"<form action='Lista.jsp' method='post'>"+
 								"<input type='hidden' name='accion' value='buscar' /> "+
-									"<table>"+
-										"<tr>"+
-											"<td>Grado</td>"+
-											"<td><input type='text' name='grado' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Seccion</td>"+
-											"<td><input type='text' name='seccion' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td colspan=2 align='center'><input type='submit' value='Buscar' /></td>"+
-										"</tr>"+
-										"</table>"+
+											"<p>Grado<input type='text' name='grado' /></p>"+
+											"<p>Seccion<input type='text' name='seccion' /></p>"+
+											"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>Grado</th>"+
 						"<th>Secci&oacute;n</th>"+
+						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";

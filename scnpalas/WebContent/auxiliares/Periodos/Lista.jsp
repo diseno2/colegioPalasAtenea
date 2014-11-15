@@ -22,31 +22,18 @@
 	
 	String mensaje = "";
 	
-	mensaje = "<table>"+
+	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Periodos"+ 
 							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
 							 "<div class='formQuery'>"+
 								"<form action='Lista.jsp' method='post'>"+
-								"<input type='hidden' name='accion' value='buscar' /> "+
-									"<table>"+
-										"<tr>"+
-											"<td>A&ntilde;o</td>"+
-											"<td><input type='text' name='anio' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Inicio</td>"+
-											"<td><input type='text' id='datepicker1' name='inicio' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Fin</td>"+
-											"<td><input type='text' id='datepicker2' name='fin' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td colspan=3 align='center'><input type='submit' value='Buscar' /></td>"+
-										"</tr>"+
-									"</table>"+
+									"<input type='hidden' name='accion' value='buscar' /> "+
+									"<p>A&ntilde;o<input type='text' name='anio' /></p>"+
+									"<p>Inicio<input type='text' id='datepicker1' name='inicio' /></p>"+
+									"<p>Fin<input type='text' id='datepicker2' name='fin' /></p>"+
+									"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
@@ -54,6 +41,7 @@
 						"<th>A&ntilde;o</th>"+
 						"<th>Inicio</th>"+
 						"<th>Fin</th>"+
+						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";

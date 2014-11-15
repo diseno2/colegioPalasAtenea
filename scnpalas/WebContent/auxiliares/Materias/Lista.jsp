@@ -33,7 +33,8 @@
 					"</caption>"+
 					"<tr>"+
 						"<th>C&oacute;digo</th>"+
-						"<th colspan=4>Descripci&oacute;n</th>"+
+						"<th>Descripci&oacute;n</th>"+
+						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";

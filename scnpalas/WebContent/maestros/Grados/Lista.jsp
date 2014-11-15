@@ -69,39 +69,27 @@
 		}
 	}
 	
-	mensaje = "<table>"+
+	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Grados"+ 
 							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
 							 "<div class='formQuery'>"+
 								"<form action='Lista.jsp' method='post'>"+
-								"<input type='hidden' name='accion' value='buscar' /> "+
-									"<table>"+
-										"<tr>"+
-											"<td>Periodo</td>"+
-											"<td><select name='periodo' style='width:213px'>"+periodos+"</select></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Docente</td>"+
-											"<td><select name='docente' style='width:213px'>"+docentes+"</select></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Seccion</td>"+
-											"<td><select name='seccion' style='width:213px'>"+secciones+"</select></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td colspan=2 align='center'><input type='submit' value='Buscar' /></td>"+
-										"</tr>"+
-										"</table>"+
+									"<input type='hidden' name='accion' value='buscar' /> "+
+									"<p>Periodo<select name='periodo' style='width:60px'>"+periodos+"</select>"+
+									"Seccion<select name='seccion' style='width:100px'>"+secciones+"</select></p>"+
+									"<p>Docente<select name='docente' style='width:260px'>"+docentes+"</select></p>"+
+									"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>Periodo</th>"+
-						"<th>Docente</th>"+
 						"<th>Secci&oacute;n</th>"+
 						"<th>Inscritos</th>"+
+						"<th>Docente</th>"+
+						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";
@@ -113,9 +101,9 @@
 			grado = (Grado) lst.get(i); 
 			mensaje += "<tr>"+
 							"<td>"+grado.getPeriodo().toString()+"</td>"+
-							"<td>"+grado.getDocente().toString()+"</td>"+
 							"<td>"+grado.getSeccion().toString()+"</td>"+
 							"<td>"+grado.getInscritos()+"</td>"+
+							"<td>"+grado.getDocente().toString()+"</td>"+
 							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+

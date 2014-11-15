@@ -30,67 +30,25 @@
 	
 	String mensaje = "";
 	
-	mensaje = "<table>"+
+	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Docente"+ 
 							 "<a href='Edit.jsp?idmateria=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
 							 "<div class='formQuery'>"+
 								"<form action='Lista.jsp' method='post'>"+
-								"<input type='hidden' name='accion' value='buscar' /> "+
-									"<table>"+
-										"<tr>"+
-											"<td>Nombre1</td>"+
-											"<td><input type='text' name='nombre1' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Nombre2</td>"+
-											"<td><input type='text' name='nombre2' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Apellido1</td>"+
-											"<td><input type='text' name='apellido1' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Apellido2</td>"+
-											"<td><input type='text' name='apellido2' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Direccion</td>"+
-											"<td><input type='text' name='direccion' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Telefono</td>"+
-											"<td><input type='text' name='telefono' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Fecha de Nacimiento</td>"+
-											"<td><input type='text' name='fnacimiento' /></td>"+
-										"</tr>"+
-										"<tr>"+
-											"<td>Fecha de contrato</td>"+
-											"<td><input type='text' name='fcontrato' /></td>"+
-										"</tr>"+
-
-										
-										
-										"<tr>"+
-											"<td colspan=2 align='center'><input type='submit' value='Buscar' /></td>"+
-										"</tr>"+
-										"</table>"+
+									"<input type='hidden' name='accion' value='buscar' /> "+
+									"<p>Nombre<input type='text' name='nombre1' /><input type='text' name='nombre2' /></p>"+
+									"<p>Apellido<input type='text' name='apellido1' /><input type='text' name='apellido2' /></p>"+
+									"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>C&oacute;digo</th>"+
-						"<th>Nombre 1</th>"+
-						"<th>Nombre 2</th>"+
-						"<th>Apellido 1</th>"+
-						"<th>Apellido 2</th>"+
-						"<th>Direcci&oacute;n</th>"+
-						"<th>Tel&eacute;fono</th>"+
-						"<th>Fecha de Nacimiento</th>"+
-						"<th>Fecha de Contrato</th>"+
+						"<th colspan=2>Nombre</th>"+
+						"<th colspan=2>Apellido</th>"+
+						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";
@@ -106,10 +64,6 @@
 							"<td>"+materia.getNombre2()+"</td>"+
 							"<td>"+materia.getApellido1()+"</td>"+
 							"<td>"+materia.getApellido2()+"</td>"+
-							"<td>"+materia.getDireccion()+"</td>"+
-							"<td>"+materia.getTelefono()+"</td>"+
-							"<td>"+materia.getFnacimiento()+"</td>"+
-							"<td>"+materia.getFcontrato()+"</td>"+
 							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
@@ -134,49 +88,7 @@
 			<h1>Colegio Palas Atenea</h1>
 			<p>Sistema de Registro de Notas</p>
 		</div>
-		<div id="menu">
-			<ul>
-				<li>
-					Auxiliares
-					<ul>
-						<li><a href="#">Periodos</a></li>
-						<li><a href="#">Materias</a></li>
-						<li><a href="#">Secciones</a></li>
-					</ul>
-				</li>
-				<li>
-					Maestros
-					<ul>
-						<li><a href="#">Alumnos</a></li>
-						<li><a href="#">Docentes</a></li>
-						<li><a href="#">Grados</a></li>
-						<li><a href="#">Matriculas</a></li>
-					</ul>
-				</li>
-				<li>
-					Procesos
-					<ul>
-						<li><a href="#">Evaluaciones</a></li>
-						<li><a href="#">Notas</a></li>
-					</ul>
-				</li>
-				<li>
-					Reportes
-					<ul>
-						<li><a href="#">Reporte1</a></li>
-						<li><a href="#">Reporte2</a></li>
-					</ul>
-				</li>
-				<li>
-					Administracion
-					<ul>
-						<li><a href="#">Roles</a></li>
-						<li><a href="#">Usuarios</a></li>
-					</ul>
-				</li>
-				<li>Salir</li>
-			</ul>
-		</div>
+		<%=new Utilidades().getMenu()%>
 		<div id="avisos">
 		<!--
 			<h1>Avisos</h1>

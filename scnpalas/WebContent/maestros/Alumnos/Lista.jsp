@@ -22,7 +22,7 @@
 	
 	String mensaje = "";
 	
-	mensaje = "<table>"+
+	mensaje = "<table id='tabla'>"+
 		  		"<thead>"+
 					"<caption id='query'>Alumnos"+ 
 						 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
@@ -30,26 +30,10 @@
 								 "<div class='formQuery'>"+
 									"<form action='Lista.jsp' method='post'>"+
 									"<input type='hidden' name='accion' value='buscar' /> "+
-										"<table>"+
-											"<tr>"+
-												"<td>Nombres</td>"+
-												"<td><input type='text' name='nombre1'></td>"+
-												"<td><input type='text' name='nombre2'></td>"+
-											"</tr>"+
-											"<tr>"+
-												"<td>Apellidos</td>"+
-												"<td><input type='text' name='apellido1'></td>"+
-												"<td><input type='text' name='apellido2'></td>"+
-											"</tr>"+
-											"<tr>"+
-												"<td>Genero</td>"+
-												"<td><input type='radio' name='genero' value='M'>Masculino</td>"+
-												"<td><input type='radio' name='genero' value='F'>Femenino</td>"+
-											"</tr>"+
-											"<tr>"+
-												"<td>Grado Actual</td>"+
-												"<td colspan='2'>"+
-													"<select name='grado'>"+
+										"<p>Nombres<input type='text' name='nombre1' size=15><input type='text' name='nombre2' size=15></p>"+
+										"<p>Apellidos<input type='text' name='apellido1' size=15><input type='text' name='apellido2' size=15></p>"+
+										"<p>Genero<input type='radio' name='genero' value='M'>Masculino<input type='radio' name='genero' value='F'>Femenino</p>"+
+										"<p>Grado Actual<select name='grado'>"+
 														"<option value='10'>Kinder 4</option>"+
 														"<option value='11'>Kinder 5</option>"+
 														"<option value='12'>Preparatoria</option>"+
@@ -62,17 +46,17 @@
 														"<option value='7'>Septimo</option>"+
 														"<option value='8'>Octavo</option>"+
 														"<option value='9'>Noveno</option>"+
-													"</select>"+
-												"</td>"+
-											"</tr>"+
-											"<tr>"+
-												"<td colspan=3 align='center'><input type='submit' value='Buscar' /></td>"+
-											"</tr>"+
-											"</table>"+
+													"</select></p>"+
+										"<p><input type='submit' value='Buscar' /></p>"+
 									"</form>"+
 								 "</div>"+
 					"</caption>"+
-					"<tr><th>Carnet</th><th colspan=2>Nombres</th><th colspan=2>Apellidos</th><th></th></tr>";
+					"<tr>"+
+						"<th>Carnet</th>"+
+						"<th colspan=2>Nombres</th>"+
+						"<th colspan=2>Apellidos</th>"+
+						"<th colspan=3>Acciones</th>"+
+					"</tr>";
 	if(alumnoList.isEmpty()){
 		mensaje += "<tr><td colspan=6>No existen alumnos registrados</td></tr>";
 	}else{
