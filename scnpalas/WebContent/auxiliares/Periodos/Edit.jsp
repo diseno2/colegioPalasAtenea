@@ -77,15 +77,15 @@
 					<tbody>
 						<tr>
 							<td>A&ntilde;o</td>
-							<td><input type="text" name="anio" value="<%=periodo.getAnio()%>" <%=disable%> /></td>
+							<td><input type="text" name="anio" placeholder="Año" value="<%=periodo.getAnio()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Inicio</td>
-							<td><input type="text" name="inicio" id="datepicker1" value="<%=fi%>" <%=disable%> /></td>
+							<td><input type="text" name="inicio" id="datepicker1" placeholder="Inicio"value="<%=fi%>" required<%=disable%> /></td>
 						</tr>
 						<tr>
 							<td>Fin</td>
-							<td><input type="text" name="fin" id="datepicker2" value="<%=ff%>" <%=disable%> /></td>
+							<td><input type="text" name="fin" id="datepicker2" placeholder="Fin"value="<%=ff%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
