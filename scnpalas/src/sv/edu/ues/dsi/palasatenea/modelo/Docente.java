@@ -101,7 +101,7 @@ public class Docente implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "usuario", nullable = false)
+	@JoinColumn(name = "usuario")
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
