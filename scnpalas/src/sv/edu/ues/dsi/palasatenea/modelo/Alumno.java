@@ -53,6 +53,7 @@ public class Alumno implements java.io.Serializable {
 	private String aprendizaje;
 	private String escuelaprevia;
 	private Integer ultgrado;
+	private String correo;
 	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
 	private Set<Familiares> familiareses = new HashSet<Familiares>(0);
 	private Set<Nota> notas = new HashSet<Nota>(0);
@@ -77,7 +78,7 @@ public class Alumno implements java.io.Serializable {
 		this.aprendizaje = "";
 		this.escuelaprevia = "";
 		this.ultgrado = 0;
-		this.ident = 0;
+		this.correo="";
 	}
 
 	public Alumno(Usuario usuario) {
@@ -89,7 +90,7 @@ public class Alumno implements java.io.Serializable {
 			Date fnacimiento, String lnacimiento, String direccion,
 			String telefono, String religion, String enfermedades,
 			String medicamentos, String alergico, String aprendizaje,
-			String escuelaprevia, Integer ultgrado, Set<Matricula> matriculas,
+			String escuelaprevia, Integer ultgrado, String correo, Set<Matricula> matriculas,
 			Set<Familiares> familiareses, Set<Nota> notas) {
 		this.usuario = usuario;
 		this.carnet = carnet;
@@ -113,6 +114,7 @@ public class Alumno implements java.io.Serializable {
 		this.matriculas = matriculas;
 		this.familiareses = familiareses;
 		this.notas = notas;
+		this.correo=correo;
 	}
 
 	@Id
@@ -297,6 +299,15 @@ public class Alumno implements java.io.Serializable {
 
 	public void setUltgrado(Integer ultgrado) {
 		this.ultgrado = ultgrado;
+	}
+	
+	@Column(name = "correo", length = 45)
+	public String getCorreo() {
+		return this.correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "alumno")
