@@ -165,7 +165,7 @@ public class Docente implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "fnacimiento", nullable = false, length = 10)
+	@Column(name = "fnacimiento", nullable = true, length = 10)
 	public Date getFnacimiento() {
 		return this.fnacimiento;
 	}
@@ -175,7 +175,7 @@ public class Docente implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "fcontrato", nullable = false, length = 10)
+	@Column(name = "fcontrato", nullable = true, length = 10)
 	public Date getFcontrato() {
 		return this.fcontrato;
 	}
