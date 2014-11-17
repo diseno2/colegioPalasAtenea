@@ -35,6 +35,7 @@
 		alumno.setAprendizaje(request.getParameter("aprendizaje"));
 		alumno.setEscuelaprevia(request.getParameter("escuelaprevia"));
 		alumno.setUltgrado(Integer.parseInt(request.getParameter("ultgrado")));
+		alumno.setCorreo(request.getParameter("correo"));
 
 		if (ident != 0)
 			alumno.setIdent(ident);
@@ -285,6 +286,11 @@
 								<option value="7" <%=ug7%>>Septimo</option>
 								<option value="8" <%=ug8%>>Octavo</option>
 						</select></td>
+					</tr>
+					<tr>
+						<td>Correo Electronico</td>
+						<td colspan="3"><input type="text" name="correo"placeholder="Corre@Correo.com"
+							size="45" value="<%=alumno.getCorreo()%>" <%=disable%> required></td>
 					</tr>
 					<tr>
 						<td colspan="3"><center>
