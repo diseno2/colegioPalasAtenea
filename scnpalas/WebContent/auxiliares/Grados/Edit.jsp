@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoCtrl" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoMateriaCtrl" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Grado" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Materia" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
@@ -53,6 +55,44 @@
 		disable = "disabled";
 	}
 	
+	
+	
+	
+	//aqui agregar lo necesario para configurar las materias
+	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
+	List gMLst = null;
+	gMLst = gMCtrl.findByAll();
+	
+	mensaje = "<table id='tabla'>"+
+			  	"<thead>"+
+					"<caption id='query'>Materias"+ 
+							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
+							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
+					"</caption>"+
+					"<tr>"+
+						"<th>Materia</th>"+
+						"<th>Docente</th>"+
+						"<th colspan=3>Acciones</th>"+
+					"</tr>"+
+				"</thead>"+
+				"<tbody>";
+	if(gMLst.isEmpty()){
+		mensaje += "<tr><td colspan=7>No hay registros</td></tr>";
+	}else{
+		GradoMateria gradoMateria;
+		for(int i=0;i<gMLst.size();i++){
+			gradoMateria = (GradoMateria) gMLst.get(i); 
+			mensaje += "<tr>"+
+							"<td>"+gradoMateria.getMateria().toString()+"</td>"+
+							"<td>"+gradoMateria.getDocente().toString()+"</td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
+						"</tr>"; 
+		}
+	}
+	mensaje += "</tbody>"+
+			   "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -102,6 +142,7 @@
 					</tbody>
 				</table>
 			</form>
+			<%=mensaje%>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>
