@@ -105,12 +105,12 @@
 						<tr>
 							<td>Fecha de Nacimiento</td>
 							<td colspan="2"><input id="datepicker1" placeholder="Fecha de Nacimiento"
-							type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%> required></td>
+							type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>
 							<td>Fecha de Contrato</td>
 							<td colspan="2"><input id="datepicker1" type="text" placeholder="Fecha de contrato"
-							name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%>required></td>
+							name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center">

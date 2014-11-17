@@ -203,73 +203,73 @@
 					<tr>
 						<td>Nombres</td>
 						<td><input type="text" name="nombre1" placeholder="1° Nombre"
-							value="<%=alumno.getNombre1()%>" <%=disable%> required></td>
+							value="<%=alumno.getNombre1()%>" <%=disable%> required /></td>
 						<td><input type="text" name="nombre2" placeholder="2° Nombre"
-							value="<%=alumno.getNombre2()%>" <%=disable%> required></td>
+							value="<%=alumno.getNombre2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Apellidos</td>
 						<td><input type="text" name="apellido1" placeholder="1° Apellido"
-							value="<%=alumno.getApellido1()%>" <%=disable%> required></td>
+							value="<%=alumno.getApellido1()%>" <%=disable%> required /></td>
 						<td><input type="text" name="apellido2" placeholder="2° Apellido"
-							value="<%=alumno.getApellido2()%>" <%=disable%> required></td>
+							value="<%=alumno.getApellido2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Genero</td>
 						<td><input type="radio" name="genero" value="M"
-							<%=mChecked%> <%=disable%> required>Masculino</td>
+							<%=mChecked%> <%=disable%> required />Masculino</td>
 						<td><input type="radio" name="genero" value="F"
-							<%=fChecked%> <%=disable%> required>Femenino</td>
+							<%=fChecked%> <%=disable%> required />Femenino</td>
 					</tr>
 					<tr>
 						<td>Fecha de Nacimiento</td>
 						<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento" placeholder="Fecha de Nacimiento"
-							value="<%=alumno.getFnacimiento()%>" <%=disable%> required></td>
+							value="<%=alumno.getFnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Lugar de Nacimiento</td>
 						<td colspan="3"><input type="text" name="lnacimiento"placeholder="Lugar de Nacimiento"
-							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%> required></td>
+							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Direccion</td>
 						<td colspan="2"><textarea name="direccion" rows="2"
-								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%>required></textarea></td>
+								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%> required /></textarea></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>
 						<td colspan="2"><input type="text" name="telefono"placeholder="####-####"
-							value="<%=alumno.getTelefono()%>" <%=disable%>required></td>
+							value="<%=alumno.getTelefono()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Religion</td>
 						<td colspan="2"><input type="text" name="religion"placeholder="Religion"
-							size="45" value="<%=alumno.getReligion()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getReligion()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Enfermedades que padece</td>
 						<td colspan="2"><input type="text" name="enfermedades"placeholder="Enfermedades"
-							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Medicamentos</td>
 						<td colspan="2"><input type="text" name="medicamentos"placeholder="Medicamentos"
-							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Alergias</td>
 						<td colspan="2"><input type="text" name="alergico"placeholder="Alergias"
-							size="45" value="<%=alumno.getAlergico()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getAlergico()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Problemas de aprendizaje</td>
 						<td colspan="2"><input type="text" name="aprendizaje"placeholder="Aprendizaje"
-							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Escuela previa</td>
 						<td colspan="2"><input type="text" name="escuelaprevia"placeholder="Escuela Previa"
-							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%>required></td>
+							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
@@ -290,7 +290,7 @@
 					<tr>
 						<td>Correo Electronico</td>
 						<td colspan="3"><input type="text" name="correo"placeholder="Corre@Correo.com"
-							size="45" value="<%=alumno.getCorreo()%>" <%=disable%> required></td>
+							size="45" value="<%=alumno.getCorreo()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td colspan="3"><center>
