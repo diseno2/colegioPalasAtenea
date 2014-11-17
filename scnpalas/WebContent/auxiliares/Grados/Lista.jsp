@@ -1,41 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.SeccionCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Seccion" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoCtrl" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Grado" %>
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	SeccionCtrl ctrl = new SeccionCtrl();
+	GradoCtrl ctrl = new GradoCtrl();
 	List lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)
 		lst = ctrl.findByAll();
 	else{
-		Seccion seccion = new Seccion();
-		seccion.setGrado(request.getParameter("grado"));
-		seccion.setSeccion(request.getParameter("seccion"));
-		lst = ctrl.findByParam(seccion);
+		Grado grado = new Grado();
+		grado.setGrado(request.getParameter("grado"));
+		grado.setGradoPrevio(request.getParameter("gradoprevio"));
+		grado.setGradoSiguiente(request.getParameter("gradosiguiente"));
+		lst = ctrl.findByParam(grado);
 	}
 	
 	String mensaje = "";
 	
 	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
-					"<caption id='query'>Secciones"+ 
+					"<caption id='query'>Grados"+ 
 							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
 							 "<div class='formQuery'>"+
 								"<form action='Lista.jsp' method='post'>"+
 								"<input type='hidden' name='accion' value='buscar' /> "+
 											"<p>Grado<input type='text' name='grado' /></p>"+
-											"<p>Seccion<input type='text' name='seccion' /></p>"+
 											"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
 							 "</div>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>Grado</th>"+
-						"<th>Secci&oacute;n</th>"+
+						"<th>Previo</th>"+
+						"<th>Siguiente</th>"+
 						"<th colspan=3>Acciones</th>"+
 					"</tr>"+
 				"</thead>"+
@@ -43,15 +44,16 @@
 	if(lst.isEmpty()){
 		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
 	}else{
-		Seccion seccion;
+		Grado grado;
 		for(int i=0;i<lst.size();i++){
-			seccion = (Seccion) lst.get(i); 
+			grado = (Grado) lst.get(i); 
 			mensaje += "<tr>"+
-							"<td>"+seccion.getGrado()+"</td>"+
-							"<td>"+seccion.getSeccion()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
+							"<td>"+grado.getGrado()+"</td>"+
+							"<td>"+grado.getGradoPrevio()+"</td>"+
+							"<td>"+grado.getGradoSiguiente()+"</td>"+
+							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
+							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
+							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
 						"</tr>"; 
 		}
 	}

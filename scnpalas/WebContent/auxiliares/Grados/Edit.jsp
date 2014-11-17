@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.SeccionCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Seccion" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoCtrl" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Grado" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	Seccion seccion = new Seccion();
+	Grado grado = new Grado();
 	String disable = "";
-	SeccionCtrl ctrl = new SeccionCtrl();
+	GradoCtrl ctrl = new GradoCtrl();
 	
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
@@ -16,19 +16,37 @@
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
 	if (ident == 0) {
-		seccion = new Seccion();
+		grado = new Grado();
 	} else {
-		seccion = ctrl.findById(ident);
+		grado = ctrl.findById(ident);
+	}
+	
+	//Grados
+	String gradosprevio=null;
+	String gradossiguiente=null;
+	List lst = ctrl.findByAll();
+	if(lst==null){
+		
+	}else if(lst.isEmpty()){
+		
+	}else{
+		Grado gradoN;
+		for(int i=0;i<lst.size();i++){
+			gradoN = (Grado) lst.get(i); 
+			gradosprevio += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
+			gradossiguiente += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
+		}
 	}
 	
 	if (accion.equals("guardar")){
-		seccion.setGrado(request.getParameter("grado"));
-		seccion.setSeccion(request.getParameter("seccion"));
-		if (ident != 0) seccion.setIdent(ident);
-		ctrl.guardar(seccion);
+		grado.setGrado(request.getParameter("grado"));
+		grado.setGradoPrevio(request.getParameter("gradoprevio"));
+		grado.setGradoSiguiente(request.getParameter("gradosiguiente"));
+		if (ident != 0) grado.setIdent(ident);
+		ctrl.guardar(grado);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
-		seccion = ctrl.findById(ident);
+		grado = ctrl.findById(ident);
 		ctrl.borrar(ident);
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {
@@ -57,19 +75,23 @@
 		<div id="content">
 			<form action="Edit.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar"  />
-				<input type="hidden" name="ident" value="<%=seccion.getIdent()%>"  />
+				<input type="hidden" name="ident" value="<%=grado.getIdent()%>"  />
 				<table>
 					<thead>
-						<caption>Seccion</caption>
+						<caption>Grado</caption>
 					</thead>
 					<tbody>
 						<tr>
 							<td>Grado</td>
-							<td><input type="text" name="grado" placeholder="Grado" value="<%=seccion.getGrado()%>" <%=disable%> required/></td>
+							<td><input type="text" name="grado" placeholder="Grado" value="<%=grado.getGrado()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>
-							<td>Secci&oacute;n</td>
-							<td><input type="text" name="seccion" placeholder="Seccion"value="<%=seccion.getSeccion()%>" <%=disable%> required/></td>
+							<td>Grado previo</td>
+							<td><select name="gradoprevio" placeholder="Grado" style="width:213px"><%=gradosprevio%></select></td>
+						</tr>
+						<tr>
+							<td>Grado siguiente</td>
+							<td><select name="gradosiguiente" placeholder="Grado" style="width:213px" required ><%=gradossiguiente%></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
