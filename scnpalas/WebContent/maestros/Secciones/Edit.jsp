@@ -5,9 +5,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	Grado grado = new Grado();
+	Seccion seccion = new Seccion();
 	String disable = "";
-	GradoCtrl ctrl = new GradoCtrl();
+	SeccionCtrl ctrl = new SeccionCtrl();
 	
 	//Docentes
 	String docentes=null;
@@ -25,19 +25,19 @@
 		}
 	}
 	
-	//Secciones
-	String secciones=null;
-	SeccionCtrl sCtrl = new SeccionCtrl();
-	List sLst = sCtrl.findByAll();
-	if(sLst==null){
+	//Grados
+	String grados=null;
+	GradosCtrl gCtrl = new GradoCtrl();
+	List gLst = gCtrl.findByAll();
+	if(gLst==null){
 		response.sendRedirect("Lista.jsp");
-	}else if(sLst.isEmpty()){
+	}else if(gLst.isEmpty()){
 		response.sendRedirect("Lista.jsp");
 	}else{
-		Seccion seccion;
-		for(int i=0;i<sLst.size();i++){
-			seccion = (Seccion) sLst.get(i); 
-			secciones += "<option value="+seccion.getIdent()+">"+seccion.toString()+"</option>"; 
+		Grado grado;
+		for(int i=0;i<gLst.size();i++){
+			grado = (Grado) sLst.get(i); 
+			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
 		}
 	}
 	
@@ -65,31 +65,32 @@
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
 	if (ident == 0) {
-		grado = new Grado();
+		seccion = new Seccion();
 	} else {
-		grado = ctrl.findById(ident);
+		seccion = ctrl.findById(ident);
 	}
 	
 	if (accion.equals("guardar")){
 		//docente
 		Docente docente = dCtrl.findById(Integer.parseInt(request.getParameter("docente")));
-		grado.setDocente(docente);
+		seccion.setDocente(docente);
 		
 		//seccion
-		Seccion seccion = sCtrl.findById(Integer.parseInt(request.getParameter("seccion")));
-		grado.setSeccion(seccion);
+		Grado grado = gCtrl.findById(Integer.parseInt(request.getParameter("grado")));
+		seccion.setGrado(grado);
 		
 		//periodo
 		Periodo periodo = pCtrl.findById(Integer.parseInt(request.getParameter("periodo")));
-		grado.setPeriodo(periodo);
+		seccion.setPeriodo(periodo);
 		
-		grado.setEstado("A");
-		grado.setInscritos(0);
-		if (ident != 0) grado.setIdent(ident);
-		ctrl.guardar(grado);
+		seccion.setSeccion(request.getParameter("seccion"));
+		seccion.setEstado("A");
+		seccion.setInscritos(0);
+		if (ident != 0) seccion.setIdent(ident);
+		ctrl.guardar(seccion);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
-		grado = ctrl.findById(ident);
+		seccion = ctrl.findById(ident);
 		ctrl.borrar(ident);
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {
@@ -118,10 +119,10 @@
 		<div id="content">
 			<form action="Edit.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar"  />
-				<input type="hidden" name="ident" value="<%=grado.getIdent()%>"  />
+				<input type="hidden" name="ident" value="<%=seccion.getIdent()%>"  />
 				<table>
 					<thead>
-						<caption>Grado</caption>
+						<caption>Seccion</caption>
 					</thead>
 					<tbody>
 						<tr>
@@ -133,8 +134,12 @@
 							<td><select name="docente" style="width:213px"><%=docentes%></select></td>
 						</tr>
 						<tr>
+							<td>Grado</td>
+							<td><select name="grado" style="width:213px"><%=grados%></select></td>
+						</tr>
+						<tr>
 							<td>Secci&oacute;n</td>
-							<td><select name="seccion" style="width:213px"><%=secciones%></select></td>
+							<td><input type="text" name="seccion" value="<%=seccion.getSeccion%>" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

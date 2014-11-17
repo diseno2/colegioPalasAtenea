@@ -4,31 +4,31 @@
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	GradoCtrl ctrl = new GradoCtrl();
+	SeccionCtrl ctrl = new SeccionCtrl();
 	List lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)
 		lst = ctrl.findByAll();
 	else{
-		Grado grado = new Grado();
+		Seccion seccion = new Seccion();
 		
 		//docente
 		DocenteCtrl dCtrl = new DocenteCtrl();
 		Docente docente = dCtrl.findById(Integer.parseInt(request.getParameter("docente")));
-		grado.setDocente(docente);
+		seccion.setDocente(docente);
 		
-		//seccion
-		SeccionCtrl sCtrl = new SeccionCtrl();
-		Seccion seccion = sCtrl.findById(Integer.parseInt(request.getParameter("seccion")));
-		grado.setSeccion(seccion);
+		//Grado
+		GradoCtrl gCtrl = new GradoCtrl();
+		Grado grado = gCtrl.findById(Integer.parseInt(request.getParameter("grado")));
+		seccion.setSeccion(grado);
 		
 		//periodo
 		PeriodoCtrl pCtrl = new PeriodoCtrl();
 		Periodo periodo = pCtrl.findById(Integer.parseInt(request.getParameter("periodo")));
-		grado.setPeriodo(periodo);
+		seccion.setPeriodo(periodo);
 		
-		lst = ctrl.findByParam(grado);
+		lst = ctrl.findByParam(seccion);
 	}
 	
 	String mensaje = "";
@@ -45,15 +45,15 @@
 		}
 	}
 		
-	//Secciones
-	String secciones=null;
-	SeccionCtrl sCtrl = new SeccionCtrl();
-	List sLst = sCtrl.findByAll();
-	if(sLst==null){}else if(sLst.isEmpty()){}else{
-		Seccion seccion;
-		for(int i=0;i<sLst.size();i++){
-			seccion = (Seccion) sLst.get(i); 
-			secciones += "<option value="+seccion.getIdent()+">"+seccion.toString()+"</option>"; 
+	//Grados
+	String grados=null;
+	GradoCtrl gCtrl = new GradoCtrl();
+	List gLst = gCtrl.findByAll();
+	if(gLst==null){}else if(gLst.isEmpty()){}else{
+		Grado grado;
+		for(int i=0;i<gLst.size();i++){
+			grado = (Grado) sLst.get(i); 
+			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
 		}
 	}
 		
@@ -78,7 +78,7 @@
 								"<form action='Lista.jsp' method='post'>"+
 									"<input type='hidden' name='accion' value='buscar' /> "+
 									"<p>Periodo<select name='periodo' style='width:60px'>"+periodos+"</select>"+
-									"Seccion<select name='seccion' style='width:100px'>"+secciones+"</select></p>"+
+									"Grado<select name='grado' style='width:100px'>"+grados+"</select></p>"+
 									"<p>Docente<select name='docente' style='width:260px'>"+docentes+"</select></p>"+
 									"<p><input type='submit' value='Buscar' /></p>"+
 								"</form>"+
@@ -86,6 +86,7 @@
 					"</caption>"+
 					"<tr>"+
 						"<th>Periodo</th>"+
+						"<th>Grado</th>"+
 						"<th>Secci&oacute;n</th>"+
 						"<th>Inscritos</th>"+
 						"<th>Docente</th>"+
@@ -101,6 +102,7 @@
 			grado = (Grado) lst.get(i); 
 			mensaje += "<tr>"+
 							"<td>"+grado.getPeriodo().toString()+"</td>"+
+							"<td>"+grado.getGrado().toString()+"</td>"+
 							"<td>"+grado.getSeccion().toString()+"</td>"+
 							"<td>"+grado.getInscritos()+"</td>"+
 							"<td>"+grado.getDocente().toString()+"</td>"+
