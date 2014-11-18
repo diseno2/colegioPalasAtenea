@@ -55,27 +55,13 @@ public class AlumnoCtrl {
 		uCtrl.guardar(usuario);
 		alumno.setUsuario(usuario);
 		
-		Mail mail = new Mail();
-		mail.send("irispineda85@gmail.com",//"elisan2506@gmail.com"
-				  "Información de Usuario de Colegio Palas Atenea",
-				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
-				  "Su usuario asignado es "+user+" y su contraseña "+pass);
-		mail.send("beltranjose299@gmail.com",//"elisan2506@gmail.com"
-				  "Información de Usuario de Colegio Palas Atenea",
-				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
-				  "Su usuario asignado es "+user+" y su contraseña "+pass);
-		mail.send("elisan2506@gmail.com",//""
-				  "Información de Usuario de Colegio Palas Atenea",
-				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
-				  "Su usuario asignado es "+user+" y su contraseña "+pass);
-		mail.send("jorgealbertocardoza@gmail.com",//""
-				  "Información de Usuario de Colegio Palas Atenea",
-				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
-				  "Su usuario asignado es "+user+" y su contraseña "+pass);
-		mail.send("especter187@hotmail.com",//""
-				  "Información de Usuario de Colegio Palas Atenea",
-				  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+
-				  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		if (alumno.getCorreo != null && alumno.getCorreo != ""){
+			Mail mail = new Mail();
+			mail.send(alumno.getCorreo,"Información de Usuario de Colegio Palas Atenea",
+					  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+	
+					  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		}
+		//aqui tambien crear los usuarios de los familiares en caso de ser necesario
 		
 		this.guardar(alumno);
 	}
