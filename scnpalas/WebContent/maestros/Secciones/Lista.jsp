@@ -21,7 +21,7 @@
 		//Grado
 		GradoCtrl gCtrl = new GradoCtrl();
 		Grado grado = gCtrl.findById(Integer.parseInt(request.getParameter("grado")));
-		seccion.setSeccion(grado);
+		seccion.setGrado(grado);
 		
 		//periodo
 		PeriodoCtrl pCtrl = new PeriodoCtrl();
@@ -52,7 +52,7 @@
 	if(gLst==null){}else if(gLst.isEmpty()){}else{
 		Grado grado;
 		for(int i=0;i<gLst.size();i++){
-			grado = (Grado) sLst.get(i); 
+			grado = (Grado) gLst.get(i); 
 			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
 		}
 	}
@@ -97,18 +97,18 @@
 	if(lst.isEmpty()){
 		mensaje += "<tr><td colspan=7>No hay registros</td></tr>";
 	}else{
-		Grado grado;
+		Seccion seccion;
 		for(int i=0;i<lst.size();i++){
-			grado = (Grado) lst.get(i); 
+			seccion = (Seccion) lst.get(i); 
 			mensaje += "<tr>"+
-							"<td>"+grado.getPeriodo().toString()+"</td>"+
-							"<td>"+grado.getGrado().toString()+"</td>"+
-							"<td>"+grado.getSeccion().toString()+"</td>"+
-							"<td>"+grado.getInscritos()+"</td>"+
-							"<td>"+grado.getDocente().toString()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
+							"<td>"+seccion.getPeriodo().toString()+"</td>"+
+							"<td>"+seccion.getGrado().toString()+"</td>"+
+							"<td>"+seccion.getSeccion()+"</td>"+
+							"<td>"+seccion.getInscritos()+"</td>"+
+							"<td>"+seccion.getDocente().toString()+"</td>"+
+							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
+							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
+							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
 						"</tr>"; 
 		}
 	}

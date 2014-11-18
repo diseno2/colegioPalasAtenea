@@ -22,7 +22,7 @@
 	}
 	
 	if (accion.equals("guardar")){
-		matricula.setDescripcion(request.getParameter("descripcion"));
+		
 		if (ident != 0) matricula.setIdent(ident);
 		ctrl.guardar(matricula);
 		response.sendRedirect("Lista.jsp");
@@ -65,7 +65,7 @@
 						</tr>
 						<tr>
 							<td>Descripci&oacute;n</td>
-							<td><input type="text" name="descripcion" value="<%=matricula.getDescripcion()%>" <%=disable%> /></td>
+							<td><input type="text" name="descripcion" value="<%=matricula.getEstado()%>" <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

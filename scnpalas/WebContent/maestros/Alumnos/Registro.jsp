@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Familiar"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.FamiliarCtrl"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*"%>
+<%@page import="sv.edu.ues.dsi.palasatenea.controlador.*"%>
 <%@page import="sv.edu.ues.dsi.palasatenea.utilidades.Utilidades"%>
 <%@ page import="java.util.*"%>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
@@ -14,9 +12,21 @@
 	
 	Alumno alumno = new Alumno();
 	String disable = "";
-	String mChecked, fChecked, ug1, ug2, ug3, ug4, ug5, ug6, ug7, ug8, ug10, ug11, ug12;
-	mChecked = fChecked = ug1 = ug2 = ug3 = ug4 = ug5 = ug6 = ug7 = ug8 = ug10 = ug11 = ug12 = "";
+	String mChecked, fChecked;
+	mChecked = fChecked = "";
 	String usuario = new Utilidades().getUsuario();
+	
+	//Grados
+	String grados=null;
+	GradoCtrl gCtrl = new GradoCtrl();
+	List gLst = gCtrl.findByAll();
+	if(gLst==null){}else if(gLst.isEmpty()){}else{
+		Grado grado;
+		for(int i=0;i<gLst.size();i++){
+			grado = (Grado) gLst.get(i); 
+			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
+		}
+	}
 	
 	if (accion.equals("guardar")) {
 		alumno.setNombre1(request.getParameter("nombre1"));
@@ -34,7 +44,11 @@
 		alumno.setAlergico(request.getParameter("alergico"));
 		alumno.setAprendizaje(request.getParameter("aprendizaje"));
 		alumno.setEscuelaprevia(request.getParameter("escuelaprevia"));
-		alumno.setUltgrado(Integer.parseInt(request.getParameter("ultgrado")));
+		
+		Grado grado = new GradoCtrl().findById(Integer.parseInt(request.getParameter("ultgrado")));
+		alumno.setGradoByGradoActual(grado);
+		
+		alumno.setCorreo(request.getParameter("correo"));
 
 		if (ident != 0)
 			alumno.setIdent(ident);
@@ -51,28 +65,6 @@
 			mChecked = "checked";
 		if (alumno.getGenero().equals("F"))
 			fChecked = "checked";
-		if (alumno.getUltgrado() == 1)
-			ug1 = "selected";
-		if (alumno.getUltgrado() == 2)
-			ug2 = "selected";
-		if (alumno.getUltgrado() == 3)
-			ug3 = "selected";
-		if (alumno.getUltgrado() == 4)
-			ug4 = "selected";
-		if (alumno.getUltgrado() == 5)
-			ug5 = "selected";
-		if (alumno.getUltgrado() == 6)
-			ug6 = "selected";
-		if (alumno.getUltgrado() == 7)
-			ug7 = "selected";
-		if (alumno.getUltgrado() == 8)
-			ug8 = "selected";
-		if (alumno.getUltgrado() == 10)
-			ug10 = "selected";
-		if (alumno.getUltgrado() == 11)
-			ug11 = "selected";
-		if (alumno.getUltgrado() == 12)
-			ug12 = "selected";
 	}
 	//lo correspondiente a los familiares
 	String mensaje = "";
@@ -217,19 +209,12 @@
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
-						<td colspan="2"><select name="ultgrado" <%=disable%> required />
-								<option value="10" <%=ug10%>>Kinder 4</option>
-								<option value="11" <%=ug11%>>Kinder 5</option>
-								<option value="12" <%=ug12%>>Preparatoria</option>
-								<option value="1" <%=ug1%>>Primero</option>
-								<option value="2" <%=ug2%>>Segundo</option>
-								<option value="3" <%=ug3%>>Tercero</option>
-								<option value="4" <%=ug4%>>Cuarto</option>
-								<option value="5" <%=ug5%>>Quinto</option>
-								<option value="6" <%=ug6%>>Sexto</option>
-								<option value="7" <%=ug7%>>Septimo</option>
-								<option value="8" <%=ug8%>>Octavo</option>
-						</select></td>
+						<td colspan="2"><select name="ultgrado" <%=disable%> required /><%=grados%></select></td>
+					</tr>
+					<tr>
+						<td>Correo Electronico</td>
+						<td colspan="3"><input type="text" name="correo"placeholder="Corre@Correo.com"
+							size="45" value="<%=alumno.getCorreo()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td colspan="3"><center>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoMateriaCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoMateriaCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.GradoMateria" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Materia" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
@@ -17,16 +15,16 @@
 	if (request.getParameter("ident") == null) ident = 0;
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
-	identGrado = Integer.parseInt(request.getParameter("identGrado"));
+	Integer identGrado = Integer.parseInt(request.getParameter("identGrado"));
 	Grado grado = new GradoCtrl().findById(identGrado);
 	
-	identMateria = Integer.parseInt(request.getParameter("identMateria"));
-	Materia materia;
-	if (identMateria<>null) materia = new MateriaCtrl().findById(identMateria);
+	Integer identMateria = Integer.parseInt(request.getParameter("identMateria"));
+	Materia materia = null;
+	if (identMateria != null) materia = new MateriaCtrl().findById(identMateria);
 	
-	identDocente = Integer.parseInt(request.getParameter("identDocente"));
-	Docente docente;
-	if (identDocente<>null) docente = new DocenteCtrl().findById(identDocente);
+	Integer identDocente = Integer.parseInt(request.getParameter("identDocente"));
+	Docente docente = null;
+	if (identDocente != null) docente = new DocenteCtrl().findById(identDocente);
 	
 	if (ident == 0) {
 		gradoMateria = new GradoMateria();
@@ -38,7 +36,7 @@
 		gradoMateria.setGrado(grado);
 		gradoMateria.setMateria(materia);
 		gradoMateria.setDocente(docente);
-		gradoMateria.setDeAcuerdoASeccion(request.getParameter("deacuerdoaseccion"));
+		gradoMateria.setEnSeccion(request.getParameter("deacuerdoaseccion"));
 		
 		if (ident != 0) gradoMateria.setIdent(ident);
 		ctrl.guardar(gradoMateria);
@@ -87,7 +85,7 @@
 						<tr>
 							<td>Docente</td>
 							<td></td>
-							<td><input type="check" name="deacuerdoaseccion">De acuerdo a la sección</td>
+							<td><input type="check" name="deacuerdoaseccion">De acuerdo a la secci&oacute;n</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
@@ -98,7 +96,6 @@
 					</tbody>
 				</table>
 			</form>
-			<%=mensaje%>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>

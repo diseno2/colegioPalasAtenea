@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.GradoMateriaCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Grado" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Materia" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%@ page import="java.util.*" %>
 <%
 	Grado grado = new Grado();
 	String disable = "";
@@ -33,17 +32,25 @@
 		
 	}else{
 		Grado gradoN;
+		gradosprevio += "<option value=''></option>";
+		gradossiguiente += "<option value=''></option>";
 		for(int i=0;i<lst.size();i++){
 			gradoN = (Grado) lst.get(i); 
 			gradosprevio += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
 			gradossiguiente += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
 		}
+		
 	}
 	
 	if (accion.equals("guardar")){
 		grado.setGrado(request.getParameter("grado"));
-		grado.setGradoPrevio(request.getParameter("gradoprevio"));
-		grado.setGradoSiguiente(request.getParameter("gradosiguiente"));
+		Grado grado1 = null, grado2 = null;
+		if (request.getParameter("gradoprevio") != null && ! request.getParameter("gradoprevio").isEmpty()) 
+			grado1 = new GradoCtrl().findById(Integer.parseInt(request.getParameter("gradoprevio")));
+		if (request.getParameter("gradosiguiente") != null && ! request.getParameter("gradosiguiente").isEmpty())
+			grado2 = new GradoCtrl().findById(Integer.parseInt(request.getParameter("gradosiguiente")));
+		grado.setGradoByGrado1(grado1);
+		grado.setGradoByGrado2(grado2);
 		if (ident != 0) grado.setIdent(ident);
 		ctrl.guardar(grado);
 		response.sendRedirect("Lista.jsp");
@@ -59,6 +66,7 @@
 	
 	
 	//aqui agregar lo necesario para configurar las materias
+	String mensaje = "";
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
 	List gMLst = null;
 	gMLst = gMCtrl.findByAll();
@@ -131,7 +139,7 @@
 						</tr>
 						<tr>
 							<td>Grado siguiente</td>
-							<td><select name="gradosiguiente" placeholder="Grado" style="width:213px" required ><%=gradossiguiente%></select></td>
+							<td><select name="gradosiguiente" placeholder="Grado" style="width:213px" ><%=gradossiguiente%></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

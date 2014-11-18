@@ -18,9 +18,8 @@
 		matricula.setAlumno(a);
 		
 		//Grado
-		GradoCtrl gCtrl = new GradoCtrl();
-		Grado g = gCtrl.findById(Integer.parseInt(request.getParameter("grado")));
-		matricula.setGrado(g);
+		Seccion s = new SeccionCtrl().findById(Integer.parseInt(request.getParameter("grado")));
+		matricula.setSeccion(s);
 		
 		lst = ctrl.findByParam(matricula);
 	}
@@ -78,7 +77,7 @@
 			matricula = (Matricula) lst.get(i); 
 			mensaje += "<tr>"+
 							"<td>"+matricula.getAlumno().toString()+"</td>"+
-							"<td>"+matricula.getGrado().toString()+"</td>"+
+							"<td>"+matricula.getSeccion().toString()+"</td>"+
 							"<td>"+matricula.getEstado()+"</td>"+
 							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+

@@ -27,7 +27,7 @@
 	
 	//Grados
 	String grados=null;
-	GradosCtrl gCtrl = new GradoCtrl();
+	GradoCtrl gCtrl = new GradoCtrl();
 	List gLst = gCtrl.findByAll();
 	if(gLst==null){
 		response.sendRedirect("Lista.jsp");
@@ -36,7 +36,7 @@
 	}else{
 		Grado grado;
 		for(int i=0;i<gLst.size();i++){
-			grado = (Grado) sLst.get(i); 
+			grado = (Grado) gLst.get(i); 
 			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
 		}
 	}
@@ -138,7 +138,7 @@
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><input type="text" name="seccion" value="<%=seccion.getSeccion%>" /></td>
+							<td><input type="text" name="seccion" value="<%=seccion.getSeccion()%>" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

@@ -13,8 +13,11 @@
 	else{
 		Grado grado = new Grado();
 		grado.setGrado(request.getParameter("grado"));
-		grado.setGradoPrevio(request.getParameter("gradoprevio"));
-		grado.setGradoSiguiente(request.getParameter("gradosiguiente"));
+		Grado grado1, grado2;
+		grado1 = new GradoCtrl().findById(Integer.parseInt(request.getParameter("gradoprevio")));
+		grado2 = new GradoCtrl().findById(Integer.parseInt(request.getParameter("gradosiguiente")));
+		grado.setGradoByGrado1(grado1);
+		grado.setGradoByGrado2(grado2);
 		lst = ctrl.findByParam(grado);
 	}
 	
@@ -41,17 +44,25 @@
 					"</tr>"+
 				"</thead>"+
 				"<tbody>";
-	if(lst.isEmpty()){
+	if(lst.isEmpty()||lst == null){
 		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
 	}else{
 		Grado grado;
 		for(int i=0;i<lst.size();i++){
 			grado = (Grado) lst.get(i); 
 			mensaje += "<tr>"+
-							"<td>"+grado.getGrado()+"</td>"+
-							"<td>"+grado.getGradoPrevio()+"</td>"+
-							"<td>"+grado.getGradoSiguiente()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
+							"<td>"+grado.getGrado()+"</td>";
+			if (grado.getGradoByGrado1() != null)
+				mensaje += "<td>"+grado.getGradoByGrado1().toString()+"</td>";
+			else
+				mensaje += "<td>-</td>";
+			
+			if (grado.getGradoByGrado2() != null)
+				mensaje += "<td>"+grado.getGradoByGrado2().toString()+"</td>";
+			else
+				mensaje += "<td>-</td>";
+		
+				mensaje += "<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
 						"</tr>"; 
