@@ -32,20 +32,21 @@ public class GradoMateria implements java.io.Serializable {
 	private Integer ident;
 	private Grado grado;
 	private Materia materia;
+	private String enSeccion;
 	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
 
 	public GradoMateria() {
 	}
 
-	public GradoMateria(Grado grado, Materia materia) {
+	public GradoMateria(Grado grado) {
 		this.grado = grado;
-		this.materia = materia;
 	}
 
-	public GradoMateria(Grado grado, Materia materia,
+	public GradoMateria(Grado grado, Materia materia, String enSeccion,
 			Set<Evaluacion> evaluacions) {
 		this.grado = grado;
 		this.materia = materia;
+		this.enSeccion = enSeccion;
 		this.evaluacions = evaluacions;
 	}
 
@@ -71,13 +72,22 @@ public class GradoMateria implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "materia", nullable = false)
+	@JoinColumn(name = "materia")
 	public Materia getMateria() {
 		return this.materia;
 	}
 
 	public void setMateria(Materia materia) {
 		this.materia = materia;
+	}
+
+	@Column(name = "en_seccion", length = 1)
+	public String getEnSeccion() {
+		return this.enSeccion;
+	}
+
+	public void setEnSeccion(String enSeccion) {
+		this.enSeccion = enSeccion;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoMateria")

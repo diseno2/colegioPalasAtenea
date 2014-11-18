@@ -30,37 +30,39 @@ import org.hibernate.annotations.NamedQuery;
 public class Grado implements java.io.Serializable {
 
 	private Integer ident;
-	private Seccion seccion;
-	private Periodo periodo;
-	private Docente docente;
-	private int inscritos;
-	private String estado;
-	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
+	private Grado gradoByGrado1;
+	private Grado gradoByGrado2;
+	private String grado;
+	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
+	private Set<Seccion> seccions = new HashSet<Seccion>(0);
 	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
+	private Set<Grado> gradosForGrado1 = new HashSet<Grado>(0);
+	private Set<Alumno> alumnosForGradoAprobado = new HashSet<Alumno>(0);
+	private Set<Grado> gradosForGrado2 = new HashSet<Grado>(0);
+	private Set<Alumno> alumnosForGradoActual = new HashSet<Alumno>(0);
 
 	public Grado() {
-		this.ident = 0;
 	}
 
-	public Grado(Seccion seccion, Periodo periodo, Docente docente,
-			int inscritos, String estado) {
-		this.seccion = seccion;
-		this.periodo = periodo;
-		this.docente = docente;
-		this.inscritos = inscritos;
-		this.estado = estado;
+	public Grado(String grado) {
+		this.grado = grado;
 	}
 
-	public Grado(Seccion seccion, Periodo periodo, Docente docente,
-			int inscritos, String estado, Set<Matricula> matriculas,
-			Set<GradoMateria> gradoMaterias) {
-		this.seccion = seccion;
-		this.periodo = periodo;
-		this.docente = docente;
-		this.inscritos = inscritos;
-		this.estado = estado;
-		this.matriculas = matriculas;
+	public Grado(Grado gradoByGrado1, Grado gradoByGrado2, String grado,
+			Set<Evaluacion> evaluacions, Set<Seccion> seccions,
+			Set<GradoMateria> gradoMaterias, Set<Grado> gradosForGrado1,
+			Set<Alumno> alumnosForGradoAprobado, Set<Grado> gradosForGrado2,
+			Set<Alumno> alumnosForGradoActual) {
+		this.gradoByGrado1 = gradoByGrado1;
+		this.gradoByGrado2 = gradoByGrado2;
+		this.grado = grado;
+		this.evaluacions = evaluacions;
+		this.seccions = seccions;
 		this.gradoMaterias = gradoMaterias;
+		this.gradosForGrado1 = gradosForGrado1;
+		this.alumnosForGradoAprobado = alumnosForGradoAprobado;
+		this.gradosForGrado2 = gradosForGrado2;
+		this.alumnosForGradoActual = alumnosForGradoActual;
 	}
 
 	@Id
@@ -75,60 +77,50 @@ public class Grado implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "seccion", nullable = false)
-	public Seccion getSeccion() {
-		return this.seccion;
+	@JoinColumn(name = "grado1")
+	public Grado getGradoByGrado1() {
+		return this.gradoByGrado1;
 	}
 
-	public void setSeccion(Seccion seccion) {
-		this.seccion = seccion;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "periodo", nullable = false)
-	public Periodo getPeriodo() {
-		return this.periodo;
-	}
-
-	public void setPeriodo(Periodo periodo) {
-		this.periodo = periodo;
+	public void setGradoByGrado1(Grado gradoByGrado1) {
+		this.gradoByGrado1 = gradoByGrado1;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "docente", nullable = false)
-	public Docente getDocente() {
-		return this.docente;
+	@JoinColumn(name = "grado2")
+	public Grado getGradoByGrado2() {
+		return this.gradoByGrado2;
 	}
 
-	public void setDocente(Docente docente) {
-		this.docente = docente;
+	public void setGradoByGrado2(Grado gradoByGrado2) {
+		this.gradoByGrado2 = gradoByGrado2;
 	}
 
-	@Column(name = "inscritos", nullable = false)
-	public int getInscritos() {
-		return this.inscritos;
+	@Column(name = "grado", nullable = false, length = 45)
+	public String getGrado() {
+		return this.grado;
 	}
 
-	public void setInscritos(int inscritos) {
-		this.inscritos = inscritos;
+	public void setGrado(String grado) {
+		this.grado = grado;
 	}
 
-	@Column(name = "estado", nullable = false, length = 1)
-	public String getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
-	public Set<Matricula> getMatriculas() {
-		return this.matriculas;
+	public Set<Evaluacion> getEvaluacions() {
+		return this.evaluacions;
 	}
 
-	public void setMatriculas(Set<Matricula> matriculas) {
-		this.matriculas = matriculas;
+	public void setEvaluacions(Set<Evaluacion> evaluacions) {
+		this.evaluacions = evaluacions;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
+	public Set<Seccion> getSeccions() {
+		return this.seccions;
+	}
+
+	public void setSeccions(Set<Seccion> seccions) {
+		this.seccions = seccions;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
@@ -138,6 +130,42 @@ public class Grado implements java.io.Serializable {
 
 	public void setGradoMaterias(Set<GradoMateria> gradoMaterias) {
 		this.gradoMaterias = gradoMaterias;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGrado1")
+	public Set<Grado> getGradosForGrado1() {
+		return this.gradosForGrado1;
+	}
+
+	public void setGradosForGrado1(Set<Grado> gradosForGrado1) {
+		this.gradosForGrado1 = gradosForGrado1;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGradoAprobado")
+	public Set<Alumno> getAlumnosForGradoAprobado() {
+		return this.alumnosForGradoAprobado;
+	}
+
+	public void setAlumnosForGradoAprobado(Set<Alumno> alumnosForGradoAprobado) {
+		this.alumnosForGradoAprobado = alumnosForGradoAprobado;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGrado2")
+	public Set<Grado> getGradosForGrado2() {
+		return this.gradosForGrado2;
+	}
+
+	public void setGradosForGrado2(Set<Grado> gradosForGrado2) {
+		this.gradosForGrado2 = gradosForGrado2;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGradoActual")
+	public Set<Alumno> getAlumnosForGradoActual() {
+		return this.alumnosForGradoActual;
+	}
+
+	public void setAlumnosForGradoActual(Set<Alumno> alumnosForGradoActual) {
+		this.alumnosForGradoActual = alumnosForGradoActual;
 	}
 	
 	public String toString(){

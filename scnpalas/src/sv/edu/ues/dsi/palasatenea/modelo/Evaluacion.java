@@ -33,39 +33,40 @@ import org.hibernate.annotations.NamedQuery;
 public class Evaluacion implements java.io.Serializable {
 
 	private Integer ident;
-	private GradoMateria gradoMateria;
+	private int materia;
 	private String evaluacion;
 	private String descripcion;
 	private float porcentaje;
 	private String bimestre;
 	private Date fecha;
 	private String estado;
-	private Set<Nota> notas = new HashSet<Nota>(0);
+	private int grado;
 
 	public Evaluacion() {
 	}
 
-	public Evaluacion(GradoMateria gradoMateria, String evaluacion,
-			float porcentaje, String bimestre, Date fecha, String estado) {
-		this.gradoMateria = gradoMateria;
+	public Evaluacion(int materia, String evaluacion, float porcentaje,
+			String bimestre, Date fecha, String estado, int grado) {
+		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.porcentaje = porcentaje;
 		this.bimestre = bimestre;
 		this.fecha = fecha;
 		this.estado = estado;
+		this.grado = grado;
 	}
 
-	public Evaluacion(GradoMateria gradoMateria, String evaluacion,
-			String descripcion, float porcentaje, String bimestre, Date fecha,
-			String estado, Set<Nota> notas) {
-		this.gradoMateria = gradoMateria;
+	public Evaluacion(int materia, String evaluacion, String descripcion,
+			float porcentaje, String bimestre, Date fecha, String estado,
+			int grado) {
+		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.descripcion = descripcion;
 		this.porcentaje = porcentaje;
 		this.bimestre = bimestre;
 		this.fecha = fecha;
 		this.estado = estado;
-		this.notas = notas;
+		this.grado = grado;
 	}
 
 	@Id
@@ -79,14 +80,13 @@ public class Evaluacion implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "grado_materia", nullable = false)
-	public GradoMateria getGradoMateria() {
-		return this.gradoMateria;
+	@Column(name = "materia", nullable = false)
+	public int getMateria() {
+		return this.materia;
 	}
 
-	public void setGradoMateria(GradoMateria gradoMateria) {
-		this.gradoMateria = gradoMateria;
+	public void setMateria(int materia) {
+		this.materia = materia;
 	}
 
 	@Column(name = "evaluacion", nullable = false, length = 45)
@@ -144,13 +144,13 @@ public class Evaluacion implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion")
-	public Set<Nota> getNotas() {
-		return this.notas;
+	@Column(name = "grado", nullable = false)
+	public int getGrado() {
+		return this.grado;
 	}
 
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
+	public void setGrado(int grado) {
+		this.grado = grado;
 	}
 	
 	public String toString(){

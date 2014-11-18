@@ -28,25 +28,33 @@ import org.hibernate.annotations.NamedQuery;
 public class Seccion implements java.io.Serializable {
 
 	private Integer ident;
-	private String grado;
-	private String seccion;
-	private Set<Grado> grados = new HashSet<Grado>(0);
+	private Grado grado;
+	private Periodo periodo;
+	private Docente docente;
+	private int inscritos;
+	private String estado;
+	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
 
 	public Seccion() {
-		this.ident = 0;
-		this.grado = "";
-		this.seccion = "";
 	}
 
-	public Seccion(String grado, String seccion) {
+	public Seccion(Grado grado, Periodo periodo, Docente docente,
+			int inscritos, String estado) {
 		this.grado = grado;
-		this.seccion = seccion;
+		this.periodo = periodo;
+		this.docente = docente;
+		this.inscritos = inscritos;
+		this.estado = estado;
 	}
 
-	public Seccion(String grado, String seccion, Set<Grado> grados) {
+	public Seccion(Grado grado, Periodo periodo, Docente docente,
+			int inscritos, String estado, Set<Matricula> matriculas) {
 		this.grado = grado;
-		this.seccion = seccion;
-		this.grados = grados;
+		this.periodo = periodo;
+		this.docente = docente;
+		this.inscritos = inscritos;
+		this.estado = estado;
+		this.matriculas = matriculas;
 	}
 
 	@Id
@@ -60,31 +68,61 @@ public class Seccion implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@Column(name = "grado", nullable = false, length = 45)
-	public String getGrado() {
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "grado", nullable = false)
+	public Grado getGrado() {
 		return this.grado;
 	}
 
-	public void setGrado(String grado) {
+	public void setGrado(Grado grado) {
 		this.grado = grado;
 	}
 
-	@Column(name = "seccion", nullable = false, length = 45)
-	public String getSeccion() {
-		return this.seccion;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "periodo", nullable = false)
+	public Periodo getPeriodo() {
+		return this.periodo;
 	}
 
-	public void setSeccion(String seccion) {
-		this.seccion = seccion;
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "docente", nullable = false)
+	public Docente getDocente() {
+		return this.docente;
+	}
+
+	public void setDocente(Docente docente) {
+		this.docente = docente;
+	}
+
+	@Column(name = "inscritos", nullable = false)
+	public int getInscritos() {
+		return this.inscritos;
+	}
+
+	public void setInscritos(int inscritos) {
+		this.inscritos = inscritos;
+	}
+
+	@Column(name = "estado", nullable = false, length = 1)
+	public String getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seccion")
-	public Set<Grado> getGrados() {
-		return this.grados;
+	public Set<Matricula> getMatriculas() {
+		return this.matriculas;
 	}
 
-	public void setGrados(Set<Grado> grados) {
-		this.grados = grados;
+	public void setMatriculas(Set<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 	
 	public String toString(){

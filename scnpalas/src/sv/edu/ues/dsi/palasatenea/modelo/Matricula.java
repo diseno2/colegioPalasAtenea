@@ -31,19 +31,16 @@ public class Matricula implements java.io.Serializable {
 
 	private Integer ident;
 	private Alumno alumno;
-	private Grado grado;
+	private Seccion seccion;
 	private String estado;
 	private Date fecha;
 
 	public Matricula() {
-		this.ident = 0;
-		this.fecha = new Date();
-		this.estado = "R";
 	}
 
-	public Matricula(Alumno alumno, Grado grado, String estado, Date fecha) {
+	public Matricula(Alumno alumno, Seccion seccion, String estado, Date fecha) {
 		this.alumno = alumno;
-		this.grado = grado;
+		this.seccion = seccion;
 		this.estado = estado;
 		this.fecha = fecha;
 	}
@@ -71,12 +68,12 @@ public class Matricula implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "grado", nullable = false)
-	public Grado getGrado() {
-		return this.grado;
+	public Seccion getSeccion() {
+		return this.seccion;
 	}
 
-	public void setGrado(Grado grado) {
-		this.grado = grado;
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
 	}
 
 	@Column(name = "estado", nullable = false, length = 1)
@@ -100,6 +97,6 @@ public class Matricula implements java.io.Serializable {
 	
 	public String toString(){
 		return this.alumno.toString()+" "+
-			   this.grado.toString();
+			   this.seccion.toString();
 	}
 }

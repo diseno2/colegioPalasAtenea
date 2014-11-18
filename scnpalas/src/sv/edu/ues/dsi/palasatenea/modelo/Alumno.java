@@ -35,6 +35,8 @@ public class Alumno implements java.io.Serializable {
 
 	private Integer ident;
 	private Usuario usuario;
+	private Grado gradoByGradoActual;
+	private Grado gradoByGradoAprobado;
 	private String carnet;
 	private Short estado;
 	private String nombre1;
@@ -52,47 +54,26 @@ public class Alumno implements java.io.Serializable {
 	private String alergico;
 	private String aprendizaje;
 	private String escuelaprevia;
-	private Integer ultgrado;
 	private String correo;
 	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
 	private Set<Familiares> familiareses = new HashSet<Familiares>(0);
 	private Set<Nota> notas = new HashSet<Nota>(0);
 
 	public Alumno() {
-		this.ident=0;
-		this.carnet = "";
-		this.estado = 0;
-		this.nombre1 = "";
-		this.nombre2 = "";
-		this.apellido1 = "";
-		this.apellido2 = "";
-		this.genero = "";
-		//this.fnacimiento = new Date();
-		this.lnacimiento = "";
-		this.direccion = "";
-		this.telefono = "";
-		this.religion = "";
-		this.enfermedades = "";
-		this.medicamentos = "";
-		this.alergico = "";
-		this.aprendizaje = "";
-		this.escuelaprevia = "";
-		this.ultgrado = 0;
-		this.correo="";
 	}
 
-	public Alumno(Usuario usuario) {
+	public Alumno(Usuario usuario, Grado gradoByGradoActual,
+			Grado gradoByGradoAprobado, String carnet, Short estado,
+			String nombre1, String nombre2, String apellido1, String apellido2,
+			String genero, Date fnacimiento, String lnacimiento,
+			String direccion, String telefono, String religion,
+			String enfermedades, String medicamentos, String alergico,
+			String aprendizaje, String escuelaprevia, String correo,
+			Set<Matricula> matriculas, Set<Familiares> familiareses,
+			Set<Nota> notas) {
 		this.usuario = usuario;
-	}
-
-	public Alumno(Usuario usuario, String carnet, Short estado, String nombre1,
-			String nombre2, String apellido1, String apellido2, String genero,
-			Date fnacimiento, String lnacimiento, String direccion,
-			String telefono, String religion, String enfermedades,
-			String medicamentos, String alergico, String aprendizaje,
-			String escuelaprevia, Integer ultgrado, String correo, Set<Matricula> matriculas,
-			Set<Familiares> familiareses, Set<Nota> notas) {
-		this.usuario = usuario;
+		this.gradoByGradoActual = gradoByGradoActual;
+		this.gradoByGradoAprobado = gradoByGradoAprobado;
 		this.carnet = carnet;
 		this.estado = estado;
 		this.nombre1 = nombre1;
@@ -110,11 +91,10 @@ public class Alumno implements java.io.Serializable {
 		this.alergico = alergico;
 		this.aprendizaje = aprendizaje;
 		this.escuelaprevia = escuelaprevia;
-		this.ultgrado = ultgrado;
+		this.correo = correo;
 		this.matriculas = matriculas;
 		this.familiareses = familiareses;
 		this.notas = notas;
-		this.correo=correo;
 	}
 
 	@Id
@@ -136,6 +116,26 @@ public class Alumno implements java.io.Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "grado_actual")
+	public Grado getGradoByGradoActual() {
+		return this.gradoByGradoActual;
+	}
+
+	public void setGradoByGradoActual(Grado gradoByGradoActual) {
+		this.gradoByGradoActual = gradoByGradoActual;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "grado_aprobado")
+	public Grado getGradoByGradoAprobado() {
+		return this.gradoByGradoAprobado;
+	}
+
+	public void setGradoByGradoAprobado(Grado gradoByGradoAprobado) {
+		this.gradoByGradoAprobado = gradoByGradoAprobado;
 	}
 
 	@Column(name = "carnet", length = 8)
@@ -292,15 +292,6 @@ public class Alumno implements java.io.Serializable {
 		this.escuelaprevia = escuelaprevia;
 	}
 
-	@Column(name = "ultgrado")
-	public Integer getUltgrado() {
-		return this.ultgrado;
-	}
-
-	public void setUltgrado(Integer ultgrado) {
-		this.ultgrado = ultgrado;
-	}
-	
 	@Column(name = "correo", length = 45)
 	public String getCorreo() {
 		return this.correo;
