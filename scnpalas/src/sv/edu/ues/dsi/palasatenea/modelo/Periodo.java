@@ -37,7 +37,7 @@ public class Periodo implements java.io.Serializable {
 	private Date inicio;
 	private Date fin;
 	private Set<Nota> notas = new HashSet<Nota>(0);
-	private Set<Grado> grados = new HashSet<Grado>(0);
+	private Set<Seccion> secciones = new HashSet<Seccion>(0);
 
 	public Periodo() {
 		this.ident = 0;
@@ -59,12 +59,12 @@ public class Periodo implements java.io.Serializable {
 	}
 
 	public Periodo(int anio, Date inicio, Date fin, Set<Nota> notas,
-			Set<Grado> grados) {
+			Set<Seccion> secciones) {
 		this.anio = anio;
 		this.inicio = inicio;
 		this.fin = fin;
 		this.notas = notas;
-		this.grados = grados;
+		this.secciones = secciones;
 	}
 
 	@Id
@@ -117,12 +117,12 @@ public class Periodo implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
-	public Set<Grado> getGrados() {
-		return this.grados;
+	public Set<Seccion> getSecciones() {
+		return this.secciones;
 	}
 
-	public void setGrados(Set<Grado> grados) {
-		this.grados = grados;
+	public void setSecciones(Set<Seccion> secciones) {
+		this.secciones = secciones;
 	}
 	
 	public String toString(){

@@ -67,7 +67,7 @@ public class Utilidades {
 					  "<ul>"+
 						"<li><a href='/scnpalas/auxiliares/Periodos/Lista.jsp'>Periodos</a></li>"+
 						"<li><a href='/scnpalas/auxiliares/Materias/Lista.jsp'>Materias</a></li>"+
-						"<li><a href='/scnpalas/auxiliares/Secciones/Lista.jsp'>Secciones</a></li>"+
+						"<li><a href='/scnpalas/auxiliares/Grados/Lista.jsp'>Grados</a></li>"+
 					"</ul>"+
 				"</li>"+
 				"<li>"+
@@ -75,7 +75,7 @@ public class Utilidades {
 					"<ul>"+
 						"<li><a href='/scnpalas/maestros/Alumnos/Lista.jsp'>Alumnos</a></li>"+
 						"<li><a href='/scnpalas/maestros/Docentes/Lista.jsp'>Docentes</a></li>"+
-						"<li><a href='/scnpalas/maestros/Grados/Lista.jsp'>Grados</a></li>"+
+						"<li><a href='/scnpalas/maestros/Secciones/Lista.jsp'>Secciones</a></li>"+
 					"</ul>"+
 				"</li>"+
 				"<li>"+

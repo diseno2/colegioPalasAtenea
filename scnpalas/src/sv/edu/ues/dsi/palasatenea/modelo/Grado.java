@@ -42,6 +42,7 @@ public class Grado implements java.io.Serializable {
 	private Set<Alumno> alumnosForGradoActual = new HashSet<Alumno>(0);
 
 	public Grado() {
+		this.ident = 0;
 	}
 
 	public Grado(String grado) {
@@ -169,9 +170,6 @@ public class Grado implements java.io.Serializable {
 	}
 	
 	public String toString(){
-		return this.periodo.toString()+" "+
-			   this.docente.toString()+" "+
-			   this.seccion.toString()+" "+
-			   this.inscritos;
+		return this.grado;
 	}
 }

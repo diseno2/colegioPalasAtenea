@@ -21,7 +21,8 @@ import org.hibernate.annotations.NamedQuery;
 @Table(name = "rol", catalog = "scnpalas")
 @NamedQueries({
 	@NamedQuery(name = "Rol.findByAll", query = "SELECT c FROM Rol c "),
-	@NamedQuery(name = "Rol.findByIdent", query = "SELECT c FROM Rol c WHERE ident = :id")
+	@NamedQuery(name = "Rol.findByIdent", query = "SELECT c FROM Rol c WHERE ident = :id"),
+	@NamedQuery(name = "Rol.findByTipo", query = "SELECT c FROM Rol c WHERE tipo = :tipo")
 })
 public class Rol implements java.io.Serializable {
 
@@ -30,7 +31,7 @@ public class Rol implements java.io.Serializable {
 	private String tipo;
 	private Set<RolOpciones> rolOpcioneses = new HashSet<RolOpciones>(0);
 	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
-
+	
 	public Rol() {
 	}
 

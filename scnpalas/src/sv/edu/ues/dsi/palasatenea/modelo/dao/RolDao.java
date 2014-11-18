@@ -41,6 +41,15 @@ public class RolDao{
 		return rol;
 	}
 	
+	public Rol findByTipo(String tipo){
+		s = tx.iniciarSesion();
+		Query query = s.getNamedQuery("Rol.findByTipo");
+		query.setParameter("tipo", tipo);
+		Rol rol = (Rol) query.uniqueResult();
+		tx.finSesion();
+		return rol;
+	}
+	
 	public List findByAll(){
 		s = tx.iniciarSesion();
 		Query query = s.getNamedQuery("Rol.findByAll");

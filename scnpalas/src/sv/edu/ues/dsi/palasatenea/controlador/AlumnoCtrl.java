@@ -49,7 +49,8 @@ public class AlumnoCtrl {
 		
 		String pass = KeyGenerators.string().generateKey();
 		String user = "alumno@"+alumno.getCarnet().toLowerCase();
-		Usuario usuario = new Usuario(new Rol(4), user,pass, "A");
+		Rol rol = new RolCtrl().findByTipo("ROLE_ALUMNO");
+		Usuario usuario = new Usuario(rol, user,pass, "A");
 		UsuarioCtrl uCtrl = new UsuarioCtrl();
 		uCtrl.guardar(usuario);
 		alumno.setUsuario(usuario);

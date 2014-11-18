@@ -33,20 +33,20 @@ import org.hibernate.annotations.NamedQuery;
 public class Evaluacion implements java.io.Serializable {
 
 	private Integer ident;
-	private int materia;
+	private Materia materia;
 	private String evaluacion;
 	private String descripcion;
 	private float porcentaje;
 	private String bimestre;
 	private Date fecha;
 	private String estado;
-	private int grado;
+	private Grado grado;
 
 	public Evaluacion() {
 	}
 
-	public Evaluacion(int materia, String evaluacion, float porcentaje,
-			String bimestre, Date fecha, String estado, int grado) {
+	public Evaluacion(Materia materia, String evaluacion, float porcentaje,
+			String bimestre, Date fecha, String estado, Grado grado) {
 		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.porcentaje = porcentaje;
@@ -56,9 +56,9 @@ public class Evaluacion implements java.io.Serializable {
 		this.grado = grado;
 	}
 
-	public Evaluacion(int materia, String evaluacion, String descripcion,
+	public Evaluacion(Materia materia, String evaluacion, String descripcion,
 			float porcentaje, String bimestre, Date fecha, String estado,
-			int grado) {
+			Grado grado) {
 		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.descripcion = descripcion;
@@ -79,13 +79,14 @@ public class Evaluacion implements java.io.Serializable {
 	public void setIdent(Integer ident) {
 		this.ident = ident;
 	}
-
-	@Column(name = "materia", nullable = false)
-	public int getMateria() {
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "materia", nullable = false)
+	public Materia getMateria() {
 		return this.materia;
 	}
 
-	public void setMateria(int materia) {
+	public void setMateria(Materia materia) {
 		this.materia = materia;
 	}
 
@@ -144,18 +145,19 @@ public class Evaluacion implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	@Column(name = "grado", nullable = false)
-	public int getGrado() {
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "grado", nullable = false)
+	public Grado getGrado() {
 		return this.grado;
 	}
 
-	public void setGrado(int grado) {
+	public void setGrado(Grado grado) {
 		this.grado = grado;
 	}
 	
 	public String toString(){
-		return this.gradoMateria.getGrado().toString()+" "+
-			   this.gradoMateria.getMateria().toString()+" "+
+		return this.grado.toString()+" "+
+			   this.materia.toString()+" "+
 			   this.descripcion+" "+
 			   this.porcentaje;
 	}

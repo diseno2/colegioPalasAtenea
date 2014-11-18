@@ -32,6 +32,11 @@ public class RolCtrl {
 		return rol;
 	}
 	
+	public Rol findByTipo(String tipo){
+		Rol rol = dao.findByTipo(tipo);
+		return rol;
+	}
+	
 	public List findByAll(){
 		List lst = dao.findByAll();
 		return lst;

@@ -42,7 +42,7 @@ public class Docente implements java.io.Serializable {
 	private String telefono;
 	private Date fnacimiento;
 	private Date fcontrato;
-	private Set<Grado> grados = new HashSet<Grado>(0);
+	private Set<Seccion> secciones = new HashSet<Seccion>(0);
 
 	public Docente() {
 		this.ident=0;
@@ -76,7 +76,7 @@ public class Docente implements java.io.Serializable {
 
 	public Docente(Usuario usuario, String nombre1, String nombre2,
 			String apellido1, String apellido2, String direccion,
-			String telefono, Date fnacimiento, Date fcontrato, Set<Grado> grados) {
+			String telefono, Date fnacimiento, Date fcontrato, Set<Seccion> secciones) {
 		this.usuario = usuario;
 		this.nombre1 = nombre1;
 		this.nombre2 = nombre2;
@@ -86,7 +86,7 @@ public class Docente implements java.io.Serializable {
 		this.telefono = telefono;
 		this.fnacimiento = fnacimiento;
 		this.fcontrato = fcontrato;
-		this.grados = grados;
+		this.secciones = secciones;
 	}
 
 	@Id
@@ -185,12 +185,12 @@ public class Docente implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "docente")
-	public Set<Grado> getGrados() {
-		return this.grados;
+	public Set<Seccion> getSecciones() {
+		return this.secciones;
 	}
 
-	public void setGrados(Set<Grado> grados) {
-		this.grados = grados;
+	public void setSecciones(Set<Seccion> secciones) {
+		this.secciones = secciones;
 	}
 	
 	public String toString(){

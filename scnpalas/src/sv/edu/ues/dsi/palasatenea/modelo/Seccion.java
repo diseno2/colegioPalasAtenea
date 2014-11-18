@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -33,6 +36,7 @@ public class Seccion implements java.io.Serializable {
 	private Docente docente;
 	private int inscritos;
 	private String estado;
+	private String seccion;
 	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
 
 	public Seccion() {
@@ -124,9 +128,21 @@ public class Seccion implements java.io.Serializable {
 	public void setMatriculas(Set<Matricula> matriculas) {
 		this.matriculas = matriculas;
 	}
+
+	@Column(name = "seccion", nullable = false, length = 1)
+	public String getSeccion() {
+		return seccion;
+	}
+	
+	public void setSeccion(String seccion) {
+		this.seccion = seccion;
+	}
 	
 	public String toString(){
 		return this.grado+" "+
+			   this.periodo.toString()+" "+
+			   this.grado.toString()+" "+
+			   this.docente.toString()+" "+
 			   this.seccion;
 	}
 

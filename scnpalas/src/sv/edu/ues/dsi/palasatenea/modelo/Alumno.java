@@ -60,6 +60,25 @@ public class Alumno implements java.io.Serializable {
 	private Set<Nota> notas = new HashSet<Nota>(0);
 
 	public Alumno() {
+		this.ident=0;
+		this.carnet = "";
+		this.estado = 0;
+		this.nombre1 = "";
+		this.nombre2 = "";
+		this.apellido1 = "";
+		this.apellido2 = "";
+		this.genero = "";
+		//this.fnacimiento = new Date();
+		this.lnacimiento = "";
+		this.direccion = "";
+		this.telefono = "";
+		this.religion = "";
+		this.enfermedades = "";
+		this.medicamentos = "";
+		this.alergico = "";
+		this.aprendizaje = "";
+		this.escuelaprevia = "";
+		this.correo="";
 	}
 
 	public Alumno(Usuario usuario, Grado gradoByGradoActual,
