@@ -1,5 +1,6 @@
 /* GENERALES */
 body {margin:25px auto;padding:0;font:76% Arial,sans-serif;background:#5298af;color:#222;line-height:1.3em}
+head {background: url("/scnpalas/images/header.jpg");}
 /*
  * caption{font-size:32px;color:#009933;font-weight:bold;background:#ecf4f6;height:25px;padding-top:15px;}
 th{font-size:24px;color:#303030;font-weight:bold;text-align:center;}
