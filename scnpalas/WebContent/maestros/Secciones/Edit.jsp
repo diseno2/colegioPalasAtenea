@@ -101,7 +101,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Untitled Document</title>
+	<title>Colegio Palas Atenea - SRN</title>
 	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
