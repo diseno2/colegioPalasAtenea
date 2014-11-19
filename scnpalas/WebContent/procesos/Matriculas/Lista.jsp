@@ -74,15 +74,20 @@
 	}else{
 		Matricula matricula;
 		for(int i=0;i<lst.size();i++){
-			matricula = (Matricula) lst.get(i); 
+			matricula = (Matricula) lst.get(i);
+			
 			mensaje += "<tr>"+
 							"<td>"+matricula.getAlumno().toString()+"</td>"+
 							"<td>"+matricula.getSeccion().toString()+"</td>"+
 							"<td>"+matricula.getEstado()+"</td>"+
 							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
 							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
-						"</tr>"; 
+							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>";
+			if (matricula.getEstado().equals("A"))
+				mensaje += "<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=baja'><img alt='Del' class='iconbaja' ></a></td>";
+			if (matricula.getEstado().equals("E"))
+				mensaje += "<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=alta'><img alt='Del' class='iconalta' ></a></td>";
+			mensaje += "</tr>"; 
 		}
 	}
 	mensaje += "</tbody>"+

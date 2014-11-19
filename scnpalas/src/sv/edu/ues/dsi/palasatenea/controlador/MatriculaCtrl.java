@@ -4,8 +4,15 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.security.crypto.keygen.KeyGenerators;
+
+import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Matricula;
+import sv.edu.ues.dsi.palasatenea.modelo.Rol;
+import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
+import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.MatriculaDao;
+import sv.edu.ues.dsi.palasatenea.utilidades.Mail;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -25,6 +32,28 @@ public class MatriculaCtrl {
 	
 	public void borrar(int ident){
 		dao.borrar(ident);
+	}
+	
+	public void alta(Integer ident){
+		Matricula matricula = this.findById(ident);
+		matricula.setEstado("A");
+		this.guardar(matricula);
+		
+		Seccion seccion = matricula.getSeccion();
+		Integer inscritos = seccion.getInscritos() + 1;
+		seccion.setInscritos(inscritos);
+		new SeccionCtrl().guardar(seccion);
+	}
+	
+	public void baja(Integer ident){
+		Matricula matricula = this.findById(ident);
+		matricula.setEstado("N");
+		this.guardar(matricula);
+		
+		Seccion seccion = matricula.getSeccion();
+		Integer inscritos = seccion.getInscritos() - 1;
+		seccion.setInscritos(inscritos);
+		new SeccionCtrl().guardar(seccion);
 	}
 	
 	public Matricula findById(int ident){

@@ -75,7 +75,7 @@
 		Docente docente = dCtrl.findById(Integer.parseInt(request.getParameter("docente")));
 		seccion.setDocente(docente);
 		
-		//seccion
+		//grado
 		Grado grado = gCtrl.findById(Integer.parseInt(request.getParameter("grado")));
 		seccion.setGrado(grado);
 		

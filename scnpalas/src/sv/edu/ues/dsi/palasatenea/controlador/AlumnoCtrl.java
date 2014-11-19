@@ -55,9 +55,9 @@ public class AlumnoCtrl {
 		uCtrl.guardar(usuario);
 		alumno.setUsuario(usuario);
 		
-		if (alumno.getCorreo != null && alumno.getCorreo != ""){
+		if (alumno.getCorreo() != null && alumno.getCorreo() != ""){
 			Mail mail = new Mail();
-			mail.send(alumno.getCorreo,"Información de Usuario de Colegio Palas Atenea",
+			mail.send(alumno.getCorreo(),"Información de Usuario de Colegio Palas Atenea",
 					  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+	
 					  "Su usuario asignado es "+user+" y su contraseña "+pass);
 		}

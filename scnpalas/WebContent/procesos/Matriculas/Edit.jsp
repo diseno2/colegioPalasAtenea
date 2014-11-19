@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.MatriculaCtrl" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Matricula" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	Matricula matricula = new Matricula();
@@ -21,9 +22,48 @@
 		matricula = ctrl.findById(ident);
 	}
 	
+	//Grados
+	String secciones=null;
+	List sLst = new SeccionCtrl().findByAll();
+	if(sLst==null){
+		response.sendRedirect("Lista.jsp");
+	}else if(sLst.isEmpty()){
+		response.sendRedirect("Lista.jsp");
+	}else{
+		Seccion seccion;
+		for(int i=0;i<sLst.size();i++){
+			seccion = (Seccion) sLst.get(i); 
+			secciones += "<option value="+seccion.getIdent()+">"+seccion.toString()+"</option>"; 
+		}
+	}
+	
+	//Alumnos
+	String alumnos=null;
+	List aLst = new AlumnoCtrl().findByAll();
+	if(aLst==null){
+		response.sendRedirect("Lista.jsp");
+	}else if(sLst.isEmpty()){
+		response.sendRedirect("Lista.jsp");
+	}else{
+		Alumno alumno;
+		for(int i=0;i<aLst.size();i++){
+			alumno = (Alumno) aLst.get(i); 
+			alumnos += "<option value="+alumno.getIdent()+">"+alumno.toString()+"</option>"; 
+		}
+	}
+	
 	if (accion.equals("guardar")){
-		
 		if (ident != 0) matricula.setIdent(ident);
+		//alumno
+		Alumno alumno = new AlumnoCtrl().findById(Integer.parseInt(request.getParameter("alumno")));
+		matricula.setAlumno(alumno);
+		
+		//seccion
+		Seccion seccion = new SeccionCtrl().findById(Integer.parseInt(request.getParameter("seccion")));
+		matricula.setSeccion(seccion);
+		
+		matricula.setFecha(new Date());
+		matricula.setEstado("E");
 		ctrl.guardar(matricula);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
@@ -32,6 +72,13 @@
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
+	}else if (accion.equals("alta")) {
+		System.out.println(ident);
+		new MatriculaCtrl().alta(ident);
+		response.sendRedirect("Lista.jsp");
+	} else if (accion.equals("baja")) {
+		new MatriculaCtrl().baja(ident);
+		response.sendRedirect("Lista.jsp");
 	}
 	
 %>
@@ -60,12 +107,12 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>C&oacute;digo</td>
-							<td><input type="text" value="<%=matricula.getIdent()%>" disabled /></td>
+							<td>Alumno</td>
+							<td><select name="alumno" style="width:300px"><%=alumnos%></select></td>
 						</tr>
 						<tr>
-							<td>Descripci&oacute;n</td>
-							<td><input type="text" name="descripcion" value="<%=matricula.getEstado()%>" <%=disable%> /></td>
+							<td>Secci&oacute;n</td>
+							<td><select name="seccion" style="width:300px"><%=secciones%></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

@@ -62,9 +62,6 @@
 		disable = "disabled";
 	}
 	
-	
-	
-	
 	//aqui agregar lo necesario para configurar las materias
 	String mensaje = "";
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
@@ -74,7 +71,7 @@
 	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Materias"+ 
-							 "<a href='Edit.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' ></a>"+
+							 "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' ></a>"+
 							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
 					"</caption>"+
 					"<tr>"+
@@ -150,6 +147,7 @@
 					</tbody>
 				</table>
 			</form>
+			<br />
 			<%=mensaje%>
 		</div>
 		<div id="footer">
