@@ -23,7 +23,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "RolOpciones.findByIdent", query = "SELECT c FROM RolOpciones c WHERE ident = :id")
 })
 public class RolOpciones implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private int ident;
 	private Rol rol;
 	private String opcion;

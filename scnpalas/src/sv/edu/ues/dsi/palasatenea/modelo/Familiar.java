@@ -29,7 +29,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name="Familiar.findByAlumno", query="SELECT a FROM Familiar a, Familiares b WHERE a.ident = b.familiar AND b.alumno = :alumno")*/
 	})
 public class Familiar implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Usuario usuario;
 	private String nombre;

@@ -25,7 +25,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "LogDetalle.findByIdent", query = "SELECT c FROM LogDetalle c WHERE ident = :id")
 })
 public class LogDetalle implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Log log;
 	private String campo;

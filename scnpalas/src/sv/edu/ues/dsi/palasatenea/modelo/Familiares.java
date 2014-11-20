@@ -25,7 +25,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "Familiares.findByIdent", query = "SELECT c FROM Familiares c WHERE ident = :id")
 })
 public class Familiares implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Alumno alumno;
 	private Familiar familiar;
