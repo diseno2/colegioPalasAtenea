@@ -28,7 +28,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "GradoMateria.findByIdent", query = "SELECT c FROM GradoMateria c WHERE ident = :id")
 })
 public class GradoMateria implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Grado grado;
 	private Materia materia;
