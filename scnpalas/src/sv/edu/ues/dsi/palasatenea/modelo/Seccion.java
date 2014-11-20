@@ -29,7 +29,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "Seccion.findByIdent", query = "SELECT c FROM Seccion c WHERE ident = :id")
 })
 public class Seccion implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Grado grado;
 	private Periodo periodo;

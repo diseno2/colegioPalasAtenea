@@ -25,7 +25,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "Rol.findByTipo", query = "SELECT c FROM Rol c WHERE tipo = :tipo")
 })
 public class Rol implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private int ident;
 	private String descripcion;
 	private String tipo;
