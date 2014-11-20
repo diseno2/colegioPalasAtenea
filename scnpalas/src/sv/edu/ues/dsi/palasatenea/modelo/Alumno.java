@@ -32,7 +32,7 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name="Alumno.findByYear", query="SELECT COUNT(a) FROM Alumno a WHERE a.carnet <> null AND a.carnet <> '' AND Year(a.fnacimiento) = :anio")
 	})
 public class Alumno implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Usuario usuario;
 	private Grado gradoByGradoActual;
