@@ -38,7 +38,7 @@ public class SubPeriodo implements java.io.Serializable {
 	private String estado;
 	private Date inicio;
 	private Date fin;
-	private Set<Evaluacion> evaluaciones = new HashSet<Evaluaciones>(0);
+	private Set<Evaluacion> evaluaciones = new HashSet<Evaluacion>(0);
 
 	public SubPeriodo() {
 		this.ident = 0;

@@ -37,7 +37,7 @@ public class Evaluacion implements java.io.Serializable {
 	private String evaluacion;
 	private String descripcion;
 	private float porcentaje;
-	private String bimestre;
+	private SubPeriodo subperiodo;
 	private Date fecha;
 	private String estado;
 	private Grado grado;
@@ -46,24 +46,24 @@ public class Evaluacion implements java.io.Serializable {
 	}
 
 	public Evaluacion(Materia materia, String evaluacion, float porcentaje,
-			String bimestre, Date fecha, String estado, Grado grado) {
+			SubPeriodo subperiodo, Date fecha, String estado, Grado grado) {
 		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.porcentaje = porcentaje;
-		this.bimestre = bimestre;
+		this.subperiodo = subperiodo;
 		this.fecha = fecha;
 		this.estado = estado;
 		this.grado = grado;
 	}
 
 	public Evaluacion(Materia materia, String evaluacion, String descripcion,
-			float porcentaje, String bimestre, Date fecha, String estado,
+			float porcentaje, SubPeriodo subperiodo, Date fecha, String estado,
 			Grado grado) {
 		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.descripcion = descripcion;
 		this.porcentaje = porcentaje;
-		this.bimestre = bimestre;
+		this.subperiodo = subperiodo;
 		this.fecha = fecha;
 		this.estado = estado;
 		this.grado = grado;
@@ -116,14 +116,15 @@ public class Evaluacion implements java.io.Serializable {
 	public void setPorcentaje(float porcentaje) {
 		this.porcentaje = porcentaje;
 	}
-
-	@Column(name = "bimestre", nullable = false, length = 45)
-	public String getBimestre() {
-		return this.bimestre;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "subperiodo", nullable = false)
+	public SubPeriodo getSubperiodo() {
+		return this.subperiodo;
 	}
 
-	public void setBimestre(String bimestre) {
-		this.bimestre = bimestre;
+	public void setSubperiodo(SubPeriodo subperiodo) {
+		this.subperiodo = subperiodo;
 	}
 
 	@Temporal(TemporalType.DATE)
