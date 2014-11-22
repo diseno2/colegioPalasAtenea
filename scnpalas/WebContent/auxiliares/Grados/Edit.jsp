@@ -25,7 +25,7 @@
 	//Grados
 	String gradosprevio=null;
 	String gradossiguiente=null;
-	List lst = ctrl.findByAll();
+	List<Grado> lst = ctrl.findByAll();
 	if(lst==null){
 		
 	}else if(lst.isEmpty()){
@@ -65,7 +65,7 @@
 	//aqui agregar lo necesario para configurar las materias
 	String mensaje = "";
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
-	List gMLst = null;
+	List<GradoMateria> gMLst = null;
 	gMLst = gMCtrl.findByAll();
 	
 	mensaje = "<table id='tabla'>"+
@@ -122,9 +122,7 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=grado.getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Grado</caption>
-					</thead>
+					<caption>Grado</caption>
 					<tbody>
 						<tr>
 							<td>Grado</td>

@@ -74,9 +74,7 @@
 				<input type="hidden" name="ident" value="<%=gradoMateria.getIdent()%>"  />
 				<input type="hidden" name="identGrado" value="<%=gradoMateria.getGrado().getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Configuraci&oacute;n de Materias</caption>
-					</thead>
+					<caption>Configuraci&oacute;n de Materias</caption>
 					<tbody>
 						<tr>
 							<td>Materia</td>

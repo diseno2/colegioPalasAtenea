@@ -8,7 +8,7 @@
 <%
 	DocenteCtrl ctrl = new DocenteCtrl();
 	Docente docente = new Docente();
-	List lst = null;
+	List<Docente> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)

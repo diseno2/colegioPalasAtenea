@@ -6,7 +6,7 @@
 <%@ page import="java.text.*" %>
 <%
 	PeriodoCtrl ctrl = new PeriodoCtrl();
-	List lst = null;
+	List<Periodo> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)

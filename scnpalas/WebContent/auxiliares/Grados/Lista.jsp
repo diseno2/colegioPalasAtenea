@@ -5,7 +5,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	GradoCtrl ctrl = new GradoCtrl();
-	List lst = null;
+	List<Grado> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)

@@ -23,7 +23,7 @@
 	if (accion.equals("guardar")){
 		//familiar.setAlumno(idAlumno);
 		familiar.setNombre(request.getParameter("nombre"));
-		familiar.setParentesco(Integer.parseInt(request.getParameter("parentesco")));
+		//familiar.setParentesco(Integer.parseInt(request.getParameter("parentesco")));
 		familiar.setTelefono(request.getParameter("telefono"));
 		familiar.setEmail(request.getParameter("email"));
 		familiar.setCelular(request.getParameter("celular"));

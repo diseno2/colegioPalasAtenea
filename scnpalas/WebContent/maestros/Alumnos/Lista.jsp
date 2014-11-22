@@ -6,7 +6,7 @@
 <%
 	AlumnoCtrl ctrl = new AlumnoCtrl();
 	Alumno alumno = new Alumno();
-	List alumnoList = null;
+	List<Alumno> alumnoList = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)

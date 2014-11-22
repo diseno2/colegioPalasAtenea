@@ -19,7 +19,7 @@
 	//Grados
 	String grados=null;
 	GradoCtrl gCtrl = new GradoCtrl();
-	List gLst = gCtrl.findByAll();
+	List<Grado> gLst = gCtrl.findByAll();
 	if(gLst==null){}else if(gLst.isEmpty()){}else{
 		Grado grado;
 		for(int i=0;i<gLst.size();i++){

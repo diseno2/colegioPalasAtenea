@@ -62,9 +62,7 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=materia.getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Materia</caption>
-					</thead>
+					<caption>Materia</caption>
 					<tbody>
 						<tr>
 							<td>C&oacute;digo</td>

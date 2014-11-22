@@ -5,7 +5,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	MateriaCtrl ctrl = new MateriaCtrl();
-	List lst = null;
+	List<Materia> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)

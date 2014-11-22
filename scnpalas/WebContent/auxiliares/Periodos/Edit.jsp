@@ -71,9 +71,7 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=periodo.getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Periodo</caption>
-					</thead>
+					<caption>Periodo</caption>
 					<tbody>
 						<tr>
 							<td>A&ntilde;o</td>

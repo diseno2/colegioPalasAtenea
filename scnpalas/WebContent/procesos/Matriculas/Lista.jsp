@@ -5,7 +5,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	MatriculaCtrl ctrl = new MatriculaCtrl();
-	List lst = null;
+	List<Matricula> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)
@@ -28,7 +28,7 @@
 	//Alumnos
 	String alumnos=null;
 	AlumnoCtrl aCtrl = new AlumnoCtrl();
-	List aLst = aCtrl.findByAll();
+	List<Alumno> aLst = aCtrl.findByAll();
 	if(aLst==null){}else if(aLst.isEmpty()){}else{
 		Alumno alumno;
 		for(int i=0;i<aLst.size();i++){
@@ -39,7 +39,7 @@
 	//Grados
 	String grados=null;
 	GradoCtrl gCtrl = new GradoCtrl();
-	List gLst = gCtrl.findByAll();
+	List<Grado> gLst = gCtrl.findByAll();
 	if(gLst==null){}else if(gLst.isEmpty()){}else{
 		Grado grado;
 		for(int i=0;i<gLst.size();i++){

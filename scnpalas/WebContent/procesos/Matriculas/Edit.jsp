@@ -24,7 +24,7 @@
 	
 	//Grados
 	String secciones=null;
-	List sLst = new SeccionCtrl().findByAll();
+	List<Seccion> sLst = new SeccionCtrl().findByAll();
 	if(sLst==null){
 		response.sendRedirect("Lista.jsp");
 	}else if(sLst.isEmpty()){
@@ -39,7 +39,7 @@
 	
 	//Alumnos
 	String alumnos=null;
-	List aLst = new AlumnoCtrl().findByAll();
+	List<Alumno> aLst = new AlumnoCtrl().findByAll();
 	if(aLst==null){
 		response.sendRedirect("Lista.jsp");
 	}else if(sLst.isEmpty()){
@@ -102,9 +102,7 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=matricula.getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Matricula</caption>
-					</thead>
+					<caption>Matricula</caption>
 					<tbody>
 						<tr>
 							<td>Alumno</td>

@@ -12,7 +12,7 @@
 	//Docentes
 	String docentes=null;
 	DocenteCtrl dCtrl = new DocenteCtrl();
-	List dLst = dCtrl.findByAll();
+	List<Docente> dLst = dCtrl.findByAll();
 	if(dLst==null){
 		response.sendRedirect("Lista.jsp?mensaje='No hay docentes'");
 	}else if(dLst.isEmpty()){
@@ -28,7 +28,7 @@
 	//Grados
 	String grados=null;
 	GradoCtrl gCtrl = new GradoCtrl();
-	List gLst = gCtrl.findByAll();
+	List<Grado> gLst = gCtrl.findByAll();
 	if(gLst==null){
 		response.sendRedirect("Lista.jsp");
 	}else if(gLst.isEmpty()){
@@ -44,7 +44,7 @@
 	//periodo
 	String periodos=null;
 	PeriodoCtrl pCtrl = new PeriodoCtrl();
-	List pLst = pCtrl.findByAll();
+	List<Periodo> pLst = pCtrl.findByAll();
 	if(pLst==null){
 			response.sendRedirect("Lista.jsp?mensaje='No hay periodo'");
 	}else if(pLst.isEmpty()){
@@ -120,9 +120,7 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=seccion.getIdent()%>"  />
 				<table>
-					<thead>
-						<caption>Seccion</caption>
-					</thead>
+					<caption>Seccion</caption>
 					<tbody>
 						<tr>
 							<td>Periodo</td>

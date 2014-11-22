@@ -5,7 +5,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	SeccionCtrl ctrl = new SeccionCtrl();
-	List lst = null;
+	List<Seccion> lst = null;
 	
 	String accion = request.getParameter("accion");
 	if (accion == null)
@@ -36,7 +36,7 @@
 	//Docentes
 	String docentes=null;
 	DocenteCtrl dCtrl = new DocenteCtrl();
-	List dLst = dCtrl.findByAll();
+	List<Docente> dLst = dCtrl.findByAll();
 	if(dLst==null){}else if(dLst.isEmpty()){}else{
 		Docente docente;
 		for(int i=0;i<dLst.size();i++){
@@ -48,7 +48,7 @@
 	//Grados
 	String grados=null;
 	GradoCtrl gCtrl = new GradoCtrl();
-	List gLst = gCtrl.findByAll();
+	List<Grado> gLst = gCtrl.findByAll();
 	if(gLst==null){}else if(gLst.isEmpty()){}else{
 		Grado grado;
 		for(int i=0;i<gLst.size();i++){
@@ -60,7 +60,7 @@
 	//periodo
 	String periodos=null;
 	PeriodoCtrl pCtrl = new PeriodoCtrl();
-	List pLst = pCtrl.findByAll();
+	List<Periodo> pLst = pCtrl.findByAll();
 	if(pLst==null){}else if(dLst.isEmpty()){}else{
 		Periodo periodo;
 		for(int i=0;i<pLst.size();i++){
