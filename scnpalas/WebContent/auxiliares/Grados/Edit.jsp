@@ -71,8 +71,8 @@
 	mensaje = "<table id='tabla'>"+
 			  	"<thead>"+
 					"<caption id='query'>Materias"+ 
-							 "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' ></a>"+
-							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
+							 "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>"+
+							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' title='Imprimir' ></a>"+
 					"</caption>"+
 					"<tr>"+
 						"<th>Materia</th>"+
@@ -90,9 +90,9 @@
 			mensaje += "<tr>"+
 							"<td>"+gradoMateria.getMateria().toString()+"</td>"+
 							"<td>"+gradoMateria.getDocente().toString()+"</td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=ver&identGrado="+grado.getIdent()+"'><img alt='Ver' class='iconview' ></a></td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=edit&identGrado="+grado.getIdent()+"'><img alt='Edit' class='iconedit' ></a></td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&identGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=ver&identGrado="+grado.getIdent()+"'><img alt='Ver' class='iconview' title='Ver' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=edit&identGrado="+grado.getIdent()+"'><img alt='Edit' class='iconedit' title='Editar' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&identGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
 						"</tr>"; 
 		}
 	}

@@ -5,7 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Colegio Palas Atenea - SRN</title>
-	<link href="/scnPalas/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
+	<script src="/scnpalas/js/query.js"></script>
 </head>
 <body>
 	<div id="wrap">

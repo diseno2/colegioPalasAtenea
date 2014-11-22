@@ -21,55 +21,32 @@
 	}
 	
 	String mensaje = "";
-	
-	mensaje = "<table id='tabla'>"+
-			  	"<thead>"+
-					"<caption id='query'>Periodos"+ 
-							 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
-							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
-							 "<div class='formQuery'>"+
-								"<form action='Lista.jsp' method='post'>"+
-									"<input type='hidden' name='accion' value='buscar' /> "+
-									"<p>A&ntilde;o<input type='text' name='anio' /></p>"+
-									"<p>Inicio<input type='text' id='datepicker1' name='inicio' /></p>"+
-									"<p>Fin<input type='text' id='datepicker2' name='fin' /></p>"+
-									"<p><input type='submit' value='Buscar' /></p>"+
-								"</form>"+
-							 "</div>"+
-					"</caption>"+
-					"<tr>"+
-						"<th>A&ntilde;o</th>"+
-						"<th>Inicio</th>"+
-						"<th>Fin</th>"+
-						"<th colspan=3>Acciones</th>"+
-					"</tr>"+
-				"</thead>"+
-				"<tbody>";
-	
 	if(lst.isEmpty()){
 		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
 	}else{
 		Periodo periodo;
-		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
-		String fi , ff;
+		DateFormat df = DateFormat.getDateInstance();
+		String fi , ff;		
 		
 		for(int i=0;i<lst.size();i++){
 			periodo = (Periodo) lst.get(i); 
 			fi =  df.format(periodo.getInicio());
 			ff =  df.format(periodo.getFin());
+			System.out.println(periodo.getSeccions());
 			
 			mensaje += "<tr>"+
 							"<td>"+periodo.getAnio()+"</td>"+
-							"<td>"+fi+"</td>"+
+							"<td>"+periodo.getInicio()+"</td>"+
 							"<td>"+ff+"</td>"+
-							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>"+
-						"</tr>"; 
+							"<td>"+
+								"<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;"+
+								"<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
+		 	if (ctrl.puedoBorrar(periodo) == true)
+				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
 		}
 	}
-	mensaje += "</tbody>"+
-			   "</table>";
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -80,6 +57,7 @@
 	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
+	<script src="/scnpalas/js/query.js"></script>
 	<script language="javascript">
 		$(function() {
 			$( "#datepicker1" ).datepicker();
@@ -96,14 +74,49 @@
 		<%=new Utilidades().getMenu()%>
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
-			<%=mensaje %>
+			<table id='tabla'>
+				<thead>
+					<caption >Periodos&nbsp; 
+						<a href="Edit.jsp?accion=new&ident=0"><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;
+						<a href='Print.jsp?tiporeporte=pdf'><img id='iconos' alt='Imprimir' class='iconprint' title='Imprimir' /></a>&nbsp;
+						<a href="javascript:ShowQueryForm();" ><img id='iconos' alt='Buscar' class='iconquery' title='Buscar' /></a>&nbsp;
+					</caption>
+					<tr>
+						<th>A&ntilde;o</th>
+						<th>Inicio</th>
+						<th>Fin</th>
+						<th width=150px>Acciones</th>
+					</tr>
+				</thead>
+				<tbody><%=mensaje %></tbody>
+			</table>
+			<div id="query" title="Par&aacute;metros de b&uacute;squeda">
+	  			<form method="post">
+	  				<input type='hidden' name='accion' value='buscar' />
+	  				<table>
+	  					<tr>
+	  						<td>A&ntilde;o</td>
+	  						<td><input type='text' name='anio' /></td>
+	  					</tr>
+	  					<tr>
+	  						<td>Inicio</td>
+	  						<td><input type='text' id='datepicker1' name='inicio' /></td>
+	  					</tr>
+	  					<tr>
+	  						<td>Fin</td>
+	  						<td><input type='text' id='datepicker2' name='fin' /></td>
+	  					</tr>
+	  				</table>
+	    			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+	    		</form>
+    		</div>
+			
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>
 			<div class="fright"><a href="#">Acerca de</a></div>
 			<div class="fcenter"><a href="#">Contacto</a></div>
 		</div>
-		<img src=""  />
 	</div>
 </body>
 </html>

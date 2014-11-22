@@ -1,20 +1,6 @@
 /* GENERALES */
 body {margin:25px auto;padding:0;font:76% Arial,sans-serif;background:#5298af;color:#222;line-height:1.3em}
 head {background: url("/scnpalas/images/header.jpg");}
-/*
- * caption{font-size:32px;color:#009933;font-weight:bold;background:#ecf4f6;height:25px;padding-top:15px;}
-th{font-size:24px;color:#303030;font-weight:bold;text-align:center;}
-* {margin:0;padding:0}
-.fleft {float:left}
-.fright {float:right}
-.fcenter {float:none;text-align:center}
-.fclear {clear:both}
-.inner_copy {border:0;color:#f00;float:right;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
-* 
-*/
-/*a {text-decoration:none;color:#20526a;font-weight:bold}
-a:hover {text-decoration:underline;color:#20526a}
-a img {border:0}*/
 p {margin:0 0 18px 8px}
 h2 {font-size:1.5em;font-weight:normal;letter-spacing:-1px;margin:10px 0 8px 0}
 h3 {font-size:1.2em;margin:2px 0 8px 0}
@@ -69,16 +55,18 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 #footer .fcenter {float:none;margin:0 auto;text-align:center}
 
 /* ICONOS */
+#iconos{border-radius: 5px; border: 1px solid Gray;box-shadow: 0px 0px 10px #33afd1;}
+#iconos:hover{box-shadow: 0px 0px 10px #FF6600;}
 .iconnew{content:url(/scnpalas/images/new.jpg); width: 25px;height: 25px;}
 .icondel{content:url(/scnpalas/images/del.jpg); width: 25px;height: 25px;}
 .iconview{content:url(/scnpalas/images/view.jpg); width: 25px;height: 25px;}
 .iconedit{content:url(/scnpalas/images/edit.jpg); width: 25px;height: 25px;}
 .iconprint{content:url(/scnpalas/images/print.jpg); width: 25px;height: 25px;}
 .iconprintxls{content:url(/scnpalas/images/printxls.jpg); width: 25px;height: 25px;}
-.iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px;}
-.iconquery{content:url(/scnpalas/images/search.jpg); width: 25px;height: 25px;}
+.iconlock{content:url(/scnpalas/images/lock.jpg); width: 25px;height: 25px; }
+.iconquery{content:url(/scnpalas/images/search.jpg); width: 25px;height: 25px; }
 .iconalta{content:url(/scnpalas/images/alta.jpg); width: 25px;height: 25px;}
-.iconbaja{content:url(/scnpalas/images/baja.jpg); width: 25px;height: 25px;}
+.iconbaja{content:url(/scnpalas/images/baja.jpg); width: 25px;height: 25px; }
 
 /* LOGIN */
 #login {position:absolute; top:200px; float:left; width:95%; height:310px;}/*border:3px solid Red;*/
@@ -107,11 +95,8 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 #message fieldset input[type="submit"]:hover {background-color: #ff6600;}
 
 /* CONSULTA */
-#query:hover .formQuery{display:block;}
-.formQuery{display:none;padding:15px 0 0 15px;border:1px solid #ccc;background-color:#f1f1f1;position:relative;width:400px;font-size:12px;color:#303030;}
-#query {vertical-align:middle;}
-#query p{text-align:center;}
-#query tr:hover{background-color:#f1f1f1;}
+#query {display: none;font-size: 15px;}
+#query table{border: none;}
 
 /* TABLAS */
 #tabla{border:1px solid #5298af;width:100%;-webkit-border-radius: 10px 10px 10px 10px;}

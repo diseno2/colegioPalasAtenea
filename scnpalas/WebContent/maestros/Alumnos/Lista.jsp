@@ -21,42 +21,6 @@
 	}
 	
 	String mensaje = "";
-	
-	mensaje = "<table id='tabla'>"+
-		  		"<thead>"+
-					"<caption id='query'>Alumnos"+ 
-						 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' ></a>"+
-						 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' ></a>"+
-								 "<div class='formQuery'>"+
-									"<form action='Lista.jsp' method='post'>"+
-									"<input type='hidden' name='accion' value='buscar' /> "+
-										"<p>Nombres<input type='text' name='nombre1' size=15><input type='text' name='nombre2' size=15></p>"+
-										"<p>Apellidos<input type='text' name='apellido1' size=15><input type='text' name='apellido2' size=15></p>"+
-										"<p>Genero<input type='radio' name='genero' value='M'>Masculino<input type='radio' name='genero' value='F'>Femenino</p>"+
-										"<p>Grado Actual<select name='grado'>"+
-														"<option value='10'>Kinder 4</option>"+
-														"<option value='11'>Kinder 5</option>"+
-														"<option value='12'>Preparatoria</option>"+
-														"<option value='1'>Primero</option>"+
-														"<option value='2'>Segundo</option>"+
-														"<option value='3'>Tercero</option>"+
-														"<option value='4'>Cuarto</option>"+
-														"<option value='5'>Quinto</option>"+
-														"<option value='6'>Sexto</option>"+
-														"<option value='7'>Septimo</option>"+
-														"<option value='8'>Octavo</option>"+
-														"<option value='9'>Noveno</option>"+
-													"</select></p>"+
-										"<p><input type='submit' value='Buscar' /></p>"+
-									"</form>"+
-								 "</div>"+
-					"</caption>"+
-					"<tr>"+
-						"<th>Carnet</th>"+
-						"<th colspan=2>Nombres</th>"+
-						"<th colspan=2>Apellidos</th>"+
-						"<th colspan=3>Acciones</th>"+
-					"</tr>";
 	if(alumnoList.isEmpty()){
 		mensaje += "<tr><td colspan=6>No existen alumnos registrados</td></tr>";
 	}else{
@@ -67,23 +31,20 @@
 						   "<td>"+alumno.getNombre2()+"</td>"+
 						   "<td>"+alumno.getApellido1()+"</td>"+
 						   "<td>"+alumno.getApellido2()+"</td>"+
-						   "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=ver'><img alt='Ver' class='iconview' ></a></td>"+
-							"<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=edit'><img alt='Edit' class='iconedit' ></a></td>";
-							
-						   
+						   "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
+						   "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;";						   
 			if (alumno.getEstado()== 0)
-				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=borrar'><img alt='Del' class='icondel' ></a></td>";
+				mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;";
 			
 			//evaluar que si es administrador puede darlo de alta o de baja
 			if (alumno.getEstado() == 1)
-				mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=baja'><img alt='Del' class='iconbaja' ></a></td>";
+				mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=baja'><img id='iconos' alt='Del' class='iconbaja' ></a>&nbsp;";
 			if (alumno.getEstado() == 0)
-					mensaje += "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=alta'><img alt='Del' class='iconalta' ></a></td>";
+					mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=alta'><img id='iconos' alt='Del' class='iconalta' ></a>&nbsp;";
 			
-			mensaje += "</tr>";
+			mensaje += "</td></tr>";
 		}
 	}
-	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -91,6 +52,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Colegio Palas Atenea - SRN</title>
 	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
+	<script src="/scnpalas/js/query.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -101,13 +66,49 @@
 		<%=new Utilidades().getMenu()%>
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
-			<input type="hidden" name="accion" value="consulta">
-			<%=mensaje %>
+			<table id='tabla'>
+				<caption>Alumnos&nbsp;
+					<a href='Edit.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;
+					<a href='Print.jsp?tiporeporte=pdf'><img id='iconos' alt='Print'class='iconprint' title='Imprimir' ></a>&nbsp;
+					<a href="javascript:ShowQueryForm();" ><img id='iconos' alt='Buscar' class='iconquery' title='Buscar' /></a>&nbsp;
+				</caption>
+		  		<thead>
+					<tr>
+						<th>Carnet</th>
+						<th colspan=2>Nombres</th>
+						<th colspan=2>Apellidos</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody><%=mensaje %></tbody>
+			</table>
+			
+			<div id="query" title="Par&aacute;metros de b&uacute;squeda">
+	  			<form method="post">
+	  				<input type='hidden' name='accion' value='buscar' />
+	  				<table>
+	  					<tr>
+	  						<td>A&ntilde;o</td>
+	  						<td><input type='text' name='anio' /></td>
+	  					</tr>
+	  					<tr>
+	  						<td>Inicio</td>
+	  						<td><input type='text' id='datepicker1' name='inicio' /></td>
+	  					</tr>
+	  					<tr>
+	  						<td>Fin</td>
+	  						<td><input type='text' id='datepicker2' name='fin' /></td>
+	  					</tr>
+	  				</table>
+	    			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+	    		</form>
+    		</div>
+			
 		</div>
 		<div id="footer">
-			<div class="fleft"><a href="#">Homepage</a></div>
-			<div class="fright"><a href="#">Acerca de</a></div>
-			<div class="fcenter"><a href="#">Contacto</a></div>
+			<div class="fleft"><a href="#">Homepage</a>&nbsp;</div>
+			<div class="fright"><a href="#">Acerca de</a>&nbsp;</div>
+			<div class="fcenter"><a href="#">Contacto</a>&nbsp;</div>
 		</div>
 	</div>
 </body>
