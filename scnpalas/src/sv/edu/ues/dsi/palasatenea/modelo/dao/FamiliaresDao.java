@@ -52,6 +52,7 @@ public class FamiliaresDao{
 	private Familiares findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Familiares.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Familiares familiares = (Familiares)crt.uniqueResult();
 		//tx.finSesion();
 		return familiares;

@@ -52,6 +52,7 @@ public class UsuarioDao{
 	private Usuario findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Usuario.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Usuario usuario = (Usuario)crt.uniqueResult();
 		//tx.finSesion();
 		return usuario;

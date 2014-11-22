@@ -52,6 +52,7 @@ public class GradoDao{
 	private Grado findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Grado.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Grado grado = (Grado)crt.uniqueResult();
 		//tx.finSesion();
 		return grado;

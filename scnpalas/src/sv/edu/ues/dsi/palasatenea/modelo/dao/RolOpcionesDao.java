@@ -52,6 +52,7 @@ public class RolOpcionesDao{
 	private RolOpciones findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(RolOpciones.class);
+		crt.add(Restrictions.eq("ident", ident));
 		RolOpciones rolOpciones = (RolOpciones)crt.uniqueResult();
 		//tx.finSesion();
 		return rolOpciones;

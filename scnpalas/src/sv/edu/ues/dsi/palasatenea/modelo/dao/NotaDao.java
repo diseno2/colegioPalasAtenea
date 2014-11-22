@@ -52,6 +52,7 @@ public class NotaDao{
 	private Nota findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Nota.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Nota nota = (Nota)crt.uniqueResult();
 		//tx.finSesion();
 		return nota;

@@ -52,6 +52,7 @@ public class EvaluacionDao{
 	private Evaluacion findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Evaluacion.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Evaluacion evaluacion = (Evaluacion)crt.uniqueResult();
 		//tx.finSesion();
 		return evaluacion;

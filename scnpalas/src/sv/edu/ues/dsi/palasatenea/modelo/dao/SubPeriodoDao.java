@@ -52,6 +52,7 @@ public class SubPeriodoDao {
 	private Subperiodo findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Subperiodo.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Subperiodo subPeriodo = (Subperiodo)crt.uniqueResult();
 		//tx.finSesion();
 		return subPeriodo;

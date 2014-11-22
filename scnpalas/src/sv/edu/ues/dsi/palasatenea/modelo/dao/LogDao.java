@@ -52,6 +52,7 @@ public class LogDao{
 	private Log findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Log.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Log log = (Log)crt.uniqueResult();
 		//tx.finSesion();
 		return log;

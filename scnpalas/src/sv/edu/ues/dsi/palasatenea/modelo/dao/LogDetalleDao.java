@@ -52,6 +52,7 @@ public class LogDetalleDao{
 	private LogDetalle findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(LogDetalle.class);
+		crt.add(Restrictions.eq("ident", ident));
 		LogDetalle logDetalle = (LogDetalle)crt.uniqueResult();
 		//tx.finSesion();
 		return logDetalle;

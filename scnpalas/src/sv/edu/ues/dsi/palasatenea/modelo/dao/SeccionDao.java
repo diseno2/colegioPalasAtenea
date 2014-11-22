@@ -52,6 +52,7 @@ public class SeccionDao {
 	private Seccion findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Seccion.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Seccion seccion = (Seccion)crt.uniqueResult();
 		//tx.finSesion();
 		return seccion;

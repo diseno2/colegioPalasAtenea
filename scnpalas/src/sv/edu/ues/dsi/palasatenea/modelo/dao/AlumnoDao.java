@@ -54,6 +54,7 @@ public class AlumnoDao{
 	private Alumno findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Alumno.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Alumno alumno = (Alumno)crt.uniqueResult();
 		//tx.finSesion();
 		return alumno;

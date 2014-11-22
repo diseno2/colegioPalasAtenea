@@ -52,6 +52,7 @@ public class DocenteDao{
 	private Docente findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Docente.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Docente docente = (Docente)crt.uniqueResult();
 		//tx.finSesion();
 		return docente;

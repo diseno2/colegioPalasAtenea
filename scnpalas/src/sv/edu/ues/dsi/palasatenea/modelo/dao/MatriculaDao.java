@@ -52,6 +52,7 @@ public class MatriculaDao{
 	private Matricula findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Matricula.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Matricula matricula = (Matricula)crt.uniqueResult();
 		//tx.finSesion();
 		return matricula;

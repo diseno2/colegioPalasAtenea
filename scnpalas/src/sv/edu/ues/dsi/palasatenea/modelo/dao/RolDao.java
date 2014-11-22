@@ -62,6 +62,7 @@ public class RolDao{
 	private Rol findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Rol.class);
+		crt.add(Restrictions.eq("ident", ident));
 		Rol rol = (Rol)crt.uniqueResult();
 		//tx.finSesion();
 		return rol;
