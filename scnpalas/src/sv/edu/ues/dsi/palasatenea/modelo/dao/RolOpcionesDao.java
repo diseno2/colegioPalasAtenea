@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.RolOpciones;
@@ -41,18 +41,19 @@ public class RolOpcionesDao{
 		return rolOpciones;
 	}
 	
-	public List findByAll(){
+	public List<RolOpciones> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("RolOpciones.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(RolOpciones.class);
+		List<RolOpciones> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private RolOpciones findByIdent(int ident){
-		Query query = s.getNamedQuery("RolOpciones.findByIdent");
-		query.setParameter("id",ident);
-		RolOpciones rolOpciones = (RolOpciones) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(RolOpciones.class);
+		RolOpciones rolOpciones = (RolOpciones)crt.uniqueResult();
+		tx.finSesion();
 		return rolOpciones;
 	}
 	

@@ -43,22 +43,23 @@ public class AlumnoDao{
 		return alumno;
 	}
 	
-	public List findByAll(){
+	public List<Alumno> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Alumno.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Alumno.class);
+		List<Alumno> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Alumno findByIdent(int ident){
-		Query query = s.getNamedQuery("Alumno.findByIdent");
-		query.setParameter("id",ident);
-		Alumno alumno = (Alumno) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Alumno.class);
+		Alumno alumno = (Alumno)crt.uniqueResult();
+		tx.finSesion();
 		return alumno;
 	}
 	
-	public List findByParam(String nombre1, String nombre2, 
+	public List<Alumno> findByParam(String nombre1, String nombre2, 
 			String apellido1, String apellido2,
 			String genero, String grado){
 		s = tx.iniciarSesion();
@@ -71,7 +72,7 @@ public class AlumnoDao{
 		if (genero != null) aluCrit.add(Restrictions.like("genero", genero));
 		//falta filtrar por grado
 		
-		List aluList = aluCrit.list();
+		List<Alumno> aluList = aluCrit.list();
 		tx.finSesion();
 		return aluList;
 	}

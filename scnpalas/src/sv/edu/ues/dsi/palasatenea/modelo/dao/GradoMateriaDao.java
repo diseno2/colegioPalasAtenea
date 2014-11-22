@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
@@ -41,18 +41,19 @@ public class GradoMateriaDao{
 		return gradoMateria;
 	}
 	
-	public List findByAll(){
+	public List<GradoMateria> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("GradoMateria.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(GradoMateria.class);
+		List<GradoMateria> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private GradoMateria findByIdent(int ident){
-		Query query = s.getNamedQuery("GradoMateria.findByIdent");
-		query.setParameter("id",ident);
-		GradoMateria gradoMateria = (GradoMateria) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(GradoMateria.class);
+		GradoMateria gradoMateria = (GradoMateria)crt.uniqueResult();
+		tx.finSesion();
 		return gradoMateria;
 	}
 	

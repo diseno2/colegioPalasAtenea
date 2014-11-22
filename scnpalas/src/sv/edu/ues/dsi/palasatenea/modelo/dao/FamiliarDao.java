@@ -4,13 +4,9 @@ import java.sql.Connection;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
-import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
 public class FamiliarDao{
@@ -45,22 +41,23 @@ public class FamiliarDao{
 		return familiar;
 	}
 	
-	public List findByAll(){
+	public List<Familiar> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Familiar.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Familiar.class);
+		List<Familiar> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Familiar findByIdent(int ident){
-		Query query = s.getNamedQuery("Familiar.findByIdent");
-		query.setParameter("id",ident);
-		Familiar familiar = (Familiar) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiar.class);
+		Familiar familiar = (Familiar)crt.uniqueResult();
+		tx.finSesion();
 		return familiar;
 	}
 	
-	public List findByAlumno(Alumno alumno){
+	public List<Familiar> findByAlumno(Alumno alumno){
 		s = tx.iniciarSesion();
 		/*Criteria crt1 = s.createCriteria(Familiar.class);
 		Criteria crt2 = s.createCriteria(Familiares.class);
@@ -68,7 +65,7 @@ public class FamiliarDao{
 		List famLst2 = crt2.list();
 		crt1.add(Restrictions.in("ident", famLst2));
 		List famLst1 = crt1.list();*/
-		List famLst1 = null;
+		List<Familiar> famLst1 = null;
 		tx.finSesion();
 	    return famLst1;
 	}

@@ -3,6 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -50,18 +51,19 @@ public class RolDao{
 		return rol;
 	}
 	
-	public List findByAll(){
+	public List<Rol> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Rol.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Rol.class);
+		List<Rol> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Rol findByIdent(int ident){
-		Query query = s.getNamedQuery("Rol.findByIdent");
-		query.setParameter("id",ident);
-		Rol rol = (Rol) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Rol.class);
+		Rol rol = (Rol)crt.uniqueResult();
+		tx.finSesion();
 		return rol;
 	}
 	

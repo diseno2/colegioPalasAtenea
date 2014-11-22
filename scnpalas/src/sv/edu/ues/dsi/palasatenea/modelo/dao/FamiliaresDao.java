@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
@@ -41,18 +41,19 @@ public class FamiliaresDao{
 		return familiares;
 	}
 	
-	public List findByAll(){
+	public List<Familiares> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Familiares.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Familiares.class);
+		List<Familiares> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Familiares findByIdent(int ident){
-		Query query = s.getNamedQuery("Familiares.findByIdent");
-		query.setParameter("id",ident);
-		Familiares familiares = (Familiares) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiares.class);
+		Familiares familiares = (Familiares)crt.uniqueResult();
+		tx.finSesion();
 		return familiares;
 	}
 	

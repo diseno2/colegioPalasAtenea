@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Evaluacion;
@@ -41,18 +41,19 @@ public class EvaluacionDao{
 		return evaluacion;
 	}
 	
-	public List findByAll(){
+	public List<Evaluacion> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Evaluacion.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Evaluacion.class);
+		List<Evaluacion> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Evaluacion findByIdent(int ident){
-		Query query = s.getNamedQuery("Evaluacion.findByIdent");
-		query.setParameter("id",ident);
-		Evaluacion evaluacion = (Evaluacion) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Evaluacion.class);
+		Evaluacion evaluacion = (Evaluacion)crt.uniqueResult();
+		tx.finSesion();
 		return evaluacion;
 	}
 	

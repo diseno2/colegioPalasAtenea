@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
@@ -41,18 +41,19 @@ public class SeccionDao {
 		return seccion;
 	}
 	
-	public List findByAll(){
+	public List<Seccion> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Seccion.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Seccion.class);
+		List<Seccion> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Seccion findByIdent(int ident){
-		Query query = s.getNamedQuery("Seccion.findByIdent");
-		query.setParameter("id",ident);
-		Seccion seccion = (Seccion) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Seccion.class);
+		Seccion seccion = (Seccion)crt.uniqueResult();
+		tx.finSesion();
 		return seccion;
 	}
 	

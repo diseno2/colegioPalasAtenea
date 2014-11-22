@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Matricula;
@@ -41,18 +41,19 @@ public class MatriculaDao{
 		return matricula;
 	}
 	
-	public List findByAll(){
+	public List<Matricula> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Matricula.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Matricula.class);
+		List<Matricula> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Matricula findByIdent(int ident){
-		Query query = s.getNamedQuery("Matricula.findByIdent");
-		query.setParameter("id",ident);
-		Matricula matricula = (Matricula) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Matricula.class);
+		Matricula matricula = (Matricula)crt.uniqueResult();
+		tx.finSesion();
 		return matricula;
 	}
 	

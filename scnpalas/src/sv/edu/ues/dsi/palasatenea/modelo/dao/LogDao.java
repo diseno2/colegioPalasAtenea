@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Log;
@@ -41,18 +41,19 @@ public class LogDao{
 		return log;
 	}
 	
-	public List findByAll(){
+	public List<Log> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Log.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Log.class);
+		List<Log> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Log findByIdent(int ident){
-		Query query = s.getNamedQuery("Log.findByIdent");
-		query.setParameter("id",ident);
-		Log log = (Log) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Log.class);
+		Log log = (Log)crt.uniqueResult();
+		tx.finSesion();
 		return log;
 	}
 	

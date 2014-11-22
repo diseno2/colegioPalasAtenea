@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
@@ -41,18 +41,19 @@ public class UsuarioDao{
 		return usuario;
 	}
 	
-	public List findByAll(){
+	public List<Usuario> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Usuario.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Usuario.class);
+		List<Usuario> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Usuario findByIdent(int ident){
-		Query query = s.getNamedQuery("Usuario.findByIdent");
-		query.setParameter("id",ident);
-		Usuario usuario = (Usuario) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Usuario.class);
+		Usuario usuario = (Usuario)crt.uniqueResult();
+		tx.finSesion();
 		return usuario;
 	}
 	

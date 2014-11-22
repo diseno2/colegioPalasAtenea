@@ -3,7 +3,7 @@ package sv.edu.ues.dsi.palasatenea.modelo.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Periodo;
@@ -41,18 +41,19 @@ public class PeriodoDao{
 		return periodo;
 	}
 	
-	public List findByAll(){
+	public List<Periodo> findByAll(){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Periodo.findByAll");
-		List lst = query.list();
+		Criteria crt = s.createCriteria(Periodo.class);
+		List<Periodo> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
 	private Periodo findByIdent(int ident){
-		Query query = s.getNamedQuery("Periodo.findByIdent");
-		query.setParameter("id",ident);
-		Periodo periodo = (Periodo) query.uniqueResult();
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Periodo.class);
+		Periodo periodo = (Periodo)crt.uniqueResult();
+		tx.finSesion();
 		return periodo;
 	}
 	

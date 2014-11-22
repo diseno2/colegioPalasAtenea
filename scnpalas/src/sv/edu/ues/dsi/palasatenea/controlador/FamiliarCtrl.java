@@ -17,12 +17,12 @@ public class FamiliarCtrl {
 		dao.borrar(ident);
 	}
 	
-	public List findByAll(){
+	public List<Familiar> findByAll(){
 		return dao.findByAll();
 	}
 	
-	public List findByParam(Familiar familiar){
-		List lst = dao.findByAll();
+	public List<Familiar> findByParam(Familiar familiar){
+		List<Familiar> lst = dao.findByAll();
 		return lst;
 	}
 	
@@ -31,7 +31,7 @@ public class FamiliarCtrl {
 		return familiar;
 	}
 	
-	public List findByAlumno(Alumno alumno){
+	public List<Familiar> findByAlumno(Alumno alumno){
 		return dao.findByAlumno(alumno);
 	}
 }
