@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.Session;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Docente;
