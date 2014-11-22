@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Periodo;
 import sv.edu.ues.dsi.palasatenea.modelo.Rol;
 import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.AlumnoDao;
@@ -89,6 +90,13 @@ public class AlumnoCtrl {
 			String apellido1, String apellido2,
 			String genero, String grado){
 		return dao.findByParam(nombre1, nombre2, apellido1, apellido2,genero, grado);
+	}
+	
+	public Boolean puedoBorrar(Alumno alumno){
+		if (alumno.getFamiliareses().size() == 0 && alumno.getMatriculas().size() == 0 && alumno.getNotas().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

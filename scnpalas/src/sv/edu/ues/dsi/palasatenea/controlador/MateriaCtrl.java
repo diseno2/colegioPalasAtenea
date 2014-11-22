@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Materia;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.MateriaDao;
 
@@ -29,6 +30,13 @@ public class MateriaCtrl {
 	public List<Materia> findByParam(Materia materia){
 		List<Materia> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Materia materia){
+		if (materia.getGradoMaterias().size() == 0 && materia.getNotas().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

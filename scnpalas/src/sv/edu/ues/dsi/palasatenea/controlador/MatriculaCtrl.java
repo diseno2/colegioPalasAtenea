@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Matricula;
 import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.MatriculaDao;
@@ -52,6 +53,10 @@ public class MatriculaCtrl {
 	public List<Matricula> findByParam(Matricula matricula){
 		List<Matricula> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Matricula matricula){
+		return true;
 	}
 	
 	public byte[] reporte(){

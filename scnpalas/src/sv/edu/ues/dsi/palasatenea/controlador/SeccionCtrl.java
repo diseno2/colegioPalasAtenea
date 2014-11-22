@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.SeccionDao;
 
@@ -29,6 +30,13 @@ public class SeccionCtrl {
 	public List<Seccion> findByParam(Seccion seccion){
 		List<Seccion> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Seccion seccion){
+		if (seccion.getMatriculas().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Docente;
 import sv.edu.ues.dsi.palasatenea.modelo.Evaluacion;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.EvaluacionDao;
 
@@ -29,6 +30,13 @@ public class EvaluacionCtrl {
 	public List<Evaluacion> findByParam(Evaluacion evaluacion){
 		List<Evaluacion> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Evaluacion evaluacion){
+		if (evaluacion.getNotas().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

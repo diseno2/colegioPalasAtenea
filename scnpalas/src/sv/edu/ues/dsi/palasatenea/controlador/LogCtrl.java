@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.LogDao;
 
@@ -29,6 +30,13 @@ public class LogCtrl {
 	public List<Log> findByParam(Log log){
 		List<Log> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Log log){
+		if (log.getLogDetalles().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

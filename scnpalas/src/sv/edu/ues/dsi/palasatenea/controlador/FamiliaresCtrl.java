@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.FamiliaresDao;
 
@@ -29,6 +30,10 @@ public class FamiliaresCtrl {
 	public List<Familiares> findByParam(Familiares familiares){
 		List<Familiares> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Familiares familiares){
+		return true;
 	}
 	
 	public byte[] reporte(){

@@ -3,6 +3,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 import java.util.List;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Evaluacion;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.FamiliarDao;
 
@@ -33,5 +34,12 @@ public class FamiliarCtrl {
 	
 	public List<Familiar> findByAlumno(Alumno alumno){
 		return dao.findByAlumno(alumno);
+	}
+	
+	public Boolean puedoBorrar(Familiar familiar){
+		if (familiar.getFamiliareses().size() == 0)
+			return true;
+		else
+			return false;
 	}
 }

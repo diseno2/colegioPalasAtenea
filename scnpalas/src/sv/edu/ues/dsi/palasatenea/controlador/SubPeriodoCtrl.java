@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Subperiodo;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.SubPeriodoDao;
 
@@ -29,6 +30,13 @@ private SubPeriodoDao dao = new SubPeriodoDao();
 	public List<Subperiodo> findByParam(Subperiodo subPeriodo){
 		List<Subperiodo> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Subperiodo subperiodo){
+		if (subperiodo.getEvaluacions().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){

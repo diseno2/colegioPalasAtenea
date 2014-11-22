@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Docente;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.DocenteDao;
 
@@ -28,6 +29,13 @@ public class DocenteCtrl {
 	public List<Docente> findByParam(Docente docente){
 		List<Docente> lst = dao.findByAll();
 		return lst;
+	}
+	
+	public Boolean puedoBorrar(Docente docente){
+		if (docente.getGradoMaterias().size() == 0 && docente.getSeccions().size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public byte[] reporte(){
