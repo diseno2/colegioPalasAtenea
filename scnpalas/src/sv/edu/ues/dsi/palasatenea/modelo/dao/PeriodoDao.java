@@ -50,10 +50,10 @@ public class PeriodoDao{
 	}
 	
 	private Periodo findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Periodo.class);
 		Periodo periodo = (Periodo)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return periodo;
 	}
 	

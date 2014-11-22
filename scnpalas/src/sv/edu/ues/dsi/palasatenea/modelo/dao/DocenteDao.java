@@ -50,10 +50,10 @@ public class DocenteDao{
 	}
 	
 	private Docente findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Docente.class);
 		Docente docente = (Docente)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return docente;
 	}
 	

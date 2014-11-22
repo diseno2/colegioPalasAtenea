@@ -50,10 +50,10 @@ public class MateriaDao{
 	}
 	
 	private Materia findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Materia.class);
 		Materia materia = (Materia)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return materia;
 	}
 	

@@ -60,10 +60,10 @@ public class RolDao{
 	}
 	
 	private Rol findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Rol.class);
 		Rol rol = (Rol)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return rol;
 	}
 	

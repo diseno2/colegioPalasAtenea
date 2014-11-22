@@ -50,10 +50,10 @@ public class SeccionDao {
 	}
 	
 	private Seccion findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Seccion.class);
 		Seccion seccion = (Seccion)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return seccion;
 	}
 	

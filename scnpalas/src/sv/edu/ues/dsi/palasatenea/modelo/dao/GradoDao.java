@@ -50,10 +50,10 @@ public class GradoDao{
 	}
 	
 	private Grado findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Grado.class);
 		Grado grado = (Grado)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return grado;
 	}
 	

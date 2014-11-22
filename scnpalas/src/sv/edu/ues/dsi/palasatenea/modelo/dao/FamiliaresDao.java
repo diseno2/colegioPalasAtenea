@@ -50,10 +50,10 @@ public class FamiliaresDao{
 	}
 	
 	private Familiares findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Familiares.class);
 		Familiares familiares = (Familiares)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return familiares;
 	}
 	

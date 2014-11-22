@@ -50,10 +50,10 @@ public class LogDetalleDao{
 	}
 	
 	private LogDetalle findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(LogDetalle.class);
 		LogDetalle logDetalle = (LogDetalle)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return logDetalle;
 	}
 	

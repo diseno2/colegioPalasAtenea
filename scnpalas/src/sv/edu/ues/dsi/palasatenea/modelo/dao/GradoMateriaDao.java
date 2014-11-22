@@ -50,10 +50,10 @@ public class GradoMateriaDao{
 	}
 	
 	private GradoMateria findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(GradoMateria.class);
 		GradoMateria gradoMateria = (GradoMateria)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return gradoMateria;
 	}
 	

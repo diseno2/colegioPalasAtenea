@@ -50,10 +50,10 @@ public class UsuarioDao{
 	}
 	
 	private Usuario findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Usuario.class);
 		Usuario usuario = (Usuario)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return usuario;
 	}
 	

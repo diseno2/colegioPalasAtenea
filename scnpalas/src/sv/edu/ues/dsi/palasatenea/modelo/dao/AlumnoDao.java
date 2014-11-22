@@ -52,10 +52,10 @@ public class AlumnoDao{
 	}
 	
 	private Alumno findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Alumno.class);
 		Alumno alumno = (Alumno)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return alumno;
 	}
 	

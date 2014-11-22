@@ -6,17 +6,17 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-import sv.edu.ues.dsi.palasatenea.modelo.Matricula;
+import sv.edu.ues.dsi.palasatenea.modelo.Subperiodo;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
-public class MatriculaDao{
+public class SubPeriodoDao {
 	private Transacciones tx = new Transacciones();
 	private Session s;
 	
-	public void guardar(Matricula matricula){
+	public void guardar(Subperiodo subPeriodo){
 		try{
 			s = tx.iniciarTransaccion();
-			s.saveOrUpdate(matricula);
+			s.saveOrUpdate(subPeriodo);
 			tx.finTransaccion();
 		}catch(Exception e){
 			System.err.println(this+"Ocurrio un error "+e.getMessage());
@@ -26,35 +26,35 @@ public class MatriculaDao{
 	public void borrar(int ident){
 		try{
 			s = tx.iniciarTransaccion();
-			Matricula matricula = findByIdent(ident);
-			s.delete(matricula);
+			Subperiodo subPeriodo = findByIdent(ident);
+			s.delete(subPeriodo);
 			tx.finTransaccion();
 		}catch(Exception e){
 			System.err.println(this+"Ocurrio un error "+e.getMessage());
 		}
 	}
 	
-	public Matricula findById(int ident){
+	public Subperiodo findById(int ident){
 		s = tx.iniciarSesion();
-		Matricula matricula = findByIdent(ident);
+		Subperiodo subPeriodo = findByIdent(ident);
 		tx.finSesion();
-		return matricula;
+		return subPeriodo;
 	}
 	
-	public List<Matricula> findByAll(){
+	public List<Subperiodo> findByAll(){
 		s = tx.iniciarSesion();
-		Criteria crt = s.createCriteria(Matricula.class);
-		List<Matricula> lst = crt.list();
+		Criteria crt = s.createCriteria(Subperiodo.class);
+		List<Subperiodo> lst = crt.list();
 		tx.finSesion();
 		return lst;
 	}
 	
-	private Matricula findByIdent(int ident){
+	private Subperiodo findByIdent(int ident){
 		//s = tx.iniciarSesion();
-		Criteria crt = s.createCriteria(Matricula.class);
-		Matricula matricula = (Matricula)crt.uniqueResult();
+		Criteria crt = s.createCriteria(Subperiodo.class);
+		Subperiodo subPeriodo = (Subperiodo)crt.uniqueResult();
 		//tx.finSesion();
-		return matricula;
+		return subPeriodo;
 	}
 	
 	public Connection obtenerConexion(){

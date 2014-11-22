@@ -50,10 +50,10 @@ public class EvaluacionDao{
 	}
 	
 	private Evaluacion findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Evaluacion.class);
 		Evaluacion evaluacion = (Evaluacion)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return evaluacion;
 	}
 	

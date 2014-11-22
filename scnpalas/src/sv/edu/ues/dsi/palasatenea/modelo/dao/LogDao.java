@@ -50,10 +50,10 @@ public class LogDao{
 	}
 	
 	private Log findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Log.class);
 		Log log = (Log)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return log;
 	}
 	

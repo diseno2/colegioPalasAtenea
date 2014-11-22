@@ -50,10 +50,10 @@ public class NotaDao{
 	}
 	
 	private Nota findByIdent(int ident){
-		s = tx.iniciarSesion();
+		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Nota.class);
 		Nota nota = (Nota)crt.uniqueResult();
-		tx.finSesion();
+		//tx.finSesion();
 		return nota;
 	}
 	
