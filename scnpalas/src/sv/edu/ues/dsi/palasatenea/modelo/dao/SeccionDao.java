@@ -44,6 +44,7 @@ public class SeccionDao {
 	public List<Seccion> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Seccion.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Seccion> lst = crt.list();
 		tx.finSesion();
 		return lst;

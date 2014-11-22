@@ -44,6 +44,7 @@ public class MatriculaDao{
 	public List<Matricula> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Matricula.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Matricula> lst = crt.list();
 		tx.finSesion();
 		return lst;

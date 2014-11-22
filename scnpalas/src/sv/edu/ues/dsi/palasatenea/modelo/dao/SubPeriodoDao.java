@@ -44,6 +44,7 @@ public class SubPeriodoDao {
 	public List<Subperiodo> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Subperiodo.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Subperiodo> lst = crt.list();
 		tx.finSesion();
 		return lst;

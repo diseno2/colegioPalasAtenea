@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Periodo;
@@ -45,6 +46,7 @@ public class PeriodoDao{
 	public List<Periodo> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Periodo.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Periodo> lst = crt.list();
 		tx.finSesion();
 		return lst;

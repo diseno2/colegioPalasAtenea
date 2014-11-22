@@ -44,6 +44,7 @@ public class RolOpcionesDao{
 	public List<RolOpciones> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(RolOpciones.class);
+		crt.addOrder(Order.asc("ident"));
 		List<RolOpciones> lst = crt.list();
 		tx.finSesion();
 		return lst;

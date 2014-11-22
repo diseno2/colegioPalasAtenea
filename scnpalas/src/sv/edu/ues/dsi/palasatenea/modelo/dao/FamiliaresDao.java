@@ -44,6 +44,7 @@ public class FamiliaresDao{
 	public List<Familiares> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Familiares.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Familiares> lst = crt.list();
 		tx.finSesion();
 		return lst;

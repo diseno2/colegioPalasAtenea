@@ -54,6 +54,7 @@ public class RolDao{
 	public List<Rol> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Rol.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Rol> lst = crt.list();
 		tx.finSesion();
 		return lst;

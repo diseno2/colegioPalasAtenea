@@ -44,6 +44,7 @@ public class NotaDao{
 	public List<Nota> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Nota.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Nota> lst = crt.list();
 		tx.finSesion();
 		return lst;

@@ -44,6 +44,7 @@ public class MateriaDao{
 	public List<Materia> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Materia.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Materia> lst = crt.list();
 		tx.finSesion();
 		return lst;

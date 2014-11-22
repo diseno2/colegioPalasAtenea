@@ -44,6 +44,7 @@ public class EvaluacionDao{
 	public List<Evaluacion> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Evaluacion.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Evaluacion> lst = crt.list();
 		tx.finSesion();
 		return lst;

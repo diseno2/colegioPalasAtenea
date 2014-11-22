@@ -44,6 +44,7 @@ public class UsuarioDao{
 	public List<Usuario> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Usuario.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Usuario> lst = crt.list();
 		tx.finSesion();
 		return lst;

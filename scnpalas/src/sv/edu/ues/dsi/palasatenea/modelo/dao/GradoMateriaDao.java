@@ -44,6 +44,7 @@ public class GradoMateriaDao{
 	public List<GradoMateria> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(GradoMateria.class);
+		crt.addOrder(Order.asc("ident"));
 		List<GradoMateria> lst = crt.list();
 		tx.finSesion();
 		return lst;

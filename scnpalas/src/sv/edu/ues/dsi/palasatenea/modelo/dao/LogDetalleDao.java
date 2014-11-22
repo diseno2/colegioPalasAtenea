@@ -44,6 +44,7 @@ public class LogDetalleDao{
 	public List<LogDetalle> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(LogDetalle.class);
+		crt.addOrder(Order.asc("ident"));
 		List<LogDetalle> lst = crt.list();
 		tx.finSesion();
 		return lst;

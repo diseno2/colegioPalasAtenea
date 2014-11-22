@@ -44,6 +44,7 @@ public class DocenteDao{
 	public List<Docente> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Docente.class);
+		crt.addOrder(Order.asc("ident"));
 		List<Docente> lst = crt.list();
 		tx.finSesion();
 		return lst;
