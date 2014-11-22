@@ -31,6 +31,13 @@ public class PeriodoCtrl {
 		return lst;
 	}
 	
+	public Boolean puedoBorrar(Periodo periodo){
+		if (periodo.getNotas().size() == 0 && periodo.getSeccions().size() == 0 && periodo.getSubperiodos().size() == 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {
