@@ -38,11 +38,17 @@
 							"<td>"+periodo.getAnio()+"</td>"+
 							"<td>"+periodo.getInicio()+"</td>"+
 							"<td>"+ff+"</td>"+
+							"<td>"+ctrl.formatEstado(periodo.getEstado())+"</td>"+
 							"<td>"+
-								"<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;"+
 								"<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
-		 	if (ctrl.puedoBorrar(periodo) == true)
-				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;";
+			if (periodo.getEstado().equals("E"))
+				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
+		 	if (ctrl.puedoBorrar(periodo) == true && periodo.getEstado().equals("E"))
+				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
+			if (periodo.getEstado().equals("E"))
+				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=alta'><img id='iconos' alt='Alta' class='iconalta' title='Alta' ></a>&nbsp;";
+			if (periodo.getEstado().equals("C"))
+				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=fin'><img id='iconos' alt='Cerrar' class='iconcerrar' title='Cerrar' ></a>&nbsp;";
 			mensaje += "</td></tr>"; 
 		}
 	}
@@ -85,6 +91,7 @@
 						<th>A&ntilde;o</th>
 						<th>Inicio</th>
 						<th>Fin</th>
+						<th>Estado</th>
 						<th width=150px>Acciones</th>
 					</tr>
 				</thead>

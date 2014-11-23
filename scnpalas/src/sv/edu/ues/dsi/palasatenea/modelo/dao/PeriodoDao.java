@@ -15,20 +15,21 @@ public class PeriodoDao{
 	private Transacciones tx = new Transacciones();
 	private Session s;
 	
-	public void guardar(Periodo periodo){
+	public Boolean guardar(Periodo periodo){
 		try{
 			s = tx.iniciarTransaccion();
 			s.saveOrUpdate(periodo);
 			tx.finTransaccion();
+			return true;
 		}catch(Exception e){
 			System.err.println(this+"Ocurrio un error "+e.getMessage());
+			return false;
 		}
 	}
 	
-	public void borrar(int ident){
+	public void borrar(Periodo periodo){
 		try{
 			s = tx.iniciarTransaccion();
-			Periodo periodo = findByIdent(ident);
 			s.delete(periodo);
 			tx.finTransaccion();
 		}catch(Exception e){
@@ -38,7 +39,9 @@ public class PeriodoDao{
 	
 	public Periodo findById(int ident){
 		s = tx.iniciarSesion();
-		Periodo periodo = findByIdent(ident);
+		Criteria crt = s.createCriteria(Periodo.class);
+		crt.add(Restrictions.eq("ident", ident));
+		Periodo periodo = (Periodo)crt.uniqueResult();
 		tx.finSesion();
 		return periodo;
 	}
@@ -52,13 +55,13 @@ public class PeriodoDao{
 		return lst;
 	}
 	
-	private Periodo findByIdent(int ident){
-		//s = tx.iniciarSesion();
+	public List<Periodo> findByAnio(int anio){
+		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Periodo.class);
-		crt.add(Restrictions.eq("ident", ident));
-		Periodo periodo = (Periodo)crt.uniqueResult();
-		//tx.finSesion();
-		return periodo;
+		crt.add(Restrictions.eq("anio",anio));
+		List<Periodo> lst = crt.list();
+		tx.finSesion();
+		return lst;
 	}
 	
 	public Connection obtenerConexion(){

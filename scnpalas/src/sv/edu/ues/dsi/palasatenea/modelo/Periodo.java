@@ -29,6 +29,7 @@ public class Periodo implements java.io.Serializable {
 	private int anio;
 	private Date inicio;
 	private Date fin;
+	private String Estado;
 	private Set<Subperiodo> subperiodos = new HashSet<Subperiodo>(0);
 	private Set<Nota> notas = new HashSet<Nota>(0);
 	private Set<Seccion> seccions = new HashSet<Seccion>(0);
@@ -101,6 +102,15 @@ public class Periodo implements java.io.Serializable {
 	public void setFin(Date fin) {
 		this.fin = fin;
 	}
+	
+	@Column(name = "estado", length = 1)
+	public String getEstado() {
+		return Estado;
+	}
+
+	public void setEstado(String estado) {
+		Estado = estado;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
 	public Set<Subperiodo> getSubperiodos() {
@@ -128,7 +138,7 @@ public class Periodo implements java.io.Serializable {
 	public void setSeccions(Set<Seccion> seccions) {
 		this.seccions = seccions;
 	}
-	
+
 	public String toString(){
 		return Integer.toString(anio);
 	}

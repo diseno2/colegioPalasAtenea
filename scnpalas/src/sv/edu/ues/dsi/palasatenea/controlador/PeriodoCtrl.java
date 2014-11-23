@@ -8,12 +8,14 @@ import sv.edu.ues.dsi.palasatenea.modelo.dao.PeriodoDao;
 public class PeriodoCtrl {
 	private PeriodoDao dao = new PeriodoDao();
 	
-	public void guardar(Periodo periodo){
-		dao.guardar(periodo);
+	public Boolean guardar(Periodo periodo){
+		periodo.setEstado("E");
+		return dao.guardar(periodo);
 	}
 	
 	public void borrar(int ident){
-		dao.borrar(ident);
+		Periodo periodo = findById(ident);
+		dao.borrar(periodo);
 	}
 	
 	public Periodo findById(int ident){
@@ -36,6 +38,19 @@ public class PeriodoCtrl {
 			return true;
 		else
 			return false;
+	}
+	
+	public String formatEstado(String estado){
+		if(estado.equals("E")) return "Elaborado";
+		if(estado.equals("A")) return "Activo";
+		if(estado.equals("F")) return "Finalizado";
+		return estado;
+	}
+	
+	public Boolean alta(int ident){
+		Periodo periodo = this.findById(ident);
+		periodo.setEstado("A");
+		return this.guardar(periodo);
 	}
 	
 	public byte[] reporte(){
