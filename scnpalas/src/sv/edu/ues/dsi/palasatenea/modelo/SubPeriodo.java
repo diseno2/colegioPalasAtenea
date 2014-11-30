@@ -2,7 +2,9 @@ package sv.edu.ues.dsi.palasatenea.modelo;
 
 // Generated 11-21-2014 05:34:49 PM by Hibernate Tools 4.0.0
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -35,6 +37,8 @@ public class Subperiodo implements java.io.Serializable {
 
 	public Subperiodo() {
 		this.ident = 0;
+		this.descripcion = "";
+		this.estado = "E"; 
 	}
 
 	public Subperiodo(Periodo periodo, String descripcion, String estado,

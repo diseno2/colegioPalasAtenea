@@ -32,7 +32,6 @@
 			periodo = (Periodo) lst.get(i); 
 			fi =  df.format(periodo.getInicio());
 			ff =  df.format(periodo.getFin());
-			System.out.println(periodo.getSeccions());
 			
 			mensaje += "<tr>"+
 							"<td>"+periodo.getAnio()+"</td>"+
@@ -42,13 +41,13 @@
 							"<td>"+
 								"<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
 			if (periodo.getEstado().equals("E"))
-				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=edit'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
+				mensaje += "<a href='Edit.jsp?accion=edit&ident="+periodo.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
 		 	if (ctrl.puedoBorrar(periodo) == true && periodo.getEstado().equals("E"))
-				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=borrar'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
+				mensaje += "<a href='Edit.jsp?accion=borrar'&ident="+periodo.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
 			if (periodo.getEstado().equals("E"))
-				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=alta'><img id='iconos' alt='Alta' class='iconalta' title='Alta' ></a>&nbsp;";
-			if (periodo.getEstado().equals("C"))
-				mensaje += "<a href='Edit.jsp?ident="+periodo.getIdent()+"&accion=fin'><img id='iconos' alt='Cerrar' class='iconcerrar' title='Cerrar' ></a>&nbsp;";
+				mensaje += "<a href='Edit.jsp?accion=alta&ident="+periodo.getIdent()+"'><img id='iconos' alt='Alta' class='iconalta' title='Alta' ></a>&nbsp;";
+			if (periodo.getEstado().equals("A"))
+				mensaje += "<a href='Edit.jsp?accion=fin&ident="+periodo.getIdent()+"'><img id='iconos' alt='Cerrar' class='iconcerrar' title='Cerrar' ></a>&nbsp;";
 			mensaje += "</td></tr>"; 
 		}
 	}

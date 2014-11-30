@@ -9,8 +9,11 @@ public class PeriodoCtrl {
 	private PeriodoDao dao = new PeriodoDao();
 	
 	public Boolean guardar(Periodo periodo){
-		periodo.setEstado("E");
-		return dao.guardar(periodo);
+		if (puedoGuardar(periodo)){
+			return dao.guardar(periodo);
+		}else{
+			return false;
+		}
 	}
 	
 	public void borrar(int ident){
@@ -20,6 +23,7 @@ public class PeriodoCtrl {
 	
 	public Periodo findById(int ident){
 		Periodo periodo = dao.findById(ident);
+		System.out.println(periodo);
 		return periodo;
 	}
 	
@@ -34,10 +38,14 @@ public class PeriodoCtrl {
 	}
 	
 	public Boolean puedoBorrar(Periodo periodo){
-		if (periodo.getNotas().size() == 0 && periodo.getSeccions().size() == 0 && periodo.getSubperiodos().size() == 0)
+		//if (periodo.getNotas().size() == 0 && periodo.getSeccions().size() == 0 && periodo.getSubperiodos().size() == 0)
 			return true;
-		else
-			return false;
+		/*else
+			return false;*/
+	}
+	
+	public Boolean puedoGuardar(Periodo periodo){
+		return true;
 	}
 	
 	public String formatEstado(String estado){
@@ -50,6 +58,12 @@ public class PeriodoCtrl {
 	public Boolean alta(int ident){
 		Periodo periodo = this.findById(ident);
 		periodo.setEstado("A");
+		return this.guardar(periodo);
+	}
+	
+	public Boolean fin(int ident){
+		Periodo periodo = this.findById(ident);
+		periodo.setEstado("F");
 		return this.guardar(periodo);
 	}
 	

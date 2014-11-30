@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,10 +30,10 @@ public class Periodo implements java.io.Serializable {
 	private int anio;
 	private Date inicio;
 	private Date fin;
-	private String Estado;
-	private Set<Subperiodo> subperiodos = new HashSet<Subperiodo>(0);
-	private Set<Nota> notas = new HashSet<Nota>(0);
-	private Set<Seccion> seccions = new HashSet<Seccion>(0);
+	private String estado;
+	//private Set<Subperiodo> subperiodos = new HashSet<Subperiodo>(0);
+	//private Set<Nota> notas = new HashSet<Nota>(0);
+	//private Set<Seccion> seccions = new HashSet<Seccion>(0);
 
 	public Periodo() {
 		this.ident = 0;
@@ -45,6 +46,8 @@ public class Periodo implements java.io.Serializable {
 		
 		fecha = new GregorianCalendar(this.anio, Calendar.DECEMBER,31);
 		this.fin = fecha.getTime();
+		
+		this.estado = "E"; 
 	}
 
 	public Periodo(int anio, Date inicio, Date fin) {
@@ -58,9 +61,9 @@ public class Periodo implements java.io.Serializable {
 		this.anio = anio;
 		this.inicio = inicio;
 		this.fin = fin;
-		this.subperiodos = subperiodos;
-		this.notas = notas;
-		this.seccions = seccions;
+		//this.subperiodos = subperiodos;
+		//this.notas = notas;
+		//this.seccions = seccions;
 	}
 
 	@Id
@@ -105,14 +108,14 @@ public class Periodo implements java.io.Serializable {
 	
 	@Column(name = "estado", length = 1)
 	public String getEstado() {
-		return Estado;
+		return estado;
 	}
 
 	public void setEstado(String estado) {
-		Estado = estado;
+		this.estado = estado;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
 	public Set<Subperiodo> getSubperiodos() {
 		return this.subperiodos;
 	}
@@ -137,7 +140,7 @@ public class Periodo implements java.io.Serializable {
 
 	public void setSeccions(Set<Seccion> seccions) {
 		this.seccions = seccions;
-	}
+	}*/
 
 	public String toString(){
 		return Integer.toString(anio);
