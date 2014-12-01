@@ -11,11 +11,6 @@
 	String gradossiguiente=null;
 	String mensaje = "";
 	String nuevo = "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
-	/*
-	
-	
-	GradoCtrl ctrl = new GradoCtrl();
-	
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
 	
@@ -23,14 +18,16 @@
 	if (request.getParameter("ident") == null) ident = 0;
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
+	GradoCtrl ctrl = new GradoCtrl();
+	Boolean comparar = false;
 	if (ident == 0) {
 		grado = new Grado();
 	} else {
 		grado = ctrl.findById(ident);
+		comparar = true;
 	}
 	
 	//Grados
-	
 	List<Grado> lst = ctrl.findByAll();
 	if(lst==null){
 		
@@ -40,12 +37,19 @@
 		Grado gradoN;
 		gradosprevio += "<option value=''></option>";
 		gradossiguiente += "<option value=''></option>";
+		String selPre = "", selSig = "";
 		for(int i=0;i<lst.size();i++){
-			gradoN = (Grado) lst.get(i); 
-			gradosprevio += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
-			gradossiguiente += "<option value="+gradoN.getIdent()+">"+gradoN.toString()+"</option>"; 
+			gradoN = (Grado) lst.get(i);
+			
+			selPre = ""; selSig = "";
+			if (comparar == true){
+				if (gradoN == grado.getGradoByGrado1()) selPre = "Selected";
+				if (gradoN == grado.getGradoByGrado2()) selSig = "Selected";
+				comparar = false;
+			}
+			gradosprevio += "<option value="+gradoN.getIdent()+" "+selPre+" >"+gradoN.toString()+"</option>"; 
+			gradossiguiente += "<option value="+gradoN.getIdent()+" "+selSig+" >"+gradoN.toString()+"</option>"; 
 		}
-		
 	}
 	
 	if (accion.equals("guardar")){
@@ -89,7 +93,7 @@
 							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&identGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
 						"</tr>"; 
 		}
-	}*/
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
