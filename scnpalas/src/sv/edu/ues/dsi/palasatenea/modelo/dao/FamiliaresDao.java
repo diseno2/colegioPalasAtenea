@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
@@ -58,6 +60,16 @@ public class FamiliaresDao{
 		crt.add(Restrictions.eq("ident", ident));
 		Familiares familiares = (Familiares)crt.uniqueResult();
 		//tx.finSesion();
+		return familiares;
+	}
+	
+	public Familiares findByAlumnoFamiliar(Alumno alumno, Familiar familiar){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiares.class);
+		crt.add(Restrictions.eq("alumno", alumno));
+		crt.add(Restrictions.eq("familiar", familiar));
+		Familiares familiares = (Familiares)crt.uniqueResult();
+		tx.finSesion();
 		return familiares;
 	}
 	

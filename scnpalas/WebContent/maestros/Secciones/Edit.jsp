@@ -120,23 +120,23 @@
 				<input type="hidden" name="accion" value="guardar"  />
 				<input type="hidden" name="ident" value="<%=seccion.getIdent()%>"  />
 				<table>
-					<caption>Seccion</caption>
+					<caption>Secci&oacute;n</caption>
 					<tbody>
 						<tr>
 							<td>Periodo</td>
-							<td><select name="periodo" style="width:213px"><%=periodos%></select></td>
+							<td><select name="periodo" placeholder="Periodo" style="width:213px"><%=periodos%></select></td>
 						</tr>
 						<tr>
 							<td>Docente</td>
-							<td><select name="docente" style="width:213px"><%=docentes%></select></td>
+							<td><select name="docente" placeholder="Docente" style="width:213px"><%=docentes%></select></td>
 						</tr>
 						<tr>
 							<td>Grado</td>
-							<td><select name="grado" style="width:213px"><%=grados%></select></td>
+							<td><select name="grado" placeholder="Grado" style="width:213px"><%=grados%></select></td>
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><input type="text" name="seccion" value="<%=seccion.getSeccion()%>" /></td>
+							<td><input type="text" name="seccion" placeholder="Sección" value="<%=seccion.getSeccion()%>" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
@@ -147,6 +147,39 @@
 					</tbody>
 				</table>
 			</form>
+			<br /><br />
+			<table id='tabla'>
+				<thead>
+					<caption>Materias <a href='EditSeccionMateria.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;</caption>
+					<tr>
+						<th>Materia</th>
+						<th>Docente</th>
+						<th width=150px>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>MATEMATICA</td>
+						<td>JOSE MAURICIO FLORES PASAN</td>
+						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>LENGUAJE</td>
+						<td>JOSE MAURICIO FLORES PASAN</td>
+						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CIENCIA, SALUD Y MEDIO AMBIENTE</td>
+						<td>JOSE MAURICIO FLORES PASAN</td>
+						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>ESTUDIOS SOCIALES</td>
+						<td>JOSE MAURICIO FLORES PASAN</td>
+						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>

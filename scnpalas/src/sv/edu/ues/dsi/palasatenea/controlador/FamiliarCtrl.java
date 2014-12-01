@@ -5,7 +5,9 @@ import java.util.List;
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Evaluacion;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
+import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.FamiliarDao;
+import sv.edu.ues.dsi.palasatenea.modelo.dao.FamiliaresDao;
 
 public class FamiliarCtrl {
 	private FamiliarDao dao = new FamiliarDao();
@@ -41,5 +43,14 @@ public class FamiliarCtrl {
 			return true;
 		else
 			return false;
+	}
+	
+	public String formatParentesco(Familiar familiar, Alumno alumno){
+		Familiares f = new FamiliaresDao().findByAlumnoFamiliar(alumno, familiar);
+		String parentesco = "";
+		if (f.getParentesco().equals("M")) return "Madre";
+		if (f.getParentesco().equals("P")) return "Padre";
+		if (f.getParentesco().equals("T")) return "Tutor";
+		return f.getParentesco();
 	}
 }

@@ -12,7 +12,7 @@
 	Periodo periodo = new Periodo();
 	String disable = "";
 	PeriodoCtrl ctrl = new PeriodoCtrl();
-	String nuevoSubPeriodo = "";
+	String nuevo = "";
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
 	
@@ -48,7 +48,7 @@
 	}
 	
 	if (periodo.getEstado().equals("E"))
-		nuevoSubPeriodo = "<a href='EditSubPeriodo.jsp?accion=new&ident=0&idPeriodo="+periodo.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
+		nuevo = "<a href='EditSubPeriodo.jsp?accion=new&ident=0&idPeriodo="+periodo.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
 	DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
 	String fi =  df.format(periodo.getInicio());
 	String ff =  df.format(periodo.getFin());
@@ -126,7 +126,7 @@
 						</tr>
 						<tr>
 							<td>Inicio</td>
-							<td><input type="text" name="inicio" id="datepicker1" placeholder="Inicio"value="<%=fi%>" required <%=disable%> /></td>
+							<td><input type="text" name="inicio" id="datepicker1" placeholder="Inicio" value="<%=fi%>" required <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td>Fin</td>
@@ -144,7 +144,7 @@
 			<br /><br />
 			<table id='tabla'>
 				<thead>
-					<caption >Sub Periodos&nbsp; <%=nuevoSubPeriodo %>
+					<caption >Sub Periodos&nbsp; <%=nuevo%>
 					</caption>
 					<tr>
 						<th>Descripci&oacute;n</th>

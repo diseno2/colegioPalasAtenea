@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
+import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
 public class FamiliarDao{
@@ -64,13 +66,13 @@ public class FamiliarDao{
 	
 	public List<Familiar> findByAlumno(Alumno alumno){
 		s = tx.iniciarSesion();
-		/*Criteria crt1 = s.createCriteria(Familiar.class);
-		Criteria crt2 = s.createCriteria(Familiares.class);
-		crt2.add(Restrictions.eq("alumno", alumno));
-		List famLst2 = crt2.list();
-		crt1.add(Restrictions.in("ident", famLst2));
-		List famLst1 = crt1.list();*/
-		List<Familiar> famLst1 = null;
+		String stmt = " SELECT f "+
+					  " FROM Familiar f "+
+					  " WHERE f.ident IN( SELECT a.familiar.ident "+
+					  				    " FROM Familiares a "+
+					  				    " WHERE a.alumno.ident = '"+alumno.getIdent()+"')";
+		Query q = s.createQuery(stmt);
+		List<Familiar> famLst1 = q.list();
 		tx.finSesion();
 	    return famLst1;
 	}

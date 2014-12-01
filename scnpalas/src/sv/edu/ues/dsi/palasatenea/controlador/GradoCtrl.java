@@ -11,6 +11,19 @@ public class GradoCtrl {
 	
 	public void guardar(Grado grado){
 		dao.guardar(grado);
+		//actualizar el previo
+		Grado gradop = grado.getGradoByGrado1();
+		if (gradop != null){
+			gradop.setGradoByGrado2(grado);
+			dao.guardar(gradop);
+		}
+		
+		//actualizar el siguiente
+		Grado grados = grado.getGradoByGrado2();
+		if (grados != null){
+			grados.setGradoByGrado1(grado);
+			dao.guardar(grados);
+		}
 	}
 	
 	public void borrar(int ident){
@@ -33,10 +46,10 @@ public class GradoCtrl {
 	}
 	
 	public Boolean puedoBorrar(Grado grado){
-		if (grado.getGradoMaterias().size() == 0 && grado.getGradosForGrado1().size() == 0 && grado.getGradosForGrado2().size() == 0 && grado.getSeccions().size() == 0)
+		//if (grado.getGradoMaterias().size() == 0 && grado.getGradosForGrado1().size() == 0 && grado.getGradosForGrado2().size() == 0 && grado.getSeccions().size() == 0)
 			return true;
-		else
-			return false;
+		/*else
+			return false;*/
 	}
 	
 	public byte[] reporte(){

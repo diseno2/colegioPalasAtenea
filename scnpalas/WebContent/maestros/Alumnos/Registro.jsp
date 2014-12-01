@@ -66,45 +66,37 @@
 		if (alumno.getGenero().equals("F"))
 			fChecked = "checked";
 	}
+	
 	//lo correspondiente a los familiares
-	String mensaje = "";
-	/*FamiliarCtrl familiarCtrl = new FamiliarCtrl();
+	FamiliarCtrl fCtrl = new FamiliarCtrl();
 	Familiar familiar = new Familiar();
-	List familiarList = familiarCtrl.findByAlumno(alumno);
+	List lst = fCtrl.findByAlumno(alumno);
 	
 	Integer canFam = 0;
-
-	mensaje = "<table> "+
-			"<thead>"+
-			"<caption>Materias"+ 
-					 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>"+
-					 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' title='Imprimir' ></a>"+
-			"</caption>"+
-			"<tr><td>Nombres</td><td>Parentesco</td><td>Tel. Casa</td><td>Tel. Trabajo</td><td>Celular</td></tr></thead>";
-	if (familiarList.isEmpty()) {
-		mensaje += "<tr><td colspan=6>No existen familiares registrados</td></tr>";
-	} else {
-		canFam = familiarList.size();
-		for (int i = 0; i < familiarList.size(); i++) {
-			familiar = (Familiar) familiarList.get(i);
-			mensaje += "<tr><td>"+ familiar.getNombre()+ "</td>"
-					+ "<td>"+ familiar.getParentesco()+ "</td>"
-					+ "<td>"+ familiar.getTelefono()+ "</td>"
-					+ "<td>"+ familiar.getTeltrabajo()+ "</td>"
-					+ "<td>"+ familiar.getCelular()+ "</td>"
-					+ "<td><a href='EditFamiliar.jsp?accion=ver&ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"'>Ver</a></td>"
-					+ "<td><a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent().toString()+"&&alumno="+alumno.getIdent().toString()+"'>Edit</a></td>";
-			if (alumno.getEstado() == 0)
-				mensaje += "<td><a href='EditFamiliar.jsp?ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"&accion=borrar'>Del</a></td>";
-
-			mensaje += "</tr>";
+	String mensaje = "";
+	String nuevo = "";
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
+	}else{
+		for(int i=0;i<lst.size();i++){
+			familiar = (Familiar) lst.get(i); 
+			
+			mensaje += "<tr>"+
+							"<td>"+familiar.toString()+"</td>"+
+							"<td>"+fCtrl.formatParentesco(familiar,alumno)+"</td>"+
+							"<td>"+
+								"<a href='RegistroFamiliar.jsp?ident="+familiar.getIdent()+"&accion=ver&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
+			if (alumno.getEstado().equals("E"))
+				mensaje += "<a href='RegistroFamiliar.jsp?accion=edit&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
+		 	if (fCtrl.puedoBorrar(familiar) == true)
+				mensaje += "<a href='RegistroFamiliar.jsp?accion=borrar'&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
 		}
 	}
+	
 	if (canFam < 3 && alumno.getIdent() != 0)
-			mensaje += "<tr><td colspan=6><center><a href='EditFamiliar.jsp?ident=0&alumno="
-					+ alumno.getIdent().toString()
-					+ "'>Nuevo Familiar</a></center></td></tr>";
-	mensaje += "</table>";*/
+		nuevo = "<a href='RegistroFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
+	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -138,17 +130,17 @@
 					<caption>Registro de Alumno</caption>
 					<tr>
 						<td>Nombres</td>
-						<td><input type="text" name="nombre1"
+						<td><input type="text" name="nombre1" placeholder="1° Nombre"
 							value="<%=alumno.getNombre1()%>" <%=disable%> required /></td>
-						<td><input type="text" name="nombre2"
+						<td><input type="text" name="nombre2" placeholder="2° Nombre"
 							value="<%=alumno.getNombre2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Apellidos</td>
-						<td><input type="text" name="apellido1"
+						<td><input type="text" name="apellido1" placeholder="1° Apellido"
 							value="<%=alumno.getApellido1()%>" <%=disable%> required /></td>
-						<td><input type="text" name="apellido2"
-							value="<%=alumno.getApellido2()%>" <%=disable%>></td>
+						<td><input type="text" name="apellido2" placeholder="2° Apellido"
+							value="<%=alumno.getApellido2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Genero</td>
@@ -159,57 +151,57 @@
 					</tr>
 					<tr>
 						<td>Fecha de Nacimiento</td>
-						<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento"
+						<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento" placeholder="Fecha de Nacimiento"
 							value="<%=alumno.getFnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Lugar de Nacimiento</td>
-						<td colspan="3"><input type="text" name="lnacimiento"
-							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%>  required /></td>
+						<td colspan="3"><input type="text" name="lnacimiento"placeholder="Lugar de Nacimiento"
+							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Direccion</td>
 						<td colspan="2"><textarea name="direccion" rows="2"
-								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%> required /></textarea></td>
+								cols="45" <%=disable%> required /><%=alumno.getDireccion()%></textarea></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>
-						<td colspan="2"><input type="text" name="telefono"
+						<td colspan="2"><input type="text" name="telefono"placeholder="####-####"
 							value="<%=alumno.getTelefono()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Religion</td>
-						<td colspan="2"><input type="text" name="religion"
+						<td colspan="2"><input type="text" name="religion"placeholder="Religion"
 							size="45" value="<%=alumno.getReligion()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Enfermedades que padece</td>
-						<td colspan="2"><input type="text" name="enfermedades"
+						<td colspan="2"><input type="text" name="enfermedades"placeholder="Enfermedades"
 							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Medicamentos</td>
-						<td colspan="2"><input type="text" name="medicamentos"
+						<td colspan="2"><input type="text" name="medicamentos"placeholder="Medicamentos"
 							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Alergias</td>
-						<td colspan="2"><input type="text" name="alergico"
+						<td colspan="2"><input type="text" name="alergico"placeholder="Alergias"
 							size="45" value="<%=alumno.getAlergico()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Problemas de aprendizaje</td>
-						<td colspan="2"><input type="text" name="aprendizaje"
+						<td colspan="2"><input type="text" name="aprendizaje"placeholder="Aprendizaje"
 							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Escuela previa</td>
-						<td colspan="2"><input type="text" name="escuelaprevia"
+						<td colspan="2"><input type="text" name="escuelaprevia"placeholder="Escuela Previa"
 							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
-						<td colspan="2"><select name="ultgrado" <%=disable%> required /><%=grados%></select></td>
+						<td colspan="2"><select name="ultgrado" <%=disable%>><%=grados%></select></td>
 					</tr>
 					<tr>
 						<td>Correo Electronico</td>
@@ -218,13 +210,25 @@
 					</tr>
 					<tr>
 						<td colspan="3"><center>
-								<input type="submit" value="Guardar alumno" <%=disable%>>
-								<input type="reset" value="Limpiar campos" <%=disable%>>
+								<input type="submit" value="Guardar" <%=disable%>>
+								<input type="reset" value="Limpiar" <%=disable%>>
 							</center></td>
 					</tr>
 				</table>
 			</form>
-			<%=mensaje%>
+			<br /><br />
+			<table id='tabla'>
+				<thead>
+					<caption >Familiares&nbsp; <%=nuevo%>
+					</caption>
+					<tr>
+						<th>Nombre</th>
+						<th>Parentesco</th>
+						<th width=150px>Acciones</th>
+					</tr>
+				</thead>
+				<tbody><%=mensaje %></tbody>
+			</table>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>

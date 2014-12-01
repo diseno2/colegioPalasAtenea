@@ -41,6 +41,11 @@ public class Utilidades {
 	
 	public String getAviso(){
 		String aviso = null;
+		if (this.getUsuario() == null)
+			aviso = "<div id='avisos'>"+
+					"<h1>Avisos</h1>"+
+				   "</div>";
+		else
 		aviso = "<div id='avisos'>"+
 					"<h1>Avisos</h1>"+
 					"<h2>12 Nov, 2014</h2>"+
@@ -82,22 +87,24 @@ public class Utilidades {
 					"Procesos"+
 					"<ul>"+
 						"<li><a href='/scnpalas/procesos/Matriculas/Lista.jsp'>Matriculas</a></li>"+
-						"<li><a href='#'>Evaluaciones</a></li>"+
-						"<li><a href='#'>Notas</a></li>"+
+						"<li><a href='/scnpalas/procesos/Evaluaciones/Lista.jsp'>Evaluaciones</a></li>"+
+						"<li><a href='/scnpalas/procesos/Notas/Lista.jsp'>Notas</a></li>"+
 					"</ul>"+
 				"</li>"+
 				"<li>"+
 					"Reportes"+
 					"<ul>"+
-						"<li><a href='#'>Reporte1</a></li>"+
-						"<li><a href='#'>Reporte2</a></li>"+
+						"<li><a href='/scnpalas/reportes/Inscritos/Filtro.jsp'>Alumnos Inscritos</a></li>"+
+						"<li><a href='/scnpalas/reportes/PorMateria/Filtro.jsp'>Notas por Materia</a></li>"+
+						"<li><a href='/scnpalas/reportes/PorAlumno/Filtro.jsp'>Notas por Alumno</a></li>"+
+						"<li><a href='/scnpalas/reportes/Promedio/Filtro.jsp'>Promedio de Notas</a></li>"+
 					"</ul>"+
 				"</li>"+
 				"<li>"+
 					"Administracion"+
 					"<ul>"+
-						"<li><a href='#'>Roles</a></li>"+
-						"<li><a href='#'>Usuarios</a></li>"+
+						"<li><a href='/scnpalas/administracion/Roles/Lista.jsp'>Roles</a></li>"+
+						"<li><a href='/scnpalas/administracion/Usuarios/Lista.jsp'>Usuarios</a></li>"+
 					"</ul>"+
 				"</li>"+
 				"<li><a href='/scnpalas/j_spring_security_logout'>Salir</a></li>"+

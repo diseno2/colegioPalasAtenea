@@ -7,6 +7,13 @@
 <%
 	Grado grado = new Grado();
 	String disable = "";
+	String gradosprevio=null;
+	String gradossiguiente=null;
+	String mensaje = "";
+	String nuevo = "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
+	/*
+	
+	
 	GradoCtrl ctrl = new GradoCtrl();
 	
 	String accion = request.getParameter("accion");
@@ -23,8 +30,7 @@
 	}
 	
 	//Grados
-	String gradosprevio=null;
-	String gradossiguiente=null;
+	
 	List<Grado> lst = ctrl.findByAll();
 	if(lst==null){
 		
@@ -63,24 +69,12 @@
 	}
 	
 	//aqui agregar lo necesario para configurar las materias
-	String mensaje = "";
+	
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
 	List<GradoMateria> gMLst = null;
 	gMLst = gMCtrl.findByAll();
 	
-	mensaje = "<table id='tabla'>"+
-			  	"<thead>"+
-					"<caption id='query'>Materias"+ 
-							 "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>"+
-							 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' title='Imprimir' ></a>"+
-					"</caption>"+
-					"<tr>"+
-						"<th>Materia</th>"+
-						"<th>Docente</th>"+
-						"<th colspan=3>Acciones</th>"+
-					"</tr>"+
-				"</thead>"+
-				"<tbody>";
+	
 	if(gMLst.isEmpty()){
 		mensaje += "<tr><td colspan=7>No hay registros</td></tr>";
 	}else{
@@ -95,9 +89,7 @@
 							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&identGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
 						"</tr>"; 
 		}
-	}
-	mensaje += "</tbody>"+
-			   "</table>";
+	}*/
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -145,8 +137,17 @@
 					</tbody>
 				</table>
 			</form>
-			<br />
-			<%=mensaje%>
+			<br /><br />
+			<table id='tabla'>
+				<thead>
+					<caption>Materias <%=nuevo%></caption>
+					<tr>
+						<th>Materia</th>
+						<th width=150px>Acciones</th>
+					</tr>
+				</thead>
+				<tbody><%=mensaje %></tbody>
+			</table>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>

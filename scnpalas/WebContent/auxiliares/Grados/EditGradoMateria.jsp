@@ -5,18 +5,16 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	GradoMateria gradoMateria = new GradoMateria();
+
+	/*
+	
 	String disable = "";
 	GradoMateriaCtrl ctrl = new GradoMateriaCtrl();
 	
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
 	
-	Integer ident = 0;
-	if (request.getParameter("ident") == null) ident = 0;
-	else ident = Integer.parseInt(request.getParameter("ident"));
 	
-	Integer identGrado = Integer.parseInt(request.getParameter("identGrado"));
-	Grado grado = new GradoCtrl().findById(identGrado);
 	
 	Integer identMateria = Integer.parseInt(request.getParameter("identMateria"));
 	Materia materia = null;
@@ -48,6 +46,7 @@
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
 	}
+	*/
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -74,16 +73,14 @@
 				<input type="hidden" name="ident" value="<%=gradoMateria.getIdent()%>"  />
 				<input type="hidden" name="identGrado" value="<%=gradoMateria.getGrado().getIdent()%>"  />
 				<table>
-					<caption>Configuraci&oacute;n de Materias</caption>
+					<caption>Materias PRIMERO Grado</caption>
 					<tbody>
 						<tr>
 							<td>Materia</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Docente</td>
-							<td></td>
-							<td><input type="check" name="deacuerdoaseccion">De acuerdo a la secci&oacute;n</td>
+							<td><select name="seccion" style="width:300px">
+									<option>MATEMATICA</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

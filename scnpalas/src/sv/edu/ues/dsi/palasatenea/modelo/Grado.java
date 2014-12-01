@@ -26,13 +26,13 @@ public class Grado implements java.io.Serializable {
 	private Grado gradoByGrado1;
 	private Grado gradoByGrado2;
 	private String grado;
-	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
+	/*private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
 	private Set<Seccion> seccions = new HashSet<Seccion>(0);
 	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
 	private Set<Grado> gradosForGrado1 = new HashSet<Grado>(0);
 	private Set<Alumno> alumnosForGradoAprobado = new HashSet<Alumno>(0);
 	private Set<Grado> gradosForGrado2 = new HashSet<Grado>(0);
-	private Set<Alumno> alumnosForGradoActual = new HashSet<Alumno>(0);
+	private Set<Alumno> alumnosForGradoActual = new HashSet<Alumno>(0);*/
 
 	public Grado() {
 		this.ident = 0;
@@ -42,21 +42,21 @@ public class Grado implements java.io.Serializable {
 		this.grado = grado;
 	}
 
-	public Grado(Grado gradoByGrado1, Grado gradoByGrado2, String grado,
+	public Grado(Grado gradoByGrado1, Grado gradoByGrado2, String grado/*,
 			Set<Evaluacion> evaluacions, Set<Seccion> seccions,
 			Set<GradoMateria> gradoMaterias, Set<Grado> gradosForGrado1,
 			Set<Alumno> alumnosForGradoAprobado, Set<Grado> gradosForGrado2,
-			Set<Alumno> alumnosForGradoActual) {
+			Set<Alumno> alumnosForGradoActual*/) {
 		this.gradoByGrado1 = gradoByGrado1;
 		this.gradoByGrado2 = gradoByGrado2;
 		this.grado = grado;
-		this.evaluacions = evaluacions;
+		/*this.evaluacions = evaluacions;
 		this.seccions = seccions;
 		this.gradoMaterias = gradoMaterias;
 		this.gradosForGrado1 = gradosForGrado1;
 		this.alumnosForGradoAprobado = alumnosForGradoAprobado;
 		this.gradosForGrado2 = gradosForGrado2;
-		this.alumnosForGradoActual = alumnosForGradoActual;
+		this.alumnosForGradoActual = alumnosForGradoActual;*/
 	}
 
 	@Id
@@ -99,7 +99,7 @@ public class Grado implements java.io.Serializable {
 		this.grado = grado;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
 	public Set<Evaluacion> getEvaluacions() {
 		return this.evaluacions;
 	}
@@ -160,7 +160,7 @@ public class Grado implements java.io.Serializable {
 
 	public void setAlumnosForGradoActual(Set<Alumno> alumnosForGradoActual) {
 		this.alumnosForGradoActual = alumnosForGradoActual;
-	}
+	}*/
 
 	public String toString(){
 		return this.grado;
