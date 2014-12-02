@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class Evaluacion implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer ident;
-	private Subperiodo subperiodo;
+	private SubPeriodo subperiodo;
 	private Grado grado;
 	private GradoMateria gradoMateria;
 	private String evaluacion;
@@ -40,7 +40,7 @@ public class Evaluacion implements java.io.Serializable {
 		this.ident = 0;
 	}
 
-	public Evaluacion(Subperiodo subperiodo, Grado grado,
+	public Evaluacion(SubPeriodo subperiodo, Grado grado,
 			GradoMateria gradoMateria, String evaluacion, float porcentaje,
 			Date fecha, String estado) {
 		this.subperiodo = subperiodo;
@@ -52,7 +52,7 @@ public class Evaluacion implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	public Evaluacion(Subperiodo subperiodo, Grado grado,
+	public Evaluacion(SubPeriodo subperiodo, Grado grado,
 			GradoMateria gradoMateria, String evaluacion, String descripcion,
 			float porcentaje, Date fecha, String estado, Set<Nota> notas) {
 		this.subperiodo = subperiodo;
@@ -79,11 +79,11 @@ public class Evaluacion implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "superiodo", nullable = false)
-	public Subperiodo getSubperiodo() {
+	public SubPeriodo getSubperiodo() {
 		return this.subperiodo;
 	}
 
-	public void setSubperiodo(Subperiodo subperiodo) {
+	public void setSubperiodo(SubPeriodo subperiodo) {
 		this.subperiodo = subperiodo;
 	}
 

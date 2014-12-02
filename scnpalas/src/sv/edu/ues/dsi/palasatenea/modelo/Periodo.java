@@ -57,7 +57,7 @@ public class Periodo implements java.io.Serializable {
 	}
 
 	public Periodo(int anio, Date inicio, Date fin,
-			Set<Subperiodo> subperiodos, Set<Nota> notas, Set<Seccion> seccions) {
+			Set<SubPeriodo> subperiodos, Set<Nota> notas, Set<Seccion> seccions) {
 		this.anio = anio;
 		this.inicio = inicio;
 		this.fin = fin;

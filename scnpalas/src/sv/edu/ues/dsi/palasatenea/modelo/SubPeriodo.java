@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "subperiodo", catalog = "scnpalas")
-public class Subperiodo implements java.io.Serializable {
+public class SubPeriodo implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer ident;
 	private Periodo periodo;
@@ -35,13 +35,13 @@ public class Subperiodo implements java.io.Serializable {
 	private Date fin;
 	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
 
-	public Subperiodo() {
+	public SubPeriodo() {
 		this.ident = 0;
 		this.descripcion = "";
 		this.estado = "E"; 
 	}
 
-	public Subperiodo(Periodo periodo, String descripcion, String estado,
+	public SubPeriodo(Periodo periodo, String descripcion, String estado,
 			Date inicio, Date fin) {
 		this.periodo = periodo;
 		this.descripcion = descripcion;
@@ -50,7 +50,7 @@ public class Subperiodo implements java.io.Serializable {
 		this.fin = fin;
 	}
 
-	public Subperiodo(Periodo periodo, String descripcion, String estado,
+	public SubPeriodo(Periodo periodo, String descripcion, String estado,
 			Date inicio, Date fin, Set<Evaluacion> evaluacions) {
 		this.periodo = periodo;
 		this.descripcion = descripcion;
