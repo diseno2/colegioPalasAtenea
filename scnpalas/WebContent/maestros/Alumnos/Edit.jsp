@@ -116,8 +116,10 @@
 		}
 	}
 	
-	if (canFam < 3 && alumno.getIdent() != 0)
-		nuevo = "<a href='EditFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
+	if (canFam < 3 && alumno.getIdent() != 0){
+		nuevo = "<a href='EditFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;"+
+				"<a href='EditFamiliar.jsp?accion=asociar&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Asociar' class='iconasociar' title='Asociar' /></a>&nbsp;";
+	}
 	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

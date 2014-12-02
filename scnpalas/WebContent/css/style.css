@@ -69,6 +69,7 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 .iconbaja{content:url(/scnpalas/images/baja.jpg); width: 25px;height: 25px; }
 .iconcerrar{content:url(/scnpalas/images/lockreg.jpg); width: 25px;height: 25px; }
 .icondeleteall{content:url(/scnpalas/images/delete_all.png); width: 25px;height: 25px; }
+.iconasociar{content:url(/scnpalas/images/asociar.png); width: 25px;height: 25px; }
 
 /* LOGIN */
 #login {position:absolute; top:200px; float:left; width:95%; height:310px;}/*border:3px solid Red;*/
