@@ -33,10 +33,10 @@ public class MateriaCtrl {
 	}
 	
 	public Boolean puedoBorrar(Materia materia){
-		if (materia.getGradoMaterias().size() == 0 && materia.getNotas().size() == 0)
+		//if (materia.getGradoMaterias().size() == 0 && materia.getNotas().size() == 0)
 			return true;
-		else
-			return false;
+		//else
+			//return false;
 	}
 	
 	public byte[] reporte(){

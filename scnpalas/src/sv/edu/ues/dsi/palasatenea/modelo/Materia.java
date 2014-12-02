@@ -23,8 +23,8 @@ public class Materia implements java.io.Serializable {
 	private Integer ident;
 	private String descripcion;
 	private String activa;
-	private Set<Nota> notas = new HashSet<Nota>(0);
-	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
+	/*private Set<Nota> notas = new HashSet<Nota>(0);
+	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);*/
 
 	public Materia() {
 		this.ident = 0;
@@ -41,8 +41,8 @@ public class Materia implements java.io.Serializable {
 			Set<GradoMateria> gradoMaterias) {
 		this.descripcion = descripcion;
 		this.activa = activa;
-		this.notas = notas;
-		this.gradoMaterias = gradoMaterias;
+		//this.notas = notas;
+		//this.gradoMaterias = gradoMaterias;
 	}
 
 	@Id
@@ -73,7 +73,7 @@ public class Materia implements java.io.Serializable {
 	public void setActiva(String activa) {
 		this.activa = activa;
 	}
-
+	/*
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "materia")
 	public Set<Nota> getNotas() {
 		return this.notas;
@@ -90,7 +90,7 @@ public class Materia implements java.io.Serializable {
 
 	public void setGradoMaterias(Set<GradoMateria> gradoMaterias) {
 		this.gradoMaterias = gradoMaterias;
-	}
+	}*/
 
 	public String toString(){
 		return this.descripcion;

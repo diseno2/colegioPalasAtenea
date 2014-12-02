@@ -26,10 +26,12 @@
 			mensaje += "<tr>"+
 							"<td>"+materia.getIdent()+"</td>"+
 							"<td>"+materia.getDescripcion()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;"+
-						"</td></tr>"; 
+							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+			if(ctrl.puedoBorrar(materia))
+				mensaje += "<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;";
+			
+			mensaje += "</td></tr>"; 
 		}
 	}
 %>
