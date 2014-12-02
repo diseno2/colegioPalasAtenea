@@ -42,8 +42,8 @@
 						   "<td>"+alumno.getNombre2()+"</td>"+
 						   "<td>"+alumno.getApellido1()+"</td>"+
 						   "<td>"+alumno.getApellido2()+"</td>"+
-						   "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-						   "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;";						   
+						   "<td><a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+						   "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
 			if (alumno.getEstado()== 0)
 				mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;";
 			

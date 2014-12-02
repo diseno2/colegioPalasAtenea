@@ -7,25 +7,26 @@
 <%
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
-	
-	Integer ident = Integer.parseInt(request.getParameter("ident"));
-	
+	AlumnoCtrl ctrl = new AlumnoCtrl();
 	Alumno alumno = new Alumno();
 	String disable = "";
 	String mChecked, fChecked;
 	mChecked = fChecked = "";
-	String usuario = new Utilidades().getUsuario();
+	Boolean comparar = false;
 	
-	//Grados
-	String grados=null;
-	GradoCtrl gCtrl = new GradoCtrl();
-	List<Grado> gLst = gCtrl.findByAll();
-	if(gLst==null){}else if(gLst.isEmpty()){}else{
-		Grado grado;
-		for(int i=0;i<gLst.size();i++){
-			grado = (Grado) gLst.get(i); 
-			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
-		}
+	Integer ident = 0;
+	if (request.getParameter("ident") == null) ident = 0;
+	else ident = Integer.parseInt(request.getParameter("ident"));
+	
+	if (ident == 0){
+		alumno = new Alumno();
+	}else{
+		alumno = ctrl.findById(ident);
+		if (alumno.getGenero().equals("M"))
+			mChecked = "checked";
+		if (alumno.getGenero().equals("F"))
+			fChecked = "checked";
+		comparar = true;
 	}
 	
 	if (accion.equals("guardar")) {
@@ -45,8 +46,11 @@
 		alumno.setAprendizaje(request.getParameter("aprendizaje"));
 		alumno.setEscuelaprevia(request.getParameter("escuelaprevia"));
 		
-		Grado grado = new GradoCtrl().findById(Integer.parseInt(request.getParameter("ultgrado")));
-		alumno.setGradoByGradoActual(grado);
+		try{
+			Grado grado = new GradoCtrl().findById(Integer.parseInt(request.getParameter("idGrado")));
+			alumno.setGradoByGradoActual(grado);
+		}catch (Exception e){}
+		
 		alumno.setCorreo(request.getParameter("correo"));
 
 		if (ident != 0)
@@ -54,89 +58,67 @@
 
 		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 		alumnoCtrl.guardar(alumno);
-		if (usuario==null)
-			response.sendRedirect("Edit.jsp?accion=guest&ident="+alumno.getIdent());
-		else
-			response.sendRedirect("Edit.jsp?accion=ver&ident="+alumno.getIdent());
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+alumno.getIdent());
+	}else if (accion.equals("ver")) {
+		disable = "disabled";
+	}else if(accion.equals("borrar")){
+		ctrl.borrar(ident);
+		response.sendRedirect("Lista.jsp");
 	}
-	if (usuario==null){
-		if (accion.equals("guest")) {
-			disable = "disabled";
-			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-			alumno = alumnoCtrl.findById(ident);
-			if (alumno.getGenero().equals("M"))
-				mChecked = "checked";
-			if (alumno.getGenero().equals("F"))
-				fChecked = "checked";
-			
-		}
-	}else{
-		if (accion.equals("borrar")) {
-			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-			alumnoCtrl.borrar(ident);
-			response.sendRedirect("Lista.jsp");
-		} else if (accion.equals("ver")) {
-			disable = "disabled";
-		} else if (accion.equals("alta")) {
-			System.out.println(ident);
-			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-			alumnoCtrl.alta(ident);
-			response.sendRedirect("Lista.jsp");
-		} else if (accion.equals("baja")) {
-			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-			alumnoCtrl.baja(ident);
-			response.sendRedirect("Lista.jsp");
-		}
-		if (ident == 0) {
-			alumno = new Alumno();
-		} else {
-			AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-			alumno = alumnoCtrl.findById(ident);
-			if (alumno.getGenero().equals("M"))
-				mChecked = "checked";
-			if (alumno.getGenero().equals("F"))
-				fChecked = "checked";
+	
+	//Grados
+	String grados="<option value=''></option>";
+	String selGra = "";
+	GradoCtrl gCtrl = new GradoCtrl();
+	List<Grado> gLst = gCtrl.findByAll();
+	if(gLst==null){}else if(gLst.isEmpty()){}else{
+		Grado grado;
+		for(int i=0;i<gLst.size();i++){
+			grado = (Grado) gLst.get(i);
+			selGra = "";
+			if (comparar == true){
+				try{
+					if (alumno.getGradoByGradoActual().getIdent().equals(grado.getIdent())){
+						selGra = "selected='selected'";
+						comparar = false;
+					}
+				}catch(Exception e){
+					selGra = "";
+				}
+			}
+			grados += "<option value="+grado.getIdent()+" "+selGra+" >"+grado.toString()+"</option>"; 
 		}
 	}
 	//lo correspondiente a los familiares
-	String mensaje = "";
-	/*FamiliarCtrl familiarCtrl = new FamiliarCtrl();
+	FamiliarCtrl fCtrl = new FamiliarCtrl();
 	Familiar familiar = new Familiar();
-	List familiarList = familiarCtrl.findByAlumno(alumno);
+	List lst = fCtrl.findByAlumno(alumno);
 	
 	Integer canFam = 0;
-
-	mensaje = "<table> "+
-			"<thead>"+
-			"<caption>Materias"+ 
-					 "<a href='Edit.jsp?ident=0&accion=nuevo'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>"+
-					 "<a href='Print.jsp?tiporeporte=pdf'><img alt='Print'class='iconprint' title='Imprimir' ></a>"+
-			"</caption>"+
-			"<tr><td>Nombres</td><td>Parentesco</td><td>Tel. Casa</td><td>Tel. Trabajo</td><td>Celular</td></tr></thead>";
-	if (familiarList.isEmpty()) {
-		mensaje += "<tr><td colspan=6>No existen familiares registrados</td></tr>";
-	} else {
-		canFam = familiarList.size();
-		for (int i = 0; i < familiarList.size(); i++) {
-			familiar = (Familiar) familiarList.get(i);
-			mensaje += "<tr><td>"+ familiar.getNombre()+ "</td>"
-					+ "<td>"+ familiar.getParentesco()+ "</td>"
-					+ "<td>"+ familiar.getTelefono()+ "</td>"
-					+ "<td>"+ familiar.getTeltrabajo()+ "</td>"
-					+ "<td>"+ familiar.getCelular()+ "</td>"
-					+ "<td><a href='EditFamiliar.jsp?accion=ver&ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"'>Ver</a></td>"
-					+ "<td><a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent().toString()+"&&alumno="+alumno.getIdent().toString()+"'>Edit</a></td>";
-			if (alumno.getEstado() == 0)
-				mensaje += "<td><a href='EditFamiliar.jsp?ident="+familiar.getIdent().toString()+"&alumno="+alumno.getIdent().toString()+"&accion=borrar'>Del</a></td>";
-
-			mensaje += "</tr>";
+	String mensaje = "";
+	String nuevo = "";
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
+	}else{
+		for(int i=0;i<lst.size();i++){
+			familiar = (Familiar) lst.get(i); 
+			
+			mensaje += "<tr>"+
+							"<td>"+familiar.toString()+"</td>"+
+							"<td>"+fCtrl.formatParentesco(familiar,alumno)+"</td>"+
+							"<td>"+
+								"<a href='EditFamiliar.jsp?ident="+familiar.getIdent()+"&accion=ver&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
+			if (alumno.getEstado().equals("E"))
+				mensaje += "<a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
+		 	if (fCtrl.puedoBorrar(familiar) == true)
+				mensaje += "<a href='EditFamiliar.jsp?accion=borrar'&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
 		}
 	}
+	
 	if (canFam < 3 && alumno.getIdent() != 0)
-			mensaje += "<tr><td colspan=6><center><a href='EditFamiliar.jsp?ident=0&alumno="
-					+ alumno.getIdent().toString()
-					+ "'>Nuevo Familiar</a></center></td></tr>";
-	mensaje += "</table>";*/
+		nuevo = "<a href='EditFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
+	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -162,8 +144,7 @@
 		<%=new Utilidades().getMenu()%>
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
-			
-			<form action="Edit.jsp" method="post">
+			<form action="Edit.jsp" method="post" id="formValidar">
 				<input type="hidden" name="accion" value="guardar"> 
 				<input type="hidden" name="ident" value="<%=alumno.getIdent()%>">
 
@@ -203,7 +184,7 @@
 					<tr>
 						<td>Direccion</td>
 						<td colspan="2"><textarea name="direccion" rows="2"
-								cols="45" value="<%=alumno.getDireccion()%>" <%=disable%> required /></textarea></td>
+								cols="45" <%=disable%> required /><%=alumno.getDireccion()%></textarea></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>
@@ -242,7 +223,7 @@
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
-						<td colspan="2"><select name="ultgrado" <%=disable%>><%=grados%></select></td>
+						<td colspan="2"><select name="idGrado" <%=disable%>><%=grados%></select></td>
 					</tr>
 					<tr>
 						<td>Correo Electronico</td>
@@ -251,13 +232,25 @@
 					</tr>
 					<tr>
 						<td colspan="3"><center>
-								<input type="submit" value="Guardar alumno" <%=disable%>>
-								<input type="reset" value="Limpiar campos" <%=disable%>>
+								<input type="submit" value="Guardar" <%=disable%>>
+								<input type="reset" value="Limpiar" <%=disable%>>
 							</center></td>
 					</tr>
 				</table>
 			</form>
-			<%=mensaje%>
+			<br /><br />
+			<table id='tabla'>
+				<thead>
+					<caption >Familiares&nbsp; <%=nuevo%>
+					</caption>
+					<tr>
+						<th>Nombre</th>
+						<th>Parentesco</th>
+						<th width=150px>Acciones</th>
+					</tr>
+				</thead>
+				<tbody><%=mensaje %></tbody>
+			</table>
 		</div>
 		<div id="footer">
 			<div class="fleft"><a href="#">Homepage</a></div>

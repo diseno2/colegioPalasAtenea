@@ -80,7 +80,6 @@
 		ctrl.guardar(grado);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
-		grado = ctrl.findById(ident);
 		ctrl.borrar(ident);
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {
