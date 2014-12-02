@@ -45,8 +45,9 @@
 			f.setAlumno(alumno);
 			f.setFamiliar(familiar);
 			f.setParentesco(request.getParameter("parentesco"));
+			fCtrl.guardar(f);
 		}
-		response.sendRedirect("EditAlumno.jsp?ident="+alumno.getIdent().toString());
+		response.sendRedirect("Edit.jsp?ident="+alumno.getIdent().toString());
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

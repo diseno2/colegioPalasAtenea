@@ -29,58 +29,69 @@
 		familiar = ctrl.findById(ident);
 		comparar = true;
 	}
-	/*
-	
-	
-	AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-	
-	
-	String nombre = alumno.toString();
-	if (accion == null) accion = "";
-	
-	
-	
 	
 	if (accion.equals("guardar")){
-		//antes evaluar si ya existe un registro de ese familiar buscandolo por nombre + tdoc + ndoc
-		//familiar.setAlumno(idAlumno);
-		familiar.setNombre(request.getParameter("nombre"));
-		//familiar.setParentesco(Integer.parseInt(request.getParameter("parentesco")));
-		familiar.setTelefono(request.getParameter("telefono"));
-		familiar.setEmail(request.getParameter("email"));
-		familiar.setCelular(request.getParameter("celular"));
-		familiar.setEmpresa(request.getParameter("empresa"));
-		familiar.setDireccion(request.getParameter("direccion"));
-		familiar.setLugtrabajo(request.getParameter("lugtrabajo"));
-		familiar.setTeltrabajo(request.getParameter("teltrabajo"));
-		familiar.setExttrabajo(request.getParameter("exttrabajo"));
-		familiar.setDirtrabajo(request.getParameter("dirtrabajo"));
+		//buscar el familiar a ver si ya esta registrado
+		String nombre, tdoc, ndoc;
+		nombre = request.getParameter("nombre");
+		tdoc = request.getParameter("tdoc");
+		ndoc = request.getParameter("ndoc");
+		familiar = ctrl.findByNombreTdocNdoc(nombre,tdoc,ndoc);
 		
-		if (ident != 0) familiar.setIdent(ident);
-		
-		FamiliarCtrl familiarCtrl = new FamiliarCtrl();
-		familiarCtrl.guardar(familiar);
-		response.sendRedirect("EditAlumno.jsp?ident="+alumno.getIdent().toString());
+		if(familiar != null){
+			//se guarda la actualizacion del familiar
+			familiar.setTelefono(request.getParameter("telefono"));
+			familiar.setEmail(request.getParameter("email"));
+			familiar.setCelular(request.getParameter("celular"));
+			familiar.setEmpresa(request.getParameter("empresa"));
+			familiar.setDireccion(request.getParameter("direccion"));
+			familiar.setLugtrabajo(request.getParameter("lugtrabajo"));
+			familiar.setTeltrabajo(request.getParameter("teltrabajo"));
+			familiar.setExttrabajo(request.getParameter("exttrabajo"));
+			familiar.setDirtrabajo(request.getParameter("dirtrabajo"));
+			ctrl.guardar(familiar);
+			
+			//se guarda la relacion del familiar
+			FamiliaresCtrl fCtrl = new FamiliaresCtrl();
+			Familiares f = new Familiares();
+			f.setAlumno(alumno);
+			f.setFamiliar(familiar);
+			f.setParentesco(request.getParameter("parentesco"));
+			fCtrl.guardar(f);
+			
+		}else{
+			//se guarda la actualizacion del familiar
+			familiar.setNombre(request.getParameter("nombre"));
+			familiar.setTelefono(request.getParameter("telefono"));
+			familiar.setEmail(request.getParameter("email"));
+			familiar.setCelular(request.getParameter("celular"));
+			familiar.setEmpresa(request.getParameter("empresa"));
+			familiar.setDireccion(request.getParameter("direccion"));
+			familiar.setLugtrabajo(request.getParameter("lugtrabajo"));
+			familiar.setTeltrabajo(request.getParameter("teltrabajo"));
+			familiar.setExttrabajo(request.getParameter("exttrabajo"));
+			familiar.setDirtrabajo(request.getParameter("dirtrabajo"));
+			ctrl.guardar(familiar);
+			
+			//se guarda la relacion del familiar
+			FamiliaresCtrl fCtrl = new FamiliaresCtrl();
+			Familiares f = new Familiares();
+			f.setAlumno(alumno);
+			f.setFamiliar(familiar);
+			f.setParentesco(request.getParameter("parentesco"));
+			fCtrl.guardar(f);
+		}
+		response.sendRedirect("Edit.jsp?ident="+alumno.getIdent().toString());
 	}else if(accion.equals("borrar")){
-		FamiliarCtrl familiarCtrl = new FamiliarCtrl();
-		familiarCtrl.borrar(ident);
-		response.sendRedirect("EditAlumno.jsp?ident="+alumno.getIdent().toString());
+		//buscar el registro de familiares
+		FamiliaresCtrl fCtrl = new FamiliaresCtrl();
+		Integer idFamiliares = fCtrl.findByAlumnoFamiliar(alumno,familiar);
+		fCtrl.borrar(idFamiliares);
+		ctrl.borrar(ident);
+		response.sendRedirect("Edit.jsp?ident="+alumno.getIdent().toString());
 	}else if(accion.equals("ver")){
 		disable = "disabled";
 	}
-	
-	if(ident==0){ 
-		familiar = new Familiar();
-	}else{
-		FamiliarCtrl familiarCtrl = new FamiliarCtrl();
-		//familiar = familiarCtrl.findByIdent(ident);*/
-		
-		/*
-		if (familiar.getParentesco() == 1 ) padre = "selected";
-		if (familiar.getParentesco() == 2 ) madre = "selected";
-		if (familiar.getParentesco() == 3 ) tutor = "selected";*/
-	//}
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
