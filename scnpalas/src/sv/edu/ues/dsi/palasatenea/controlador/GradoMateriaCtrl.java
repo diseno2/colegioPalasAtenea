@@ -3,6 +3,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 import java.util.List;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
+import sv.edu.ues.dsi.palasatenea.modelo.Grado;
 import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.GradoMateriaDao;
 
@@ -24,6 +25,11 @@ public class GradoMateriaCtrl {
 	
 	public List<GradoMateria> findByAll(){
 		List<GradoMateria> lst = dao.findByAll();
+		return lst;
+	}
+	
+	public List<GradoMateria> findByAll(Grado grado){
+		List<GradoMateria> lst = dao.findByAll(grado);
 		return lst;
 	}
 	

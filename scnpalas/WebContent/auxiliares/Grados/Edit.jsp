@@ -90,8 +90,7 @@
 	//configuracion de las materias a recibir en el grado
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
 	List<GradoMateria> gMLst = null;
-	gMLst = gMCtrl.findByAll();
-	
+	gMLst = gMCtrl.findByAll(grado);
 	
 	if(gMLst.isEmpty()){
 		mensaje += "<tr><td colspan=7>No hay registros</td></tr>";

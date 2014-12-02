@@ -32,6 +32,11 @@
 		if (ident != 0) gradoMateria.setIdent(ident);
 		ctrl.guardar(gradoMateria);
 		response.sendRedirect("Edit.jsp?accion=ver&ident="+idGrado);
+	}else if (accion.equals("ver")) {
+		disable = "disabled";
+	}else if (accion.equals("borrar")) {
+		ctrl.borrar(ident);
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+idGrado);
 	}
 	
 	Boolean comparar = false;
@@ -98,13 +103,7 @@
 		if (ident != 0) gradoMateria.setIdent(ident);
 		ctrl.guardar(gradoMateria);
 		response.sendRedirect("Edit.jsp?accion=ver&ident="+identGrado);
-	}else if (accion.equals("borrar")) {
-		gradoMateria = ctrl.findById(ident);
-		ctrl.borrar(ident);
-		response.sendRedirect("Edit.jsp?accion=ver&ident="+identGrado);
-	} else if (accion.equals("ver")) {
-		disable = "disabled";
-	}
+	} 
 	*/
 	
 %>
@@ -136,12 +135,12 @@
 					<tbody>
 						<tr>
 							<td>Materia</td>
-							<td><select name="idMateria" style="width:300px"> <%=materias %></select></td>
+							<td><select name="idMateria" style="width:300px" <%=disable %> > <%=materias %></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable %> />
+								<input type="reset" value="Limpiar" <%=disable %> />
 							</td>
 						</tr>
 					</tbody>

@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Grado;
 import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
@@ -46,6 +47,16 @@ public class GradoMateriaDao{
 	public List<GradoMateria> findByAll(){
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(GradoMateria.class);
+		crt.addOrder(Order.asc("ident"));
+		List<GradoMateria> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
+	
+	public List<GradoMateria> findByAll(Grado grado){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(GradoMateria.class);
+		crt.add(Restrictions.eq("grado", grado));
 		crt.addOrder(Order.asc("ident"));
 		List<GradoMateria> lst = crt.list();
 		tx.finSesion();
