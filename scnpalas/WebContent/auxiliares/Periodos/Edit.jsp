@@ -1,5 +1,5 @@
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.SubPeriodoCtrl"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.modelo.Subperiodo"%>
+<%@page import="sv.edu.ues.dsi.palasatenea.modelo.SubPeriodo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sv.edu.ues.dsi.palasatenea.controlador.PeriodoCtrl" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Periodo" %>
@@ -55,18 +55,18 @@
 	
 	//lo relacionado a los subperiodos
 	SubPeriodoCtrl sCtrl = new SubPeriodoCtrl();
-	List<Subperiodo> lst = null;
+	List<SubPeriodo> lst = null;
 	lst = sCtrl.findByAll();
 	
 	String mensaje = "";
 	if(lst.isEmpty()){
 		mensaje += "<tr><td colspan=5>No hay registros</td></tr>";
 	}else{
-		Subperiodo subPeriodo;
+		SubPeriodo subPeriodo;
 		String fi1 , ff1;		
 		
 		for(int i=0;i<lst.size();i++){
-			subPeriodo = (Subperiodo) lst.get(i); 
+			subPeriodo = (SubPeriodo) lst.get(i); 
 			fi1 =  df.format(subPeriodo.getInicio());
 			ff1 =  df.format(subPeriodo.getFin());
 			
@@ -134,8 +134,8 @@
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable%> />
+								<input type="reset" value="Limpiar" <%=disable%> />
 							</td>
 						</tr>
 					</tbody>

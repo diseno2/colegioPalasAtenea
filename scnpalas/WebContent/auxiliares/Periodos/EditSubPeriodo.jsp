@@ -1,6 +1,6 @@
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.SubPeriodoCtrl"%>
 <%@page import="sv.edu.ues.dsi.palasatenea.controlador.PeriodoCtrl"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.modelo.Subperiodo"%>
+<%@page import="sv.edu.ues.dsi.palasatenea.modelo.SubPeriodo"%>
 <%@page import="sv.edu.ues.dsi.palasatenea.modelo.Periodo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="sv.edu.ues.dsi.palasatenea.utilidades.Utilidades"%>
@@ -9,7 +9,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	Subperiodo subPeriodo = new Subperiodo();
+	SubPeriodo subPeriodo = new SubPeriodo();
 	String disable = "";
 	SubPeriodoCtrl ctrl = new SubPeriodoCtrl();
 	
@@ -22,7 +22,7 @@
 	Integer idPeriodo = Integer.parseInt(request.getParameter("idPeriodo"));
 	
 	if (ident == 0) {
-		subPeriodo = new Subperiodo();
+		subPeriodo = new SubPeriodo();
 	} else {
 		subPeriodo = ctrl.findById(ident);
 	}
@@ -104,8 +104,8 @@
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable%> />
+								<input type="reset" value="Limpiar" <%=disable%> />
 							</td>
 						</tr>
 					</tbody>

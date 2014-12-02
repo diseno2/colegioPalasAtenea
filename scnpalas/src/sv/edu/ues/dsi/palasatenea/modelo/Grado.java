@@ -36,6 +36,7 @@ public class Grado implements java.io.Serializable {
 
 	public Grado() {
 		this.ident = 0;
+		this.grado = "";
 	}
 
 	public Grado(String grado) {

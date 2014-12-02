@@ -39,7 +39,7 @@ public class SubPeriodoDao {
 	
 	public SubPeriodo findById(int ident){
 		s = tx.iniciarSesion();
-		SubPeriodo subPeriodo = findById(ident);
+		SubPeriodo subPeriodo = findByIdent(ident);
 		tx.finSesion();
 		return subPeriodo;
 	}

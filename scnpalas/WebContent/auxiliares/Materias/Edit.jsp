@@ -15,10 +15,12 @@
 	if (request.getParameter("ident") == null) ident = 0;
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
+	String activo = "";
 	if (ident == 0) {
 		materia = new Materia();
 	} else {
 		materia = ctrl.findById(ident);
+		if (materia.getActiva().equals("S")) activo = " checked ";
 	}
 	
 	if (accion.equals("guardar")){
@@ -67,7 +69,7 @@
 						<tr>
 							<td>C&oacute;digo</td>
 							<td><input type="text" value="<%=materia.getIdent()%>" disabled /></td>
-							<td><input type="checkbox" name="activa" value="<%=materia.getActiva()%>" >Activa</input></td>
+							<td><input type="checkbox" name="activa" value="<%=materia.getActiva()%>" <%=activo %> >Activa</input></td>
 						</tr>
 						<tr>
 							<td>Descripci&oacute;n</td>

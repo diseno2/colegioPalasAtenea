@@ -10,7 +10,7 @@
 	String gradosprevio=null;
 	String gradossiguiente=null;
 	String mensaje = "";
-	String nuevo = "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&identGrado="+grado.getIdent()+"'><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
+	String nuevo = "";
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
 	
@@ -25,6 +25,7 @@
 	} else {
 		grado = ctrl.findById(ident);
 		comparar = true;
+		nuevo = "<a href='EditGradoMateria.jsp?ident=0&accion=nuevo&idGrado="+grado.getIdent()+"' ><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
 	}
 	
 	//Grados
@@ -37,16 +38,30 @@
 		Grado gradoN;
 		gradosprevio += "<option value=''></option>";
 		gradossiguiente += "<option value=''></option>";
+		
 		String selPre = "", selSig = "";
 		for(int i=0;i<lst.size();i++){
 			gradoN = (Grado) lst.get(i);
 			
 			selPre = ""; selSig = "";
 			if (comparar == true){
-				if (gradoN == grado.getGradoByGrado1()) selPre = "Selected";
-				if (gradoN == grado.getGradoByGrado2()) selSig = "Selected";
-				comparar = false;
+				try{
+					if(grado.getGradoByGrado1().getIdent().equals(gradoN.getIdent())){
+						selPre = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selPre = "";
+				}
+				try{
+					if(grado.getGradoByGrado2().getIdent().equals(gradoN.getIdent())){
+						selSig = "selected='selected'";
+					}
+				}
+				catch(NullPointerException e){
+					selSig = "";
+				}
 			}
+			
 			gradosprevio += "<option value="+gradoN.getIdent()+" "+selPre+" >"+gradoN.toString()+"</option>"; 
 			gradossiguiente += "<option value="+gradoN.getIdent()+" "+selSig+" >"+gradoN.toString()+"</option>"; 
 		}
@@ -72,8 +87,7 @@
 		disable = "disabled";
 	}
 	
-	//aqui agregar lo necesario para configurar las materias
-	
+	//configuracion de las materias a recibir en el grado
 	GradoMateriaCtrl gMCtrl = new GradoMateriaCtrl();
 	List<GradoMateria> gMLst = null;
 	gMLst = gMCtrl.findByAll();
@@ -87,10 +101,9 @@
 			gradoMateria = (GradoMateria) gMLst.get(i); 
 			mensaje += "<tr>"+
 							"<td>"+gradoMateria.getMateria().toString()+"</td>"+
-							"<td>"+gradoMateria.getDocente().toString()+"</td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=ver&identGrado="+grado.getIdent()+"'><img alt='Ver' class='iconview' title='Ver' ></a></td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=edit&identGrado="+grado.getIdent()+"'><img alt='Edit' class='iconedit' title='Editar' ></a></td>"+
-							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&identGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
+							"<td><a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=ver&idGrado="+grado.getIdent()+"'><img alt='Ver' class='iconview' title='Ver' ></a>"+
+							"<a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=edit&idGrado="+grado.getIdent()+"'><img alt='Edit' class='iconedit' title='Editar' ></a>"+
+							"<a href='EditGradoMateria.jsp?ident="+gradoMateria.getIdent()+"&accion=borrar&idGrado="+grado.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
 						"</tr>"; 
 		}
 	}
@@ -126,16 +139,16 @@
 						</tr>
 						<tr>
 							<td>Grado previo</td>
-							<td><select name="gradoprevio" placeholder="Grado" style="width:213px"><%=gradosprevio%></select></td>
+							<td><select name="gradoprevio" placeholder="Grado" style="width:213px" <%=disable%> required ><%=gradosprevio%></select></td>
 						</tr>
 						<tr>
 							<td>Grado siguiente</td>
-							<td><select name="gradosiguiente" placeholder="Grado" style="width:213px" ><%=gradossiguiente%></select></td>
+							<td><select name="gradosiguiente" placeholder="Grado" style="width:213px" <%=disable%> required ><%=gradossiguiente%></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable%> />
+								<input type="reset" value="Limpiar" <%=disable%> />
 							</td>
 						</tr>
 					</tbody>
