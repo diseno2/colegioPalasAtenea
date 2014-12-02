@@ -18,6 +18,7 @@ public class PeriodoCtrl {
 	
 	public void borrar(int ident){
 		Periodo periodo = findById(ident);
+		System.out.println(periodo);
 		dao.borrar(periodo);
 	}
 	

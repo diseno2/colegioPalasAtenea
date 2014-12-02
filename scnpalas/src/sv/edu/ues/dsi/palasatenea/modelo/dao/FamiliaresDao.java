@@ -54,6 +54,25 @@ public class FamiliaresDao{
 		return lst;
 	}
 	
+	public List<Familiares> findByAlumno(Alumno alumno){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiares.class);
+		crt.add(Restrictions.eq("alumno", alumno));
+		crt.addOrder(Order.asc("ident"));
+		List<Familiares> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
+	
+	public List<Familiares> findByFamiliar(Familiar familiar){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiares.class);
+		crt.add(Restrictions.eq("familiar", familiar));
+		crt.addOrder(Order.asc("ident"));
+		List<Familiares> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
 	private Familiares findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Familiares.class);

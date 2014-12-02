@@ -53,6 +53,15 @@ public class AlumnoDao{
 		return lst;
 	}
 	
+	public List<Alumno> findByAll(Short estado){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Alumno.class);
+		crt.add(Restrictions.eq("estado", estado));
+		crt.addOrder(Order.asc("ident"));
+		List<Alumno> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
 	private Alumno findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(Alumno.class);

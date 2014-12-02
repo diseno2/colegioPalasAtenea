@@ -60,7 +60,7 @@ public class Alumno implements java.io.Serializable {
 		this.apellido1 = "";
 		this.apellido2 = "";
 		this.genero = "";
-		//this.fnacimiento = new Date();
+		//this.fnacimiento = "";
 		this.lnacimiento = "";
 		this.direccion = "";
 		this.telefono = "";

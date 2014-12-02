@@ -34,7 +34,6 @@
 		ctrl.guardar(periodo);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
-		periodo = ctrl.findById(ident);
 		ctrl.borrar(ident);
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.Periodo;
 import sv.edu.ues.dsi.palasatenea.modelo.Rol;
 import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
@@ -20,6 +21,42 @@ public class AlumnoCtrl {
 	
 	public void borrar(int ident){
 		dao.borrar(ident);
+	}
+	
+	public void borrarAll(){
+		System.out.println("1");
+		List<Alumno> alumnoList = dao.findByAll((short) 0);
+		System.out.println("2");
+		Alumno alumno;
+		Familiares familiares;
+		FamiliaresCtrl famCtrl = new FamiliaresCtrl();
+		FamiliarCtrl famCtrl1 = new FamiliarCtrl();
+		List<Familiares> famList = null;
+		List<Familiares> famList1 = null;
+		
+		System.out.println("2");
+		for(int i=0;i<alumnoList.size();i++){
+			System.out.println("3");
+			alumno = (Alumno) alumnoList.get(i);
+			
+			//obtener los familiares
+			famList = famCtrl.findByAlumno(alumno);
+			System.out.println("4");
+			for(int j=0;j<famList.size();j++){
+				familiares = (Familiares) famList.get(i);
+				famCtrl.borrar(familiares.getIdent());
+				System.out.println("5");
+				//buscar si para el familiar hay mas registros de familiares
+				famList1 = famCtrl.findByFamiliar(familiares.getFamiliar());
+				System.out.println("6");
+				if (famList1.size() == 0 || famList1.isEmpty() || famList1 == null){
+					System.out.println("7");
+					famCtrl1.borrar(familiares.getFamiliar().getIdent());
+				}
+			}
+			this.borrar(alumno.getIdent());
+			System.out.println("8");
+		}
 	}
 	
 	public Alumno findById(int ident){

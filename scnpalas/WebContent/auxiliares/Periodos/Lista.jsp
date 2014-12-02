@@ -43,7 +43,7 @@
 			if (periodo.getEstado().equals("E"))
 				mensaje += "<a href='Edit.jsp?accion=edit&ident="+periodo.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
 		 	if (ctrl.puedoBorrar(periodo) == true && periodo.getEstado().equals("E"))
-				mensaje += "<a href='Edit.jsp?accion=borrar'&ident="+periodo.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
+				mensaje += "<a href='Edit.jsp?accion=borrar&ident="+periodo.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
 			if (periodo.getEstado().equals("E"))
 				mensaje += "<a href='Edit.jsp?accion=alta&ident="+periodo.getIdent()+"'><img id='iconos' alt='Alta' class='iconalta' title='Alta' ></a>&nbsp;";
 			if (periodo.getEstado().equals("A"))

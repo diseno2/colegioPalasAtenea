@@ -9,6 +9,16 @@
 	List<Alumno> alumnoList = null;
 	
 	String accion = request.getParameter("accion");
+	
+	try{
+		if(accion.equals("all")){
+			ctrl.borrarAll();
+			accion = null;
+		}
+	}catch (NullPointerException e){
+		accion = null;	
+	}
+	
 	if (accion == null)
 		alumnoList = ctrl.findByAll();
 	else{
@@ -45,6 +55,8 @@
 			mensaje += "</td></tr>";
 		}
 	}
+	
+	String deleteall = "<a href='Lista.jsp?accion=all'><img id='iconos' alt='Del' class='icondeleteall' ></a>&nbsp;";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,6 +83,7 @@
 					<a href='Edit.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;
 					<a href='Print.jsp?tiporeporte=pdf'><img id='iconos' alt='Print'class='iconprint' title='Imprimir' ></a>&nbsp;
 					<a href="javascript:ShowQueryForm();" ><img id='iconos' alt='Buscar' class='iconquery' title='Buscar' /></a>&nbsp;
+					<%=deleteall %>
 				</caption>
 		  		<thead>
 					<tr>
