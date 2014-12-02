@@ -12,7 +12,7 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Alumno" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Usuario" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Rol" />
@@ -26,7 +26,7 @@
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.GradoMateria" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.RolOpciones" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Grado" />
-        <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Subperiodo" />
+        <mapping class="sv.edu.ues.dsi.palasatenea.modelo.SubPeriodo" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.LogDetalle" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Periodo" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Materia" />
