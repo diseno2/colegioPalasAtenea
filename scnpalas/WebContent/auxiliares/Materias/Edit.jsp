@@ -18,6 +18,7 @@
 	String activo = "";
 	if (ident == 0) {
 		materia = new Materia();
+		activo = " checked ";
 	} else {
 		materia = ctrl.findById(ident);
 		if (materia.getActiva().equals("S")) activo = " checked ";
