@@ -14,6 +14,7 @@
 		if(accion.equals("all")){
 			ctrl.borrarAll();
 			accion = null;
+			response.sendRedirect("Lista.jsp");
 		}
 	}catch (NullPointerException e){
 		accion = null;	
