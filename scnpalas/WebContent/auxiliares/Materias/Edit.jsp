@@ -78,8 +78,8 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable%> />
+								<input type="reset" value="Limpiar" <%=disable%> />
 							</td>
 						</tr>
 					</tbody>

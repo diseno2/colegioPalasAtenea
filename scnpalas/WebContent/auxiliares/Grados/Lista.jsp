@@ -40,10 +40,11 @@
 			else
 				mensaje += "<td>-</td>";
 		
-				mensaje += "<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;</td>"+
-						"</tr>"; 
+				mensaje += "<td><a href='Edit.jsp?ident="+grado.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+grado.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+				if(ctrl.puedoBorrar(grado))
+					mensaje += "<a href='Edit.jsp?ident="+grado.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;</td>";
+				mensaje += "</tr>"; 
 		}
 	}
 	
