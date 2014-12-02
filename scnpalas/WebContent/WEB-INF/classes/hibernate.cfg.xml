@@ -17,7 +17,6 @@
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Usuario" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Rol" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Seccion" />
-        <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Log" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Matricula" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Evaluacion" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Familiares" />
@@ -27,7 +26,6 @@
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.RolOpciones" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Grado" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.SubPeriodo" />
-        <mapping class="sv.edu.ues.dsi.palasatenea.modelo.LogDetalle" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Periodo" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Materia" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Nota" />

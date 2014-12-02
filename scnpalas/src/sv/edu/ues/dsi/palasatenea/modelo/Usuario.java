@@ -29,7 +29,6 @@ public class Usuario implements java.io.Serializable {
 	private String estado;
 	private Set<Familiar> familiars = new HashSet<Familiar>(0);
 	private Set<Alumno> alumnos = new HashSet<Alumno>(0);
-	private Set<Log> logs = new HashSet<Log>(0);
 	private Set<Docente> docentes = new HashSet<Docente>(0);
 
 	public Usuario() {
@@ -44,7 +43,7 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	public Usuario(Rol rol, String usuario, String password, String estado,
-			Set<Familiar> familiars, Set<Alumno> alumnos, Set<Log> logs,
+			Set<Familiar> familiars, Set<Alumno> alumnos,
 			Set<Docente> docentes) {
 		this.rol = rol;
 		this.usuario = usuario;
@@ -52,7 +51,6 @@ public class Usuario implements java.io.Serializable {
 		this.estado = estado;
 		this.familiars = familiars;
 		this.alumnos = alumnos;
-		this.logs = logs;
 		this.docentes = docentes;
 	}
 
@@ -120,15 +118,6 @@ public class Usuario implements java.io.Serializable {
 
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
-	public Set<Log> getLogs() {
-		return this.logs;
-	}
-
-	public void setLogs(Set<Log> logs) {
-		this.logs = logs;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")

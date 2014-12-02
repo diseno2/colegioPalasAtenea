@@ -2,7 +2,6 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
-import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.UsuarioDao;
 
@@ -33,7 +32,7 @@ public class UsuarioCtrl {
 	}
 	
 	public Boolean puedoBorrar(Usuario usuario){
-		if (usuario.getDocentes().size() == 0 && usuario.getFamiliars().size() == 0 && usuario.getFamiliars().size() == 0 && usuario.getLogs().size() == 0)
+		if (usuario.getDocentes().size() == 0 && usuario.getFamiliars().size() == 0 && usuario.getFamiliars().size() == 0 )
 			return true;
 		else
 			return false;

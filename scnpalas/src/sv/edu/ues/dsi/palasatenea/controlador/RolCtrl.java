@@ -2,7 +2,6 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
-import sv.edu.ues.dsi.palasatenea.modelo.Log;
 import sv.edu.ues.dsi.palasatenea.modelo.Rol;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.RolDao;
 
