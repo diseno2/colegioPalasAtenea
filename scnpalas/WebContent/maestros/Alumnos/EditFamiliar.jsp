@@ -42,6 +42,7 @@
 	
 	
 	if (accion.equals("guardar")){
+		//antes evaluar si ya existe un registro de ese familiar buscandolo por nombre + tdoc + ndoc
 		//familiar.setAlumno(idAlumno);
 		familiar.setNombre(request.getParameter("nombre"));
 		//familiar.setParentesco(Integer.parseInt(request.getParameter("parentesco")));
