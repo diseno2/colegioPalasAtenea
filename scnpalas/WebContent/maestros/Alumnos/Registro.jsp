@@ -7,25 +7,26 @@
 <%
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
-	
-	Integer ident = Integer.parseInt(request.getParameter("ident"));
-	
+	AlumnoCtrl ctrl = new AlumnoCtrl();
 	Alumno alumno = new Alumno();
 	String disable = "";
 	String mChecked, fChecked;
 	mChecked = fChecked = "";
-	String usuario = new Utilidades().getUsuario();
+	Boolean comparar = false;
 	
-	//Grados
-	String grados=null;
-	GradoCtrl gCtrl = new GradoCtrl();
-	List<Grado> gLst = gCtrl.findByAll();
-	if(gLst==null){}else if(gLst.isEmpty()){}else{
-		Grado grado;
-		for(int i=0;i<gLst.size();i++){
-			grado = (Grado) gLst.get(i); 
-			grados += "<option value="+grado.getIdent()+">"+grado.toString()+"</option>"; 
-		}
+	Integer ident = 0;
+	if (request.getParameter("ident") == null) ident = 0;
+	else ident = Integer.parseInt(request.getParameter("ident"));
+	
+	if (ident == 0){
+		alumno = new Alumno();
+	}else{
+		alumno = ctrl.findById(ident);
+		if (alumno.getGenero().equals("M"))
+			mChecked = "checked";
+		if (alumno.getGenero().equals("F"))
+			fChecked = "checked";
+		comparar = true;
 	}
 	
 	if (accion.equals("guardar")) {
@@ -45,8 +46,10 @@
 		alumno.setAprendizaje(request.getParameter("aprendizaje"));
 		alumno.setEscuelaprevia(request.getParameter("escuelaprevia"));
 		
-		Grado grado = new GradoCtrl().findById(Integer.parseInt(request.getParameter("ultgrado")));
-		alumno.setGradoByGradoActual(grado);
+		try{
+			Grado grado = new GradoCtrl().findById(Integer.parseInt(request.getParameter("idGrado")));
+			alumno.setGradoByGradoActual(grado);
+		}catch (Exception e){}
 		
 		alumno.setCorreo(request.getParameter("correo"));
 
@@ -55,18 +58,31 @@
 
 		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 		alumnoCtrl.guardar(alumno);
-		response.sendRedirect("Registro.jsp?accion=guest&ident="+alumno.getIdent());
-	}
-	if (accion.equals("guest")) {
-		disable = "disabled";
-		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
-		alumno = alumnoCtrl.findById(ident);
-		if (alumno.getGenero().equals("M"))
-			mChecked = "checked";
-		if (alumno.getGenero().equals("F"))
-			fChecked = "checked";
 	}
 	
+	//Grados
+	String grados="<option value=''></option>";
+	String selGra = "";
+	GradoCtrl gCtrl = new GradoCtrl();
+	List<Grado> gLst = gCtrl.findByAll();
+	if(gLst==null){}else if(gLst.isEmpty()){}else{
+		Grado grado;
+		for(int i=0;i<gLst.size();i++){
+			grado = (Grado) gLst.get(i);
+			selGra = "";
+			if (comparar == true){
+				try{
+					if (alumno.getGradoByGradoActual().getIdent().equals(grado.getIdent())){
+						selGra = "selected='selected'";
+						comparar = false;
+					}
+				}catch(Exception e){
+					selGra = "";
+				}
+			}
+			grados += "<option value="+grado.getIdent()+" "+selGra+" >"+grado.toString()+"</option>"; 
+		}
+	}
 	//lo correspondiente a los familiares
 	FamiliarCtrl fCtrl = new FamiliarCtrl();
 	Familiar familiar = new Familiar();
@@ -86,7 +102,7 @@
 							"<td>"+fCtrl.formatParentesco(familiar,alumno)+"</td>"+
 							"<td>"+
 								"<a href='RegistroFamiliar.jsp?ident="+familiar.getIdent()+"&accion=ver&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
-			if (alumno.getEstado().equals("E"))
+			if (alumno.getEstado() == 0)
 				mensaje += "<a href='RegistroFamiliar.jsp?accion=edit&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
 		 	if (fCtrl.puedoBorrar(familiar) == true)
 				mensaje += "<a href='RegistroFamiliar.jsp?accion=borrar'&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
@@ -94,8 +110,10 @@
 		}
 	}
 	
-	if (canFam < 3 && alumno.getIdent() != 0)
-		nuevo = "<a href='RegistroFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;";
+	if (canFam < 3 && alumno.getIdent() != 0){
+		nuevo = "<a href='RegistroFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;"+
+				"<a href='RegistroAsociar.jsp?accion=asociar&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Asociar' class='iconasociar' title='Asociar' /></a>&nbsp;";
+	}
 	mensaje += "</table>";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -201,7 +219,7 @@
 					</tr>
 					<tr>
 						<td>Ultimo grado cursado</td>
-						<td colspan="2"><select name="ultgrado" <%=disable%>><%=grados%></select></td>
+						<td colspan="2"><select name="idGrado" <%=disable%>><%=grados%></select></td>
 					</tr>
 					<tr>
 						<td>Correo Electronico</td>

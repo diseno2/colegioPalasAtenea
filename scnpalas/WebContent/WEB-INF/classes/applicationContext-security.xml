@@ -14,6 +14,7 @@
     <http pattern="/images/*" security="none"/>
     <http pattern="/Maestros/Alumnos/Registro.jsp" security="none"/>
     <http pattern="/Maestros/Alumnos/RegistroFamiliar.jsp" security="none"/>
+    <http pattern="/Maestros/Alumnos/RegistroAsociar.jsp" security="none"/>
     <http>
     	<intercept-url pattern="/index.jsp" access="ROLE_ADMIN,ROLE_DOCENTE,ROLE_TUTOR,ROLE_ALUMNO"/>
     	<intercept-url pattern="/Administracion/**" access="ROLE_ADMIN" />
