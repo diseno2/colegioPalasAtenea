@@ -50,6 +50,8 @@ public class Familiar implements java.io.Serializable {
 		this.dirtrabajo = "";
 		this.teltrabajo = "";
 		this.exttrabajo = "";
+		this.tdoc = "";
+		this.ndoc = "";
 	}
 
 	public Familiar(Usuario usuario) {
@@ -89,7 +91,7 @@ public class Familiar implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "usuario", nullable = false)
+	@JoinColumn(name = "usuario")
 	public Usuario getUsuario() {
 		return this.usuario;
 	}

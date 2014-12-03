@@ -38,11 +38,15 @@ public class FamiliarCtrl {
 		return dao.findByAlumno(alumno);
 	}
 	
+	public Familiar findByNombreTdocNdoc(String nombre, String tdoc, String ndoc){
+		return dao.findByNombreTdocNdoc(nombre, tdoc, ndoc);
+	}
+	
 	public Boolean puedoBorrar(Familiar familiar){
-		if (familiar.getFamiliareses().size() == 0)
+		//if (familiar.getFamiliareses().size() == 0)
 			return true;
-		else
-			return false;
+		//else
+			//return false;
 	}
 	
 	public String formatParentesco(Familiar familiar, Alumno alumno){

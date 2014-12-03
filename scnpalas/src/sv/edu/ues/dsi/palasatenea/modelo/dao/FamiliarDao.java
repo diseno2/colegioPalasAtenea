@@ -77,6 +77,17 @@ public class FamiliarDao{
 	    return famLst1;
 	}
 	
+	public Familiar findByNombreTdocNdoc(String nombre, String tdoc, String ndoc){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Familiar.class);
+		crt.add(Restrictions.eq("nombre", nombre));
+		crt.add(Restrictions.eq("tdoc", tdoc));
+		crt.add(Restrictions.eq("ndoc", ndoc));
+		Familiar f = (Familiar) crt.uniqueResult();
+		tx.finSesion();
+		return f;
+	}
+	
 	public Connection obtenerConexion(){
 		return tx.obtenerConexion();
 	}

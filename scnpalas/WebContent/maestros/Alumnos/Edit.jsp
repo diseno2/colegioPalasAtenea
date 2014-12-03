@@ -108,7 +108,7 @@
 							"<td>"+fCtrl.formatParentesco(familiar,alumno)+"</td>"+
 							"<td>"+
 								"<a href='EditFamiliar.jsp?ident="+familiar.getIdent()+"&accion=ver&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Ver' class='iconview' title='Ver' /></a>&nbsp;";
-			if (alumno.getEstado().equals("E"))
+			if (alumno.getEstado() == 0)
 				mensaje += "<a href='EditFamiliar.jsp?accion=edit&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Editar' class='iconedit' title='Editar' /></a>&nbsp;";
 		 	if (fCtrl.puedoBorrar(familiar) == true)
 				mensaje += "<a href='EditFamiliar.jsp?accion=borrar'&ident="+familiar.getIdent()+"&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Borrar' class='icondel' title='Borrar' ></a>&nbsp;";
@@ -118,7 +118,7 @@
 	
 	if (canFam < 3 && alumno.getIdent() != 0){
 		nuevo = "<a href='EditFamiliar.jsp?accion=new&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;"+
-				"<a href='EditFamiliar.jsp?accion=asociar&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Asociar' class='iconasociar' title='Asociar' /></a>&nbsp;";
+				"<a href='Asociar.jsp?accion=asociar&ident=0&idAlumno="+alumno.getIdent()+"'><img id='iconos' alt='Asociar' class='iconasociar' title='Asociar' /></a>&nbsp;";
 	}
 	mensaje += "</table>";
 %>

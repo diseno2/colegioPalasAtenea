@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Familiar" %>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.FamiliarCtrl"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@page import="sv.edu.ues.dsi.palasatenea.controlador.*"%>
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
@@ -40,6 +38,9 @@
 		
 		if(familiar != null){
 			//se guarda la actualizacion del familiar
+			familiar.setNombre(nombre);
+			familiar.setTdoc(tdoc);
+			familiar.setNdoc(ndoc);
 			familiar.setTelefono(request.getParameter("telefono"));
 			familiar.setEmail(request.getParameter("email"));
 			familiar.setCelular(request.getParameter("celular"));
@@ -53,15 +54,22 @@
 			
 			//se guarda la relacion del familiar
 			FamiliaresCtrl fCtrl = new FamiliaresCtrl();
-			Familiares f = new Familiares();
-			f.setAlumno(alumno);
-			f.setFamiliar(familiar);
-			f.setParentesco(request.getParameter("parentesco"));
-			fCtrl.guardar(f);
-			
+			Familiares f = fCtrl.findByAlumnoFamiliar(alumno,familiar);
+			if(f == null){
+				f.setAlumno(alumno);
+				f.setFamiliar(familiar);
+				f.setParentesco(request.getParameter("parentesco"));
+				fCtrl.guardar(f);
+			}else{
+				f.setParentesco(request.getParameter("parentesco"));
+				fCtrl.guardar(f);
+			}
 		}else{
-			//se guarda la actualizacion del familiar
-			familiar.setNombre(request.getParameter("nombre"));
+			//se guarda el familiar
+			familiar = new Familiar();
+			familiar.setNombre(nombre);
+			familiar.setTdoc(tdoc);
+			familiar.setNdoc(ndoc);
 			familiar.setTelefono(request.getParameter("telefono"));
 			familiar.setEmail(request.getParameter("email"));
 			familiar.setCelular(request.getParameter("celular"));
@@ -85,8 +93,8 @@
 	}else if(accion.equals("borrar")){
 		//buscar el registro de familiares
 		FamiliaresCtrl fCtrl = new FamiliaresCtrl();
-		Integer idFamiliares = fCtrl.findByAlumnoFamiliar(alumno,familiar);
-		fCtrl.borrar(idFamiliares);
+		Familiares f = fCtrl.findByAlumnoFamiliar(alumno,familiar);
+		fCtrl.borrar(f.getIdent());
 		ctrl.borrar(ident);
 		response.sendRedirect("Edit.jsp?ident="+alumno.getIdent().toString());
 	}else if(accion.equals("ver")){
@@ -120,58 +128,58 @@
 			<form action="EditFamiliar.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar" />
 				<input type="hidden" name="ident" value="<%=familiar.getIdent() %>" />
-				<input type="hidden" name="alumno" value="<%=alumno.getIdent() %>" />
+				<input type="hidden" name="idAlumno" value="<%=alumno.getIdent() %>" />
 				
 				<table border="0">
 					<caption>Familiares de "<%=alumno.getNombre1()+" "+alumno.getApellido1() %>"</caption>
 					<tr>
 						<td>Nombre</td>
-						<td><input type="text" name="nombre" placeholder="Nombre completo" value="<%=familiar.getNombre() %>" <%=disable %> /></td>
+						<td><input type="text" name="nombre" placeholder="Nombre completo" value="<%=familiar.getNombre() %>" <%=disable %> required /></td>
 						<td>Parentesco</td>
-						<td colspan=2><select name="parentesco" placeholder="Parentesco" <%=disable %>>
-								<option value="M" <%=padre %> >Padre</option>
-								<option value="P" <%=madre %> >Madre</option>
+						<td colspan=2><select name="parentesco" placeholder="Parentesco" <%=disable %> required >
+								<option value="P" <%=padre %> >Padre</option>
+								<option value="M" <%=madre %> >Madre</option>
 								<option value="T" <%=tutor %> >Tutor</option>
 						</select></td>
 					</tr>
 					<tr>
 						<td>Tipo Doc. Id.</td>
-						<td><select name="tdoc" placeholder="Tipo de Documento" <%=disable %>>
+						<td><select name="tdoc" placeholder="Tipo de Documento" <%=disable %> required >
 								<option value="D" <%=padre %> >DUI</option>
 								<option value="P" <%=madre %> >Pasaporte</option>
 						</select></td>
 						<td>No. de Doc. Id.</td>
-						<td><input type="text" name="ndoc" placeholder="No. Documento Identificación" value="<%=familiar.getNombre() %>" <%=disable %> /></td>
+						<td><input type="text" name="ndoc" placeholder="No. Documento Identificación" value="<%=familiar.getNdoc() %>" <%=disable %> required /></td>
 					</tr>
 					<tr>
 						<td>Telefono de casa</td>
-						<td><input type="text" name="telefono" placeholder="No. Telefono Fijo" value="<%=familiar.getTelefono() %>" <%=disable %> /></td>
+						<td><input type="text" name="telefono" placeholder="No. Telefono Fijo" value="<%=familiar.getTelefono() %>" <%=disable %> required /></td>
 						<td>E-mail</td>
-						<td><input type="text" name="email" placeholder="Correo Electronico" value="<%=familiar.getEmail() %>" <%=disable %> /></td>
+						<td><input type="text" name="email" placeholder="Correo Electronico" value="<%=familiar.getEmail() %>" <%=disable %> required /></td>
 					</tr>
 					<tr>
 						<td>Telefono Celular</td>
-						<td><input type="text" name="celular" placeholder="No. Telefono Celular" value="<%=familiar.getCelular() %>" <%=disable %> /></td>
+						<td><input type="text" name="celular" placeholder="No. Telefono Celular" value="<%=familiar.getCelular() %>" <%=disable %> required /></td>
 						<td>Empresa</td>
-						<td><input type="text" name="empresa" placeholder="Compañia del Telefono Celular" value="<%=familiar.getEmpresa() %>" <%=disable %> /></td>
+						<td><input type="text" name="empresa" placeholder="Compañia del Telefono Celular" value="<%=familiar.getEmpresa() %>" <%=disable %> required /></td>
 					</tr>
 					<tr>
 						<td>Direccion de casa</td>
-						<td colspan="3"><textarea name="direccion" placeholder="Direccion" rows="2" cols="45" <%=disable %> ><%=familiar.getDireccion() %></textarea></td>
+						<td colspan="3"><textarea name="direccion" placeholder="Direccion" rows="2" cols="45" <%=disable %> required ><%=familiar.getDireccion() %></textarea></td>
 					</tr>
 					<tr>
 						<td>Lugar de trabajo</td>
-						<td colspan="3"><input type="text" name="lugtrabajo" placeholder="Lugar de Trabajo" value="<%=familiar.getLugtrabajo() %>" <%=disable %> /></td>
+						<td colspan="3"><input type="text" name="lugtrabajo" placeholder="Lugar de Trabajo" value="<%=familiar.getLugtrabajo() %>" <%=disable %> required /></td>
 					</tr>
 					<tr>
 						<td>Telefono de trabajo</td>
-						<td><input type="text" name="teltrabajo" placeholder="No. Telefono Trabajo" value="<%=familiar.getTelefono() %>" <%=disable %> /></td>
+						<td><input type="text" name="teltrabajo" placeholder="No. Telefono Trabajo" value="<%=familiar.getTelefono() %>" <%=disable %> required /></td>
 						<td>Extension</td>
-						<td><input type="text" name="exttrabajo" placeholder="Extension" value="<%=familiar.getExttrabajo() %>" <%=disable %> /></td>
+						<td><input type="text" name="exttrabajo" placeholder="Extension" value="<%=familiar.getExttrabajo() %>" <%=disable %> required /></td>
 					</tr>
 					<tr>
 						<td>Direccion</td>
-						<td colspan="3"><textarea name="dirtrabajo" placeholder="Direccion Trabajo" rows="2" cols="45" <%=disable %> ><%=familiar.getDirtrabajo() %></textarea></td>
+						<td colspan="3"><textarea name="dirtrabajo" placeholder="Direccion Trabajo" rows="2" cols="45" <%=disable %> required ><%=familiar.getDirtrabajo() %></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="4"><center>

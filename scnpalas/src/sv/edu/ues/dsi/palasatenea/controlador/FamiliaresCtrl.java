@@ -2,6 +2,9 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
@@ -42,6 +45,11 @@ public class FamiliaresCtrl {
 		List<Familiares> lst = dao.findByFamiliar(familiar);
 		return lst;
 	}
+	
+	public Familiares findByAlumnoFamiliar(Alumno alumno, Familiar familiar){
+		return dao.findByAlumnoFamiliar(alumno, familiar);
+	}
+	
 	public Boolean puedoBorrar(Familiares familiares){
 		return true;
 	}

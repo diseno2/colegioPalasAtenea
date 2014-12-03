@@ -43,7 +43,7 @@ public class AlumnoCtrl {
 			famList = famCtrl.findByAlumno(alumno);
 			System.out.println("4");
 			for(int j=0;j<famList.size();j++){
-				familiares = (Familiares) famList.get(i);
+				familiares = (Familiares) famList.get(j);
 				famCtrl.borrar(familiares.getIdent());
 				System.out.println("5");
 				//buscar si para el familiar hay mas registros de familiares

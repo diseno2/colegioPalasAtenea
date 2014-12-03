@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Alumno" %>
-<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.Familiar" %>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.AlumnoCtrl"%>
-<%@page import="sv.edu.ues.dsi.palasatenea.controlador.FamiliarCtrl"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@page import="sv.edu.ues.dsi.palasatenea.controlador.*"%>
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
@@ -18,6 +16,7 @@
 	Integer idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
 	AlumnoCtrl aCtrl = new AlumnoCtrl();
 	Alumno alumno = aCtrl.findById(idAlumno);
+	System.out.println(alumno);
 	
 	Integer ident = 0;
 	if (request.getParameter("ident") == null) ident = 0;
@@ -39,13 +38,22 @@
 		familiar = ctrl.findByNombreTdocNdoc(nombre,tdoc,ndoc);
 		
 		if(familiar != null){
-			//no se guarda el familiar solo la relacion con el alumno
+			//se guarda la relacion del familiar
 			FamiliaresCtrl fCtrl = new FamiliaresCtrl();
-			Familiares f = new Familiares();
-			f.setAlumno(alumno);
-			f.setFamiliar(familiar);
-			f.setParentesco(request.getParameter("parentesco"));
-			fCtrl.guardar(f);
+			Familiares f = fCtrl.findByAlumnoFamiliar(alumno,familiar);
+			if(f == null){
+				System.out.println(alumno);
+				f = new Familiares();
+				f.setAlumno(alumno);
+				f.setFamiliar(familiar);
+				f.setParentesco(request.getParameter("parentesco"));
+				fCtrl.guardar(f);
+			}else{
+				f.setParentesco(request.getParameter("parentesco"));
+				fCtrl.guardar(f);
+			}
+		}else{
+			familiar = new Familiar();
 		}
 		response.sendRedirect("Edit.jsp?ident="+alumno.getIdent().toString());
 	}
@@ -74,10 +82,10 @@
 		<%=new Utilidades().getMenu()%>
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
-			<form action="EditFamiliar.jsp" method="post">
+			<form action="Asociar.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar" />
 				<input type="hidden" name="ident" value="<%=familiar.getIdent() %>" />
-				<input type="hidden" name="alumno" value="<%=alumno.getIdent() %>" />
+				<input type="hidden" name="idAlumno" value="<%=alumno.getIdent() %>" />
 				
 				<table border="0">
 					<caption>Informaci&oacute;n</caption>
@@ -86,8 +94,8 @@
 						<td><input type="text" name="nombre" placeholder="Nombre completo" value="<%=familiar.getNombre() %>" <%=disable %> required /></td>
 						<td>Parentesco</td>
 						<td colspan=2><select name="parentesco" placeholder="Parentesco" <%=disable %>>
-								<option value="M" <%=padre %> >Padre</option>
-								<option value="P" <%=madre %> >Madre</option>
+								<option value="P" <%=padre %> >Padre</option>
+								<option value="M" <%=madre %> >Madre</option>
 								<option value="T" <%=tutor %> >Tutor</option>
 						</select></td>
 					</tr>
