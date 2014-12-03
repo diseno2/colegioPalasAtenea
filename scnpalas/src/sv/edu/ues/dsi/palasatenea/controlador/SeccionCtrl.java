@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.SeccionDao;
 
@@ -36,6 +37,14 @@ public class SeccionCtrl {
 			return true;
 		else
 			return false;
+	}
+	
+	public void agregarMaterias(Seccion seccion){
+		List<GradoMateria> lst = new GradoMateriaCtrl().findByAll(seccion.getGrado());
+		for(int i=0;i<lst.size();i++){
+			SeccionMateria sm = new SeccionMateria();
+			
+		}
 	}
 	
 	public byte[] reporte(){

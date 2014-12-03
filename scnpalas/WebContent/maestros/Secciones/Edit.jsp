@@ -128,7 +128,7 @@
 						</tr>
 						<tr>
 							<td>Docente</td>
-							<td><select name="docente" placeholder="Docente" style="width:213px"><%=docentes%></select></td>
+							<td><select name="docente" placeholder="Docente" style="width:313px"><%=docentes%></select></td>
 						</tr>
 						<tr>
 							<td>Grado</td>

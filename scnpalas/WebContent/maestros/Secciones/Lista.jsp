@@ -79,8 +79,8 @@
 							"<td>"+seccion.getSeccion()+"</td>"+
 							"<td>"+seccion.getInscritos()+"</td>"+
 							"<td>"+seccion.getDocente().toString()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
 							"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
 						"</td></tr>"; 
 		}
