@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+<!-- 
   <table-filter match-catalog="scnpalas" match-name="alumno"/>
   <table-filter match-catalog="scnpalas" match-name="docente"/>
   <table-filter match-catalog="scnpalas" match-name="evaluacion"/>
@@ -17,6 +18,8 @@
   <table-filter match-catalog="scnpalas" match-name="periodo"/>
   <table-filter match-catalog="scnpalas" match-name="rol"/>
   <table-filter match-catalog="scnpalas" match-name="rol_opciones"/>
-  <table-filter match-catalog="scnpalas" match-name="seccion"/>
   <table-filter match-catalog="scnpalas" match-name="usuario"/>
+   -->
+  <table-filter match-catalog="scnpalas" match-name="seccion_materia"/>
+  
 </hibernate-reverse-engineering>

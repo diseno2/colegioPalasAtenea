@@ -2,52 +2,116 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	GradoMateria gradoMateria = new GradoMateria();
-
-	/*
-	
+	SeccionMateria sm = new SeccionMateria();
 	String disable = "";
-	GradoMateriaCtrl ctrl = new GradoMateriaCtrl();
-	
+	SeccionMateriaCtrl ctrl = new SeccionMateriaCtrl();
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
 	
+	Integer ident = 0;
+	if (request.getParameter("ident") == null) ident = 0;
+	else ident = Integer.parseInt(request.getParameter("ident"));
 	
+	Integer idSeccion = 0;
+	if (request.getParameter("idSeccion") == null) idSeccion = 0;
+	else idSeccion = Integer.parseInt(request.getParameter("idSeccion"));
+	Seccion s = new SeccionCtrl().findById(idSeccion);
 	
-	Integer identMateria = Integer.parseInt(request.getParameter("identMateria"));
-	Materia materia = null;
-	if (identMateria != null) materia = new MateriaCtrl().findById(identMateria);
+	Integer idMateria = 0;
+	if (request.getParameter("idMateria") == null) idMateria = 0;
+	else idMateria = Integer.parseInt(request.getParameter("idMateria"));
+	Materia m = new MateriaCtrl().findById(idMateria);
 	
-	Integer identDocente = Integer.parseInt(request.getParameter("identDocente"));
-	Docente docente = null;
-	if (identDocente != null) docente = new DocenteCtrl().findById(identDocente);
-	
-	if (ident == 0) {
-		gradoMateria = new GradoMateria();
-	} else {
-		gradoMateria = ctrl.findById(ident);
-	}
+	Integer idDocente = 0;
+	if (request.getParameter("idDocente") == null) idDocente = 0;
+	else idDocente = Integer.parseInt(request.getParameter("idDocente"));
+	Docente d = new DocenteCtrl().findById(idDocente);
 	
 	if (accion.equals("guardar")){
-		gradoMateria.setGrado(grado);
-		gradoMateria.setMateria(materia);
-		gradoMateria.setDocente(docente);
-		gradoMateria.setEnSeccion(request.getParameter("deacuerdoaseccion"));
+		sm.setSeccion(s);
+		sm.setMateria(m);
+		sm.setDocente(d);
 		
-		if (ident != 0) gradoMateria.setIdent(ident);
-		ctrl.guardar(gradoMateria);
-		response.sendRedirect("Edit.jsp?accion=ver&ident="+identGrado);
-	}else if (accion.equals("borrar")) {
-		gradoMateria = ctrl.findById(ident);
-		ctrl.borrar(ident);
-		response.sendRedirect("Edit.jsp?accion=ver&ident="+identGrado);
-	} else if (accion.equals("ver")) {
+		if (ident != 0) sm.setIdent(ident);
+		ctrl.guardar(sm);
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+idSeccion);
+	}else if (accion.equals("ver")) {
 		disable = "disabled";
+	}else if (accion.equals("borrar")) {
+		ctrl.borrar(ident);
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+idSeccion);
 	}
-	*/
 	
+	Boolean comparar = false;
+	if (ident == 0) {
+		sm = new SeccionMateria();
+	} else {
+		sm = ctrl.findById(ident);
+		comparar = true;
+	}
+	
+	//Materias
+	List<Materia> lst = new MateriaCtrl().findByAll();
+	String materias = "";
+	if(lst==null){
+		
+	}else if(lst.isEmpty()){
+		
+	}else{
+		Materia materiaN;
+		materias += "<option value=''></option>";
+		
+		String selMat = "";
+		for(int i=0;i<lst.size();i++){
+			materiaN = (Materia) lst.get(i);
+			
+			selMat = "";
+			if (comparar == true){
+				try{
+					if(sm.getMateria().getIdent().equals(materiaN.getIdent())){
+						selMat = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selMat = "";
+				}
+			}
+			
+			materias += "<option value="+materiaN.getIdent()+" "+selMat+" >"+materiaN.toString()+"</option>"; 
+		}
+	}
+	
+	//Docentes
+	String docentes = "";
+	List<Docente> dLst = new DocenteCtrl().findByAll();
+	if(dLst==null){
+		
+	}else if(dLst.isEmpty()){
+		
+	}else{
+		Docente docenteN;
+		docentes += "<option value=''></option>";
+		
+		String selMat = "";
+		for(int i=0;i<dLst.size();i++){
+			docenteN = (Docente) dLst.get(i);
+			
+			selMat = "";
+			if (comparar == true){
+				try{
+					if(sm.getMateria().getIdent().equals(docenteN.getIdent())){
+						selMat = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selMat = "";
+				}
+			}
+			
+			docentes += "<option value="+docenteN.getIdent()+" "+selMat+" >"+docenteN.toString()+"</option>"; 
+		}
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -68,27 +132,25 @@
 		<%=new Utilidades().getMenu()%>
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
-			<form action="Edit.jsp" method="post">
+			<form action="EditSeccionMateria.jsp" method="post">
 				<input type="hidden" name="accion" value="guardar"  />
+				<input type="hidden" name="ident" value="<%=ident %>"  />
+				<input type="hidden" name="idSeccion" value="<%=idSeccion %>"  />
 				<table>
-					<caption>Materias PRIMERO "A"</caption>
+					<caption>Materias <%=s.getGrado().getGrado()+" "+s.getSeccion() %></caption>
 					<tbody>
 						<tr>
-							<td>Materia</td>
-							<td>MATEMATICA</td>
+							<td>Docente</td>
+							<td><select name="idDocente" style="width:300px" <%=disable %> > <%=docentes %></select></td>
 						</tr>
 						<tr>
-							<td>Docente</td>
-							<td>
-								<select>
-									<option>JOSE MAURICIO FLORES PASAN</option>
-								</select>
-							</td>
+							<td>Materia</td>
+							<td><select name="idMateria" style="width:300px" <%=disable %> > <%=materias %></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable %> />
+								<input type="reset" value="Limpiar" <%=disable %> />
 							</td>
 						</tr>
 					</tbody>

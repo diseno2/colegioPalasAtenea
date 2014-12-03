@@ -16,21 +16,24 @@
 	else ident = Integer.parseInt(request.getParameter("ident"));
 	
 	Integer idGrado = 0;
-	if (request.getParameter("idGrado") == null) ident = 0;
+	if (request.getParameter("idGrado") == null) idGrado = 0;
 	else idGrado = Integer.parseInt(request.getParameter("idGrado"));
+	Grado g = new GradoCtrl().findById(idGrado);
 	
 	if (accion.equals("guardar")){
 		Integer idMateria = 0;
-		if (request.getParameter("idMateria") == null) ident = 0;
+		if (request.getParameter("idMateria") == null) idMateria = 0;
 		else idMateria = Integer.parseInt(request.getParameter("idMateria"));
-		Grado grado = new GradoCtrl().findById(idGrado);
 		Materia materia = new MateriaCtrl().findById(idMateria);
+		
+		Grado grado = new GradoCtrl().findById(idGrado);
+		
 		gradoMateria.setGrado(grado);
 		gradoMateria.setMateria(materia);
 		
-		System.out.println(materia);
 		if (ident != 0) gradoMateria.setIdent(ident);
 		ctrl.guardar(gradoMateria);
+		
 		response.sendRedirect("Edit.jsp?accion=ver&ident="+idGrado);
 	}else if (accion.equals("ver")) {
 		disable = "disabled";
@@ -76,36 +79,6 @@
 			materias += "<option value="+materiaN.getIdent()+" "+selMat+" >"+materiaN.toString()+"</option>"; 
 		}
 	}
-	
-	/*
-	
-	
-	Integer identMateria = Integer.parseInt(request.getParameter("idMateria"));
-	Materia materia = null;
-	if (identMateria != null) materia = new MateriaCtrl().findById(idMateria);
-	
-	Integer identDocente = Integer.parseInt(request.getParameter("identDocente"));
-	Docente docente = null;
-	if (identDocente != null) docente = new DocenteCtrl().findById(identDocente);
-	
-	if (ident == 0) {
-		gradoMateria = new GradoMateria();
-	} else {
-		gradoMateria = ctrl.findById(ident);
-	}
-	
-	if (accion.equals("guardar")){
-		gradoMateria.setGrado(grado);
-		gradoMateria.setMateria(materia);
-		gradoMateria.setDocente(docente);
-		gradoMateria.setEnSeccion(request.getParameter("deacuerdoaseccion"));
-		
-		if (ident != 0) gradoMateria.setIdent(ident);
-		ctrl.guardar(gradoMateria);
-		response.sendRedirect("Edit.jsp?accion=ver&ident="+identGrado);
-	} 
-	*/
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -131,7 +104,7 @@
 				<input type="hidden" name="ident" value="<%=ident %>"  />
 				<input type="hidden" name="idGrado" value="<%=idGrado %>"  />
 				<table>
-					<caption>Materias PRIMERO Grado</caption>
+					<caption>Materias <%=g.toString() %> Grado</caption>
 					<tbody>
 						<tr>
 							<td>Materia</td>

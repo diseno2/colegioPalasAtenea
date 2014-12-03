@@ -17,6 +17,7 @@
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Usuario" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Rol" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Seccion" />
+        <mapping class="sv.edu.ues.dsi.palasatenea.modelo.SeccionMateria" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Matricula" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Evaluacion" />
         <mapping class="sv.edu.ues.dsi.palasatenea.modelo.Familiares" />

@@ -8,6 +8,7 @@
 	Seccion seccion = new Seccion();
 	String disable = "";
 	SeccionCtrl ctrl = new SeccionCtrl();
+	String nuevo = "";
 	
 	//Docentes
 	String docentes=null;
@@ -68,6 +69,7 @@
 		seccion = new Seccion();
 	} else {
 		seccion = ctrl.findById(ident);
+		nuevo = "<a href='EditSeccionMateria.jsp?ident=0&accion=nuevo&idSeccion="+seccion.getIdent()+"' ><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
 	}
 	
 	if (accion.equals("guardar")){
@@ -88,6 +90,9 @@
 		seccion.setInscritos(0);
 		if (ident != 0) seccion.setIdent(ident);
 		ctrl.guardar(seccion);
+		
+		//adicionar las materias configuradas para el grado
+		ctrl.agregarMaterias(seccion);
 		response.sendRedirect("Lista.jsp");
 	}else if (accion.equals("borrar")) {
 		seccion = ctrl.findById(ident);
@@ -95,6 +100,27 @@
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
+	}
+	
+	//configuracion de las materias a recibir en la seccion
+	SeccionMateriaCtrl sMCtrl = new SeccionMateriaCtrl();
+	String mensaje = "";
+	List<SeccionMateria> sMLst = null;
+	sMLst = sMCtrl.findByAll(seccion);
+	if(sMLst.isEmpty()){
+		mensaje += "<tr><td colspan=7>No hay registros</td></tr>";
+	}else{
+		SeccionMateria sm;
+		for(int i=0;i<sMLst.size();i++){
+			sm = (SeccionMateria) sMLst.get(i); 
+			mensaje += "<tr>"+
+							"<td>"+sm.getMateria().toString()+"</td>"+
+							"<td>"+sm.getDocente().toString()+"</td>"+
+							"<td><a href='EditSeccionMateria.jsp?ident="+sm.getIdent()+"&accion=ver&idSeccion="+seccion.getIdent()+"'><img alt='Ver' class='iconview' title='Ver' ></a>"+
+								"<a href='EditSeccionMateria.jsp?ident="+sm.getIdent()+"&accion=edit&idSeccion="+seccion.getIdent()+"'><img alt='Edit' class='iconedit' title='Editar' ></a>"+
+								"<a href='EditSeccionMateria.jsp?ident="+sm.getIdent()+"&accion=borrar&idSeccion="+seccion.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a></td>"+
+						"</tr>"; 
+		}
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -150,35 +176,14 @@
 			<br /><br />
 			<table id='tabla'>
 				<thead>
-					<caption>Materias <a href='EditSeccionMateria.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;</caption>
+					<caption>Materias <%=nuevo%></caption>
 					<tr>
 						<th>Materia</th>
 						<th>Docente</th>
 						<th width=150px>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>MATEMATICA</td>
-						<td>JOSE MAURICIO FLORES PASAN</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>LENGUAJE</td>
-						<td>JOSE MAURICIO FLORES PASAN</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>CIENCIA, SALUD Y MEDIO AMBIENTE</td>
-						<td>JOSE MAURICIO FLORES PASAN</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>ESTUDIOS SOCIALES</td>
-						<td>JOSE MAURICIO FLORES PASAN</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-				</tbody>
+				<tbody><%=mensaje %></tbody>
 			</table>
 		</div>
 		<div id="footer">
