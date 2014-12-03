@@ -46,9 +46,9 @@ public class RolDao{
 	
 	public Rol findByTipo(String tipo){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Rol.findByTipo");
-		query.setParameter("tipo", tipo);
-		Rol rol = (Rol) query.uniqueResult();
+		Criteria crt = s.createCriteria(Rol.class);
+		crt.add(Restrictions.eq("tipo", tipo));
+		Rol rol = (Rol) crt.uniqueResult();
 		tx.finSesion();
 		return rol;
 	}

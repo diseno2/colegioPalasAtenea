@@ -103,7 +103,7 @@ public class AlumnoCtrl {
 		String anio = alumno.getFnacimiento().toString().substring(2,4); 
 		codigo += anio;
 		
-		Long cant = dao.findByYear(Integer.parseInt(alumno.getFnacimiento().toString().substring(0,4)));
+		int cant = dao.findByYear(Integer.parseInt(alumno.getFnacimiento().toString().substring(0,4)));
 		if (cant <= 9) codigo += "00"+cant;
 		else if(cant <= 99 && cant > 9) codigo += "0"+cant;
 		else codigo += cant;

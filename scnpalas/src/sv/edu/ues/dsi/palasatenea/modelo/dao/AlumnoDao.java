@@ -10,6 +10,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
+import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
 public class AlumnoDao{
@@ -89,11 +90,16 @@ public class AlumnoDao{
 		return aluList;
 	}
 	
-	public Long findByYear(int anio){
+	public int findByYear(int anio){
 		s = tx.iniciarSesion();
-		Query query = s.getNamedQuery("Alumno.findByYear");
-		query.setParameter("anio",anio);
-		Long cant = (Long) query.uniqueResult();
+		String stmt = " SELECT COUNT(a) "+
+				  	  " FROM Alumno a "+
+				  	  " WHERE a.carnet <> NULL "+
+				  	  " AND a.carnet <> '' " +
+				  	  " AND Year(a.fnacimiento) = :anio";
+		Query q = s.createQuery(stmt);
+		q.setParameter("anio", anio);
+		int cant = q.list().size();
 		tx.finSesion();
 		++cant;
 		return cant;

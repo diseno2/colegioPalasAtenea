@@ -58,11 +58,19 @@
 
 		AlumnoCtrl alumnoCtrl = new AlumnoCtrl();
 		alumnoCtrl.guardar(alumno);
-		response.sendRedirect("Edit.jsp?accion=ver&ident="+alumno.getIdent());
+		response.sendRedirect("Lista.jsp");
+		//response.sendRedirect("Lista.jsp?accion=ver&ident="+alumno.getIdent());
 	}else if (accion.equals("ver")) {
 		disable = "disabled";
 	}else if(accion.equals("borrar")){
 		ctrl.borrar(ident);
+		response.sendRedirect("Lista.jsp");
+	}else if(accion.equals("alta")){
+		System.out.println(ident);
+		ctrl.alta(ident);
+		response.sendRedirect("Lista.jsp");
+	}else if(accion.equals("baja")){
+		ctrl.baja(ident);
 		response.sendRedirect("Lista.jsp");
 	}
 	
