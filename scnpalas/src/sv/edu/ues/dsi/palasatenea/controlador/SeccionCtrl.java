@@ -4,6 +4,7 @@ import java.util.List;
 
 import sv.edu.ues.dsi.palasatenea.modelo.GradoMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.Seccion;
+import sv.edu.ues.dsi.palasatenea.modelo.SeccionMateria;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.SeccionDao;
 
 public class SeccionCtrl {
@@ -41,9 +42,15 @@ public class SeccionCtrl {
 	
 	public void agregarMaterias(Seccion seccion){
 		List<GradoMateria> lst = new GradoMateriaCtrl().findByAll(seccion.getGrado());
+		SeccionMateriaCtrl ctrl = new SeccionMateriaCtrl();
+		
 		for(int i=0;i<lst.size();i++){
+			GradoMateria gm = (GradoMateria) lst.get(i);
 			SeccionMateria sm = new SeccionMateria();
-			
+			sm.setDocente(seccion.getDocente());
+			sm.setMateria(gm.getMateria());
+			sm.setSeccion(seccion);
+			ctrl.guardar(sm);
 		}
 	}
 	
