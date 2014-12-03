@@ -50,7 +50,7 @@
 			//evaluar que si es administrador puede darlo de alta o de baja
 			if (alumno.getEstado() == 1)
 				mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=baja'><img id='iconos' alt='Del' class='iconbaja' ></a>&nbsp;";
-			if (alumno.getEstado() == 0)
+			if (alumno.getEstado() == 0 || alumno.getEstado() == 2)
 					mensaje += "<a href='Edit.jsp?ident="+alumno.getIdent()+"&accion=alta'><img id='iconos' alt='Del' class='iconalta' ></a>&nbsp;";
 			
 			mensaje += "</td></tr>";

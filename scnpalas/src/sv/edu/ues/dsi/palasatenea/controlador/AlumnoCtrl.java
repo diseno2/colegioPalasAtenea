@@ -66,27 +66,54 @@ public class AlumnoCtrl {
 	
 	public void alta(Integer ident){
 		Alumno alumno = this.findById(ident);
-		String codigo = this.codigo(alumno);
-		alumno.setCarnet(codigo);
-		Short estado = 1;
-		alumno.setEstado(estado);
-		
-		String pass = KeyGenerators.string().generateKey();
-		String user = "alumno@"+alumno.getCarnet().toLowerCase();
-		Rol rol = new RolCtrl().findByTipo("ROLE_ALUMNO");
-		Usuario usuario = new Usuario(rol, user,pass, "A");
-		UsuarioCtrl uCtrl = new UsuarioCtrl();
-		uCtrl.guardar(usuario);
-		alumno.setUsuario(usuario);
-		
-		if (alumno.getCorreo() != null && alumno.getCorreo() != ""){
-			Mail mail = new Mail();
-			mail.send(alumno.getCorreo(),"Información de Usuario de Colegio Palas Atenea",
-					  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+	
-					  "Su usuario asignado es "+user+" y su contraseña "+pass);
+		if(alumno.getCarnet().isEmpty()){
+			String codigo = this.codigo(alumno);
+			alumno.setCarnet(codigo);
+			Short estado = 1;
+			alumno.setEstado(estado);
+			
+			String pass = KeyGenerators.string().generateKey();
+			String user = "alumno@"+alumno.getCarnet().toLowerCase();
+			Rol rol = new RolCtrl().findByTipo("ROLE_ALUMNO");
+			Usuario usuario = new Usuario(rol, user,pass, "A");
+			UsuarioCtrl uCtrl = new UsuarioCtrl();
+			uCtrl.guardar(usuario);
+			alumno.setUsuario(usuario);
+			
+			if (alumno.getCorreo() != null && alumno.getCorreo() != ""){
+				Mail mail = new Mail();
+				mail.send(alumno.getCorreo(),"Información de Usuario de Colegio Palas Atenea",
+						  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+	
+						  "Su usuario asignado es "+user+" y su contraseña "+pass);
+			}
+			
+			//aqui tambien crear los usuarios de los familiares en caso de ser necesario
+			Boolean primero = true;
+			FamiliaresCtrl ctrl = new FamiliaresCtrl();
+			List<Familiares> lst = ctrl.findByAlumno(alumno);
+			for(int i=0;i<lst.size();i++){
+				Familiares f = (Familiares) lst.get(i);
+				if (f.getFamiliar().getUsuario() == null){
+					if (primero){
+						pass = KeyGenerators.string().generateKey();
+						user = "tutor@"+alumno.getCarnet().toLowerCase();
+						rol = new RolCtrl().findByTipo("ROLE_TUTOR");
+						usuario = new Usuario(rol, user,pass, "A");
+						uCtrl.guardar(usuario);
+						primero = false;
+					}
+					f.getFamiliar().setUsuario(usuario);
+					new FamiliarCtrl().guardar(f.getFamiliar());
+					Mail mail = new Mail();
+					mail.send(f.getFamiliar().getEmail(),"Información de Usuario de Colegio Palas Atenea",
+							  "Su registro ha sido dado de alta para el alumno "+alumno.toString()+"."+	
+							  "Su usuario asignado es "+user+" y su contraseña "+pass);
+				}
+			}
+		}else{
+			Short estado = 1;
+			alumno.setEstado(estado);
 		}
-		//aqui tambien crear los usuarios de los familiares en caso de ser necesario
-		
 		this.guardar(alumno);
 	}
 	
