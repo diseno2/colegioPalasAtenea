@@ -41,8 +41,8 @@
 							"<td>"+materia.getNombre2()+"</td>"+
 							"<td>"+materia.getApellido1()+"</td>"+
 							"<td>"+materia.getApellido2()+"</td>"+
-							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<td><a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
 							"<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
 						"</td></tr>"; 
 		}

@@ -56,6 +56,12 @@
 	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
 	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
 	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
+	<script language="javascript">
+		$(function() {
+			$( "#datepicker1" ).datepicker();
+			$( "#datepicker2" ).datepicker();
+		});
+	</script>
 </head>
 <body>
 <div id="wrap">
@@ -109,7 +115,7 @@
 						</tr>
 						<tr>
 							<td>Fecha de Contrato</td>
-							<td colspan="2"><input id="datepicker1" type="text" placeholder="Fecha de contrato"
+							<td colspan="2"><input id="datepicker2" type="text" placeholder="Fecha de contrato"
 							name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>
