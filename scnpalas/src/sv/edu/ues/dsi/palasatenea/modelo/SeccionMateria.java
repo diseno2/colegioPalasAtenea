@@ -4,7 +4,11 @@ package sv.edu.ues.dsi.palasatenea.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -42,7 +46,8 @@ public class SeccionMateria implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@Column(name = "seccion")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "seccion", nullable = false)
 	public Seccion getSeccion() {
 		return this.seccion;
 	}
@@ -51,7 +56,8 @@ public class SeccionMateria implements java.io.Serializable {
 		this.seccion = seccion;
 	}
 
-	@Column(name = "materia")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "materia", nullable = false)
 	public Materia getMateria() {
 		return this.materia;
 	}
@@ -60,7 +66,8 @@ public class SeccionMateria implements java.io.Serializable {
 		this.materia = materia;
 	}
 
-	@Column(name = "docente")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "docente", nullable = false)
 	public Docente getDocente() {
 		return this.docente;
 	}

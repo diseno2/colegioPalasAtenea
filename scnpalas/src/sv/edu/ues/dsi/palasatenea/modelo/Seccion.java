@@ -33,6 +33,7 @@ public class Seccion implements java.io.Serializable {
 
 	public Seccion() {
 		this.ident = 0;
+		this.seccion = "";
 	}
 
 	public Seccion(Grado grado, Periodo periodo, Docente docente,

@@ -6,7 +6,7 @@
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
 	SeccionMateria sm = new SeccionMateria();
-	String disable = "";
+	String disable = "", disable1 = "";
 	SeccionMateriaCtrl ctrl = new SeccionMateriaCtrl();
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
@@ -20,17 +20,23 @@
 	else idSeccion = Integer.parseInt(request.getParameter("idSeccion"));
 	Seccion s = new SeccionCtrl().findById(idSeccion);
 	
-	Integer idMateria = 0;
-	if (request.getParameter("idMateria") == null) idMateria = 0;
-	else idMateria = Integer.parseInt(request.getParameter("idMateria"));
-	Materia m = new MateriaCtrl().findById(idMateria);
-	
-	Integer idDocente = 0;
-	if (request.getParameter("idDocente") == null) idDocente = 0;
-	else idDocente = Integer.parseInt(request.getParameter("idDocente"));
-	Docente d = new DocenteCtrl().findById(idDocente);
+	if (s.getEstado().equals("E")){
+		disable1 = "";
+	}else{
+		disable1 = "disabled";	
+	}
 	
 	if (accion.equals("guardar")){
+		Integer idMateria = 0;
+		if (request.getParameter("idMateria") == null) idMateria = 0;
+		else idMateria = Integer.parseInt(request.getParameter("idMateria"));
+		Materia m = new MateriaCtrl().findById(idMateria);
+		
+		Integer idDocente = 0;
+		if (request.getParameter("idDocente") == null) idDocente = 0;
+		else idDocente = Integer.parseInt(request.getParameter("idDocente"));
+		Docente d = new DocenteCtrl().findById(idDocente);
+		
 		sm.setSeccion(s);
 		sm.setMateria(m);
 		sm.setDocente(d);
@@ -40,6 +46,7 @@
 		response.sendRedirect("Edit.jsp?accion=ver&ident="+idSeccion);
 	}else if (accion.equals("ver")) {
 		disable = "disabled";
+		disable1 = "disabled";
 	}else if (accion.equals("borrar")) {
 		ctrl.borrar(ident);
 		response.sendRedirect("Edit.jsp?accion=ver&ident="+idSeccion);
@@ -86,6 +93,7 @@
 	//Docentes
 	String docentes = "";
 	List<Docente> dLst = new DocenteCtrl().findByAll();
+	
 	if(dLst==null){
 		
 	}else if(dLst.isEmpty()){
@@ -94,22 +102,21 @@
 		Docente docenteN;
 		docentes += "<option value=''></option>";
 		
-		String selMat = "";
 		for(int i=0;i<dLst.size();i++){
 			docenteN = (Docente) dLst.get(i);
-			
-			selMat = "";
+			String selDoc="";
+			selDoc = "";
 			if (comparar == true){
 				try{
-					if(sm.getMateria().getIdent().equals(docenteN.getIdent())){
-						selMat = "selected='selected'";
+					if(sm.getDocente().getIdent().equals(docenteN.getIdent())){
+						selDoc = "selected='selected'";
 					}
 				}catch(NullPointerException e){
-					selMat = "";
+					selDoc = "";
 				}
 			}
 			
-			docentes += "<option value="+docenteN.getIdent()+" "+selMat+" >"+docenteN.toString()+"</option>"; 
+			docentes += "<option value="+docenteN.getIdent()+" "+selDoc+" >"+docenteN.toString()+"</option>"; 
 		}
 	}
 %>
@@ -145,7 +152,7 @@
 						</tr>
 						<tr>
 							<td>Materia</td>
-							<td><select name="idMateria" style="width:300px" <%=disable %> > <%=materias %></select></td>
+							<td><select name="idMateria" style="width:300px" <%=disable1 %> > <%=materias %></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

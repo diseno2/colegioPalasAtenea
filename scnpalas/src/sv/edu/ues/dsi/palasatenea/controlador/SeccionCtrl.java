@@ -18,6 +18,12 @@ public class SeccionCtrl {
 		dao.borrar(ident);
 	}
 	
+	public void alta(int ident){
+		Seccion s = this.findById(ident);
+		s.setEstado("C");
+		dao.guardar(s);
+	}
+	
 	public Seccion findById(int ident){
 		Seccion seccion = dao.findById(ident);
 		return seccion;
@@ -43,7 +49,7 @@ public class SeccionCtrl {
 	public void agregarMaterias(Seccion seccion){
 		List<GradoMateria> lst = new GradoMateriaCtrl().findByAll(seccion.getGrado());
 		SeccionMateriaCtrl ctrl = new SeccionMateriaCtrl();
-		
+		System.out.println(lst.size());
 		for(int i=0;i<lst.size();i++){
 			GradoMateria gm = (GradoMateria) lst.get(i);
 			SeccionMateria sm = new SeccionMateria();

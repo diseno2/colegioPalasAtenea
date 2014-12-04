@@ -29,8 +29,7 @@ public class GradoMateriaCtrl {
 	}
 	
 	public List<GradoMateria> findByAll(Grado grado){
-		List<GradoMateria> lst = dao.findByAll(grado);
-		return lst;
+		return dao.findByAll(grado);
 	}
 	
 	public List<GradoMateria> findByParam(GradoMateria gradoMateria){

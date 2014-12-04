@@ -54,6 +54,7 @@ public class GradoMateriaDao{
 	}
 	
 	public List<GradoMateria> findByAll(Grado grado){
+		System.out.println(grado);
 		s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(GradoMateria.class);
 		crt.add(Restrictions.eq("grado", grado));

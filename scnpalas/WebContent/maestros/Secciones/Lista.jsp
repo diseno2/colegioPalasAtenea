@@ -80,9 +80,11 @@
 							"<td>"+seccion.getInscritos()+"</td>"+
 							"<td>"+seccion.getDocente().toString()+"</td>"+
 							"<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
-							"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
-						"</td></tr>"; 
+								"<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+		if (seccion.getEstado().equals("E"))
+			mensaje += "<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
+					   "<a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=alta'><img id='iconos' alt='Del' class='iconalta' title='Alta' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
 		}
 	}
 %>
