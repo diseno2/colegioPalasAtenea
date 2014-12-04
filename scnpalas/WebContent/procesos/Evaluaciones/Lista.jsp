@@ -1,5 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%
+	EvaluacionCtrl ctrl = new EvaluacionCtrl();
+	List<Evaluacion> lst = null;
+	
+	String accion = request.getParameter("accion");
+	if (accion == null)
+		lst = ctrl.findByAll();
+	else{
+		Evaluacion evaluacion = new Evaluacion();
+		lst = ctrl.findByParam(evaluacion);
+	}
+	
+	String mensaje = "", periodo;
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=10>No hay registros</td></tr>";
+	}else{
+		Evaluacion evaluacion;
+		for(int i=0;i<lst.size();i++){
+			evaluacion = (Evaluacion) lst.get(i);
+			mensaje += "<tr>"+
+							"<td>"+evaluacion.getSubperiodo().getPeriodo().toString()+"</td>"+
+							"<td>"+evaluacion.getGrado().toString()+"</td>"+
+							"<td>"+evaluacion.getSeccion().getSeccion()+"</td>"+
+							"<td>"+evaluacion.getSubperiodo().toString()+"</td>"+
+							"<td>"+evaluacion.getMateria().toString()+"</td>"+
+							"<td>"+evaluacion.getDescripcion()+"</td>"+
+							"<td>"+evaluacion.getPorcentaje()+"</td>"+
+							"<td>"+evaluacion.getFecha()+"</td>"+
+							"<td>"+evaluacion.getEstado()+"</td>"+
+							"<td><a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+								"<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+		if (evaluacion.getEstado().equals("E"))
+			mensaje += "<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
+					   "<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=alta'><img id='iconos' alt='Del' class='iconalta' title='Alta' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
+		}
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,7 +62,7 @@
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
 			<table id='tabla'>
-				<caption>Evaluaciones&nbsp;
+				<caption>Secciones&nbsp;
 					<a href='Edit.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;
 					<a href='Print.jsp?tiporeporte=pdf'><img id='iconos' alt='Print'class='iconprint' title='Imprimir' ></a>&nbsp;
 					<a href="javascript:ShowQueryForm();" ><img id='iconos' alt='Buscar' class='iconquery' title='Buscar' /></a>&nbsp;
@@ -40,72 +81,7 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 1</td>
-						<td>15</td>
-						<td>30/01/2014</td>
-						<td>Configurada</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>LABORATORIO 1</td>
-						<td>20</td>
-						<td>06/02/2014</td>
-						<td>Configurada</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 2</td>
-						<td>15</td>
-						<td>20/02/2014</td>
-						<td>Configurada</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>LABORATORIO 2</td>
-						<td>20</td>
-						<td>27/02/2014</td>
-						<td>Configurada</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>EXAMEN DE BIMESTRE</td>
-						<td>30</td>
-						<td>12/03/2014</td>
-						<td>Configurada</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-				</tbody>
+				<tbody><%=mensaje %></tbody>
 			</table>
 			
 			<div id="query" title="Par&aacute;metros de b&uacute;squeda">

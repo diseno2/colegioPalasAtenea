@@ -1,5 +1,175 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%@ page import="java.util.*" %>
+<%
+	Evaluacion evaluacion = new Evaluacion();
+	String disable = "";
+	String mensaje = "";
+	String accion = request.getParameter("accion");
+	if (accion == null) accion = "";
+	
+	Integer ident = 0;
+	if (request.getParameter("ident") == null) ident = 0;
+	else ident = Integer.parseInt(request.getParameter("ident"));
+	
+	EvaluacionCtrl ctrl = new EvaluacionCtrl();
+	Boolean comparar = false;
+	if (ident == 0) {
+		evaluacion = new Evaluacion();
+	} else {
+		evaluacion = ctrl.findById(ident);
+		comparar = true;
+	}
+	
+	//Periodos
+	List<Periodo> pLst = new PeriodoCtrl().findByAll();
+	String periodos="<option value=''></option>";
+	try{
+		Periodo p;
+		String selPer = "";
+		
+		for(int i=0;i<pLst.size();i++){
+			p = (Periodo) pLst.get(i);
+			selPer = "";
+			if (comparar == true){
+				try{
+					if(evaluacion.getSubperiodo().getPeriodo().getIdent().equals(p.getIdent())){
+						selPer = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selPer = "";
+				}
+			}
+			periodos += "<option value="+p.getIdent()+" "+selPer+" >"+p.toString()+"</option>"; 
+		}
+	}catch(Exception e){response.sendRedirect("Lista.jsp");}
+	
+	//Grados
+	List<Grado> gLst = new GradoCtrl().findByAll();
+	String grados="<option value=''></option>";
+	try{
+		Grado g;
+		String selGra = "";
+		
+		for(int i=0;i<gLst.size();i++){
+			g = (Grado) gLst.get(i);
+			selGra = "";
+			if (comparar == true){
+				try{
+					if(evaluacion.getGrado().getIdent().equals(g.getIdent())){
+						selGra = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selGra = "";
+				}
+			}
+			grados += "<option value="+g.getIdent()+" "+selGra+" >"+g.toString()+"</option>"; 
+		}	
+	}catch(Exception e){
+		response.sendRedirect("Lista.jsp");
+	}
+	
+	//Secciones
+	List<Seccion> sLst = new SeccionCtrl().findByAll();
+	String secciones="<option value=''></option>";
+	try{
+		Seccion s;
+		String selSec = "";
+		
+		for(int i=0;i<sLst.size();i++){
+			s = (Seccion) sLst.get(i);
+			selSec = "";
+			if (comparar == true){
+				try{
+					if(evaluacion.getSeccion().getIdent().equals(s.getIdent())){
+						selSec = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selSec = "";
+				}
+			}
+			secciones += "<option value="+s.getIdent()+" "+selSec+" >"+s.toString()+"</option>"; 
+		}	
+	}catch(Exception e){
+		response.sendRedirect("Lista.jsp");
+	}
+		
+	//SubPeriodos
+	List<SubPeriodo> spLst = new SubPeriodoCtrl().findByAll();
+	String subperiodos="<option value=''></option>";
+	try{
+		SubPeriodo sp;
+		String selSub = "";
+
+		for(int i=0;i<spLst.size();i++){
+			sp = (SubPeriodo) spLst.get(i);
+			selSub = "";
+			if (comparar == true){
+				try{
+					if(evaluacion.getSubperiodo().getIdent().equals(sp.getIdent())){
+						selSub = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selSub = "";
+				}
+			}
+			subperiodos += "<option value="+sp.getIdent()+" "+selSub+" >"+sp.toString()+"</option>"; 
+		}	
+	}catch(Exception e){
+		response.sendRedirect("Lista.jsp");
+	}
+	
+	//Materias
+	List<Materia> mLst = new MateriaCtrl().findByAll();
+	String materias="<option value=''></option>";
+	try{
+		Materia m;
+		String selSub = "";
+
+		for(int i=0;i<mLst.size();i++){
+			m = (Materia) mLst.get(i);
+			selSub = "";
+			if (comparar == true){
+				try{
+					if(evaluacion.getMateria().getIdent().equals(m.getIdent())){
+						selSub = "selected='selected'";
+					}
+				}catch(NullPointerException e){
+					selSub = "";
+				}
+			}
+			materias += "<option value="+m.getIdent()+" "+selSub+" >"+m.toString()+"</option>"; 
+		}	
+	}catch(Exception e){
+		response.sendRedirect("Lista.jsp");
+	}
+	
+	if (accion.equals("guardar")){
+		/*evaluacion.setGrado(new GradoCtrl().findById(Integer.parseInt(request.getParameter("grado"))));
+		seccion.setDocente(new DocenteCtrl().findById(Integer.parseInt(request.getParameter("docente"))));
+		seccion.setPeriodo(new PeriodoCtrl().findById(Integer.parseInt(request.getParameter("periodo"))));
+		seccion.setSeccion(request.getParameter("seccion"));
+		if (ident != 0){
+			seccion.setIdent(ident);
+		}else{
+			seccion.setEstado("E");
+		}
+		ctrl.guardar(seccion);
+		*/
+		response.sendRedirect("Lista.jsp");
+	}else if (accion.equals("borrar")) {
+		ctrl.borrar(ident);
+		response.sendRedirect("Lista.jsp");
+	} else if (accion.equals("ver")) {
+		disable = "disabled";
+	}else if(accion.equals("alta")){
+		//ctrl.alta(ident);
+		response.sendRedirect("Lista.jsp");
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,33 +193,23 @@
 					<tbody>
 						<tr>
 							<td>Periodo</td>
-							<td><select name="alumno" style="width:300px">
-									<option>2014</option>
-								</select></td>
+							<td><select name="alumno" style="width:300px"><%=periodos %></select></td>
 						</tr>
 						<tr>
 							<td>Grado</td>
-							<td><select name="seccion" style="width:300px">
-									<option>PRIMERO</option>
-								</select></td>
+							<td><select name="seccion" style="width:300px"><%=grados %></select></td>
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><select name="seccion" style="width:300px">
-									<option>A</option>
-								</select></td>
+							<td><select name="seccion" style="width:300px"><%=secciones %></select></td>
 						</tr>
 						<tr>
 							<td>Sub Periodo</td>
-							<td><select name="seccion" style="width:300px">
-									<option>Bimestre 1</option>
-								</select></td>
+							<td><select name="seccion" style="width:300px"><%=subperiodos %></select></td>
 						</tr>
 						<tr>
 							<td>Materia</td>
-							<td><select name="seccion" style="width:300px">
-									<option>MATEMATICA</option>
-								</select></td>
+							<td><select name="seccion" style="width:300px"><%=materias %></select></td>
 						</tr>
 						<tr>
 							<td>Evaluaci&oacute;n</td>
