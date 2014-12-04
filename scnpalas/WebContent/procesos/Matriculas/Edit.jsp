@@ -106,11 +106,11 @@
 					<tbody>
 						<tr>
 							<td>Alumno</td>
-							<td><select name="alumno" style="width:300px"><%=alumnos%></select></td>
+							<td><select name="alumno" style="width:400px"><%=alumnos%></select></td>
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><select name="seccion" style="width:300px"><%=secciones%></select></td>
+							<td><select name="seccion" style="width:400px"><%=secciones%></select></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
