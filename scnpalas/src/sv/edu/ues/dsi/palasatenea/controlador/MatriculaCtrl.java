@@ -58,6 +58,13 @@ public class MatriculaCtrl {
 		return true;
 	}
 	
+	public String formatEstado(String estado){
+		if(estado.equals("E")) return "Elaborado";
+		if(estado.equals("A")) return "Activo";
+		if(estado.equals("F")) return "Finalizado";
+		return estado;
+	}
+	
 	public byte[] reporte(){
 		byte[] bytes = null;
 		try {

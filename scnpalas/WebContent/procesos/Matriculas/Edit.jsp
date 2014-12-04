@@ -73,7 +73,6 @@
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
 	}else if (accion.equals("alta")) {
-		System.out.println(ident);
 		new MatriculaCtrl().alta(ident);
 		response.sendRedirect("Lista.jsp");
 	} else if (accion.equals("baja")) {

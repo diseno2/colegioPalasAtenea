@@ -58,7 +58,7 @@
 			mensaje += "<tr>"+
 							"<td>"+matricula.getAlumno().toString()+"</td>"+
 							"<td>"+matricula.getSeccion().toString()+"</td>"+
-							"<td>"+matricula.getEstado()+"</td>"+
+							"<td>"+ctrl.formatEstado(matricula.getEstado())+"</td>"+
 							"<td><a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;"+
 							"<a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
 							"<a href='Edit.jsp?ident="+matricula.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;";
