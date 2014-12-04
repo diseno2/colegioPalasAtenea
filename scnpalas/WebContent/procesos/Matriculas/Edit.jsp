@@ -22,7 +22,7 @@
 		matricula = ctrl.findById(ident);
 	}
 	
-	//Grados
+	//Secciones
 	String secciones=null;
 	List<Seccion> sLst = new SeccionCtrl().findByAll();
 	if(sLst==null){
@@ -78,8 +78,7 @@
 	} else if (accion.equals("baja")) {
 		new MatriculaCtrl().baja(ident);
 		response.sendRedirect("Lista.jsp");
-	}
-	
+	}	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
