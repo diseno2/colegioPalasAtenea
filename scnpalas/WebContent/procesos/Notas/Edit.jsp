@@ -5,24 +5,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	Matricula matricula = new Matricula();
-	String disable = "";
-	MatriculaCtrl ctrl = new MatriculaCtrl();
-	
-	String accion = request.getParameter("accion");
-	if (accion == null) accion = "";
-	
-	Integer ident = 0;
-	if (request.getParameter("ident") == null) ident = 0;
-	else ident = Integer.parseInt(request.getParameter("ident"));
-	
-	if (ident == 0) {
-		matricula = new Matricula();
-	} else {
-		matricula = ctrl.findById(ident);
-	}
-	
-	
 	//Alumnos
 	String alumnos=null;
 	List<Alumno> aLst = new AlumnoCtrl().findByAll();
@@ -177,7 +159,6 @@
 		System.out.println("NO EXISTEN DATOS");
 	}
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
