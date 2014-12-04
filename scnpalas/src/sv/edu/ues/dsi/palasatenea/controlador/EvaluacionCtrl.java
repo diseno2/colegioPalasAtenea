@@ -23,8 +23,7 @@ public class EvaluacionCtrl {
 	}
 	
 	public List<Evaluacion> findByAll(){
-		List<Evaluacion> lst = dao.findByAll();
-		return lst;
+		return dao.findByAll();
 	}
 	
 	public List<Evaluacion> findByParam(Evaluacion evaluacion){

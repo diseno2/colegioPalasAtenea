@@ -38,10 +38,7 @@ public class GradoMateriaCtrl {
 	}
 	
 	public Boolean puedoBorrar(GradoMateria gradoMateria){
-		if (gradoMateria.getEvaluacions().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public byte[] reporte(){

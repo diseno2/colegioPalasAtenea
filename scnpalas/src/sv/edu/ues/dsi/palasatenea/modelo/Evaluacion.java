@@ -28,12 +28,13 @@ public class Evaluacion implements java.io.Serializable {
 	private Integer ident;
 	private SubPeriodo subperiodo;
 	private Grado grado;
-	private GradoMateria gradoMateria;
+	private Materia materia;
 	private String evaluacion;
 	private String descripcion;
 	private float porcentaje;
 	private Date fecha;
 	private String estado;
+	private Seccion seccion;
 	private Set<Nota> notas = new HashSet<Nota>(0);
 
 	public Evaluacion() {
@@ -41,11 +42,11 @@ public class Evaluacion implements java.io.Serializable {
 	}
 
 	public Evaluacion(SubPeriodo subperiodo, Grado grado,
-			GradoMateria gradoMateria, String evaluacion, float porcentaje,
+			Materia materia, String evaluacion, float porcentaje,
 			Date fecha, String estado) {
 		this.subperiodo = subperiodo;
 		this.grado = grado;
-		this.gradoMateria = gradoMateria;
+		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.porcentaje = porcentaje;
 		this.fecha = fecha;
@@ -57,7 +58,7 @@ public class Evaluacion implements java.io.Serializable {
 			float porcentaje, Date fecha, String estado, Set<Nota> notas) {
 		this.subperiodo = subperiodo;
 		this.grado = grado;
-		this.gradoMateria = gradoMateria;
+		this.materia = materia;
 		this.evaluacion = evaluacion;
 		this.descripcion = descripcion;
 		this.porcentaje = porcentaje;
@@ -99,12 +100,12 @@ public class Evaluacion implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "materia", nullable = false)
-	public GradoMateria getGradoMateria() {
-		return this.gradoMateria;
+	public Materia getMateria() {
+		return this.materia;
 	}
 
-	public void setGradoMateria(GradoMateria gradoMateria) {
-		this.gradoMateria = gradoMateria;
+	public void setMateria(Materia materia) {
+		this.materia = materia;
 	}
 
 	@Column(name = "evaluacion", nullable = false, length = 45)
@@ -160,6 +161,16 @@ public class Evaluacion implements java.io.Serializable {
 
 	public void setNotas(Set<Nota> notas) {
 		this.notas = notas;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "seccion", nullable = false)
+	public Seccion getSeccion() {
+		return this.seccion;
+	}
+
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
 	}
 
 	public String toString(){

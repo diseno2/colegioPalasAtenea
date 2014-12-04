@@ -1,9 +1,6 @@
 package sv.edu.ues.dsi.palasatenea.modelo;
 
 // Generated 11-21-2014 05:34:49 PM by Hibernate Tools 4.0.0
-
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +9,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,8 +23,7 @@ public class GradoMateria implements java.io.Serializable {
 	private Docente docente;
 	private Materia materia;
 	private String enSeccion;
-	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
-
+	
 	public GradoMateria() {
 		this.ident = 0;
 	}
@@ -39,12 +34,11 @@ public class GradoMateria implements java.io.Serializable {
 	}
 
 	public GradoMateria(Grado grado, Docente docente, Materia materia,
-			String enSeccion, Set<Evaluacion> evaluacions) {
+			String enSeccion) {
 		this.grado = grado;
 		this.docente = docente;
 		this.materia = materia;
 		this.enSeccion = enSeccion;
-		this.evaluacions = evaluacions;
 	}
 
 	@Id
@@ -95,15 +89,6 @@ public class GradoMateria implements java.io.Serializable {
 
 	public void setEnSeccion(String enSeccion) {
 		this.enSeccion = enSeccion;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoMateria")
-	public Set<Evaluacion> getEvaluacions() {
-		return this.evaluacions;
-	}
-
-	public void setEvaluacions(Set<Evaluacion> evaluacions) {
-		this.evaluacions = evaluacions;
 	}
 	
 	public String toString(){
