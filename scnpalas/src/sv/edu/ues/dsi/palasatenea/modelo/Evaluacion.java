@@ -53,8 +53,7 @@ public class Evaluacion implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	public Evaluacion(SubPeriodo subperiodo, Grado grado,
-			GradoMateria gradoMateria, String evaluacion, String descripcion,
+	public Evaluacion(SubPeriodo subperiodo, Grado grado,String evaluacion, String descripcion,
 			float porcentaje, Date fecha, String estado, Set<Nota> notas) {
 		this.subperiodo = subperiodo;
 		this.grado = grado;
@@ -152,15 +151,6 @@ public class Evaluacion implements java.io.Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion")
-	public Set<Nota> getNotas() {
-		return this.notas;
-	}
-
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
 	}
 	
 	@ManyToOne(fetch = FetchType.EAGER)

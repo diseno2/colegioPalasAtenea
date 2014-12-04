@@ -32,10 +32,26 @@ public class EvaluacionCtrl {
 	}
 	
 	public Boolean puedoBorrar(Evaluacion evaluacion){
-		if (evaluacion.getNotas().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
+	}
+	
+	public String formatEstado(String estado){
+		if(estado.equals("E")) return "Elaborado";
+		if(estado.equals("A")) return "Configurado";
+		if(estado.equals("F")) return "Finalizado";
+		return estado;
+	}
+	
+	public void alta(Integer ident){
+		Evaluacion e = this.findById(ident);
+		e.setEstado("A");
+		this.guardar(e);
+	}
+	
+	public void fin(Integer ident){
+		Evaluacion e = this.findById(ident);
+		e.setEstado("F");
+		this.guardar(e);
 	}
 	
 	public byte[] reporte(){

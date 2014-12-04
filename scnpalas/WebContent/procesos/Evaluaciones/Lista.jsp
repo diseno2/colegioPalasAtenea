@@ -31,12 +31,14 @@
 							"<td>"+evaluacion.getDescripcion()+"</td>"+
 							"<td>"+evaluacion.getPorcentaje()+"</td>"+
 							"<td>"+evaluacion.getFecha()+"</td>"+
-							"<td>"+evaluacion.getEstado()+"</td>"+
+							"<td>"+ctrl.formatEstado(evaluacion.getEstado())+"</td>"+
 							"<td><a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
 								"<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
 		if (evaluacion.getEstado().equals("E"))
 			mensaje += "<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' title='Borrar' ></a>&nbsp;"+
 					   "<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=alta'><img id='iconos' alt='Del' class='iconalta' title='Alta' ></a>&nbsp;";
+		else if(evaluacion.getEstado().equals("A"))
+			mensaje += "<a href='Edit.jsp?ident="+evaluacion.getIdent()+"&accion=fin'><img id='iconos' alt='Cerrar' class='iconcerrar' title='Cerrar' ></a>&nbsp;";
 			mensaje += "</td></tr>"; 
 		}
 	}
@@ -62,7 +64,7 @@
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
 			<table id='tabla'>
-				<caption>Secciones&nbsp;
+				<caption>Evaluaciones&nbsp;
 					<a href='Edit.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' ></a>&nbsp;
 					<a href='Print.jsp?tiporeporte=pdf'><img id='iconos' alt='Print'class='iconprint' title='Imprimir' ></a>&nbsp;
 					<a href="javascript:ShowQueryForm();" ><img id='iconos' alt='Buscar' class='iconquery' title='Buscar' /></a>&nbsp;

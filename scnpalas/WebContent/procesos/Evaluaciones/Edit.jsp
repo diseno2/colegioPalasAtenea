@@ -24,6 +24,36 @@
 		comparar = true;
 	}
 	
+	if (accion.equals("guardar")){
+		evaluacion.setDescripcion(request.getParameter("descripcion"));
+		evaluacion.setEvaluacion(evaluacion.getDescripcion());
+		evaluacion.setFecha(new Utilidades().stringToDate(request.getParameter("fecha")));
+		evaluacion.setGrado(new GradoCtrl().findById(Integer.parseInt(request.getParameter("grado"))));
+		evaluacion.setMateria(new MateriaCtrl().findById(Integer.parseInt(request.getParameter("materia"))));
+		evaluacion.setPorcentaje(Float.parseFloat(request.getParameter("porcentaje")));
+		evaluacion.setSeccion(new SeccionCtrl().findById(Integer.parseInt(request.getParameter("seccion"))));
+		evaluacion.setSubperiodo(new SubPeriodoCtrl().findById(Integer.parseInt(request.getParameter("subperiodo"))));
+		
+		if (ident != 0){
+			evaluacion.setIdent(ident);
+		}else{
+			evaluacion.setEstado("E");
+		}
+		ctrl.guardar(evaluacion);
+		response.sendRedirect("Lista.jsp");
+	}else if (accion.equals("borrar")) {
+		ctrl.borrar(ident);
+		response.sendRedirect("Lista.jsp");
+	} else if (accion.equals("ver")) {
+		disable = "disabled";
+	}else if(accion.equals("alta")){
+		ctrl.alta(ident);
+		response.sendRedirect("Lista.jsp");
+	}else if(accion.equals("fin")){
+		ctrl.fin(ident);
+		response.sendRedirect("Lista.jsp");
+	}
+	
 	//Periodos
 	List<Periodo> pLst = new PeriodoCtrl().findByAll();
 	String periodos="<option value=''></option>";
@@ -146,29 +176,6 @@
 	}catch(Exception e){
 		response.sendRedirect("Lista.jsp");
 	}
-	
-	if (accion.equals("guardar")){
-		/*evaluacion.setGrado(new GradoCtrl().findById(Integer.parseInt(request.getParameter("grado"))));
-		seccion.setDocente(new DocenteCtrl().findById(Integer.parseInt(request.getParameter("docente"))));
-		seccion.setPeriodo(new PeriodoCtrl().findById(Integer.parseInt(request.getParameter("periodo"))));
-		seccion.setSeccion(request.getParameter("seccion"));
-		if (ident != 0){
-			seccion.setIdent(ident);
-		}else{
-			seccion.setEstado("E");
-		}
-		ctrl.guardar(seccion);
-		*/
-		response.sendRedirect("Lista.jsp");
-	}else if (accion.equals("borrar")) {
-		ctrl.borrar(ident);
-		response.sendRedirect("Lista.jsp");
-	} else if (accion.equals("ver")) {
-		disable = "disabled";
-	}else if(accion.equals("alta")){
-		//ctrl.alta(ident);
-		response.sendRedirect("Lista.jsp");
-	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -176,6 +183,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>Colegio Palas Atenea - SRN</title>
 	<link href="/scnpalas/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="/scnpalas/js/jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+	<script src="/scnpalas/js/jquery-ui-1.11.2/jquery-ui.js"></script>
+	<script language="javascript">
+		$(function() {
+			$( "#datepicker1" ).datepicker();
+		});
+	</script>
 </head>
 <body>
 	<div id="wrap">
@@ -187,46 +202,47 @@
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
 			<form action="Edit.jsp" method="post">
+				<input type="hidden" name="accion" value="guardar" />
 				
 				<table>
 					<caption>Evaluaci&oacute;n</caption>
 					<tbody>
 						<tr>
 							<td>Periodo</td>
-							<td><select name="alumno" style="width:300px"><%=periodos %></select></td>
+							<td><select name="periodo" style="width:300px" <%=disable %> ><%=periodos %></select></td>
 						</tr>
 						<tr>
 							<td>Grado</td>
-							<td><select name="seccion" style="width:300px"><%=grados %></select></td>
+							<td><select name="grado" style="width:300px" <%=disable %> ><%=grados %></select></td>
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><select name="seccion" style="width:300px"><%=secciones %></select></td>
+							<td><select name="seccion" style="width:300px" <%=disable %> ><%=secciones %></select></td>
 						</tr>
 						<tr>
 							<td>Sub Periodo</td>
-							<td><select name="seccion" style="width:300px"><%=subperiodos %></select></td>
+							<td><select name="subperiodo" style="width:300px" <%=disable %> ><%=subperiodos %></select></td>
 						</tr>
 						<tr>
 							<td>Materia</td>
-							<td><select name="seccion" style="width:300px"><%=materias %></select></td>
+							<td><select name="materia" style="width:300px" <%=disable %> ><%=materias %></select></td>
 						</tr>
 						<tr>
 							<td>Evaluaci&oacute;n</td>
-							<td><input type="text" placeholder="Nombre de la evaluacion" /></td>
+							<td><input name="descripcion" type="text" placeholder="Nombre de la evaluacion" <%=disable %> value="<%=evaluacion.getEvaluacion() %>" /></td>
 						</tr>
 						<tr>
 							<td>Valor (%)</td>
-							<td><input type="text" placeholder="Valor de la actividad en el subperiodo" /></td>
+							<td><input name="porcentaje" type="text" placeholder="Valor de la actividad en el subperiodo" value="<%=evaluacion.getPorcentaje() %>" <%=disable %> /></td>
 						</tr>
 						<tr>
 							<td>Fecha</td>
-							<td><input type="text" placeholder="Fecha de realización" /></td>
+							<td><input name="fecha" id="datepicker1" type="text" placeholder="Fecha de realización" <%=disable %> value="<%=evaluacion.getFecha() %>" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<input type="submit" value="Guardar" />
-								<input type="reset" value="Limpiar" />
+								<input type="submit" value="Guardar" <%=disable %> />
+								<input type="reset" value="Limpiar" <%=disable %> />
 							</td>
 						</tr>
 					</tbody>

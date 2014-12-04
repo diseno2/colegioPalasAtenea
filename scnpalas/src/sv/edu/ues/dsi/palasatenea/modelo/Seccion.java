@@ -135,9 +135,9 @@ public class Seccion implements java.io.Serializable {
 	}
 
 	public String toString(){
-		return this.grado.toString()+" "+
-			   this.seccion+" "+
-			   this.periodo.toString()+" "+
-			   this.docente.toString();
+		return //this.grado.toString()+" "+
+			   this.seccion+" ";//+
+			   //this.periodo.toString()+" "+
+			   //this.docente.toString();
 	}
 }
