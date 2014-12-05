@@ -10,7 +10,7 @@
 	List<Alumno> aLst = new AlumnoCtrl().findByAll();
 	if(aLst==null){
 		response.sendRedirect("Lista.jsp");
-	}else if(sLst.isEmpty()){
+	}else if(aLst.isEmpty()){
 		response.sendRedirect("Lista.jsp");
 	}else{
 		Alumno alumno;
@@ -25,21 +25,10 @@
 	String docentes="<option value=''></option>";
 	try{
 		Docente d;
-		String selDoc = "";
 
 		for(int i=0;i<dLst.size();i++){
 			d = (Docente) dLst.get(i);
-			selDoc = "";
-			if (comparar == true){
-				try{
-					if(seccion.getDocente().getIdent().equals(d.getIdent())){
-						selDoc = "selected='selected'";
-					}
-				}catch(NullPointerException e){
-					selDoc = "";
-				}
-			}
-			docentes += "<option value="+d.getIdent()+" "+selDoc+" >"+d.toString()+"</option>"; 
+			docentes += "<option value="+d.getIdent()+" >"+d.toString()+"</option>"; 
 		}	
 	}catch(Exception e){
 		response.sendRedirect("Lista.jsp");
@@ -50,21 +39,10 @@
 	String grados="<option value=''></option>";
 	try{
 		Grado g;
-		String selGra = "";
 		
 		for(int i=0;i<gLst.size();i++){
 			g = (Grado) gLst.get(i);
-			selGra = "";
-			if (comparar == true){
-				try{
-					if(seccion.getGrado().getIdent().equals(g.getIdent())){
-						selGra = "selected='selected'";
-					}
-				}catch(NullPointerException e){
-					selGra = "";
-				}
-			}
-			grados += "<option value="+g.getIdent()+" "+selGra+" >"+g.toString()+"</option>"; 
+			grados += "<option value="+g.getIdent()+" >"+g.toString()+"</option>"; 
 		}	
 	}catch(Exception e){
 		response.sendRedirect("Lista.jsp");
@@ -90,21 +68,10 @@
 	String subperiodos="<option value=''></option>";
 	try{
 		SubPeriodo sp;
-		String selSub = "";
 
 		for(int i=0;i<spLst.size();i++){
 			sp = (SubPeriodo) spLst.get(i);
-			selSub = "";
-			if (comparar == true){
-				try{
-					if(evaluacion.getSubperiodo().getIdent().equals(sp.getIdent())){
-						selSub = "selected='selected'";
-					}
-				}catch(NullPointerException e){
-					selSub = "";
-				}
-			}
-			subperiodos += "<option value="+sp.getIdent()+" "+selSub+" >"+sp.toString()+"</option>"; 
+			subperiodos += "<option value="+sp.getIdent()+" >"+sp.toString()+"</option>"; 
 		}	
 	}catch(Exception e){
 		response.sendRedirect("Lista.jsp");
@@ -115,47 +82,25 @@
 	String materias="<option value=''></option>";
 	try{
 		Materia m;
-		String selSub = "";
 
 		for(int i=0;i<mLst.size();i++){
 			m = (Materia) mLst.get(i);
-			selSub = "";
-			if (comparar == true){
-				try{
-					if(evaluacion.getMateria().getIdent().equals(m.getIdent())){
-						selSub = "selected='selected'";
-					}
-				}catch(NullPointerException e){
-					selSub = "";
-				}
-			}
-			materias += "<option value="+m.getIdent()+" "+selSub+" >"+m.toString()+"</option>"; 
+			materias += "<option value="+m.getIdent()+" >"+m.toString()+"</option>"; 
 		}	
 	}catch(Exception e){
 		response.sendRedirect("Lista.jsp");
 	}
 	
 	//Evaluaciones
-	List<Evaluacion> eLst = new SeccionCtrl().findByAll();
+	List<Evaluacion> eLst = new EvaluacionCtrl().findByAll();
 	Evaluacion e;
-	String selEva = "";
 	String evaluaciones = "<option value=''></option>";
 	try{
 		for(int i=0;i<eLst.size();i++){
 			e = (Evaluacion) eLst.get(i);
-			selEva = "";
-			if (comparar == true){
-				try{
-					if(ident.equals(e.getIdent())){
-						selEva = "selected='selected'";
-					}
-				}catch(NullPointerException e){
-					selEva = "";
-				}
-			}
-			evaluaciones += "<option value="+e.getIdent()+" "+selEva+" >"+e.toString()+"</option>"; 
+			evaluaciones += "<option value="+e.getIdent()+" >"+e.toString()+"</option>"; 
 		}
-	}catch(Exception e){
+	}catch(Exception ex){
 		System.out.println("NO EXISTEN DATOS");
 	}
 %>

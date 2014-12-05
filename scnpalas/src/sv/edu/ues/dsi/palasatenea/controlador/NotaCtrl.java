@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Nota;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.NotaDao;
 
@@ -22,8 +23,11 @@ public class NotaCtrl {
 	}
 	
 	public List<Nota> findByAll(){
-		List<Nota> lst = dao.findByAll();
-		return lst;
+		return dao.findByAll();
+	}
+	
+	public String findSeccionAlumno(Nota n){
+		return dao.findSeccionAlumno(n);
 	}
 	
 	public List<Nota> findByParam(Nota nota){
@@ -33,6 +37,10 @@ public class NotaCtrl {
 	
 	public Boolean puedoBorrar(Nota nota){
 		return true;
+	}
+	
+	public List<Nota> generaRegistros(int idSeccion, int idEvaluacion, int idMateria, int idSubPeriodo){
+		return dao.generaRegistros(idSeccion, idEvaluacion, idMateria, idSubPeriodo);
 	}
 	
 	public byte[] reporte(){

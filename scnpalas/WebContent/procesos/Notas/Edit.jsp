@@ -10,7 +10,7 @@
 	List<Alumno> aLst = new AlumnoCtrl().findByAll();
 	if(aLst==null){
 		response.sendRedirect("Lista.jsp");
-	}else if(sLst.isEmpty()){
+	}else if(aLst.isEmpty()){
 		response.sendRedirect("Lista.jsp");
 	}else{
 		Alumno alumno;

@@ -164,9 +164,9 @@ public class Evaluacion implements java.io.Serializable {
 	}
 
 	public String toString(){
-		return this.grado.toString()+" "+
+		return //this.grado.toString()+" "+
 			   //this.materia.toString()+" "+
-			   this.descripcion+" "+
-			   this.porcentaje;
+			   this.descripcion+" ";//+
+			   //this.porcentaje;
 	}
 }

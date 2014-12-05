@@ -1,5 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%
+	NotaCtrl ctrl = new NotaCtrl();
+	List<Nota> lst = null;
+	
+	String accion = request.getParameter("accion");
+	if (accion == null)
+		lst = ctrl.findByAll();
+	else{
+		Nota nota = new Nota();
+		lst = ctrl.findByParam(nota);
+	}
+	
+	String mensaje = "";
+	String seccion = "";
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=10>No hay registros</td></tr>";
+	}else{
+		Nota nota;
+		for(int i=0;i<lst.size();i++){
+			nota = (Nota) lst.get(i);
+			seccion = ctrl.findSeccionAlumno(nota);
+			mensaje += "<tr>"+
+							"<td>"+nota.getPeriodo().toString()+"</td>"+
+							"<td>"+nota.getAlumno().getGradoByGradoActual().toString()+"</td>"+
+							"<td>"+seccion+"</td>"+
+							"<td>"+nota.getEvaluacion().getSubperiodo().toString()+"</td>"+
+							"<td>"+nota.getMateria().toString()+"</td>"+
+							"<td>"+nota.getEvaluacion().toString()+"</td>"+
+							"<td>"+nota.getEvaluacion().getPorcentaje()+"</td>"+
+							"<td>"+nota.getAlumno().toString()+"</td>"+
+							"<td>"+nota.getCalificacion()+"</td>"+
+							"<td><a href='Edit.jsp?ident="+nota.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+								"<a href='Edit.jsp?ident="+nota.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+			mensaje += "</td></tr>"; 
+		}
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,113 +76,11 @@
 						<th>Evaluaci&oacute;n</th>
 						<th>Valor (%)</th>
 						<th>Alumno</th>
-						<th>Calificaci&oacute;n</th>
+						<th>Nota</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 1</td>
-						<td>15</td>
-						<td>AP00001-JUAN ADONAY AGUILAR PEREZ</td>
-						<td>9</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 1</td>
-						<td>15</td>
-						<td>BM06001-ROSA ARELY BORJA MENDEZ</td>
-						<td>10</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 1</td>
-						<td>15</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>8</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>LABORATORIO 1</td>
-						<td>20</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>7</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>TAREA 2</td>
-						<td>15</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>6</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>LABORATORIO 2</td>
-						<td>20</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>9</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>EXAMEN DE BIMESTRE</td>
-						<td>30</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>8</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>2014</td>
-						<td>PRIMERO</td>
-						<td>A</td>
-						<td>Bimestre 1</td>
-						<td>MATEMATICA</td>
-						<td>EXAMEN DE BIMESTRE</td>
-						<td>30</td>
-						<td>PA85001-IRIS YAMILETH PINEDA AYALA</td>
-						<td>8</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-				</tbody>
+				<tbody><%=mensaje %></tbody>
 			</table>
 			
 			<div id="query" title="Par&aacute;metros de b&uacute;squeda">

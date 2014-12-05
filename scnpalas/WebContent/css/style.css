@@ -104,9 +104,9 @@ h3 {font-size:1.2em;margin:2px 0 8px 0}
 /* TABLAS */
 #tabla{border:1px solid #5298af;width:100%;-webkit-border-radius: 10px 10px 10px 10px;}
 #tabla caption{-webkit-border-radius: 10px 10px 10px 10px;color:#009933;background:#ecf4f6;font-size:2.2em;padding-top:15px;padding-bottom:15px;}
-#tabla th{background:#5298af;padding-bottom:10px;padding-top:10px;font-size:1.4em;-webkit-border-radius: 10px 10px 10px 10px;}
+#tabla th{background:#5298af;padding-bottom:10px;padding-top:10px;font-size:1.2em;-webkit-border-radius: 10px 10px 10px 10px;}
 
-#tabla tbody tr{background:#f1f1f1;padding-bottom:5px;padding-top:5px;height:30px;font-size:1.5em;}
+#tabla tbody tr{background:#f1f1f1;padding-bottom:5px;padding-top:5px;height:30px;font-size:1.1em;}
 #tabla tbody tr:hover{background:#FF6600;transition: all 0.1s ease-in-out;}
 
 table caption{-webkit-border-radius: 10px 10px 10px 10px;color:#009933;background:#ecf4f6;font-size:2.2em;padding-top:15px;padding-bottom:15px;}
