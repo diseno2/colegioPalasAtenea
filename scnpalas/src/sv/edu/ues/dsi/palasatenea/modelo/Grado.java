@@ -1,6 +1,6 @@
 package sv.edu.ues.dsi.palasatenea.modelo;
 
-// Generated 11-21-2014 05:34:49 PM by Hibernate Tools 4.0.0
+// Generated 12-04-2014 11:18:58 PM by Hibernate Tools 4.0.0
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "grado", catalog = "scnpalas")
 public class Grado implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
+
 	private Integer ident;
 	private Grado gradoByGrado1;
 	private Grado gradoByGrado2;
@@ -53,7 +53,7 @@ public class Grado implements java.io.Serializable {
 		this.ident = ident;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "grado1")
 	public Grado getGradoByGrado1() {
 		return this.gradoByGrado1;
@@ -63,7 +63,7 @@ public class Grado implements java.io.Serializable {
 		this.gradoByGrado1 = gradoByGrado1;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "grado2")
 	public Grado getGradoByGrado2() {
 		return this.gradoByGrado2;
@@ -81,8 +81,9 @@ public class Grado implements java.io.Serializable {
 	public void setGrado(String grado) {
 		this.grado = grado;
 	}
-
+	
 	public String toString(){
 		return this.grado;
 	}
+
 }

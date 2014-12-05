@@ -19,7 +19,9 @@
   <table-filter match-catalog="scnpalas" match-name="rol"/>
   <table-filter match-catalog="scnpalas" match-name="rol_opciones"/>
   <table-filter match-catalog="scnpalas" match-name="usuario"/>
-   -->
   <table-filter match-catalog="scnpalas" match-name="seccion_materia"/>
+   -->
+   <table-filter match-catalog="scnpalas" match-name="grado"/>
+  
   
 </hibernate-reverse-engineering>
