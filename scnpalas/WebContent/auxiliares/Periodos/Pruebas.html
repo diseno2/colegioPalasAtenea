@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>Employee Detail</title>
+	<script>
+		function cargarContenido(){
+			var contenedor;
+			contenedor = document.getElementById('contenedor');
+			ajax=nuevoAjax();
+			ajax.open("GET", "ejemploajax1.html",true);
+			ajax.onreadystatechange=function() {
+				if (ajax.readyState==4) {
+					contenedor.innerHTML = ajax.responseText
+				}
+			}
+			ajax.send(null)
+		}
+		function showFields(string1){
+			var xRequest1;
+			if(string1==""){
+				document.getElementById("Show_update").innerHTML="";
+				return;
+			}
+			if(window.XMLHttpRequest){
+				xRequest1=new XMLHttpRequest();
+			}else{
+				xRequest1=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xRequest1.onreadystatechange=function (){
+				if((xRequest1.readyState==4) && (xRequest1.status==200)){
+					alert(xRequest1.responseText);
+					document.getElementById("Show_update").innerHTML=xRequest1.responseText;
+				}
+			}
+			xRequest1.open("get","empdetails.jsp?q="+string1,"true");
+			xRequest1.send();
+			alert(2);
+			var ejs=document.getElementById('retorno').innerHTML;
+			alert(ejs);
+			alert(3);
+		}
+	</script>
+</head>
+<body>
+<form>
+	<select name="user_name" onchange="javascript:showFields(this.value);" >
+	<!-- <select name="user_name" onchange="getempdetails(this.value)" > -->
+	<option value="">Employee Designations</option>
+	<option value="Officer">Officer </option>
+	<option value="Supervisor">Supervisor </option>
+	<option value="Manager">Manager </option>
+	<option value="MiOpcion">MiOpcion</option>
+	</select>
+	</form>
+	<br />
+	
+	<div id="Show_update">To Update the designation...</div>
+</body>
+</html>
