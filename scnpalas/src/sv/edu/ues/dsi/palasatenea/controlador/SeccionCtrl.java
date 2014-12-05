@@ -40,10 +40,7 @@ public class SeccionCtrl {
 	}
 	
 	public Boolean puedoBorrar(Seccion seccion){
-		if (seccion.getMatriculas().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public void agregarMaterias(Seccion seccion){

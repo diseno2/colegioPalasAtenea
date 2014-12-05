@@ -27,9 +27,6 @@ public class Usuario implements java.io.Serializable {
 	private String usuario;
 	private String password;
 	private String estado;
-	private Set<Familiar> familiars = new HashSet<Familiar>(0);
-	private Set<Alumno> alumnos = new HashSet<Alumno>(0);
-	private Set<Docente> docentes = new HashSet<Docente>(0);
 
 	public Usuario() {
 		this.ident = 0;
@@ -40,18 +37,6 @@ public class Usuario implements java.io.Serializable {
 		this.usuario = usuario;
 		this.password = password;
 		this.estado = estado;
-	}
-
-	public Usuario(Rol rol, String usuario, String password, String estado,
-			Set<Familiar> familiars, Set<Alumno> alumnos,
-			Set<Docente> docentes) {
-		this.rol = rol;
-		this.usuario = usuario;
-		this.password = password;
-		this.estado = estado;
-		this.familiars = familiars;
-		this.alumnos = alumnos;
-		this.docentes = docentes;
 	}
 
 	@Id
@@ -100,33 +85,6 @@ public class Usuario implements java.io.Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
-	public Set<Familiar> getFamiliars() {
-		return this.familiars;
-	}
-
-	public void setFamiliars(Set<Familiar> familiars) {
-		this.familiars = familiars;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
-	public Set<Alumno> getAlumnos() {
-		return this.alumnos;
-	}
-
-	public void setAlumnos(Set<Alumno> alumnos) {
-		this.alumnos = alumnos;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
-	public Set<Docente> getDocentes() {
-		return this.docentes;
-	}
-
-	public void setDocentes(Set<Docente> docentes) {
-		this.docentes = docentes;
 	}
 
 	public String toString(){

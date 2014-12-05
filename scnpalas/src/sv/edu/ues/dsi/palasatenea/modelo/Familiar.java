@@ -36,7 +36,6 @@ public class Familiar implements java.io.Serializable {
 	private String exttrabajo;
 	private String tdoc;
 	private String ndoc;
-	private Set<Familiares> familiareses = new HashSet<Familiares>(0);
 
 	public Familiar() {
 		this.ident = 0;
@@ -61,8 +60,7 @@ public class Familiar implements java.io.Serializable {
 	public Familiar(Usuario usuario, String nombre, String direccion,
 			String telefono, String celular, String empresa, String email,
 			String lugtrabajo, String dirtrabajo, String teltrabajo,
-			String exttrabajo, String tdoc, String ndoc,
-			Set<Familiares> familiareses) {
+			String exttrabajo, String tdoc, String ndoc) {
 		this.usuario = usuario;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -76,7 +74,6 @@ public class Familiar implements java.io.Serializable {
 		this.exttrabajo = exttrabajo;
 		this.tdoc = tdoc;
 		this.ndoc = ndoc;
-		this.familiareses = familiareses;
 	}
 
 	@Id
@@ -206,15 +203,6 @@ public class Familiar implements java.io.Serializable {
 
 	public void setNdoc(String ndoc) {
 		this.ndoc = ndoc;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "familiar")
-	public Set<Familiares> getFamiliareses() {
-		return this.familiareses;
-	}
-
-	public void setFamiliareses(Set<Familiares> familiareses) {
-		this.familiareses = familiareses;
 	}
 	
 	public String toString(){

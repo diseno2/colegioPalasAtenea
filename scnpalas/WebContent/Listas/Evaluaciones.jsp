@@ -15,7 +15,7 @@
 		comparar = false;
 	}
 	
-	List<Evaluacion> lst = new SeccionCtrl().findByAll();
+	List<Evaluacion> lst = new EvaluacionCtrl().findByAll();
 	Evaluacion e;
 	String sel = "";
 	String evaluaciones = "<option value=''></option>";
@@ -28,14 +28,14 @@
 					if(ident.equals(e.getIdent())){
 						sel = "selected='selected'";
 					}
-				}catch(NullPointerException e){
+				}catch(NullPointerException ex){
 					sel = "";
 				}
 			}
 			evaluaciones += "<option value="+e.getIdent()+" "+sel+" >"+e.toString()+"</option>"; 
 		}
 		evaluaciones = "<select name='evaluacion' style='width:300px'>"+evaluaciones+"</select>";
-	}catch(Exception e){
+	}catch(Exception ex){
 		System.out.println("NO EXISTEN DATOS");
 	}
 %>

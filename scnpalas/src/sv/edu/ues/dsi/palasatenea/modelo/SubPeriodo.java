@@ -33,7 +33,6 @@ public class SubPeriodo implements java.io.Serializable {
 	private String estado;
 	private Date inicio;
 	private Date fin;
-	private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
 
 	public SubPeriodo() {
 		this.ident = 0;
@@ -48,16 +47,6 @@ public class SubPeriodo implements java.io.Serializable {
 		this.estado = estado;
 		this.inicio = inicio;
 		this.fin = fin;
-	}
-
-	public SubPeriodo(Periodo periodo, String descripcion, String estado,
-			Date inicio, Date fin, Set<Evaluacion> evaluacions) {
-		this.periodo = periodo;
-		this.descripcion = descripcion;
-		this.estado = estado;
-		this.inicio = inicio;
-		this.fin = fin;
-		this.evaluacions = evaluacions;
 	}
 
 	@Id
@@ -117,15 +106,6 @@ public class SubPeriodo implements java.io.Serializable {
 
 	public void setFin(Date fin) {
 		this.fin = fin;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "subperiodo")
-	public Set<Evaluacion> getEvaluacions() {
-		return this.evaluacions;
-	}
-
-	public void setEvaluacions(Set<Evaluacion> evaluacions) {
-		this.evaluacions = evaluacions;
 	}
 
 	public String toString(){

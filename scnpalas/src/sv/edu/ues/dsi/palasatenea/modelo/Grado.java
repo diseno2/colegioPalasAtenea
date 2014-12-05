@@ -26,13 +26,6 @@ public class Grado implements java.io.Serializable {
 	private Grado gradoByGrado1;
 	private Grado gradoByGrado2;
 	private String grado;
-	/*private Set<Evaluacion> evaluacions = new HashSet<Evaluacion>(0);
-	private Set<Seccion> seccions = new HashSet<Seccion>(0);
-	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
-	private Set<Grado> gradosForGrado1 = new HashSet<Grado>(0);
-	private Set<Alumno> alumnosForGradoAprobado = new HashSet<Alumno>(0);
-	private Set<Grado> gradosForGrado2 = new HashSet<Grado>(0);
-	private Set<Alumno> alumnosForGradoActual = new HashSet<Alumno>(0);*/
 
 	public Grado() {
 		this.ident = 0;
@@ -43,21 +36,10 @@ public class Grado implements java.io.Serializable {
 		this.grado = grado;
 	}
 
-	public Grado(Grado gradoByGrado1, Grado gradoByGrado2, String grado/*,
-			Set<Evaluacion> evaluacions, Set<Seccion> seccions,
-			Set<GradoMateria> gradoMaterias, Set<Grado> gradosForGrado1,
-			Set<Alumno> alumnosForGradoAprobado, Set<Grado> gradosForGrado2,
-			Set<Alumno> alumnosForGradoActual*/) {
+	public Grado(Grado gradoByGrado1, Grado gradoByGrado2, String grado) {
 		this.gradoByGrado1 = gradoByGrado1;
 		this.gradoByGrado2 = gradoByGrado2;
 		this.grado = grado;
-		/*this.evaluacions = evaluacions;
-		this.seccions = seccions;
-		this.gradoMaterias = gradoMaterias;
-		this.gradosForGrado1 = gradosForGrado1;
-		this.alumnosForGradoAprobado = alumnosForGradoAprobado;
-		this.gradosForGrado2 = gradosForGrado2;
-		this.alumnosForGradoActual = alumnosForGradoActual;*/
 	}
 
 	@Id
@@ -99,69 +81,6 @@ public class Grado implements java.io.Serializable {
 	public void setGrado(String grado) {
 		this.grado = grado;
 	}
-
-	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
-	public Set<Evaluacion> getEvaluacions() {
-		return this.evaluacions;
-	}
-
-	public void setEvaluacions(Set<Evaluacion> evaluacions) {
-		this.evaluacions = evaluacions;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
-	public Set<Seccion> getSeccions() {
-		return this.seccions;
-	}
-
-	public void setSeccions(Set<Seccion> seccions) {
-		this.seccions = seccions;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grado")
-	public Set<GradoMateria> getGradoMaterias() {
-		return this.gradoMaterias;
-	}
-
-	public void setGradoMaterias(Set<GradoMateria> gradoMaterias) {
-		this.gradoMaterias = gradoMaterias;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGrado1")
-	public Set<Grado> getGradosForGrado1() {
-		return this.gradosForGrado1;
-	}
-
-	public void setGradosForGrado1(Set<Grado> gradosForGrado1) {
-		this.gradosForGrado1 = gradosForGrado1;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGradoAprobado")
-	public Set<Alumno> getAlumnosForGradoAprobado() {
-		return this.alumnosForGradoAprobado;
-	}
-
-	public void setAlumnosForGradoAprobado(Set<Alumno> alumnosForGradoAprobado) {
-		this.alumnosForGradoAprobado = alumnosForGradoAprobado;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGrado2")
-	public Set<Grado> getGradosForGrado2() {
-		return this.gradosForGrado2;
-	}
-
-	public void setGradosForGrado2(Set<Grado> gradosForGrado2) {
-		this.gradosForGrado2 = gradosForGrado2;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "gradoByGradoActual")
-	public Set<Alumno> getAlumnosForGradoActual() {
-		return this.alumnosForGradoActual;
-	}
-
-	public void setAlumnosForGradoActual(Set<Alumno> alumnosForGradoActual) {
-		this.alumnosForGradoActual = alumnosForGradoActual;
-	}*/
 
 	public String toString(){
 		return this.grado;

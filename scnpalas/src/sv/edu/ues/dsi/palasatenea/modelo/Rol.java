@@ -21,8 +21,6 @@ public class Rol implements java.io.Serializable {
 	private int ident;
 	private String descripcion;
 	private String tipo;
-	private Set<RolOpciones> rolOpcioneses = new HashSet<RolOpciones>(0);
-	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
 	public Rol() {
 		this.ident = 0;
@@ -33,13 +31,10 @@ public class Rol implements java.io.Serializable {
 		this.tipo = tipo;
 	}
 
-	public Rol(int ident, String descripcion, String tipo,
-			Set<RolOpciones> rolOpcioneses, Set<Usuario> usuarios) {
+	public Rol(int ident, String descripcion, String tipo) {
 		this.ident = ident;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
-		this.rolOpcioneses = rolOpcioneses;
-		this.usuarios = usuarios;
 	}
 
 	@Id
@@ -68,24 +63,6 @@ public class Rol implements java.io.Serializable {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "rol")
-	public Set<RolOpciones> getRolOpcioneses() {
-		return this.rolOpcioneses;
-	}
-
-	public void setRolOpcioneses(Set<RolOpciones> rolOpcioneses) {
-		this.rolOpcioneses = rolOpcioneses;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "rol")
-	public Set<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
 	}
 	
 	public String toString(){

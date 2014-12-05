@@ -29,7 +29,6 @@ public class Seccion implements java.io.Serializable {
 	private int inscritos;
 	private String estado;
 	private String seccion;
-	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
 
 	public Seccion() {
 		this.ident = 0;
@@ -46,15 +45,13 @@ public class Seccion implements java.io.Serializable {
 	}
 
 	public Seccion(Grado grado, Periodo periodo, Docente docente,
-			int inscritos, String estado, String seccion,
-			Set<Matricula> matriculas) {
+			int inscritos, String estado, String seccion) {
 		this.grado = grado;
 		this.periodo = periodo;
 		this.docente = docente;
 		this.inscritos = inscritos;
 		this.estado = estado;
 		this.seccion = seccion;
-		this.matriculas = matriculas;
 	}
 
 	@Id
@@ -123,15 +120,6 @@ public class Seccion implements java.io.Serializable {
 
 	public void setSeccion(String seccion) {
 		this.seccion = seccion;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "seccion")
-	public Set<Matricula> getMatriculas() {
-		return this.matriculas;
-	}
-
-	public void setMatriculas(Set<Matricula> matriculas) {
-		this.matriculas = matriculas;
 	}
 
 	public String toString(){

@@ -35,10 +35,7 @@ private SubPeriodoDao dao = new SubPeriodoDao();
 	}
 	
 	public Boolean puedoBorrar(SubPeriodo subperiodo){
-		if (subperiodo.getEvaluacions().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public Boolean puedoGuardar(Periodo periodo){

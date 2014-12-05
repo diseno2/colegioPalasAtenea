@@ -157,10 +157,7 @@ public class AlumnoCtrl {
 	}
 	
 	public Boolean puedoBorrar(Alumno alumno){
-		if (alumno.getFamiliareses().size() == 0 && alumno.getMatriculas().size() == 0 && alumno.getNotas().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public byte[] reporte(){

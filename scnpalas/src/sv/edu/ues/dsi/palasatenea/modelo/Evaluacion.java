@@ -35,7 +35,6 @@ public class Evaluacion implements java.io.Serializable {
 	private Date fecha;
 	private String estado;
 	private Seccion seccion;
-	private Set<Nota> notas = new HashSet<Nota>(0);
 
 	public Evaluacion() {
 		this.ident = 0;
@@ -54,7 +53,7 @@ public class Evaluacion implements java.io.Serializable {
 	}
 
 	public Evaluacion(SubPeriodo subperiodo, Grado grado,String evaluacion, String descripcion,
-			float porcentaje, Date fecha, String estado, Set<Nota> notas) {
+			float porcentaje, Date fecha, String estado) {
 		this.subperiodo = subperiodo;
 		this.grado = grado;
 		this.materia = materia;
@@ -63,7 +62,6 @@ public class Evaluacion implements java.io.Serializable {
 		this.porcentaje = porcentaje;
 		this.fecha = fecha;
 		this.estado = estado;
-		this.notas = notas;
 	}
 
 	@Id

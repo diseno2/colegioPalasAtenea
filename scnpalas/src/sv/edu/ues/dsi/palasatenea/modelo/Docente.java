@@ -35,8 +35,6 @@ public class Docente implements java.io.Serializable {
 	private String telefono;
 	private Date fnacimiento;
 	private Date fcontrato;
-	private Set<Seccion> seccions = new HashSet<Seccion>(0);
-	private Set<GradoMateria> gradoMaterias = new HashSet<GradoMateria>(0);
 
 	public Docente() {
 		this.ident = 0;
@@ -60,8 +58,7 @@ public class Docente implements java.io.Serializable {
 
 	public Docente(Usuario usuario, String nombre1, String nombre2,
 			String apellido1, String apellido2, String direccion,
-			String telefono, Date fnacimiento, Date fcontrato,
-			Set<Seccion> seccions, Set<GradoMateria> gradoMaterias) {
+			String telefono, Date fnacimiento, Date fcontrato) {
 		this.usuario = usuario;
 		this.nombre1 = nombre1;
 		this.nombre2 = nombre2;
@@ -71,8 +68,6 @@ public class Docente implements java.io.Serializable {
 		this.telefono = telefono;
 		this.fnacimiento = fnacimiento;
 		this.fcontrato = fcontrato;
-		this.seccions = seccions;
-		this.gradoMaterias = gradoMaterias;
 	}
 
 	@Id
@@ -168,24 +163,6 @@ public class Docente implements java.io.Serializable {
 
 	public void setFcontrato(Date fcontrato) {
 		this.fcontrato = fcontrato;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "docente")
-	public Set<Seccion> getSeccions() {
-		return this.seccions;
-	}
-
-	public void setSeccions(Set<Seccion> seccions) {
-		this.seccions = seccions;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "docente")
-	public Set<GradoMateria> getGradoMaterias() {
-		return this.gradoMaterias;
-	}
-
-	public void setGradoMaterias(Set<GradoMateria> gradoMaterias) {
-		this.gradoMaterias = gradoMaterias;
 	}
 	
 	public String toString(){

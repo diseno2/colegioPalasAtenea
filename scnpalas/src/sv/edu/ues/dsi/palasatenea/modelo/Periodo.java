@@ -31,9 +31,6 @@ public class Periodo implements java.io.Serializable {
 	private Date inicio;
 	private Date fin;
 	private String estado;
-	//private Set<Subperiodo> subperiodos = new HashSet<Subperiodo>(0);
-	//private Set<Nota> notas = new HashSet<Nota>(0);
-	//private Set<Seccion> seccions = new HashSet<Seccion>(0);
 
 	public Periodo() {
 		this.ident = 0;
@@ -54,16 +51,6 @@ public class Periodo implements java.io.Serializable {
 		this.anio = anio;
 		this.inicio = inicio;
 		this.fin = fin;
-	}
-
-	public Periodo(int anio, Date inicio, Date fin,
-			Set<SubPeriodo> subperiodos, Set<Nota> notas, Set<Seccion> seccions) {
-		this.anio = anio;
-		this.inicio = inicio;
-		this.fin = fin;
-		//this.subperiodos = subperiodos;
-		//this.notas = notas;
-		//this.seccions = seccions;
 	}
 
 	@Id
@@ -114,33 +101,6 @@ public class Periodo implements java.io.Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
-	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
-	public Set<Subperiodo> getSubperiodos() {
-		return this.subperiodos;
-	}
-
-	public void setSubperiodos(Set<Subperiodo> subperiodos) {
-		this.subperiodos = subperiodos;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
-	public Set<Nota> getNotas() {
-		return this.notas;
-	}
-
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "periodo")
-	public Set<Seccion> getSeccions() {
-		return this.seccions;
-	}
-
-	public void setSeccions(Set<Seccion> seccions) {
-		this.seccions = seccions;
-	}*/
 
 	public String toString(){
 		return Integer.toString(anio);

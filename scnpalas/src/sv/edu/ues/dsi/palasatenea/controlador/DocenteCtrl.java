@@ -32,10 +32,7 @@ public class DocenteCtrl {
 	}
 	
 	public Boolean puedoBorrar(Docente docente){
-		if (docente.getGradoMaterias().size() == 0 && docente.getSeccions().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public byte[] reporte(){

@@ -47,10 +47,7 @@ public class Alumno implements java.io.Serializable {
 	private String aprendizaje;
 	private String escuelaprevia;
 	private String correo;
-	private Set<Matricula> matriculas = new HashSet<Matricula>(0);
-	private Set<Familiares> familiareses = new HashSet<Familiares>(0);
-	private Set<Nota> notas = new HashSet<Nota>(0);
-
+	
 	public Alumno() {
 		this.ident = 0;
 		this.carnet = "";
@@ -79,9 +76,7 @@ public class Alumno implements java.io.Serializable {
 			String genero, Date fnacimiento, String lnacimiento,
 			String direccion, String telefono, String religion,
 			String enfermedades, String medicamentos, String alergico,
-			String aprendizaje, String escuelaprevia, String correo,
-			Set<Matricula> matriculas, Set<Familiares> familiareses,
-			Set<Nota> notas) {
+			String aprendizaje, String escuelaprevia, String correo) {
 		this.usuario = usuario;
 		this.gradoByGradoActual = gradoByGradoActual;
 		this.gradoByGradoAprobado = gradoByGradoAprobado;
@@ -103,9 +98,6 @@ public class Alumno implements java.io.Serializable {
 		this.aprendizaje = aprendizaje;
 		this.escuelaprevia = escuelaprevia;
 		this.correo = correo;
-		this.matriculas = matriculas;
-		this.familiareses = familiareses;
-		this.notas = notas;
 	}
 
 	@Id
@@ -310,33 +302,6 @@ public class Alumno implements java.io.Serializable {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "alumno")
-	public Set<Matricula> getMatriculas() {
-		return this.matriculas;
-	}
-
-	public void setMatriculas(Set<Matricula> matriculas) {
-		this.matriculas = matriculas;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "alumno")
-	public Set<Familiares> getFamiliareses() {
-		return this.familiareses;
-	}
-
-	public void setFamiliareses(Set<Familiares> familiareses) {
-		this.familiareses = familiareses;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "alumno")
-	public Set<Nota> getNotas() {
-		return this.notas;
-	}
-
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
 	}
 	
 	public String toString(){

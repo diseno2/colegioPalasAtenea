@@ -32,10 +32,7 @@ public class UsuarioCtrl {
 	}
 	
 	public Boolean puedoBorrar(Usuario usuario){
-		if (usuario.getDocentes().size() == 0 && usuario.getFamiliars().size() == 0 && usuario.getFamiliars().size() == 0 )
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public byte[] reporte(){

@@ -37,10 +37,7 @@ public class RolCtrl {
 	}
 	
 	public Boolean puedoBorrar(Rol rol){
-		if (rol.getRolOpcioneses().size() == 0 && rol.getUsuarios().size() == 0)
-			return true;
-		else
-			return false;
+		return true;
 	}
 	
 	public byte[] reporte(){
