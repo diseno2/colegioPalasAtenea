@@ -1,5 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%
+	UsuarioCtrl ctrl = new UsuarioCtrl();
+	List<Usuario> lst = null;
+	
+	String accion = request.getParameter("accion");
+	if (accion == null)
+		lst = ctrl.findByAll();
+	else{
+		Usuario usuario = new Usuario();
+		usuario.setDescripcion(request.getParameter("descripcion"));
+		lst = ctrl.findByParam(usuario);
+	}
+	
+	String mensaje = "";
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=3>No hay registros</td></tr>";
+	}else{
+		Usuario usuario;
+		for(int i=0;i<lst.size();i++){
+			usuario = (Usuario) lst.get(i); 
+			mensaje += "<tr>"+
+							"<td>"+usuario.getUsuario()+"</td>"+
+							"<td>"+usuario.getRol().toString()+"</td>"+
+							"<td>"+ctrl.formatEstado(usuario.getEstado())+"</td>"+
+							"<td><a href='Edit.jsp?ident="+usuario.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+usuario.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+			if(ctrl.puedoBorrar(usuario))
+				mensaje += "<a href='Edit.jsp?ident="+usuario.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;";
+			
+			mensaje += "</td></tr>"; 
+		}
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,53 +70,7 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>admin@admin</td>
-						<td>ROLE_ADMIN</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>docente@JOSE.FLORES</td>
-						<td>ROLE_DOCENTE</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					
-					
-					<tr>
-						<td>alumno@AP00001</td>
-						<td>ROLE_ALUMNO</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>alumno@BM06001</td>
-						<td>ROLE_ALUMNO</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>alumno@PA85001</td>
-						<td>ROLE_ALUMNO</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					<tr>
-						<td>tutor@JOSE.PEREZ</td>
-						<td>ROLE_TUTOR</td>
-						<td>ACTIVO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;</td>
-					</tr>
-					
-					
-				</tbody>
+				<tbody><%=mensaje %></tbody>
 			</table>
 			
 			<div id="query" title="Par&aacute;metros de b&uacute;squeda">

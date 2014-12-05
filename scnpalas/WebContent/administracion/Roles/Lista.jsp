@@ -1,5 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="sv.edu.ues.dsi.palasatenea.controlador.*" %>
+<%@ page import="sv.edu.ues.dsi.palasatenea.modelo.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
+<%
+	RolCtrl ctrl = new RolCtrl();
+	List<Rol> lst = null;
+	
+	String accion = request.getParameter("accion");
+	if (accion == null)
+		lst = ctrl.findByAll();
+	else{
+		Rol rol = new Rol();
+		rol.setDescripcion(request.getParameter("descripcion"));
+		lst = ctrl.findByParam(rol);
+	}
+	
+	String mensaje = "";
+	if(lst.isEmpty()){
+		mensaje += "<tr><td colspan=3>No hay registros</td></tr>";
+	}else{
+		Rol rol;
+		for(int i=0;i<lst.size();i++){
+			rol = (Rol) lst.get(i); 
+			mensaje += "<tr>"+
+							"<td>"+rol.getDescripcion()+"</td>"+
+							"<td>"+rol.getTipo()+"</td>"+
+							"<td><a href='Edit.jsp?ident="+rol.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;"+
+							"<a href='Edit.jsp?ident="+rol.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;";
+			if(ctrl.puedoBorrar(rol))
+				mensaje += "<a href='Edit.jsp?ident="+rol.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;";
+			
+			mensaje += "</td></tr>"; 
+		}
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,44 +68,7 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>ADMINISTRADORES</td>
-						<td>ROLE_ADMIN</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td>DOCENTES</td>
-						<td>ROLE_DOCENTE</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td>TUTORES</td>
-						<td>ROLE_TUTOR</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;
-						</td>
-					</tr>
-					
-					
-					
-					<tr>
-						<td>ALUMNOS</td>
-						<td>ROLE_ALUMNO</td>
-						<td><a href='Edit.jsp?ident="+seccion.getIdent()+"&accion=edit'><img id='iconos' alt='Edit' class='iconedit' title='Editar' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=ver'><img id='iconos' alt='Ver' class='iconview' title='Ver' ></a>&nbsp;
-							<a href='Edit.jsp?ident="+materia.getIdent()+"&accion=borrar'><img id='iconos' alt='Del' class='icondel' ></a>&nbsp;
-						</td>
-					</tr>
-					
-				</tbody>
+				<tbody><%=mensaje %></tbody>
 			</table>
 			
 			<div id="query" title="Par&aacute;metros de b&uacute;squeda">
