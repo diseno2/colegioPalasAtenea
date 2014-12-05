@@ -11,7 +11,6 @@ import org.hibernate.criterion.Restrictions;
 
 import sv.edu.ues.dsi.palasatenea.modelo.Alumno;
 import sv.edu.ues.dsi.palasatenea.modelo.Familiar;
-import sv.edu.ues.dsi.palasatenea.modelo.Familiares;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
 public class FamiliarDao{
