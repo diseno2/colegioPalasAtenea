@@ -81,6 +81,8 @@
 		<%=new Utilidades().getAviso()%>
 		<div id="content">
 			<form action="Edit.jsp" method="post">
+				<input type="hidden" name="accion" value="guardar"  />
+				<input type="hidden" name="ident" value="<%=rol.getIdent()%>"  />
 				<table>
 					<caption>Rol</caption>
 					<tbody>

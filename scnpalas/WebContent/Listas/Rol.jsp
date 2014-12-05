@@ -34,7 +34,7 @@
 			}
 			roles += "<option value="+r.getIdent()+" "+sel+" >"+r.toString()+"</option>"; 
 		}
-		roles = "<select name='materia' style='width:300px'>"+roles+"</select>";
+		roles = "<select name='rol' style='width:300px'>"+roles+"</select>";
 	}catch(Exception e){
 		System.out.println("NO EXISTEN DATOS");
 	}
