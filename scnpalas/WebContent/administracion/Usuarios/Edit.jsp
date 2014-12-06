@@ -36,7 +36,7 @@
 			sel = "";
 			if (comparar == true){
 				try{
-					if(usuario.getRol().getIdent().equals(r.getIdent())){
+					if(usuario.getRol().getIdent() == r.getIdent()){
 						sel = "selected='selected'";
 					}
 				}catch(NullPointerException e){
@@ -50,8 +50,10 @@
 	}
 	
 	if (accion.equals("guardar")){
-		usuario.setDescripcion(request.getParameter("descripcion"));
-		usuario.setTipo(request.getParameter("tipo"));
+		usuario.setUsuario(request.getParameter("usuario"));
+		Rol rol = new RolCtrl().findById(Integer.parseInt(request.getParameter("rol")));
+		usuario.setRol(rol);
+		usuario.setPassword(request.getParameter("password"));
 		if (ident != 0) usuario.setIdent(ident);
 		ctrl.guardar(usuario);
 		response.sendRedirect("Lista.jsp");
@@ -86,11 +88,11 @@
 					<tbody>
 						<tr>
 							<td>Usuario</td>
-							<td><input type="text" placeholder="Usuario" name="usuario" value=<%=usuario.getUsuario() %> <%=disable %> required /> </td>
+							<td><input type="text" placeholder="Usuario" name="usuario" value="<%=usuario.getUsuario() %>" <%=disable %> required /> </td>
 						</tr>
 						<tr>
 							<td>Contrase&ntilde;a</td>
-							<td><input type="password" placeholder="Contraseña" name="password" value=<%=usuario.getPassword() %> <%=disable %> required /> </td>
+							<td><input type="password" placeholder="Contraseña" name="password" value="<%=usuario.getPassword() %>" <%=disable %> required /> </td>
 						</tr>
 						<tr>
 							<td>Rol</td>

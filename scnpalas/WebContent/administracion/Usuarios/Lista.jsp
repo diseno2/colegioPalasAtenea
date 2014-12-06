@@ -12,7 +12,7 @@
 		lst = ctrl.findByAll();
 	else{
 		Usuario usuario = new Usuario();
-		usuario.setDescripcion(request.getParameter("descripcion"));
+		usuario.setUsuario(request.getParameter("usuario"));
 		lst = ctrl.findByParam(usuario);
 	}
 	

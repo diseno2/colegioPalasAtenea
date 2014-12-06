@@ -13,17 +13,17 @@
 	if (accion == null) accion = "";
 	
 	Integer ident = 0;
-	if (request.getParameter("ident") == null) ident = 0;
-	else ident = Integer.parseInt(request.getParameter("ident"));
+	ident = Integer.parseInt(request.getParameter("ident"));
 	
 	RolCtrl ctrl = new RolCtrl();
 	Boolean comparar = false;
 	if (ident == 0) {
 		rol = new Rol();
 	} else {
+		System.out.println(ident);
 		rol = ctrl.findById(ident);
 		comparar = true;
-		nuevo = "<a href='EditRolOpciones.jsp?ident=0&accion=nuevo&idRol="+rol.getIdent()+"' ><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
+		nuevo = "<a href='EditRolOpcion.jsp?ident=0&idRol="+rol.getIdent()+"&accion=nuevo' ><img alt='Nuevo' class='iconnew' title='Nuevo' ></a>";
 	}
 	
 	if (accion.equals("guardar")){
@@ -54,7 +54,7 @@
 								"<td>"+ro.getOpcion().toString()+"</td>"+
 								"<td><a href='EditRolOpcion.jsp?ident="+ro.getIdent()+"&accion=ver&idRol="+rol.getIdent()+"'><img alt='Ver' class='iconview' title='Ver' ></a>"+
 									"<a href='EditRolOpcion.jsp?ident="+ro.getIdent()+"&accion=edit&idRol="+rol.getIdent()+"'><img alt='Edit' class='iconedit' title='Editar' ></a>";
-				if (rol.getEstado().equals("E"))
+				if(ctrl.puedoBorrar(rol))
 					mensaje += "<a href='EditRolOpcion.jsp?ident="+ro.getIdent()+"&accion=borrar&idRol="+rol.getIdent()+"'><img alt='Del' class='icondel' title='Borrar' ></a>";
 				mensaje += "</td></tr>"; 
 			}
@@ -88,7 +88,7 @@
 					<tbody>
 						<tr>
 							<td>Descripci&oacute;n</td>
-							<td><input type="text" name="descripcion" placeholder="Nombre del rol" <%=disable %> /> </td>
+							<td><input type="text" name="descripcion" value="<%=rol.getDescripcion() %>" placeholder="Nombre del rol" <%=disable %> /></td>
 						</tr>
 						<tr>
 							<td>Tipo</td>
@@ -111,8 +111,7 @@
 			</form>
 			
 			<table id='tabla'>
-				<caption>Opciones&nbsp;
-					<a href='EditRolOpcion.jsp?ident=0&accion=nuevo'><img id='iconos' alt='Nuevo' class='iconnew' title='Nuevo' /></a>&nbsp;
+				<caption>Opciones&nbsp;<%=nuevo %>&nbsp;
 				</caption>
 			  	<thead>
 					<tr>

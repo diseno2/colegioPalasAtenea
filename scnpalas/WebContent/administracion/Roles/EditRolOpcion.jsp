@@ -4,9 +4,9 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="sv.edu.ues.dsi.palasatenea.utilidades.*" %>
 <%
-	RolOpcion rolOpcion = new RolOpcion();
+	RolOpciones rolOpcion = new RolOpciones();
 	String disable = "";
-	MateriaCtrl ctrl = new MateriaCtrl();
+	RolOpcionesCtrl ctrl = new RolOpcionesCtrl();
 	
 	String accion = request.getParameter("accion");
 	if (accion == null) accion = "";
@@ -24,7 +24,7 @@
 	String selRol = "", selUsu = "";
 	
 	if (ident == 0) {
-		rolOpcion = new RolOpcion();
+		rolOpcion = new RolOpciones();
 	} else {
 		rolOpcion = ctrl.findById(ident);
 		if(rolOpcion.getOpcion().equals("auxiliares/Periodos")) selPer = "selected";
@@ -45,13 +45,15 @@
 	}
 	
 	if (accion.equals("guardar")){
+		rolOpcion = new RolOpciones();
 		rolOpcion.setOpcion(request.getParameter("opcion"));
+		rolOpcion.setRol(new RolCtrl().findById(Integer.parseInt(request.getParameter("idRol"))));
 		if (ident != 0) rolOpcion.setIdent(ident);
 		ctrl.guardar(rolOpcion);
-		response.sendRedirect("Lista.jsp");
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+idRol);
 	}else if (accion.equals("borrar")) {
 		ctrl.borrar(ident);
-		response.sendRedirect("Lista.jsp");
+		response.sendRedirect("Edit.jsp?accion=ver&ident="+idRol);
 	} else if (accion.equals("ver")) {
 		disable = "disabled";
 	}

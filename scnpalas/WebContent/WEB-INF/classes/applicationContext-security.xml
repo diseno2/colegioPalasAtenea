@@ -35,7 +35,7 @@
     	<authentication-provider>
     		<jdbc-user-service data-source-ref="dataSource" 
     						   users-by-username-query="SELECT u.usuario, u.password, 'true' FROM usuario u WHERE u.usuario = ?" 
-    						   authorities-by-username-query="SELECT u.usuario, r.descripcion 
+    						   authorities-by-username-query="SELECT u.usuario, r.tipo 
     						   								  FROM usuario u, rol r 
     						   								  WHERE r.ident = u.rol 
     						   								  AND u.usuario = ? "/>
