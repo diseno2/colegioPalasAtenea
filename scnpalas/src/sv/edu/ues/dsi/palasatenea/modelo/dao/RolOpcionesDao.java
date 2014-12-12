@@ -53,6 +53,16 @@ public class RolOpcionesDao{
 		return lst;
 	}
 	
+	public List<RolOpciones> findByAll(Rol rol){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(RolOpciones.class);
+		crt.add(Restrictions.eq("rol", rol));
+		crt.addOrder(Order.asc("ident"));
+		List<RolOpciones> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
+	
 	private RolOpciones findByIdent(int ident){
 		//s = tx.iniciarSesion();
 		Criteria crt = s.createCriteria(RolOpciones.class);

@@ -28,7 +28,7 @@ public class RolOpcionesCtrl {
 	}
 	
 	public List<RolOpciones> findByAll(Rol rol){
-		List<RolOpciones> lst = dao.findByAll();
+		List<RolOpciones> lst = dao.findByAll(rol);
 		return lst;
 	}
 	
