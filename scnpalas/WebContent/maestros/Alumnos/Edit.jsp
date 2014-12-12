@@ -161,16 +161,24 @@
 					<caption>Registro de Alumno</caption>
 					<tr>
 						<td>Nombres</td>
-						<td><input type="text" name="nombre1" placeholder="1° Nombre"
+						<td><input type="text" name="nombre1" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 " 
+						placeholder="1° Nombre"
 							value="<%=alumno.getNombre1()%>" <%=disable%> required /></td>
-						<td><input type="text" name="nombre2" placeholder="2° Nombre"
+						<td><input type="text" name="nombre2" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+						placeholder="2° Nombre"
 							value="<%=alumno.getNombre2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
 						<td>Apellidos</td>
-						<td><input type="text" name="apellido1" placeholder="1° Apellido"
+						<td><input type="text" name="apellido1" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 " 
+						placeholder="1° Apellido"
 							value="<%=alumno.getApellido1()%>" <%=disable%> required /></td>
-						<td><input type="text" name="apellido2" placeholder="2° Apellido"
+						<td><input type="text" name="apellido2" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+						placeholder="2° Apellido"
 							value="<%=alumno.getApellido2()%>" <%=disable%> /></td>
 					</tr>
 					<tr>
@@ -182,52 +190,71 @@
 					</tr>
 					<tr>
 						<td>Fecha de Nacimiento</td>
-						<td colspan="2"><input id="datepicker1" type="text" name="fnacimiento" placeholder="Fecha de Nacimiento"
+						<td colspan="2"><input id="datepicker1" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+						 type="text" name="fnacimiento" placeholder="Fecha de Nacimiento"
 							value="<%=alumno.getFnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Lugar de Nacimiento</td>
-						<td colspan="3"><input type="text" name="lnacimiento"placeholder="Lugar de Nacimiento"
+						<td colspan="3"><input type="text" name="lnacimiento" pattern="[A-Z]+{1,25}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 25 "
+						placeholder="Lugar de Nacimiento"
 							size="45" value="<%=alumno.getLnacimiento()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Direccion</td>
-						<td colspan="2"><textarea name="direccion" rows="2"
+						<td colspan="2"><textarea name="direccion" pattern="[A-Z]+{1,50}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 50 "
+						rows="2"
 								cols="45" <%=disable%> required /><%=alumno.getDireccion()%></textarea></td>
 					</tr>
 					<tr>
 						<td>Telefono</td>
-						<td colspan="2"><input type="text" name="telefono"placeholder="####-####"
+						<td colspan="2"><input type="text" pattern="^[2|7|6]\d{7}$" required="" 
+							 Type="text" title="El formato debe coincidir con ######## asegurese iniciar con 2,7 o 6"
+						name="telefono"placeholder="########"
 							value="<%=alumno.getTelefono()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Religion</td>
-						<td colspan="2"><input type="text" name="religion"placeholder="Religion"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,10}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 10 " 
+						name="religion"placeholder="Religion"
 							size="45" value="<%=alumno.getReligion()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Enfermedades que padece</td>
-						<td colspan="2"><input type="text" name="enfermedades"placeholder="Enfermedades"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,25}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 25 "
+						name="enfermedades"placeholder="Enfermedades"
 							size="45" value="<%=alumno.getEnfermedades()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Medicamentos</td>
-						<td colspan="2"><input type="text" name="medicamentos"placeholder="Medicamentos"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,25}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 25 "
+						name="medicamentos"placeholder="Medicamentos"
 							size="45" value="<%=alumno.getMedicamentos()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Alergias</td>
-						<td colspan="2"><input type="text" name="alergico"placeholder="Alergias"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,50}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 50 "
+						name="alergico"placeholder="Alergias"
 							size="45" value="<%=alumno.getAlergico()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Problemas de aprendizaje</td>
-						<td colspan="2"><input type="text" name="aprendizaje"placeholder="Aprendizaje"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,30}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 30 "
+						name="aprendizaje"placeholder="Aprendizaje"
 							size="45" value="<%=alumno.getAprendizaje()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>
 						<td>Escuela previa</td>
-						<td colspan="2"><input type="text" name="escuelaprevia"placeholder="Escuela Previa"
+						<td colspan="2"><input type="text" pattern="[A-Z]+{1,50}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 50 "
+						name="escuelaprevia"placeholder="Escuela Previa"
 							size="45" value="<%=alumno.getEscuelaprevia()%>" <%=disable%> required /></td>
 					</tr>
 					<tr>

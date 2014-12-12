@@ -73,7 +73,9 @@
 						</tr>
 						<tr>
 							<td>Descripci&oacute;n</td>
-							<td colspan="2"><input type="text" name="descripcion" placeholder="Descripcion" value="<%=materia.getDescripcion()%>" <%=disable%> required/></td>
+							<td colspan="2"><input type="text" pattern="[A-Z]{1,10}" required="" 
+							 Type="text" title="El formato debe coincidir con letras mayúsculas maximo 10 "
+							name="descripcion" placeholder="Descripcion" value="<%=materia.getDescripcion()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

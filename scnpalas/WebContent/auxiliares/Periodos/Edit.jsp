@@ -121,15 +121,24 @@
 					<tbody>
 						<tr>
 							<td>A&ntilde;o</td>
-							<td><input type="text" name="anio" placeholder="Año" value="<%=periodo.getAnio()%>" <%=disable%> required/></td>
+							<td><input type="text" name="anio"pattern="[0-9]{1,4}" required="" 
+							 Type="text" title="El formato debe coincidir con numeros enteros maximo 4 " 
+							placeholder="Año" 
+							value="<%=periodo.getAnio()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Inicio</td>
-							<td><input type="text" name="inicio" id="datepicker1" placeholder="Inicio" value="<%=fi%>" required <%=disable%> /></td>
+							<td><input type="text" name="inicio" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+							 Type="text" title="El formato debe coincidir con fecha DD/MM/YYYY "
+							id="datepicker1" placeholder="Inicio" 
+							value="<%=fi%>" required <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td>Fin</td>
-							<td><input type="text" name="fin" id="datepicker2" placeholder="Fin" value="<%=ff%>" required <%=disable%> /></td>
+							<td><input type="text" name="fin" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+							 Type="text" title="El formato debe coincidir con fecha DD/MM/YYYY "
+							id="datepicker2" placeholder="Fin" 
+							value="<%=ff%>" required <%=disable%> /></td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center">

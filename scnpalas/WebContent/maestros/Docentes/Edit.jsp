@@ -86,36 +86,50 @@
 						</tr>
 						<tr>
 							<td>Nombre</td>
-							<td><input type="text" name="nombre1" placeholder="1° Nombre"
-							 value="<%=docente.getNombre1()%>" <%=disable%> required/></td>
-							<td><input type="text" name="nombre2" placeholder="2° Nombre"
+							<td><input type="text" name="nombre1"  pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+							 placeholder="1° Nombre"
+							 value="<%=docente.getNombre1()%>" <%=disable%>  /></td>
+							<td><input type="text" name="nombre2" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+							placeholder="2° Nombre"
 							value="<%=docente.getNombre2()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Apellido</td>
-							<td><input type="text" name="apellido1" placeholder="1° Apellido"
+							<td><input type="text" name="apellido1" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+							placeholder="1° Apellido"
 							value="<%=docente.getApellido1()%>" <%=disable%> required/></td>
-							<td><input type="text" name="apellido2" placeholder="2° Apellido"
+							<td><input type="text" name="apellido2" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+							placeholder="2° Apellido"
 							value="<%=docente.getApellido2()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Direcci&oacute;n</td>
-							<td colspan=2><input type="text" name="direccion" placeholder="Direccion"
+							<td colspan=2><input type="text" name="direccion" pattern="{1,50}" required="" 
+							 Type="text" title="El formato debe coincidir un maximo de 50 "
+							placeholder="Direccion"
 							value="<%=docente.getDireccion()%>" <%=disable%> size=45 required/></td>
 						</tr>
 						<tr>
 							<td>Tel&eacute;fono</td>
-							<td colspan=2><input type="text" placeholder="####-####"
+							<td colspan=2><input type="text" pattern="^[2|7|6]\d{7}$" required="" 
+							 Type="text" title="El formato debe coincidir con ######## asegurese iniciar con 2,7 o 6"
+							placeholder="########"
 							name="telefono" value="<%=docente.getTelefono()%>" <%=disable%> required/></td>
 						</tr>
 						<tr>
 							<td>Fecha de Nacimiento</td>
-							<td colspan="2"><input id="datepicker1" placeholder="Fecha de Nacimiento"
+							<td colspan="2"><input id="datepicker1" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" 
+							placeholder="Fecha de Nacimiento"
 							type="text" name="fnacimiento" value="<%=docente.getFnacimiento()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>
 							<td>Fecha de Contrato</td>
-							<td colspan="2"><input id="datepicker2" type="text" placeholder="Fecha de contrato"
+							<td colspan="2"><input id="datepicker2" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+							type="text" placeholder="Fecha de contrato"
 							name="fcontrato"value="<%=docente.getFcontrato()%>" <%=disable%> required /></td>
 						</tr>
 						<tr>

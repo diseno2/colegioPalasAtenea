@@ -88,7 +88,9 @@
 					<tbody>
 						<tr>
 							<td>Usuario</td>
-							<td><input type="text" placeholder="Usuario" name="usuario" value="<%=usuario.getUsuario() %>" <%=disable %> required /> </td>
+							<td><input type="text" pattern="[A-Z]{1,15}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 15 "
+							placeholder="Usuario" name="usuario" value="<%=usuario.getUsuario() %>" <%=disable %> required /> </td>
 						</tr>
 						<tr>
 							<td>Contrase&ntilde;a</td>

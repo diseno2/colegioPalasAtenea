@@ -192,7 +192,9 @@
 						</tr>
 						<tr>
 							<td>Secci&oacute;n</td>
-							<td><input type="text" name="seccion" placeholder="Sección" value="<%=seccion.getSeccion()%>" <%=disable %> /></td>
+							<td><input type="text" name="seccion" pattern="[A-Z]{1,5}" required="" 
+							 Type="text" title="El formato debe coincidir con  letras mayúsculas maximo 5 "
+							placeholder="Sección" value="<%=seccion.getSeccion()%>" <%=disable %> /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

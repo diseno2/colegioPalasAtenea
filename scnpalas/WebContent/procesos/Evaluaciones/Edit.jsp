@@ -229,7 +229,9 @@
 						</tr>
 						<tr>
 							<td>Evaluaci&oacute;n</td>
-							<td><input name="descripcion" type="text" placeholder="Nombre de la evaluacion" <%=disable %> value="<%=evaluacion.getEvaluacion() %>" /></td>
+							<td><input name="descripcion" pattern="[0-9]{1,10}" required="" 
+							 Type="text" title="El formato debe coincidir con entero no mayor a 10 "
+							type="text" placeholder="Nombre de la evaluacion" <%=disable %> value="<%=evaluacion.getEvaluacion() %>" /></td>
 						</tr>
 						<tr>
 							<td>Valor (%)</td>
@@ -237,7 +239,8 @@
 						</tr>
 						<tr>
 							<td>Fecha</td>
-							<td><input name="fecha" id="datepicker1" type="text" placeholder="Fecha de realización" <%=disable %> value="<%=evaluacion.getFecha() %>" /></td>
+							<td><input name="fecha" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" 
+							id="datepicker1" type="text" placeholder="Fecha de realización" <%=disable %> value="<%=evaluacion.getFecha() %>" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
