@@ -2,6 +2,7 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Rol;
 import sv.edu.ues.dsi.palasatenea.modelo.RolOpciones;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.RolOpcionesDao;
 
@@ -26,13 +27,26 @@ public class RolOpcionesCtrl {
 		return lst;
 	}
 	
-	public List<RolOpciones> findByParam(RolOpciones rolOpciones){
+	public List<RolOpciones> findByAll(Rol rol){
+		List<RolOpciones> lst = dao.findByAll();
+		return lst;
+	}
+	
+	public List<RolOpciones> findByParam(Rol rol){
 		List<RolOpciones> lst = dao.findByAll();
 		return lst;
 	}
 	
 	public Boolean puedoBorrar(RolOpciones rolOpc){
 		return true;
+	}
+	
+	public boolean hayOpciones(String tipo, Rol rol){
+		return dao.hayOpciones(tipo, rol);
+	}
+	
+	public List<RolOpciones> findByTipoRol(String tipo, Rol rol){
+		return dao.findByTipoRol(tipo, rol);
 	}
 	
 	public byte[] reporte(){

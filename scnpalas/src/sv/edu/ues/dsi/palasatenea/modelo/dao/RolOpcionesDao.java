@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import sv.edu.ues.dsi.palasatenea.modelo.Rol;
 import sv.edu.ues.dsi.palasatenea.modelo.RolOpciones;
 import sv.edu.ues.dsi.palasatenea.modelo.utilidades.Transacciones;
 
@@ -64,4 +65,31 @@ public class RolOpcionesDao{
 	public Connection obtenerConexion(){
 		return tx.obtenerConexion();
 	}
+	
+	public boolean hayOpciones(String tipo, Rol rol){
+		s = tx.iniciarSesion();
+		Boolean hay = false;
+		Criteria crt = s.createCriteria(RolOpciones.class);
+		crt.add(Restrictions.like("opcion", tipo));
+		crt.add(Restrictions.eq("rol", rol));
+		List<RolOpciones> lst = crt.list();
+		try{
+			if(lst.size() >= 0) hay = true;
+		}catch(Exception e){
+			hay = false;
+		}
+		tx.finSesion();
+		return hay;
+	}
+	
+	public List<RolOpciones> findByTipoRol(String tipo, Rol rol){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(RolOpciones.class);
+		crt.add(Restrictions.like("opcion", tipo));
+		crt.add(Restrictions.eq("rol", rol));
+		List<RolOpciones> lst = crt.list();
+		tx.finSesion();
+		return lst;
+	}
+	
 }

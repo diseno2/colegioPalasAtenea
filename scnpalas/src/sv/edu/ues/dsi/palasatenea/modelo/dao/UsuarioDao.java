@@ -61,6 +61,15 @@ public class UsuarioDao{
 		return usuario;
 	}
 	
+	public Usuario findByUsuario(String usuario){
+		s = tx.iniciarSesion();
+		Criteria crt = s.createCriteria(Usuario.class);
+		crt.add(Restrictions.eq("usuario", usuario));
+		Usuario u = (Usuario)crt.uniqueResult();
+		tx.finSesion();
+		return u;
+	}
+	
 	public Connection obtenerConexion(){
 		return tx.obtenerConexion();
 	}

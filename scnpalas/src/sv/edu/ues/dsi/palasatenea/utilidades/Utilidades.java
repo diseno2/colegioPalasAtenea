@@ -3,9 +3,16 @@ package sv.edu.ues.dsi.palasatenea.utilidades;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import sv.edu.ues.dsi.palasatenea.controlador.RolOpcionesCtrl;
+import sv.edu.ues.dsi.palasatenea.controlador.UsuarioCtrl;
+import sv.edu.ues.dsi.palasatenea.modelo.Rol;
+import sv.edu.ues.dsi.palasatenea.modelo.RolOpciones;
+import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 
 public class Utilidades {
 	public Date stringToDate(String strFecha){
@@ -64,52 +71,70 @@ public class Utilidades {
 					"<ul>"+
 					  "<li><a href='/scnpalas/index.jsp'>Inicio</a></li>"+
 				   "</div>";
-		else
-		menu = "<div id='menu'>"+
+		else{
+			RolOpcionesCtrl ctrl = new RolOpcionesCtrl();
+			Usuario u = new UsuarioCtrl().findByUsuario(this.getUsuario());
+			menu = " <div id='menu'> "+
+					"<ul>"+
+					"<li><a href='/scnpalas/index.jsp'>Inicio</a></li>";
+			if(ctrl.hayOpciones("auxiliares", u.getRol())){
+				menu += "<li>Auxiliares"+
+						"<ul>";
+				if(ctrl.hayOpciones("auxiliares/Periodos", u.getRol()))
+					menu += "<li><a href='/scnpalas/auxiliares/Periodos/Lista.jsp'>Periodos</a></li>";
+				if(ctrl.hayOpciones("auxiliares/Materias", u.getRol()))
+					menu += "<li><a href='/scnpalas/auxiliares/Materias/Lista.jsp'>Materias</a></li>";
+				if(ctrl.hayOpciones("auxiliares/Grados", u.getRol()))
+					menu += "<li><a href='/scnpalas/auxiliares/Grados/Lista.jsp'>Grados</a></li>";
+				menu += "</ul>";
+			}
+			if(ctrl.hayOpciones("maestros", u.getRol())){
+				menu += "<li>Maestros"+
+						"<ul>";
+				if(ctrl.hayOpciones("maestros/Alumnos", u.getRol()))
+					menu += "<li><a href='/scnpalas/maestros/Alumnos/Lista.jsp'>Alumnos</a></li>";
+				if(ctrl.hayOpciones("maestros/Docentes", u.getRol()))
+					menu += "<li><a href='/scnpalas/maestros/Docentes/Lista.jsp'>Docentes</a></li>";
+				if(ctrl.hayOpciones("maestros/Secciones", u.getRol()))
+					menu += "<li><a href='/scnpalas/maestros/Secciones/Lista.jsp'>Secciones</a></li>";
+				menu += "</ul>";
+			}
+			if(ctrl.hayOpciones("procesos", u.getRol())){
+				menu += "<li>Procesos"+
+						"<ul>";
+				if(ctrl.hayOpciones("procesos/Matriculas", u.getRol()))
+					menu += "<li><a href='/scnpalas/procesos/Matriculas/Lista.jsp'>Matriculas</a></li>";
+				if(ctrl.hayOpciones("procesos/Evaluaciones", u.getRol()))
+					menu += "<li><a href='/scnpalas/procesos/Evaluaciones/Lista.jsp'>Evaluaciones</a></li>";
+				if(ctrl.hayOpciones("procesos/Notas", u.getRol()))
+					menu += "<li><a href='/scnpalas/procesos/Notas/Lista.jsp'>Notas</a></li>";
+				menu += "</ul>";
+			}
+			if(ctrl.hayOpciones("reportes", u.getRol())){
+				menu += "<li>Reportes"+
+						"<ul>";
+				if(ctrl.hayOpciones("reportes/Inscritos", u.getRol()))
+					menu += "<li><a href='/scnpalas/reportes/Inscritos/Filtro.jsp'>Alumnos Inscritos</a></li>";
+				if(ctrl.hayOpciones("reportes/PorMateria", u.getRol()))
+					menu += "<li><a href='/scnpalas/reportes/PorMateria/Filtro.jsp'>Notas por Materia</a></li>";
+				if(ctrl.hayOpciones("reportes/PorAlumno", u.getRol()))
+					menu += "<li><a href='/scnpalas/reportes/PorAlumno/Filtro.jsp'>Notas por Alumno</a></li>";
+				if(ctrl.hayOpciones("reportes/Promedio", u.getRol()))
+					menu += "<li><a href='/scnpalas/reportes/Promedio/Filtro.jsp'>Promedio de Notas</a></li>";
+				menu += "</ul>";
+			}
+			if(u.getRol().getTipo().equals("ROLE_ADMIN")){
+				menu += "<li>Administracion"+
 						"<ul>"+
-						"<li><a href='/scnpalas/index.jsp'>Inicio</a></li>"+
-					  "<li>Auxiliares"+
-					  "<ul>"+
-						"<li><a href='/scnpalas/auxiliares/Periodos/Lista.jsp'>Periodos</a></li>"+
-						"<li><a href='/scnpalas/auxiliares/Materias/Lista.jsp'>Materias</a></li>"+
-						"<li><a href='/scnpalas/auxiliares/Grados/Lista.jsp'>Grados</a></li>"+
+							"<li><a href='/scnpalas/administracion/Roles/Lista.jsp'>Roles</a></li>"+
+							"<li><a href='/scnpalas/administracion/Usuarios/Lista.jsp'>Usuarios</a></li>"+
+						"</ul>"+
+					"</li>";
+			}
+			menu += "<li><a href='/scnpalas/j_spring_security_logout'>Salir</a></li>"+
 					"</ul>"+
-				"</li>"+
-				"<li>"+
-					"Maestros"+
-					"<ul>"+
-						"<li><a href='/scnpalas/maestros/Alumnos/Lista.jsp'>Alumnos</a></li>"+
-						"<li><a href='/scnpalas/maestros/Docentes/Lista.jsp'>Docentes</a></li>"+
-						"<li><a href='/scnpalas/maestros/Secciones/Lista.jsp'>Secciones</a></li>"+
-					"</ul>"+
-				"</li>"+
-				"<li>"+
-					"Procesos"+
-					"<ul>"+
-						"<li><a href='/scnpalas/procesos/Matriculas/Lista.jsp'>Matriculas</a></li>"+
-						"<li><a href='/scnpalas/procesos/Evaluaciones/Lista.jsp'>Evaluaciones</a></li>"+
-						"<li><a href='/scnpalas/procesos/Notas/Lista.jsp'>Notas</a></li>"+
-					"</ul>"+
-				"</li>"+
-				"<li>"+
-					"Reportes"+
-					"<ul>"+
-						"<li><a href='/scnpalas/reportes/Inscritos/Filtro.jsp'>Alumnos Inscritos</a></li>"+
-						"<li><a href='/scnpalas/reportes/PorMateria/Filtro.jsp'>Notas por Materia</a></li>"+
-						"<li><a href='/scnpalas/reportes/PorAlumno/Filtro.jsp'>Notas por Alumno</a></li>"+
-						"<li><a href='/scnpalas/reportes/Promedio/Filtro.jsp'>Promedio de Notas</a></li>"+
-					"</ul>"+
-				"</li>"+
-				"<li>"+
-					"Administracion"+
-					"<ul>"+
-						"<li><a href='/scnpalas/administracion/Roles/Lista.jsp'>Roles</a></li>"+
-						"<li><a href='/scnpalas/administracion/Usuarios/Lista.jsp'>Usuarios</a></li>"+
-					"</ul>"+
-				"</li>"+
-				"<li><a href='/scnpalas/j_spring_security_logout'>Salir</a></li>"+
-			"</ul>"+
-			"</div>";
+					"</div>";
+		}
 		return menu;
 	}
 }

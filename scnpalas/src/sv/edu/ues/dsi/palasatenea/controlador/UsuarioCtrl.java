@@ -2,6 +2,9 @@ package sv.edu.ues.dsi.palasatenea.controlador;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import sv.edu.ues.dsi.palasatenea.modelo.Usuario;
 import sv.edu.ues.dsi.palasatenea.modelo.dao.UsuarioDao;
 
@@ -40,6 +43,10 @@ public class UsuarioCtrl {
 		if(estado.equals("A")) return "Activo";
 		if(estado.equals("I")) return "Inactivo";
 		return estado;
+	}
+	
+	public Usuario findByUsuario(String usuario){
+		return dao.findByUsuario(usuario);
 	}
 	
 	public byte[] reporte(){
